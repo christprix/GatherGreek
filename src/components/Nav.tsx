@@ -40,12 +40,11 @@ export function Nav() {
         </div>
         <a className="btn btn-ghost text-xl">GatherGreek</a>
       </div>
-
+      <div className="navbar-center hidden lg:flex mx-3">
+        <Search></Search>
+      </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li>
-            <Search></Search>
-          </li>
           <li>
             <a>Events</a>
           </li>
