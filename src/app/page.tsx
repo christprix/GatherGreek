@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Nav } from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Card from "@/components/Card";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         <Card></Card>
         <Card></Card>
       </div>
+      <Footer></Footer>
     </div>
   );
 }
