@@ -1,4 +1,6 @@
 import alphastep from "/public/alphastep.jpg";
+import Search from "./Search";
+
 export default function Hero() {
   return (
     <div
@@ -14,7 +16,12 @@ export default function Hero() {
             Where Greeks Come Together
           </h1>
           <p className="mb-5">Where Greeks Come Together</p>
-          <button className="btn btn-primary">Find Your Next Event</button>
+          <button className="btn btn-primary hidden md:inline-flex">
+            Find Your Next Event
+          </button>
+          <div className="md:hidden">
+            <Search></Search>
+          </div>
         </div>
       </div>
     </div>
