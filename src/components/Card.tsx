@@ -8,7 +8,7 @@ import sgrhoevent from "/public/sgrhoevent.jpg";
 interface CardProps {
   event?: object;
 }
-export default function Card({ event }) {
+export default function Card({ event }: any) {
   return (
     <div className="p-3">
       <div className="card card-compact bg-base-100 w-96 h-96 shadow-xl">
