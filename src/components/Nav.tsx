@@ -6,7 +6,7 @@ export function Nav() {
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
-        <a className="btn btn-ghost text-xl">GatherGreek</a>
+        <a className="btn btn-ghost text-xl">GreekGather</a>
       </div>
       <div className="navbar-center hidden lg:flex mx-3">
         <Search></Search>

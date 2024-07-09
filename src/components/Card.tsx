@@ -5,6 +5,9 @@ import greekstep from "/public/greekstep-p01.jpg";
 import sigmavolunteer from "/public/sigmavoluteer.jpg";
 import sgrhoevent from "/public/sgrhoevent.jpg";
 
+interface CardProps {
+  event?: object;
+}
 export default function Card({ event }) {
   return (
     <div className="p-3">
