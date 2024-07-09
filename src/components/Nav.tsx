@@ -5,8 +5,32 @@ import { ReactNode } from "react";
 export function Nav() {
   return (
     <div className="navbar bg-base-100">
-      <div className="navbar-start md:hidden">
-        <div className="dropdown">
+      <div className="navbar-start md:hidden"></div>
+      <div className="navbar-start hidden md:flex">
+        <ul className="menu menu-horizontal px-1">
+          <li>
+            <a>Events</a>
+          </li>
+          <li>
+            <a>Create Events</a>
+          </li>
+          <li>
+            <a>Login</a>
+          </li>
+        </ul>
+      </div>
+      <div className="navbar-center">
+        <a className="btn btn-ghost text-xl">GreekGather</a>
+      </div>
+      <div className="navbar-center hidden md:flex mx-3">
+        <Search></Search>
+      </div>
+      <div className="navbar-end hidden md:flex">
+        <a className="btn btn-ghost mx-4">Login</a>
+        <a className="btn">Sign Up</a>
+      </div>
+      <div className="navbar-end md:hidden">
+        <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -36,31 +60,11 @@ export function Nav() {
             <li>
               <a>Login</a>
             </li>
+            <li>
+              <a className="btn">Sign Up</a>
+            </li>
           </ul>
         </div>
-      </div>
-      <div className="navbar-start hidden md:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Events</a>
-          </li>
-          <li>
-            <a>Create Events</a>
-          </li>
-          <li>
-            <a>Login</a>
-          </li>
-        </ul>
-      </div>
-      <div className="navbar-center">
-        <a className="btn btn-ghost text-xl">GreekGather</a>
-      </div>
-      <div className="navbar-center hidden md:flex mx-3">
-        <Search></Search>
-      </div>
-      <div className="navbar-end">
-        <a className="btn btn-ghost mx-3">Login</a>
-        <a className="btn">Sign Up</a>
       </div>
     </div>
   );
