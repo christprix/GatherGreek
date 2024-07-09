@@ -8,3 +8,13 @@ export default function Avatar() {
     </div>
   );
 }
+
+export function AvatarIcon({ icon }: any) {
+  return (
+    <div className="avatar">
+      <div className="rounded-full">
+        <>{icon}</>
+      </div>
+    </div>
+  );
+}

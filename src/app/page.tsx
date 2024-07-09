@@ -2,8 +2,14 @@ import { Nav } from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Card from "@/components/Card";
 import Footer from "@/components/Footer";
-import Avatar from "@/components/Avatar";
-import qstomp from "/public/qstomp.jpg";
+import { AvatarIcon } from "@/components/Avatar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHandshakeAngle,
+  faChampagneGlasses,
+  faLandmark,
+  faUserGraduate,
+} from "@fortawesome/free-solid-svg-icons";
 import greekstep from "/public/greekstep-p01.jpg";
 import sigmavolunteer from "/public/sigmavolunteer.jpg";
 import sgrhoevent from "/public/sgrhoevent.jpg";
@@ -35,6 +41,11 @@ const events = [
   },
 ];
 
+const element = <FontAwesomeIcon icon={faHandshakeAngle} />;
+const element2 = <FontAwesomeIcon icon={faChampagneGlasses} />;
+const element3 = <FontAwesomeIcon icon={faLandmark} />;
+const element4 = <FontAwesomeIcon icon={faUserGraduate} />;
+
 export default function Home() {
   const eventcard = events.map((e) => {
     return <Card event={e} key={e.id}></Card>;
@@ -43,6 +54,28 @@ export default function Home() {
     <div>
       <Nav></Nav>
       <Hero></Hero>
+      <div className="flex flex-row items center justify-evenly">
+        <div className="avatar m-1">
+          <div className="p-4 hover:p-3 ring-primary ring-offset-base-100 w-24 rounded-full ring ring-offset-2">
+            <div>{element}</div>
+          </div>
+        </div>
+        <div className="avatar m-1">
+          <div className="p-4 hover:p-3 ring-primary ring-offset-base-100 w-24 rounded-full ring ring-offset-2">
+            <div>{element2}</div>
+          </div>
+        </div>
+        <div className="avatar m-1">
+          <div className="p-4 hover:p-3 ring-primary ring-offset-base-100 w-24 rounded-full ring ring-offset-2">
+            <div>{element3}</div>
+          </div>
+        </div>
+        <div className="avatar m-1">
+          <div className="p-4 hover:p-3 ring-primary ring-offset-base-100 w-24 rounded-full ring ring-offset-2">
+            <div>{element4}</div>
+          </div>
+        </div>
+      </div>
       <div className="flex flex-col justify-around items-center">
         <div className="flex flex-row max-w-64 m-4"></div>
       </div>
