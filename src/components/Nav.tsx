@@ -2,10 +2,12 @@
 import Search from "./Search";
 import { ReactNode } from "react";
 
-export function Nav() {
+export function Nav({ logo }) {
   return (
     <div className="navbar bg-base-100">
-      <div className="navbar-start md:hidden"></div>
+      <div className="navbar-start md:hidden ">
+        <button className="btn btn-ghost btn-circle w-10">{logo}</button>
+      </div>
       <div className="navbar-start hidden md:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
@@ -13,9 +15,6 @@ export function Nav() {
           </li>
           <li>
             <a>Create Events</a>
-          </li>
-          <li>
-            <a>Login</a>
           </li>
         </ul>
       </div>
