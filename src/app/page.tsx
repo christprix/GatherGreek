@@ -1,8 +1,6 @@
-import { Nav } from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Card from "@/components/Card";
 import Footer from "@/components/Footer";
-import { AvatarIcon } from "@/components/Avatar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHandshakeAngle,
@@ -56,7 +54,6 @@ export default function Home() {
   });
   return (
     <div>
-      <Nav logo={logo1}></Nav>
       <Hero></Hero>
       <div className="flex flex-row items-center py-4  justify-evenly">
         <div className="avatar m-1">

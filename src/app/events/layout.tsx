@@ -6,7 +6,6 @@ export default function EventsLayout({
 }) {
   return (
     <section>
-      <Nav></Nav>
       {/* Include shared UI here e.g. a header or sidebar */}
       {children}
     </section>

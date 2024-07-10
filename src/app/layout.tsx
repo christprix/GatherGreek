@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google"
+import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLandmark } from "@fortawesome/free-solid-svg-icons";
+import { Nav } from "@/components/Nav";
 
+const logo1 = <FontAwesomeIcon icon={faLandmark} className="w-6" />;
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,7 +16,7 @@ export const metadata: Metadata = {
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
-})
+});
 
 export default function RootLayout({
   children,
@@ -21,7 +25,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("bg-background min-h-screen font-sans antialised",fontSans.variable)}>{children}</body>
+      <body
+        className={cn(
+          "bg-background min-h-screen font-sans antialised",
+          fontSans.variable
+        )}
+      >
+        <Nav logo={logo1}></Nav>
+        {children}
+      </body>
     </html>
   );
 }
