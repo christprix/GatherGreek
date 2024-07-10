@@ -5,18 +5,8 @@ import { ReactNode } from "react";
 export function Nav({ logo }: any) {
   return (
     <div className="navbar bg-base-100">
-      <div className="navbar-start md:hidden ">
+      <div className="navbar-start ">
         <button className="btn btn-ghost btn-circle w-10">{logo}</button>
-      </div>
-      <div className="navbar-start hidden md:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Events</a>
-          </li>
-          <li>
-            <a>Create Events</a>
-          </li>
-        </ul>
       </div>
       <div className="navbar-center">
         <a className="btn btn-ghost text-xl">GreekGather</a>
@@ -25,6 +15,14 @@ export function Nav({ logo }: any) {
         <Search></Search>
       </div>
       <div className="navbar-end hidden md:flex">
+        <ul className="menu menu-horizontal px-1">
+          <li>
+            <a>Events</a>
+          </li>
+          <li>
+            <a>Create Events</a>
+          </li>
+        </ul>
         <a className="btn btn-ghost mx-4">Login</a>
         <a className="btn">Sign Up</a>
       </div>
