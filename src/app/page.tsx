@@ -45,7 +45,7 @@ const element = <FontAwesomeIcon icon={faHandshakeAngle} />;
 const element2 = <FontAwesomeIcon icon={faChampagneGlasses} />;
 const element3 = <FontAwesomeIcon icon={faLandmark} />;
 const element4 = <FontAwesomeIcon icon={faUserGraduate} />;
-const logo1 = <FontAwesomeIcon icon={faLandmark} />;
+const logo1 = <FontAwesomeIcon icon={faLandmark} className="w-6" />;
 
 export default function Home() {
   const eventcard = events.map((e) => {
@@ -55,7 +55,7 @@ export default function Home() {
     <div>
       <Nav logo={logo1}></Nav>
       <Hero></Hero>
-      <div className="flex flex-row items-center py-3  justify-evenly">
+      <div className="flex flex-row items-center py-4  justify-evenly">
         <div className="avatar m-1">
           <div className="p-4 hover:p-3 ring-primary ring-offset-base-100 w-16 rounded-full ring ring-offset-2">
             <div>{element}</div>

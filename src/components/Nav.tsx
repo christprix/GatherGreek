@@ -6,7 +6,7 @@ export function Nav({ logo }: any) {
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start ">
-        <button className="btn btn-ghost btn-circle w-10">{logo}</button>
+        <button className="btn btn-ghost btn-circle w-12">{logo}</button>
       </div>
       <div className="navbar-center">
         <a className="btn btn-ghost text-xl">GreekGather</a>
