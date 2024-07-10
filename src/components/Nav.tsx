@@ -2,7 +2,7 @@
 import Search from "./Search";
 import { ReactNode } from "react";
 
-export function Nav({ logo }) {
+export function Nav({ logo }: any) {
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start md:hidden ">
