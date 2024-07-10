@@ -9,6 +9,7 @@ import {
   faChampagneGlasses,
   faLandmark,
   faUserGraduate,
+  faMoneyBillTrendUp,
 } from "@fortawesome/free-solid-svg-icons";
 import greekstep from "/public/greekstep-p01.jpg";
 import sigmavolunteer from "/public/sigmavolunteer.jpg";
@@ -45,6 +46,8 @@ const element = <FontAwesomeIcon icon={faHandshakeAngle} />;
 const element2 = <FontAwesomeIcon icon={faChampagneGlasses} />;
 const element3 = <FontAwesomeIcon icon={faLandmark} />;
 const element4 = <FontAwesomeIcon icon={faUserGraduate} />;
+const element5 = <FontAwesomeIcon icon={faMoneyBillTrendUp} />;
+
 const logo1 = <FontAwesomeIcon icon={faLandmark} className="w-6" />;
 
 export default function Home() {
@@ -76,11 +79,17 @@ export default function Home() {
             <div>{element4}</div>
           </div>
         </div>
+        <div className="avatar m-1">
+          <div className="p-4 hover:p-3 ring-primary ring-offset-base-100 w-16 rounded-full ring ring-offset-2">
+            <div>{element5}</div>
+          </div>
+        </div>
       </div>
       <div className="flex flex-col justify-around items-center">
+        <div className="text-3xl p-5">Events Near Douglasville, Georgia</div>
         <div className="flex flex-row max-w-64 m-4"></div>
       </div>
-      <div className="flex md:flex-row flex-col justify-around items-center m-3">
+      <div className="flex md:flex-row flex-col justify-around items-center m-1">
         <>{eventcard}</>
       </div>
       <Footer></Footer>
