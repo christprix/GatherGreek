@@ -1,3 +1,5 @@
+// remember you must use an Auth Provider for client components
+// to use useSession
 import Hero from "@/components/Hero";
 import Card from "@/components/Card";
 import Footer from "@/components/Footer";
@@ -13,6 +15,7 @@ import greekstep from "/public/greekstep-p01.jpg";
 import sigmavolunteer from "/public/sigmavolunteer.jpg";
 import sgrhoevent from "/public/sgrhoevent.jpg";
 
+// mock data
 const events = [
   {
     title: "Xi Chi Sigma Step Show",
@@ -40,15 +43,15 @@ const events = [
   },
 ];
 
+// turn into component
 const element = <FontAwesomeIcon icon={faHandshakeAngle} />;
 const element2 = <FontAwesomeIcon icon={faChampagneGlasses} />;
 const element3 = <FontAwesomeIcon icon={faLandmark} />;
 const element4 = <FontAwesomeIcon icon={faUserGraduate} />;
 const element5 = <FontAwesomeIcon icon={faMoneyBillTrendUp} />;
 
-const logo1 = <FontAwesomeIcon icon={faLandmark} className="w-6" />;
-
 export default function Home() {
+  // turn into component cardlist
   const eventcard = events.map((e) => {
     return <Card event={e} key={e.id}></Card>;
   });
@@ -61,6 +64,7 @@ export default function Home() {
             <div>{element}</div>
           </div>
         </div>
+        {/* turn into component */}
         <div className="avatar m-1">
           <div className="p-4 hover:p-3 ring-primary ring-offset-base-100 w-16 rounded-full ring ring-offset-2">
             <div>{element2}</div>
