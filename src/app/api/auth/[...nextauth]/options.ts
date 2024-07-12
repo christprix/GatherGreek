@@ -8,10 +8,10 @@ import { compare } from "bcrypt";
 // const prismaclient = prisma;
 export const options: NextAuthOptions = {
   providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
-    }),
+    // GithubProvider({
+    //   clientId: process.env.GITHUB_ID as string,
+    //   clientSecret: process.env.GITHUB_SECRET as string,
+    // }),
     CredentialsProvider({
       name: "Credentials",
       credentials: {
