@@ -52,10 +52,6 @@ const element4 = <FontAwesomeIcon icon={faUserGraduate} />;
 const element5 = <FontAwesomeIcon icon={faMoneyBillTrendUp} />;
 
 export default function Home() {
-  // turn into component cardlist
-  const eventcard = events.map((e) => {
-    return <Card event={e} key={e.id}></Card>;
-  });
   return (
     <div>
       <Hero></Hero>

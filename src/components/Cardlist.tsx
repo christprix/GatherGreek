@@ -5,5 +5,5 @@ export default function Cardlist({ events }: any) {
     return <Card event={e} key={e.id}></Card>;
   });
 
-  return <>{eventsList};</>;
+  return <>{eventsList}</>;
 }
