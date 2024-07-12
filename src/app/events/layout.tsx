@@ -1,4 +1,3 @@
-import { Nav } from "@/components/Nav";
 export default function EventsLayout({
   children, // will be a page or nested layout
 }: {

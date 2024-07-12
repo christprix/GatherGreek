@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { hash } from "bcrypt";
 import { faker } from "@faker-js/faker";
+import { log } from "console";
 // import greekstep from "../public/greekstep-p01.jpg";
 // import sigmavolunteer from "../public/sigmavolunteer.jpg";
 // import sgrhoevent from "../public/sgrhoevent.jpg";
@@ -32,6 +33,9 @@ import { faker } from "@faker-js/faker";
 //   },
 // ];
 
+const fakedate = faker.date.future();
+
+console.log(fakedate);
 const prisma = new PrismaClient();
 async function main() {
   const password = await hash("test", 11);
@@ -50,14 +54,59 @@ async function main() {
             location: "1 Amb Dr NW, Atlanta, GA 30313",
             description: "From $1.00",
             imagePath: "greekstep",
-            eventDate: "Saturday July 29th 8:00pm",
+            eventDate: faker.date.future(),
             totalSeats: 2,
           },
         ],
       },
     },
   });
-  console.log({ chris });
+  const coolio = await prisma.user.upsert({
+    where: { email: "test2@test.com" },
+    update: {},
+    create: {
+      email: "test2@test.com",
+      firstName: "coolio",
+      lastName: "stprix",
+      password,
+      events: {
+        create: [
+          {
+            title: "Feed the homeless Community Event",
+            location: "1755 Sandy Ln, Douglasville, GA 30134",
+            description: "From $0.00",
+            imagePath: "greekstep",
+            eventDate: fakedate,
+            totalSeats: 2,
+          },
+        ],
+      },
+    },
+  });
+  const charlisa = await prisma.user.upsert({
+    where: { email: "test3@test.com" },
+    update: {},
+    create: {
+      email: "test3@test.com",
+      firstName: "charlisa",
+      lastName: "jackson",
+      password,
+      events: {
+        create: [
+          {
+            title: "Sghro Community Service Event",
+            location: "6700 Church St, Douglasville, GA 30134",
+            description: "From $1.00",
+            imagePath: "greekstep",
+            eventDate: faker.date.future(),
+            totalSeats: 3,
+          },
+        ],
+      },
+    },
+  });
+
+  console.log({ chris, coolio });
 }
 main()
   .then(async () => {
