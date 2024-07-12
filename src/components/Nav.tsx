@@ -27,7 +27,7 @@ export default async function Nav({ logo }: any) {
             <Link href={"/events"}>Events</Link>
           </li>
         </ul>
-        <a className="btn btn-ghost mx-4">Login</a>
+        <Link href={"/api/auth/signin"}>Login</Link>
         <a className="btn">Sign Up</a>
       </div>
       <div className="navbar-end md:hidden">
