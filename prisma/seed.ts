@@ -51,9 +51,9 @@ async function main() {
         create: [
           {
             title: "Xi Chi Sigma Step Show",
-            location: "1 Amb Dr NW, Atlanta, GA 30313",
             description: "From $1.00",
             imagePath: "greekstep",
+            location: "1 Amb Dr NW, Atlanta, GA 30313",
             eventDate: faker.date.future(),
             totalSeats: 2,
           },
