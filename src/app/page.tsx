@@ -2,6 +2,7 @@
 // to use useSession
 import Hero from "@/components/Hero";
 import Card from "@/components/Card";
+import Cardlist from "@/components/Cardlist";
 import Footer from "@/components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,7 +16,7 @@ import greekstep from "/public/greekstep-p01.jpg";
 import sigmavolunteer from "/public/sigmavolunteer.jpg";
 import sgrhoevent from "/public/sgrhoevent.jpg";
 
-// mock data
+// mock data replace with events from prisma
 const events = [
   {
     title: "Xi Chi Sigma Step Show",
@@ -91,7 +92,7 @@ export default function Home() {
         <div className="flex flex-row max-w-64 m-4"></div>
       </div>
       <div className="flex md:flex-row flex-col justify-around items-center m-1">
-        <>{eventcard}</>
+        <Cardlist events={events}></Cardlist>
       </div>
       <Footer></Footer>
     </div>
