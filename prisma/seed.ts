@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { hash } from "bcrypt";
 import { faker } from "@faker-js/faker";
-import { log } from "console";
 // import greekstep from "../public/greekstep-p01.jpg";
 // import sigmavolunteer from "../public/sigmavolunteer.jpg";
 // import sgrhoevent from "../public/sgrhoevent.jpg";
