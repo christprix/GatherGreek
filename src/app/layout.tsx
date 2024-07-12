@@ -4,8 +4,8 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLandmark } from "@fortawesome/free-solid-svg-icons";
-import { Nav } from "@/components/Nav";
-
+import Nav from "@/components/Nav";
+import AuthProvider from "./context/AuthProvider";
 const logo1 = <FontAwesomeIcon icon={faLandmark} className="w-6" />;
 
 export const metadata: Metadata = {
@@ -31,8 +31,10 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <Nav logo={logo1}></Nav>
-        {children}
+        <AuthProvider>
+          <Nav logo={logo1}></Nav>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

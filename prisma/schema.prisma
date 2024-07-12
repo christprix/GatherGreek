@@ -20,7 +20,7 @@ model Event {
   description String
   imagePath String
   eventDate DateTime
-  
+  location String
   totalSeats Int
   createdAt  DateTime   @default(now())
   author User @relation("CreatedEvents", fields: [authorId], references: [id])
@@ -31,7 +31,8 @@ model User {
   id String @id  @default(cuid())
   firstName String
   lastName  String
-  email     String  @unique
+  password  String?
+  email     String?  @unique
   isAdmin   Boolean @default(false)
   events Event[] @relation("CreatedEvents")
 }
