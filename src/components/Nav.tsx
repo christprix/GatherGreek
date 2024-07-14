@@ -27,8 +27,10 @@ export default async function Nav({ logo }: any) {
             <Link href={"/events"}>Events</Link>
           </li>
         </ul>
-        <Link href={"/api/auth/signin"}>Login</Link>
-        <a className="btn">Sign Up</a>
+        <Link href={"/api/auth/signin"} className="btn btn-outline mx-2">
+          Login
+        </Link>
+        <a className="btn btn-outline">Sign Up</a>
       </div>
       <div className="navbar-end md:hidden">
         {!session ? (
@@ -60,7 +62,7 @@ export default async function Nav({ logo }: any) {
                 <Link href={"/api/auth/signin"}>Login</Link>
               </li>
               <li>
-                <a className="btn">Sign Up</a>
+                <a>Sign Up</a>
               </li>
             </ul>
           </div>

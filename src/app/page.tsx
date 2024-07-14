@@ -56,29 +56,29 @@ export default function Home() {
     <div>
       <Hero></Hero>
       <div className="flex flex-row items-center py-4  justify-evenly">
+        {/* turn into component */}
         <div className="avatar m-1">
-          <div className="p-4 hover:p-3 ring-primary ring-offset-base-100 w-16 rounded-full ring ring-offset-2">
+          <div className="p-4 hover:p-3 border w-16 rounded-full ring-offset-2">
             <div>{element}</div>
           </div>
         </div>
-        {/* turn into component */}
         <div className="avatar m-1">
-          <div className="p-4 hover:p-3 ring-primary ring-offset-base-100 w-16 rounded-full ring ring-offset-2">
+          <div className="p-4 hover:p-3 w-16 rounded-full border ring-offset-2">
             <div>{element2}</div>
           </div>
         </div>
         <div className="avatar m-1">
-          <div className="p-4 hover:p-3 ring-primary ring-offset-base-100 w-16 rounded-full ring ring-offset-2">
+          <div className="p-4 hover:p-3 border w-16 rounded-full ring-offset-2">
             <div>{element3}</div>
           </div>
         </div>
         <div className="avatar m-1">
-          <div className="p-4 hover:p-3 ring-primary ring-offset-base-100 w-16 rounded-full ring ring-offset-2">
+          <div className="p-4 hover:p-3 border w-16 rounded-full ring-offset-2">
             <div>{element4}</div>
           </div>
         </div>
         <div className="avatar m-1">
-          <div className="p-4 hover:p-3 ring-primary ring-offset-base-100 w-16 rounded-full ring ring-offset-2">
+          <div className="p-4 hover:p-3 w-16 rounded-full border ring-offset-3">
             <div>{element5}</div>
           </div>
         </div>
