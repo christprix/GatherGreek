@@ -9,29 +9,48 @@ export default async function Nav({ logo }: any) {
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start ">
-        <button className="btn btn-ghost btn-circle w-12">
-          <Link href={"/"}>{logo}</Link>
-        </button>
+        <Link href={"/"} className="btn btn-ghost flex flex-col">
+          {logo}
+          <div className="hidden md:block">GreekGather</div>
+        </Link>
       </div>
       <div className="navbar-center">
-        <Link href={"/"} className="btn btn-ghost text-xl">
+        <Link href={"/"} className="btn btn-ghost text-xl md:hidden">
           GreekGather
         </Link>
       </div>
       <div className="navbar-center hidden md:flex mx-3">
         <Search></Search>
       </div>
-      <div className="navbar-end hidden md:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <Link href={"/events"}>Events</Link>
-          </li>
-        </ul>
-        <Link href={"/api/auth/signin"} className="btn btn-outline mx-2">
-          Login
-        </Link>
-        <a className="btn btn-outline">Sign Up</a>
-      </div>
+      {!session ? (
+        <div className="navbar-end hidden md:flex">
+          <ul className="menu menu-horizontal px-1">
+            <li>
+              <Link href={"/events"}>Events</Link>
+            </li>
+          </ul>
+          <Link href={"/api/auth/signin"} className="btn btn-outline mx-2">
+            Login
+          </Link>
+          <a className="btn btn-outline">Sign Up</a>
+        </div>
+      ) : (
+        <div className="navbar-end hidden md:flex">
+          <ul className="menu menu-horizontal px-1">
+            <li>
+              <Link href={"/events"} className="btn btn-outline mx-2">
+                My Events
+              </Link>
+            </li>
+          </ul>
+          <Link href={"/profile"} className="btn btn-outline mx-2">
+            Profile
+          </Link>
+          <Link href={"/api/auth/signout"} className="btn btn-outline mx-2">
+            Sign Out
+          </Link>
+        </div>
+      )}
       <div className="navbar-end md:hidden">
         {!session ? (
           <div className="dropdown dropdown-end">

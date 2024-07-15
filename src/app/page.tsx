@@ -58,7 +58,7 @@ export default function Home() {
       <div className="flex flex-row items-center py-4  justify-evenly">
         {/* turn into component */}
         <div className="avatar m-1">
-          <div className="p-4 hover:p-3 border w-16 rounded-full ring-offset-2">
+          <div className="p-4 hover:p-3 border-2 w-16 rounded-full ring-offset-2">
             <div>{element}</div>
           </div>
         </div>
