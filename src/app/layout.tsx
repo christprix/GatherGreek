@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLandmark } from "@fortawesome/free-solid-svg-icons";
@@ -34,6 +35,7 @@ export default function RootLayout({
         <AuthProvider>
           <Nav logo={logo1}></Nav>
           {children}
+          <Footer></Footer>
         </AuthProvider>
       </body>
     </html>

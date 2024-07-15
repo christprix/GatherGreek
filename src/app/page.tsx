@@ -1,9 +1,7 @@
 // remember you must use an Auth Provider for client components
 // to use useSession
 import Hero from "@/components/Hero";
-import Card from "@/components/Card";
 import Cardlist from "@/components/Cardlist";
-import Footer from "@/components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHandshakeAngle,
@@ -90,7 +88,6 @@ export default function Home() {
       <div className="flex md:flex-row flex-col justify-around items-center m-1">
         <Cardlist events={events}></Cardlist>
       </div>
-      <Footer></Footer>
     </div>
   );
 }

@@ -1,9 +1,4 @@
 import Avatar from "./Avatar";
-import sigmalogo from "/public/Sigmalogo.png";
-import qstomp from "/public/qstomp.jpg";
-import greekstep from "/public/greekstep-p01.jpg";
-import sigmavolunteer from "/public/sigmavoluteer.jpg";
-import sgrhoevent from "/public/sgrhoevent.jpg";
 
 export default function Card({ event }: any) {
   return (
