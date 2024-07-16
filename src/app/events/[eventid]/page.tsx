@@ -36,8 +36,8 @@ export default function EventDetails({
         width={1000}
         height={1000}
       ></Image> */}
-      <div className="flex md:hidden justify-center">
-        <div className="carousel rounded w-full">
+      <div className="flex justify-center">
+        <div className="carousel rounded w-full md:w-1/2">
           <div className="carousel-item w-full glass">
             <img
               src={greekstep.src}
@@ -93,7 +93,7 @@ export default function EventDetails({
           </div>
         </div>
       </div>
-      <div className="flex container m-4">
+      <div className="flex m-4">
         <div id="left" className="grid flex-col flex-grow">
           <div className="text-2xl">{event.title}</div>
           <div className="w-16">
@@ -104,7 +104,7 @@ export default function EventDetails({
           <div>{event.price}</div>
           <button className="btn btn-primary">Get Tickets</button>
         </div>
-        <div id="right" className="grid hidden md:block flex-grow">
+        {/* <div id="right" className="grid hidden md:block flex-grow">
           <div className="p-4">
             <Image
               className="rounded-md"
@@ -114,7 +114,7 @@ export default function EventDetails({
               height={1000}
             ></Image>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
