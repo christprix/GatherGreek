@@ -4,7 +4,8 @@ import sigmavolunteer from "/public/sigmavolunteer.jpg";
 import sgrhoevent from "/public/sgrhoevent.jpg";
 import sigmabrotherhood from "/public/sigmabrotherhood.jpg";
 import qstomp from "/public/qstomp.jpg";
-
+import { Calendar } from "@/components/ui/calendar";
+import React from "react";
 const events = [
   {
     title: "Xi Chi Sigma Step Show",
@@ -49,21 +50,19 @@ const events = [
 ];
 
 export default function Page() {
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
   return (
     <>
       <div className="border-t border-blue-100 flex flex-col">
         <div className="m-4 text-3xl">Events For You</div>
         <div className="mx-4">Douglasville, Georgia</div>
         <div className="flex justify-center">
-          <form action="">
-            <label htmlFor="event-date">Date: </label>
-            <input
-              type="datetime-local"
-              name="event-date"
-              id="event-date"
-              className="border"
-            />
-          </form>
+          <Calendar
+            mode="single"
+            selected={date}
+            onSelect={setDate}
+            className="rounded-md border"
+          />
         </div>
       </div>
       <div className="flex justify-center md:justify-start flex-wrap">
