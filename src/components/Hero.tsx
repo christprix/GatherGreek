@@ -15,7 +15,7 @@ export default function Hero() {
           <h1 className="mb-5 md:text-4xl text-3xl font-bold">
             Where Greeks Come Together
           </h1>
-          <p className="mb-5">Find your next event</p>
+          <p className="mb-5">Join the Community</p>
           <button className="btn btn-primary hidden md:inline-flex">
             Find Your Next Event
           </button>
