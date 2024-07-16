@@ -54,12 +54,24 @@ export default function Page() {
       <div className="border-t border-blue-100 flex flex-col">
         <div className="m-4 text-3xl">Events For You</div>
         <div className="mx-4">Douglasville, Georgia</div>
+        <div className="flex justify-center">
+          <form action="">
+            <label htmlFor="event-date">Date: </label>
+            <input
+              type="datetime-local"
+              name="event-date"
+              id="event-date"
+              className="border"
+            />
+          </form>
+        </div>
       </div>
       <div className="flex justify-center md:justify-start flex-wrap">
         <Cardlist events={events} className="max-h-80"></Cardlist>
       </div>
       <div className="m-4 text-3xl">Popular Groups in Your Area</div>
       <div className="m-5 flex overflow-x-auto justify-around">
+        {/* turn into component */}
         <div className="card bg-base-100 min-w-48 shadow-xl m-2">
           <figure className="px-10 pt-10">
             <img
