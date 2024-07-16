@@ -1,6 +1,6 @@
 import alphastep from "/public/alphastep.jpg";
 import Search from "./Search";
-
+import Link from "next/link";
 export default function Hero() {
   return (
     <div
@@ -16,9 +16,12 @@ export default function Hero() {
             Where Greeks Come Together
           </h1>
           <p className="mb-5">Join the Community</p>
-          <button className="btn btn-primary hidden md:inline-flex">
+          <Link
+            href={"/events"}
+            className="btn btn-primary hidden md:inline-flex"
+          >
             Find Your Next Event
-          </button>
+          </Link>
           <div className="md:hidden">
             <Search></Search>
           </div>

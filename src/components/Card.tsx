@@ -1,4 +1,5 @@
 import Avatar from "./Avatar";
+import Link from "next/link";
 
 export default function Card({ event }: any) {
   return (
@@ -8,7 +9,9 @@ export default function Card({ event }: any) {
           <img src={event.imagePath} alt="Shoes" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">{event.title}</h2>
+          <h2 className="card-title">
+            <Link href={"events/1"}>{event.title}</Link>
+          </h2>
           <p>{event.eventDate}</p>
           <p>{event.location}</p>
           <p>{event.description}</p>
@@ -17,7 +20,9 @@ export default function Card({ event }: any) {
               <div className="w-12">
                 <Avatar></Avatar>
               </div>
-              <button className="btn btn-primary">Get Tickets</button>
+              <div className="btn btn-primary">
+                <Link href={"/events/1"}>Get Tickets</Link>
+              </div>
             </div>
           </div>
         </div>
