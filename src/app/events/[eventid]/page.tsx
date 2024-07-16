@@ -37,7 +37,7 @@ export default function EventDetails({
         height={1000}
       ></Image> */}
       <div className="flex md:hidden justify-center">
-        <div className="carousel rounded w-2/3">
+        <div className="carousel rounded w-full">
           <div className="carousel-item w-full glass">
             <img
               src={greekstep.src}
