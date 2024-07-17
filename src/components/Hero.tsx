@@ -1,4 +1,5 @@
 import alphastep from "/public/alphastep.jpg";
+import sigmastep from "/public/greekstep-p01.jpg";
 import Search from "./Search";
 import Link from "next/link";
 export default function Hero() {
@@ -6,7 +7,7 @@ export default function Hero() {
     <div
       className="hero lg:min-h-96 min-h-96"
       style={{
-        backgroundImage: `url(${alphastep.src})`,
+        backgroundImage: `url(${sigmastep.src})`,
       }}
     >
       <div className="hero-overlay bg-opacity-60"></div>

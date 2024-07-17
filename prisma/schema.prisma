@@ -22,9 +22,20 @@ model Event {
   eventDate DateTime
   totalSeats Int
   location String
+  tag Tag
+  priceInCents String
   createdAt  DateTime   @default(now())
   author User @relation(fields: [authorId], references: [id])
   authorId String
+}
+
+enum Tag {
+  COMMUNITY_SERVICE
+  SOCIAL
+  GOVERNMENT
+  EDUCATION
+  ECONOMICS
+  OTHER
 }
 
 model User {
@@ -33,6 +44,19 @@ model User {
   lastName  String
   password  String?
   email     String?  @unique
+  organization Oranization
   isAdmin   Boolean @default(false)
   events Event[]
+}
+
+enum Oranization {
+  PhiBetaSigma
+  ZetaPhiBeta
+  IotaPhiTheta
+  AlphaPhiAlpha
+  OmegaPsiPhi
+  AlphaKappaAlpha
+  KappaAlphaPsi
+  SigmaGammaRho
+  DeltaSigmaTheta
 }

@@ -5,6 +5,8 @@ import sigmavolunteer from "/public/sigmavolunteer.jpg";
 import sgrhoevent from "/public/sgrhoevent.jpg";
 import sigmabrotherhood from "/public/sigmabrotherhood.jpg";
 import qstomp from "/public/qstomp.jpg";
+import prisma from "@/lib/prisma";
+
 const events = [
   {
     title: "Xi Chi Sigma Step Show",
@@ -59,7 +61,7 @@ export default function Page() {
         </div>
       </div>
       <div className="flex justify-center md:justify-start flex-wrap">
-        <Cardlist events={events} className="max-h-80"></Cardlist>
+        <Cardlist></Cardlist>
       </div>
       <div className="m-4 text-3xl">Popular Groups in Your Area</div>
       <div className="m-5 flex overflow-x-auto justify-around">

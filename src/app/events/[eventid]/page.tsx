@@ -5,9 +5,11 @@ import qstomp from "/public/qstomp.jpg";
 import alphastep from "/public/alphastep.jpg";
 import sgrhostep from "/public/sgrhostep.jpg";
 import zetastep from "/public/zetastep.jpg";
-
+import prisma from "@/lib/prisma";
 import Image from "next/image";
 import Avatar from "@/components/Avatar";
+import dateFormat from "dateformat";
+import Avatarlist from "@/components/Avatarlist";
 
 import Link from "next/link";
 import Nav from "@/components/Nav";
@@ -22,11 +24,16 @@ const event = {
   id: 1,
 };
 
-export default function EventDetails({
+export default async function EventDetails({
   params,
 }: {
   params: { eventid: string };
 }) {
+  const dbevent = await prisma.event.findUnique({
+    where: {
+      id: params.eventid,
+    },
+  });
   return (
     <>
       {/* <Image
@@ -36,18 +43,14 @@ export default function EventDetails({
         width={1000}
         height={1000}
       ></Image> */}
-      <div className="flex justify-center">
-        <div className="carousel rounded w-full md:w-1/2">
-          <div className="carousel-item w-full glass">
+      <div className="flex justify-center md:hidden">
+        <div className="carousel rounded w-full h-80 md:w-1/2">
+          {/* <div className="carousel-item w-full">
             <img
               src={greekstep.src}
-              className="justify-center"
+              className="rounded"
               alt="Tailwind CSS Carousel component"
             />
-            {/* <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-              <button className="btn btn-circle">❮</button>
-              <button className="btn btn-circle">❯</button>
-            </div> */}
           </div>
           <div className="carousel-item w-full">
             <img
@@ -55,7 +58,7 @@ export default function EventDetails({
               className="w-full"
               alt="Tailwind CSS Carousel component"
             />
-          </div>
+          </div> */}
           <div className="carousel-item w-full">
             <img
               src={kappastep.src}
@@ -95,13 +98,16 @@ export default function EventDetails({
       </div>
       <div className="flex m-4">
         <div id="left" className="grid flex-col flex-grow">
-          <div className="text-2xl">{event.title}</div>
+          <div className="text-2xl">{dbevent.title}</div>
           <div className="w-16">
             <Avatar></Avatar>
           </div>
-          <div>{event.eventDate}</div>
-          <div>{event.description}</div>
-          <div>{event.price}</div>
+          <div>{dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy")}</div>
+          <div>{dbevent.description}</div>
+          {/* <div>{event.price}</div> */}
+          <div className="p-3">
+            <Avatarlist></Avatarlist>
+          </div>
           <button className="btn btn-primary">Get Tickets</button>
         </div>
         {/* <div id="right" className="grid hidden md:block flex-grow">
