@@ -99,7 +99,7 @@ export default async function EventDetails({
                 {dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy")}
               </div>
               <div>{dbevent.description}</div>
-              {/* <div>{event.price}</div> */}
+              <div>{dbevent.priceInCents}</div>
               <div className="p-3">
                 <Avatarlist></Avatarlist>
               </div>

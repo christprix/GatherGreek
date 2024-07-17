@@ -39,9 +39,7 @@ export default function Taglist() {
             <div key={index}>{t.icon}</div>
           </div>
         </div>
-        <div className="max-w-28 text-center md:text-base text-sm">
-          {t.values}
-        </div>
+        <div className="max-w-28 text-center text-sm">{t.values}</div>
       </div>
     );
   });
