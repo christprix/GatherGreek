@@ -24,11 +24,9 @@ export default async function Nav({ logo }: any) {
       </div>
       {!session ? (
         <div className="navbar-end hidden md:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <Link href={"/events"}>Events</Link>
-            </li>
-          </ul>
+          <Link href={"/events"} className="btn btn-outline">
+            Browse Events
+          </Link>
           <Link href={"/api/auth/signin"} className="btn btn-outline mx-2">
             Login
           </Link>
@@ -36,13 +34,9 @@ export default async function Nav({ logo }: any) {
         </div>
       ) : (
         <div className="navbar-end hidden md:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <Link href={"/events"} className="btn btn-outline mx-2">
-                My Events
-              </Link>
-            </li>
-          </ul>
+          <Link href={"/events"} className="btn btn-outline mx-2">
+            Browse Events
+          </Link>
           <Link href={"/profile"} className="btn btn-outline mx-2">
             Profile
           </Link>
@@ -75,7 +69,7 @@ export default async function Nav({ logo }: any) {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-                <Link href={"/events"}>Events</Link>
+                <Link href={"/events"}>Browse Events</Link>
               </li>
               <li>
                 <Link href={"/api/auth/signin"}>Login</Link>
@@ -111,7 +105,7 @@ export default async function Nav({ logo }: any) {
                 <Link href={"/profile"}>Profile</Link>
               </li>
               <li>
-                <Link href={"/events"}>My Events</Link>
+                <Link href={"/events"}>Browse Events</Link>
               </li>
               <li>
                 <Link href={"/api/auth/signout"}>Sign Out</Link>
