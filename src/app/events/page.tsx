@@ -5,7 +5,11 @@ import sigmavolunteer from "/public/sigmavolunteer.jpg";
 import sgrhoevent from "/public/sgrhoevent.jpg";
 import sigmabrotherhood from "/public/sigmabrotherhood.jpg";
 import qstomp from "/public/qstomp.jpg";
-import prisma from "@/lib/prisma";
+import Image from "next/image";
+import map from "/public/mapbox.png";
+import { Anton } from "next/font/google";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-regular-svg-icons";
 
 const events = [
   {
@@ -50,14 +54,53 @@ const events = [
   },
 ];
 
-export default function Page() {
+const anton = Anton({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal"],
+});
+
+export default async function Page() {
   return (
     <>
       <div className="border-t border-blue-100 flex flex-col">
-        <div className="m-4 text-3xl">Events For You</div>
-        <div className="mx-4">Douglasville, Georgia</div>
-        <div className="flex justify-center">
-          <Calendar></Calendar>
+        <div className={`m-4 text-3xl md:text-6xl ${anton.className}`}>
+          Events For You
+        </div>
+        <div className="mx-4">
+          <label className="input input-bordered flex items-center gap-2 md:hidden">
+            <input
+              type="text"
+              className="grow"
+              placeholder="Search For Your Next Event"
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="h-4 w-4 opacity-70"
+            >
+              <path
+                fillRule="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </label>
+        </div>
+        <div className="flex-row flex m-4 items-center">
+          <label className={`w-26 mx-2 ${anton.className}`} form="meeting-time">
+            Pick A Date:
+          </label>
+          <input
+            className="m-1"
+            type="datetime-local"
+            id="meeting-time"
+            name="meeting-time"
+            value="2024-07-18T19:30"
+            min="2024-06-07T00:00"
+            max="2025-06-14T00:00"
+          />
         </div>
       </div>
       <div className="flex justify-center md:justify-start flex-wrap">
