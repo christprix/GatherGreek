@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Saint from "/public/Saint.JPG";
+import saint2 from "/public/saint2.jpg";
 import SideCard from "@/components/SideCard";
 import { Anton } from "next/font/google";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,7 +22,6 @@ const anton = Anton({
   weight: "400",
   style: ["normal"],
 });
-
 export default async function Page() {
   const session = await getServerSession(options);
   return (
@@ -65,7 +64,7 @@ export default async function Page() {
       <div className="flex">
         <div className="hidden md:block card bg-base-100 w-96 h-fit m-3 ">
           <figure className="px-10 pt-10">
-            <img src={Saint.src} alt="Shoes" className="rounded-xl" />
+            <img src={saint2.src} alt="Shoes" className="rounded-xl" />
           </figure>
           <div className="card-body items-left text-left">
             <h2 className="card-title">Christian St. Prix</h2>
