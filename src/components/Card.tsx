@@ -2,6 +2,11 @@ import Avatar from "./Avatar";
 import Link from "next/link";
 import zetastep from "/public/zetastep.jpg";
 import dateFormat from "dateformat";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCalendarDays,
+  faLocationDot,
+} from "@fortawesome/free-solid-svg-icons";
 import Avatarlist from "./Avatarlist";
 
 export default function Card({ event }: any) {
@@ -15,8 +20,16 @@ export default function Card({ event }: any) {
           <h2 className="card-title">
             <Link href={`events/${event.id}`}>{event.title}</Link>
           </h2>
-          <p>{dateFormat(`${event.eventDate}`, "dddd, mmmm dS, yyyy")}</p>
-          <p>{event.location}</p>
+          <div className="text-xs flex flex-row">
+            <FontAwesomeIcon icon={faCalendarDays} className="w-3 mx-1" />
+            <p className="text-sm">
+              {dateFormat(`${event.eventDate}`, "dddd, mmmm dS, yyyy")}
+            </p>
+          </div>
+          <div className="text-sm flex flex-row">
+            <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
+            <p>{event.location}</p>
+          </div>
           <p>{event.description}</p>
           <div>
             <div className="flex flex-row justify-between">
