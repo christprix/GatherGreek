@@ -20,18 +20,21 @@ export default async function Page() {
   return (
     <>
       <div className="border-t border-blue-100 flex flex-col">
+        <Image
+          src={blackpeople.src}
+          width={600}
+          height={500}
+          alt="image"
+          className="rounded md:hidden block"
+        ></Image>
         <div className="rounded-md p-2 m-4 flex md:flex-row flex-col justify-between">
           <div>
             <div className={`m-4 text-3xl md:text-6xl ${anton.className}`}>
-              Find What Fits You
+              Find an Event Near You
             </div>
             <div className="mx-4">
               <label className="input input-bordered flex items-center gap-2 md:hidden">
-                <input
-                  type="text"
-                  className="grow"
-                  placeholder="Search For Your Next Event"
-                />
+                <input type="text" className="grow" placeholder="Search" />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
@@ -46,6 +49,7 @@ export default async function Page() {
                 </svg>
               </label>
             </div>
+
             <div className="flex-row flex m-4 items-center">
               <label
                 className={`w-26 mx-2 ${anton.className}`}
@@ -63,13 +67,43 @@ export default async function Page() {
                 max="2025-06-14T00:00"
               />
             </div>
+            <div className="flex-row flex m-4 items-center">
+              <label
+                className={`w-26 mx-2 ${anton.className}`}
+                form="meeting-time"
+              >
+                Pick An Org:
+              </label>
+              <div className="dropdown  w-26">
+                <div tabIndex={0} role="button" className="btn m-1">
+                  Divine 9
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+                >
+                  <li>
+                    <a>Item 1</a>
+                  </li>
+                  <li>
+                    <a>Item 2</a>
+                  </li>
+                  <li>
+                    <a>Item 1</a>
+                  </li>
+                  <li>
+                    <a>Item 2</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
           <Image
             src={blackpeople.src}
             width={600}
             height={500}
             alt="image"
-            className="rounded block"
+            className="rounded hidden md:block"
           ></Image>
         </div>
       </div>

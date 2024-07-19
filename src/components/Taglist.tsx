@@ -46,7 +46,7 @@ export default function Taglist() {
   const tags = importedtags.map((t: any, index: number) => {
     return (
       <div className="flex-col" key={index}>
-        <div className="avatar m-2 flex-col">
+        <div className="avatar m-3 mx-5 flex-col">
           <div className="p-4 hover:p-3 border-2 w-20 rounded-full ring-offset-2">
             <div key={index}>{t.icon}</div>
           </div>
