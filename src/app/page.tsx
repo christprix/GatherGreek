@@ -18,9 +18,9 @@ export default function Home() {
     <div>
       <Hero></Hero>
       <div
-        className={`m-4 text-3xl md:text-6xl md:justify-start justify-center flex ${anton.className}`}
+        className={`m-4 text-3xl md:text-6xl md:justify-start justify-start flex ${anton.className}`}
       >
-        Look for Events By Category
+        Find Events By Category
       </div>
       <div className="flex flex-wrap flex-row items-center py-4 justify-evenly ">
         <Taglist></Taglist>

@@ -55,7 +55,7 @@ export default async function Page() {
                 className={`w-26 mx-2 ${anton.className}`}
                 form="meeting-time"
               >
-                Pick A Date:
+                Search by Date:
               </label>
               <input
                 className="m-1"
@@ -72,7 +72,7 @@ export default async function Page() {
                 className={`w-26 mx-2 ${anton.className}`}
                 form="meeting-time"
               >
-                Pick An Org:
+                Search by Organization:
               </label>
               <div className="dropdown  w-26">
                 <div tabIndex={0} role="button" className="btn m-1">
