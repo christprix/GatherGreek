@@ -9,6 +9,16 @@ import Image from "next/image";
 import blackpeople from "/public/blackpeople.jpg";
 import map from "/public/mapbox.png";
 import { Anton } from "next/font/google";
+import prisma from "@/lib/prisma";
+import {
+  findEvents,
+  findEventsEconomics,
+  findEventsService,
+  findEventsGovernment,
+  findEventsEducation,
+  findEventsOther,
+  findEventsSocial,
+} from "../actions";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -16,7 +26,31 @@ const anton = Anton({
   style: ["normal"],
 });
 
-export default async function Page() {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: { q?: string; tag?: string };
+}) {
+  let searchevents;
+
+  if (searchParams.tag === "Finance") {
+    searchevents = await findEventsEconomics(searchParams.tag);
+  } else if (searchParams.tag === "Social") {
+    searchevents = await findEventsSocial(searchParams.tag);
+  } else if (searchParams.tag === "Service") {
+    searchevents = await findEventsService(searchParams.tag);
+  } else if (searchParams.tag === "Government") {
+    searchevents = await findEventsGovernment(searchParams.tag);
+  } else if (searchParams.tag === "Education") {
+    searchevents = await findEventsEducation(searchParams.tag);
+  } else if (searchParams.tag === "Other") {
+    searchevents = await findEventsOther(searchParams.tag);
+  } else if (!searchParams.q || searchParams.q === "") {
+    searchevents = await prisma.event.findMany();
+  } else {
+    searchevents = await findEvents(searchParams.q);
+  }
+
   return (
     <>
       <div className="border-t border-blue-100 flex flex-col">
@@ -110,8 +144,11 @@ export default async function Page() {
       <div className={`m-4 text-2xl md:text-4xl ${anton.className}`}>
         Top Events In Your Area
       </div>
+      <div className="m-4 text-2xl md:text-4xl">
+        Search: "{searchParams.q || searchParams.tag}"
+      </div>
       <div className="flex justify-center md:justify-start flex-wrap">
-        <Cardlist></Cardlist>
+        <Cardlist events={searchevents}></Cardlist>
       </div>
       <div className="m-4 text-3xl">Popular Groups in Your Area</div>
       <div className="m-5 flex overflow-x-auto justify-around">

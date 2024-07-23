@@ -105,17 +105,6 @@ export default async function EventDetails({
               </div>
               <button className="btn btn-primary">Get Tickets</button>
             </div>
-            {/* <div id="right" className="grid hidden md:block flex-grow">
-          <div className="p-4">
-            <Image
-              className="rounded-md"
-              src={event.imagePath}
-              alt="event image"
-              width={1000}
-              height={1000}
-            ></Image>
-          </div>
-        </div> */}
           </div>
         </div>
       ) : (

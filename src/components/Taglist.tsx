@@ -7,29 +7,30 @@ import {
   faMoneyBillTrendUp,
   faEarthAmericas,
 } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 const element = {
-  icon: <FontAwesomeIcon icon={faHandshakeAngle} />,
+  icon: <FontAwesomeIcon className="text-3xl" icon={faHandshakeAngle} />,
   values: "Service",
 };
 const element2 = {
-  icon: <FontAwesomeIcon icon={faChampagneGlasses} />,
+  icon: <FontAwesomeIcon className="text-3xl" icon={faChampagneGlasses} />,
   values: "Social",
 };
 const element3 = {
-  icon: <FontAwesomeIcon icon={faLandmark} />,
+  icon: <FontAwesomeIcon className="text-3xl" icon={faLandmark} />,
   values: "Government",
 };
 const element4 = {
-  icon: <FontAwesomeIcon icon={faUserGraduate} />,
+  icon: <FontAwesomeIcon className="text-3xl" icon={faUserGraduate} />,
   values: "Education",
 };
 const element5 = {
-  icon: <FontAwesomeIcon icon={faMoneyBillTrendUp} />,
+  icon: <FontAwesomeIcon className="text-3xl" icon={faMoneyBillTrendUp} />,
   values: "Finance",
 };
 const element6 = {
-  icon: <FontAwesomeIcon icon={faEarthAmericas} />,
+  icon: <FontAwesomeIcon className="text-3xl" icon={faEarthAmericas} />,
   values: "Other",
 };
 
@@ -47,9 +48,12 @@ export default function Taglist() {
     return (
       <div className="flex-col" key={index}>
         <div className="avatar m-3 mx-5 flex-col">
-          <div className="p-4 hover:p-3 border-2 w-20 rounded-full ring-offset-2">
+          <Link
+            href={`/events?tag=${t.values}`}
+            className="p-5 hover:bg-base-200 border-2 w-20 rounded-full ring-offset-2"
+          >
             <div key={index}>{t.icon}</div>
-          </div>
+          </Link>
         </div>
         <div className=" text-center text-sm md:text-base font-semibold">
           {t.values}

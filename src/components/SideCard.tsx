@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function SideCard({ event }: any) {
   return (
     <Link
-      href={`events/${event.id}`}
+      href={`event/${event.id}`}
       className="card m-5 hover:bg-base-300 h-fit card-side bg-base-100 border"
     >
       <figure className="rounded-lg p-4">

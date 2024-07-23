@@ -18,7 +18,7 @@ export default function Card({ event }: any) {
         </figure>
         <div className="card-body">
           <h2 className="card-title">
-            <Link href={`events/${event.id}`}>{event.title}</Link>
+            <Link href={`event/${event.id}`}>{event.title}</Link>
           </h2>
           <div className="text-xs flex flex-row">
             <FontAwesomeIcon icon={faCalendarDays} className="w-3 mx-1" />
@@ -30,7 +30,7 @@ export default function Card({ event }: any) {
             <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
             <p>{event.location}</p>
           </div>
-          <p>{event.description}</p>
+          <p>{event.priceInCents}</p>
           <div>
             <div className="flex flex-row justify-between">
               <div className="w-32">
@@ -39,7 +39,7 @@ export default function Card({ event }: any) {
             </div>
           </div>
           <div className="btn btn-primary">
-            <Link href={`events/${event.id}`}>Get Tickets</Link>
+            <Link href={`event/${event.id}`}>Get Tickets</Link>
           </div>
         </div>
       </div>

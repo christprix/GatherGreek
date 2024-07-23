@@ -1,6 +1,6 @@
 import alphastep from "/public/alphastep.jpg";
 import sigmastep from "/public/greekstep-p01.jpg";
-import Search from "./Search";
+import SearchBar from "./Search";
 import Link from "next/link";
 export default function Hero() {
   return (
@@ -24,7 +24,7 @@ export default function Hero() {
             Find Your Next Event
           </Link>
           <div className="md:hidden">
-            <Search></Search>
+            <SearchBar></SearchBar>
           </div>
         </div>
       </div>

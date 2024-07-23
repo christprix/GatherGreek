@@ -7,13 +7,16 @@ import sigmavolunteer from "/public/sigmavolunteer.jpg";
 import sgrhoevent from "/public/sgrhoevent.jpg";
 import Taglist from "@/components/Taglist";
 import { Anton } from "next/font/google";
+import prisma from "@/lib/prisma";
+
 const anton = Anton({
   subsets: ["latin"],
   weight: "400",
   style: ["normal"],
 });
 
-export default function Home() {
+export default async function Home() {
+  const dbevents = await prisma.event.findMany();
   return (
     <div>
       <Hero></Hero>
@@ -32,7 +35,7 @@ export default function Home() {
       </div>
       <div className="flex justify-center">
         <div className="flex md:flex-row flex-col justify-around items-center m-1">
-          <Cardlist></Cardlist>
+          <Cardlist events={dbevents}></Cardlist>
         </div>
       </div>
     </div>

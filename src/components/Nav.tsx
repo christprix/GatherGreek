@@ -1,4 +1,4 @@
-import Search from "./Search";
+import SearchBar from "./Search";
 import Link from "next/link";
 import { getServerSession } from "next-auth/next";
 import { options } from "@/app/api/auth/[...nextauth]/options";
@@ -20,7 +20,7 @@ export default async function Nav({ logo }: any) {
         </Link>
       </div>
       <div className="navbar-center hidden md:flex mx-3">
-        <Search></Search>
+        <SearchBar></SearchBar>
       </div>
       {!session ? (
         <div className="navbar-end hidden md:flex">
