@@ -16,10 +16,10 @@ export default function Hero() {
       <div className="hero-content text-neutral-content flex-col lg:flex-row-reverse lg:justify-between">
         <img src={sigmastep.src} className="max-w-sm rounded-lg shadow-2xl" />
         <div className="max-w-md">
-          <h1 className="mb-1 md:text-4xl text-3xl font-bold">
+          <h1 className="mb-1 md:text-3xl text-2xl font-bold">
             Welcome to Greek Gather
           </h1>
-          <p className="mb-1 text-base">
+          <p className="mb-1 text-sm md:text-base">
             Your destination for organizing and discovering a wide range of
             events, from political forums and educational workshops to financial
             seminars and entertainment gatherings. Greek Gather simplifies event
@@ -28,7 +28,7 @@ export default function Hero() {
           </p>
           <Link
             href={"/events"}
-            className="btn btn-primary flex lg:display-inline items-center"
+            className="btn btn-primary flex lg:display-inline my-3 items-center"
           >
             Find Your Next Event
           </Link>
