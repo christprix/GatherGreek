@@ -144,8 +144,9 @@ export default async function Page({
       <div className={`m-4 text-2xl md:text-4xl ${anton.className}`}>
         Top Events In Your Area
       </div>
+      {/* turn below into component to have conditional rendering */}
       <div className="m-4 text-2xl md:text-4xl">
-        Search: "{searchParams.q || searchParams.tag}"
+        Search: "{searchParams.q || searchParams.tag}'
       </div>
       <div className="flex justify-center md:justify-start flex-wrap">
         <Cardlist events={searchevents}></Cardlist>
