@@ -13,7 +13,7 @@ const config = {
   theme: {
     fontSize: {
       sm: "0.7rem",
-      base: "1rem",
+      base: "0.9rem",
       xl: "1.25rem",
       "2xl": "1.563rem",
       "3xl": "1.953rem",

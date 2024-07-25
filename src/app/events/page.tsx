@@ -10,6 +10,7 @@ import blackpeople from "/public/blackpeople.jpg";
 import map from "/public/mapbox.png";
 import { Anton } from "next/font/google";
 import prisma from "@/lib/prisma";
+import SearchBar from "@/components/Search";
 import {
   findEvents,
   findEventsEconomics,
@@ -67,21 +68,7 @@ export default async function Page({
               Find an Event Near You
             </div>
             <div className="mx-4">
-              <label className="input input-bordered flex items-center gap-2 md:hidden">
-                <input type="text" className="grow" placeholder="Search" />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  className="h-4 w-4 opacity-70"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </label>
+              <SearchBar></SearchBar>
             </div>
 
             <div className="flex-row flex m-4 items-center">
@@ -146,7 +133,7 @@ export default async function Page({
       </div>
       {/* turn below into component to have conditional rendering */}
       <div className="m-4 text-2xl md:text-4xl">
-        Search: "{searchParams.q || searchParams.tag}'
+        Search: "{searchParams.q || searchParams.tag}"
       </div>
       <div className="flex justify-center md:justify-start flex-wrap">
         <Cardlist events={searchevents}></Cardlist>
