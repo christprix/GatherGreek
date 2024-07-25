@@ -29,7 +29,7 @@ export default async function Home() {
         <Taglist></Taglist>
       </div>
       <div
-        className={`m-4 text-2xl md:text-4xl md:justify-start justify-center flex ${anton.className}`}
+        className={`m-4 text-2xl md:text-4xl md:justify-start justify-start flex ${anton.className}`}
       >
         Events Near Atlanta, Georgia
       </div>

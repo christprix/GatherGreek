@@ -19,8 +19,8 @@ export default async function Nav({ logo }: any) {
           GreekGather
         </Link>
       </div>
-      <div className="navbar-center hidden md:flex mx-3">
-        <SearchBar></SearchBar>
+      <div className="navbar-center hidden md:flex mx-3 text-xl font-bold">
+        GreekGather
       </div>
       {!session ? (
         <div className="navbar-end hidden md:flex">

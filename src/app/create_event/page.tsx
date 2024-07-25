@@ -18,7 +18,7 @@ export default async function Page() {
               bonds, fostering community spirit, and making a positive impact
               together
             </p>
-            <Link href={"/"} className="btn btn-primary">
+            <Link href={"/create_event/form"} className="btn btn-primary">
               Get Started
             </Link>
           </div>
