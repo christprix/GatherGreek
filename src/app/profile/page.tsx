@@ -82,7 +82,7 @@ export default async function Page() {
             </div>
           </div>
         </div>
-        <div className="rounded-lg md:w-2/3 md:h-1/3  m-3 p-3 bg-base-100">
+        <div className="rounded-lg md:w-2/3 md:h-1/3  m-1 p-2 bg-base-100">
           <div className={`mx-5 text-xl md:text-4xl ${anton.className}`}>
             Scheduled Events
           </div>
