@@ -1,7 +1,7 @@
 export default function Page() {
   return (
-    <div className="m-5 p-5">
-      <div className="flex flex-col w-96 md:w-1/2 items-center text-center p-5 rounded-lg bg-base-200">
+    <div className="m-5 p-5 flex justify-center">
+      <div className="flex flex-col w-96 items-center text-center p-5 rounded-lg bg-base-200">
         <label className="form-control w-full max-w-xs">
           <div className="label">
             <span className="label-text text-xl font-bold">Event Title</span>
