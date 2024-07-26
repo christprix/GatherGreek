@@ -56,10 +56,35 @@ export const options: NextAuthOptions = {
         return {
           id: user.id + "",
           email: user.email,
-          firstName: user.firstName,
+          name: user.firstName + " " + user.lastName,
+          randomKey: "4",
+          organization: user.organization,
         };
       },
     }),
   ],
+  callbacks: {
+    session: ({ session, token }) => {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          organization: token.organization,
+        },
+      };
+    },
+    jwt: ({ token, user }) => {
+      if (user) {
+        const u = user as unknown as any;
+        return {
+          ...token,
+          id: u.id,
+          organization: u.organization,
+        };
+      }
+      return token;
+    },
+  },
   secret: process.env.NEXTAUTH_SECRET as string,
 };

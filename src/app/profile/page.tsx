@@ -43,7 +43,7 @@ export default async function Page() {
         <div className="mt-40 md:hidden text-neutral-content">
           <div className="max-w-sm">
             <h2 className="card-title text-xs">
-              Welcome Back, Christian St. Prix
+              Welcome Back, {session?.user?.name}
             </h2>
             <div className="text-sm flex flex-row">
               <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
@@ -67,7 +67,7 @@ export default async function Page() {
             <img src={saint2.src} alt="Shoes" className="rounded-xl" />
           </figure>
           <div className="card-body items-left text-left">
-            <h2 className="card-title">Welcome Back, Christian St. Prix</h2>
+            <h2 className="card-title">Welcome Back, {session?.user?.name}</h2>
             <div className="text-xs flex flex-row">
               <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
               <div>Douglasville, GA</div>

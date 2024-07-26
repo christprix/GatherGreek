@@ -17,6 +17,7 @@ const anton = Anton({
 
 export default async function Home() {
   const dbevents = await prisma.event.findMany();
+
   return (
     <div>
       <Hero></Hero>

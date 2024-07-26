@@ -5,7 +5,6 @@ import { options } from "@/app/api/auth/[...nextauth]/options";
 import profilepic from "/public/headshot.jpg";
 export default async function Nav({ logo }: any) {
   const session = await getServerSession(options);
-
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start ">

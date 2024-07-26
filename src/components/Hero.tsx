@@ -14,7 +14,7 @@ export default function Hero() {
     >
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-neutral-content flex-col lg:flex-row-reverse lg:justify-between">
-        <img src={sigmastep.src} className="max-w-sm rounded-lg shadow-2xl" />
+        {/* <img src={sigmastep.src} className="max-w-sm rounded-lg shadow-2xl" /> */}
         <div className="max-w-md">
           <h1 className="mb-1 md:text-3xl text-2xl font-bold">
             Welcome to Greek Gather
