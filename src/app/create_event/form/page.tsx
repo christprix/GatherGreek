@@ -7,7 +7,7 @@ export default async function Page() {
   async function createEvent(formData: FormData) {
     "use server";
     const userId = session?.user?.id;
-    const timestamp = await formData.get("event_date");
+    const timestamp = formData.get("event_date");
     console.log(timestamp);
     const date = new Date(timestamp as string);
     const eventData = {
@@ -37,7 +37,7 @@ export default async function Page() {
         },
       },
     });
-    console.log(eventData);
+    console.log(newEvent);
   }
 
   return (
