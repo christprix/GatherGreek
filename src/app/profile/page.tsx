@@ -1,6 +1,4 @@
-import Image from "next/image";
 import saint2 from "/public/saint2.jpg";
-import SideCard from "@/components/SideCard";
 import { Anton } from "next/font/google";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,12 +8,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { getServerSession } from "next-auth/next";
 import { options } from "@/app/api/auth/[...nextauth]/options";
-import sigmavolunteer from "/public/sigmavolunteer.jpg";
-import sgrhoevent from "/public/sgrhoevent.jpg";
 import sigmabrotherhood from "/public/sigmabrotherhood.jpg";
-import qstomp from "/public/qstomp.jpg";
-import blackpeople2 from "/public/blackpeople2.jpg";
 import SideCardlist from "@/components/SideCardList";
+import { findMyEvents } from "../actions";
+import ProfileCardList from "@/components/profile/ProfileCardList";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -24,15 +20,9 @@ const anton = Anton({
 });
 export default async function Page() {
   const session = await getServerSession(options);
+  const myEvents = await findMyEvents(session?.user?.id as string);
   return (
     <div className="bg-base-200 p-4">
-      {/* <Image
-        src={Saint.src}
-        width={700}
-        height={600}
-        alt="image"
-        className=" md:hidden block "
-      ></Image> */}
       <div
         className="hero h-80 rounded-md"
         style={{
@@ -82,7 +72,7 @@ export default async function Page() {
             </div>
           </div>
         </div>
-        <div className="rounded-lg md:w-2/3 md:h-1/3  m-1 p-2 bg-base-100">
+        <div className="rounded-lg md:w-2/3 md:h-1/3  m-1 p-2 mt-3 bg-base-100">
           <div className={`mx-5 text-xl md:text-4xl ${anton.className}`}>
             Scheduled Events
           </div>
@@ -92,62 +82,8 @@ export default async function Page() {
         </div>
       </div>
       <div className="m-4 text-3xl">Past Events</div>
-      <div className="m-5 flex overflow-x-auto justify-around">
-        {/* turn into component */}
-        <div className="card bg-base-100 min-w-48 shadow-xl m-2">
-          <figure className="px-10 pt-10">
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-              alt="Shoes"
-              className="rounded-xl"
-            />
-          </figure>
-          <div className="card-body items-center text-center">
-            <h2 className="card-title">Xi Chi Sigma</h2>
-            <p className="text-xs">
-              If a dog chews shoes whose shoes does he choose?
-            </p>
-            <div className="card-actions">
-              <button className="btn btn-primary">View Events</button>
-            </div>
-          </div>
-        </div>
-        <div className="card bg-base-100 min-w-48 shadow-xl m-2">
-          <figure className="px-10 pt-10">
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-              alt="Shoes"
-              className="rounded-xl"
-            />
-          </figure>
-          <div className="card-body items-center text-center">
-            <h2 className="card-title">Xi Chi Sigma</h2>
-            <p className="text-xs">
-              If a dog chews shoes whose shoes does he choose?
-            </p>
-            <div className="card-actions">
-              <button className="btn btn-primary">View Events</button>
-            </div>
-          </div>
-        </div>
-        <div className="card bg-base-100 min-w-48 shadow-xl m-2">
-          <figure className="px-10 pt-10">
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-              alt="Shoes"
-              className="rounded-xl"
-            />
-          </figure>
-          <div className="card-body items-center text-center">
-            <h2 className="card-title">Xi Chi Sigma</h2>
-            <p className="text-xs">
-              If a dog chews shoes whose shoes does he choose?
-            </p>
-            <div className="card-actions">
-              <button className="btn btn-primary">View Events</button>
-            </div>
-          </div>
-        </div>
+      <div className="m-5 flex overflow-x-auto justify-around md:justify-start">
+        <ProfileCardList events={myEvents}></ProfileCardList>
       </div>
     </div>
   );

@@ -67,56 +67,47 @@ export default async function Page({
             <div className={`m-4 text-3xl md:text-6xl ${anton.className}`}>
               Find an Event Near You
             </div>
-            <div className="mx-4">
+            <div className="mx-4 max-w-lg">
               <SearchBar></SearchBar>
             </div>
 
             <div className="flex-row flex m-4 items-center">
-              <label
-                className={`w-26 mx-2 ${anton.className}`}
-                form="meeting-time"
-              >
-                Search by Date:
+              <label className="w-full max-w-lg">
+                <div className="label">
+                  <span className="label-text text-xl font-bold">
+                    Search by Event Date
+                  </span>
+                </div>
+                <input
+                  required
+                  type="date"
+                  name="event_date"
+                  className="input input-bordered w-full max-w-lg"
+                />
               </label>
-              <input
-                className="m-1"
-                type="datetime-local"
-                id="meeting-time"
-                name="meeting-time"
-                value="2024-07-18T19:30"
-                min="2024-06-07T00:00"
-                max="2025-06-14T00:00"
-              />
             </div>
             <div className="flex-row flex m-4 items-center">
-              <label
-                className={`w-26 mx-2 ${anton.className}`}
-                form="meeting-time"
-              >
-                Search by Organization:
-              </label>
-              <div className="dropdown  w-26">
-                <div tabIndex={0} role="button" className="btn m-1">
-                  Divine 9
+              <label className="w-full max-w-lg">
+                <div className="label">
+                  <span className="label-text text-xl font-bold">
+                    Search By Organization
+                  </span>
                 </div>
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+                <select
+                  required
+                  name="event_type"
+                  className="input input-bordered w-full max-w-lg"
                 >
-                  <li>
-                    <a>Item 1</a>
-                  </li>
-                  <li>
-                    <a>Item 2</a>
-                  </li>
-                  <li>
-                    <a>Item 1</a>
-                  </li>
-                  <li>
-                    <a>Item 2</a>
-                  </li>
-                </ul>
-              </div>
+                  <option value={"PhiBetaSigma"}>Phi Beta Sigma</option>
+                  <option value={"ZetaPhiBeta"}>Zeta Phi Beta</option>
+                  <option value={"Alpha Kappa Alpha"}>Alpha Kappa Alpha</option>
+                  <option value={"AlphaPhiAlpha"}>Alpha Phi Alpha</option>
+                  <option value={"Omega Psi Phi"}>Omega Psi Phi</option>
+                  <option value={"SigmaGammaRho"}>Sigma Gamma Rho</option>
+                  <option value={"DeltaSigmaTheta"}>Delta Sigma Theta</option>
+                  <option value={"KappaAlphaPsi"}>Kappa Alpha Psi</option>
+                </select>
+              </label>
             </div>
           </div>
           <Image

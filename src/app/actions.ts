@@ -12,6 +12,15 @@ export async function findEvents(query: string) {
   return dbevents;
 }
 
+export async function findMyEvents(id: string) {
+  const dbevents = await prisma.event.findMany({
+    where: {
+      authorId: id,
+    },
+  });
+  return dbevents;
+}
+
 export async function findEventsService(tag: string) {
   const dbevents = await prisma.event.findMany({
     where: {
