@@ -108,7 +108,7 @@ export default async function Nav({ logo }: any) {
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost btn-circle avatar object-fill"
+              className="btn btn-ghost btn-circle object-fill"
             >
               <div className="w-10 rounded-full contents">
                 <FontAwesomeIcon icon={faUser} className="size-6" />

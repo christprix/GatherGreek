@@ -30,9 +30,9 @@ export default async function Page() {
           backgroundImage: `url(${sigmabrotherhood.src})`,
         }}
       >
-        <div className="hero-overlay bg-opacity-50"></div>
+        <div className="hero-overlay bg-opacity-65"></div>
         {/* mobile view overlay */}
-        <div className="mt-40 md:hidden text-neutral-content">
+        <div className="mt-40 md:hidden text-white">
           <div className="text-center">
             <ProfileAvatar></ProfileAvatar>
           </div>
@@ -55,7 +55,7 @@ export default async function Page() {
           </div>
         </div>
         {/* desktop overlay */}
-        <div className="mt-15 hidden md:block text-neutral-content">
+        <div className="mt-15 hidden md:block text-white">
           <span className="mb-1 text-3xl font-bold">My Event Hub</span>
         </div>
       </div>
@@ -67,7 +67,9 @@ export default async function Page() {
             <img src={saint2.src} alt="profilepic2" className="rounded-xl" />
           </figure>
           <div className="card-body items-left text-left">
-            <h2 className="card-title">Welcome Back, {session?.user?.name}</h2>
+            <h2 className="card-title bg-base-300">
+              Welcome Back, {session?.user?.name}
+            </h2>
             <div className="text-xs flex flex-row">
               <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
               <div>Douglasville, GA</div>
