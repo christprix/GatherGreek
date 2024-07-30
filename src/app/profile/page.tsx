@@ -12,6 +12,7 @@ import sigmabrotherhood from "/public/sigmabrotherhood.jpg";
 import SideCardlist from "@/components/SideCardList";
 import { findMyEvents } from "../actions";
 import ProfileCardList from "@/components/profile/ProfileCardList";
+import ProfileAvatar from "@/components/profile/ProfileAvatar";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -24,13 +25,17 @@ export default async function Page() {
   return (
     <div className="bg-base-200 p-4">
       <div
-        className="hero h-80 rounded-md"
+        className="hero h-80 rounded-md md:h-40"
         style={{
           backgroundImage: `url(${sigmabrotherhood.src})`,
         }}
       >
         <div className="hero-overlay bg-opacity-50"></div>
+        {/* mobile view overlay */}
         <div className="mt-40 md:hidden text-neutral-content">
+          <div className="text-center">
+            <ProfileAvatar></ProfileAvatar>
+          </div>
           <div className="max-w-sm">
             <h2 className="card-title text-xs">
               Welcome Back, {session?.user?.name}
@@ -49,12 +54,17 @@ export default async function Page() {
             </div>
           </div>
         </div>
+        {/* desktop overlay */}
+        <div className="mt-15 hidden md:block text-neutral-content">
+          <span className="mb-1 text-3xl font-bold">My Event Hub</span>
+        </div>
       </div>
 
       <div className="flex">
+        {/* desktop view */}
         <div className="hidden md:block card bg-base-100 w-96 h-fit m-3 ">
           <figure className="px-10 pt-10">
-            <img src={saint2.src} alt="Shoes" className="rounded-xl" />
+            <img src={saint2.src} alt="profilepic2" className="rounded-xl" />
           </figure>
           <div className="card-body items-left text-left">
             <h2 className="card-title">Welcome Back, {session?.user?.name}</h2>
@@ -81,7 +91,9 @@ export default async function Page() {
           </div>
         </div>
       </div>
-      <div className="m-4 text-3xl">Past Events</div>
+      <div className={`m-5 ml-7 text-3xl md:text-5xl ${anton.className}`}>
+        My Events
+      </div>
       <div className="m-5 flex overflow-x-auto justify-around md:justify-start">
         <ProfileCardList events={myEvents}></ProfileCardList>
       </div>

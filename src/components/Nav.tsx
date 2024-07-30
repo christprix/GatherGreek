@@ -3,6 +3,9 @@ import Link from "next/link";
 import { getServerSession } from "next-auth/next";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import profilepic from "/public/headshot.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
+
 export default async function Nav({ logo }: any) {
   const session = await getServerSession(options);
   return (
@@ -43,14 +46,10 @@ export default async function Nav({ logo }: any) {
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost btn-circle avatar"
+              className="btn btn-ghost btn-circle"
             >
-              <div className="w-10 rounded-full">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  className="object-fill"
-                  src={profilepic.src}
-                />
+              <div className="w-10 rounded-full contents">
+                <FontAwesomeIcon icon={faUser} className="size-6" />
               </div>
             </div>
             <ul
@@ -111,12 +110,8 @@ export default async function Nav({ logo }: any) {
               role="button"
               className="btn btn-ghost btn-circle avatar object-fill"
             >
-              <div className="w-10 rounded-full">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  className="object-fill"
-                  src={profilepic.src}
-                />
+              <div className="w-10 rounded-full contents">
+                <FontAwesomeIcon icon={faUser} className="size-6" />
               </div>
             </div>
             <ul
