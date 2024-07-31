@@ -67,9 +67,7 @@ export default async function Page() {
             <img src={saint2.src} alt="profilepic2" className="rounded-xl" />
           </figure>
           <div className="card-body items-left text-left">
-            <h2 className="card-title bg-base-300">
-              Welcome Back, {session?.user?.name}
-            </h2>
+            <h2 className="card-title">Welcome Back, {session?.user?.name}</h2>
             <div className="text-xs flex flex-row">
               <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
               <div>Douglasville, GA</div>

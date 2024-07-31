@@ -28,6 +28,7 @@ model Event {
   createdAt  DateTime   @default(now())
   author User @relation(fields: [authorId], references: [id])
   authorId String
+  Users_going_to_event User[] @relation("UserScheduledEvents")
 }
 
 enum Tag {
@@ -48,6 +49,7 @@ model User {
   organization Oranization
   isAdmin   Boolean @default(false)
   events Event[]
+  User_Scheduled_Events Event[] @relation("UserScheduledEvents")
 }
 
 enum Oranization {

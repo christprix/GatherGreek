@@ -1,26 +1,12 @@
 import greekstep from "/public/greekstep-p01.jpg";
-import kappastep from "/public/kappastep.jpg";
-import deltastep from "/public/deltastep.jpg";
-import qstomp from "/public/qstomp.jpg";
-import alphastep from "/public/alphastep.jpg";
-import sgrhostep from "/public/sgrhostep.jpg";
-import zetastep from "/public/zetastep.jpg";
 import prisma from "@/lib/prisma";
 import Image from "next/image";
 import Avatar from "@/components/Avatar";
 import dateFormat from "dateformat";
 import Avatarlist from "@/components/Avatarlist";
-
-const event = {
-  title: "Xi Chi Sigma Step Show",
-  location: "1 Amb Dr NW, Atlanta, GA 30313",
-  description:
-    "Join Phi Beta Sigma Fraternity, Inc. for an electrifying evening of rhythm, precision, and cultural celebration at our Step Show Extravaganza!",
-  price: "From $1.00",
-  imagePath: greekstep.src,
-  eventDate: "Saturday July 29th 8:00pm",
-  id: 1,
-};
+import JoinEventButton from "@/components/event/JoinEventButton";
+import { getServerSession } from "next-auth/next";
+import { options } from "@/app/api/auth/[...nextauth]/options";
 
 export default async function EventDetails({
   params,
@@ -32,63 +18,14 @@ export default async function EventDetails({
       id: params.eventid,
     },
   });
+  // GET SESSION USERID
+  const session = await getServerSession(options);
+  const userId = session?.user?.id;
+
   return (
     <>
       {dbevent ? (
         <div>
-          <div className="flex justify-center md:hidden">
-            <div className="carousel rounded w-full h-80 md:w-1/2">
-              {/* <div className="carousel-item w-full">
-            <img
-              src={greekstep.src}
-              className="rounded"
-              alt="Tailwind CSS Carousel component"
-            />
-          </div>
-          <div className="carousel-item w-full">
-            <img
-              src={alphastep.src}
-              className="w-full"
-              alt="Tailwind CSS Carousel component"
-            />
-          </div> */}
-              <div className="carousel-item w-full">
-                <img
-                  src={kappastep.src}
-                  className="w-full"
-                  alt="Tailwind CSS Carousel component"
-                />
-              </div>
-              <div className="carousel-item w-full">
-                <img
-                  src={deltastep.src}
-                  className="w-full"
-                  alt="Tailwind CSS Carousel component"
-                />
-              </div>
-              <div className="carousel-item w-full">
-                <img
-                  src={qstomp.src}
-                  className="w-full"
-                  alt="Tailwind CSS Carousel component"
-                />
-              </div>
-              <div className="carousel-item w-full">
-                <img
-                  src={sgrhostep.src}
-                  className="w-full"
-                  alt="Tailwind CSS Carousel component"
-                />
-              </div>
-              <div className="carousel-item w-full">
-                <img
-                  src={zetastep.src}
-                  className="w-full"
-                  alt="Tailwind CSS Carousel component"
-                />
-              </div>
-            </div>
-          </div>
           <div className="flex m-4">
             <div id="left" className="grid flex-col flex-grow">
               <div className="text-2xl">{dbevent.title}</div>
@@ -103,7 +40,10 @@ export default async function EventDetails({
               <div className="p-3">
                 <Avatarlist></Avatarlist>
               </div>
-              <button className="btn btn-primary">Get Tickets</button>
+              <JoinEventButton
+                eventId={params.eventid}
+                userId={userId}
+              ></JoinEventButton>
             </div>
           </div>
         </div>
