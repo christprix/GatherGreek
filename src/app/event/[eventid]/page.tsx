@@ -94,7 +94,8 @@ export default async function EventDetails({
                         className="w-3 mx-1"
                       />
                     </div>
-                    {dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy")}
+                    {dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy")}{" "}
+                    4pm - 5pm EST
                   </p>
                 </div>
                 <div className="flex flex-col">
