@@ -10,7 +10,7 @@ import { getServerSession } from "next-auth/next";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import sigmabrotherhood from "/public/sigmabrotherhood.jpg";
 import SideCardlist from "@/components/SideCardList";
-import { findMyEvents } from "../actions";
+import { findMyEvents, findScheduledEvents } from "../actions";
 import ProfileCardList from "@/components/profile/ProfileCardList";
 import ProfileAvatar from "@/components/profile/ProfileAvatar";
 
@@ -22,6 +22,10 @@ const anton = Anton({
 export default async function Page() {
   const session = await getServerSession(options);
   const myEvents = await findMyEvents(session?.user?.id as string);
+  let dbmyScheduledEvents = await findScheduledEvents(
+    session?.user?.id as string
+  );
+  let myScheduledEvents = dbmyScheduledEvents[0].User_Scheduled_Events;
   return (
     <div className="bg-base-200 p-4">
       <div
@@ -82,21 +86,33 @@ export default async function Page() {
             </div>
           </div>
         </div>
-        <div className="rounded-lg md:w-2/3 md:h-1/3  m-1 p-2 mt-3 bg-base-100">
-          <div className={`mx-5 text-xl md:text-4xl ${anton.className}`}>
-            Scheduled Events
+        <div className="flex flex-col">
+          {/* scheduled events block */}
+          <div className="rounded-lg md:w-full md:h-full  m-1 p-2 mt-3 bg-base-100">
+            <div className={`mx-5 text-xl md:text-4xl ${anton.className}`}>
+              Scheduled Events
+            </div>
+            <div className="md:grid grid-cols-2">
+              <SideCardlist events={myScheduledEvents}></SideCardlist>
+            </div>
           </div>
-          <div className="md:grid grid-cols-2">
-            <SideCardlist></SideCardlist>
+          {/* user events block */}
+          <div className="rounded-lg md:w-full md:h-full  m-1 p-2 mt-3 bg-base-100">
+            <div className={`mx-5 text-xl md:text-4xl ${anton.className}`}>
+              My Events
+            </div>
+            <div className="md:grid grid-cols-2">
+              <SideCardlist events={myEvents}></SideCardlist>
+            </div>
           </div>
         </div>
       </div>
-      <div className={`m-5 ml-7 text-3xl md:text-5xl ${anton.className}`}>
+      {/* <div className={`m-5 ml-7 text-3xl md:text-5xl ${anton.className}`}>
         My Events
       </div>
       <div className="m-5 flex overflow-x-auto justify-around md:justify-start">
         <ProfileCardList events={myEvents}></ProfileCardList>
-      </div>
+      </div> */}
     </div>
   );
 }

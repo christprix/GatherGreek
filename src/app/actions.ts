@@ -1,3 +1,4 @@
+"use server";
 import prisma from "@/lib/prisma";
 import { Tag } from "@prisma/client";
 
@@ -19,6 +20,32 @@ export async function findMyEvents(id: string) {
     },
   });
   return dbevents;
+}
+
+export async function findScheduledEvents(id: string) {
+  const dbevents = await prisma.user.findMany({
+    where: {
+      id: id,
+    },
+    select: {
+      User_Scheduled_Events: true,
+    },
+  });
+  return dbevents;
+}
+
+export async function addUserToEvent(userId: string, eventId: string) {
+  const connectUserToEvent = await prisma.event.update({
+    where: { id: eventId },
+    data: {
+      Users_going_to_event: {
+        connect: {
+          id: userId,
+        },
+      },
+    },
+  });
+  return connectUserToEvent;
 }
 
 export async function findEventsService(tag: string) {

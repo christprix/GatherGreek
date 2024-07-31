@@ -1,18 +1,16 @@
 "use client";
 import prisma from "@/lib/prisma";
-
+import { addUserToEvent } from "@/app/actions";
 export default async function JoinEventButton({ userId, eventId }: any) {
   function handleClick() {
-    console.log(userId, eventId);
+    try {
+      addUserToEvent(userId, eventId);
+      console.log("You connected", userId, "and", eventId);
+    } catch (error) {
+      console.log(error);
+    }
   }
-  //   const addUserToEvent = await prisma.user.update({
-  //     where: { id: userId },
-  //     data: {
-  //       events: {
-  //         connect: eventId,
-  //       },
-  //     },
-  //   });
+
   return (
     <>
       <button className="btn btn-primary" onClick={handleClick}>
