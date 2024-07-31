@@ -47,6 +47,11 @@ export async function findScheduledEvents(id: string) {
   return dbevents;
 }
 
+export async function findAllUsers() {
+  const dbUsers = await prisma.user.findMany();
+  return dbUsers;
+}
+
 export async function addUserToEvent(userId: string, eventId: string) {
   const connectUserToEvent = await prisma.event.update({
     where: { id: eventId },

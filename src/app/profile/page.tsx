@@ -108,12 +108,6 @@ export default async function Page() {
           </div>
         </div>
       </div>
-      {/* <div className={`m-5 ml-7 text-3xl md:text-5xl ${anton.className}`}>
-        My Events
-      </div>
-      <div className="m-5 flex overflow-x-auto justify-around md:justify-start">
-        <ProfileCardList events={myEvents}></ProfileCardList>
-      </div> */}
     </div>
   );
 }

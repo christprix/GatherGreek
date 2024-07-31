@@ -1,5 +1,4 @@
 import SideCard from "./SideCard";
-import prisma from "@/lib/prisma";
 
 export default async function SideCardlist({ events }: any) {
   const eventsList = events.map((e: any) => {

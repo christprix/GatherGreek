@@ -19,7 +19,9 @@ import {
   findEventsEducation,
   findEventsOther,
   findEventsSocial,
+  findAllUsers,
 } from "../actions";
+import UserCardList from "@/components/UserCardList";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -52,6 +54,7 @@ export default async function Page({
     searchevents = await findEvents(searchParams.q);
   }
 
+  const dbusers = await findAllUsers();
   return (
     <>
       <div className="border-t border-blue-100 flex flex-col">
@@ -132,7 +135,8 @@ export default async function Page({
       <div className="m-4 text-3xl">Popular Groups in Your Area</div>
       <div className="m-5 flex overflow-x-auto justify-around">
         {/* turn into component */}
-        <div className="card bg-base-100 min-w-48 shadow-xl m-2">
+        <UserCardList users={dbusers}></UserCardList>
+        {/* <div className="card bg-base-100 min-w-48 shadow-xl m-2">
           <figure className="px-10 pt-10">
             <img
               src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -239,7 +243,7 @@ export default async function Page({
               <button className="btn btn-primary">View Events</button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
