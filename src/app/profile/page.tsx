@@ -93,7 +93,8 @@ export default async function Page() {
               Scheduled Events
             </div>
             <div className="md:grid grid-cols-2">
-              <SideCardlist events={myScheduledEvents}></SideCardlist>
+              {<SideCardlist events={myScheduledEvents}></SideCardlist> ||
+                "You have no events!"}
             </div>
           </div>
           {/* user events block */}

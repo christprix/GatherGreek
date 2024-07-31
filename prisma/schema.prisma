@@ -19,7 +19,7 @@ model Event {
   id  String  @default(cuid())  @id
   title String
   description String
-  short_description String @default("")
+  short_description String?
   imagePath String
   eventDate DateTime
   totalSeats Int
