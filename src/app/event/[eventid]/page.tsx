@@ -11,6 +11,10 @@ import { Anton } from "next/font/google";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
+import {
+  faLocationDot,
+  faCalendarDays,
+} from "@fortawesome/free-solid-svg-icons";
 import { findUserInfo } from "@/app/actions";
 
 const anton = Anton({
@@ -83,19 +87,33 @@ export default async function EventDetails({
                   <p className={`text-3xl flex flex-col ${anton.className}`}>
                     Date and Time
                   </p>
-                  <p className="text-sm">
+                  <p className="text-sm flex">
+                    <div className="text-xl">
+                      <FontAwesomeIcon
+                        icon={faCalendarDays}
+                        className="w-3 mx-1"
+                      />
+                    </div>
                     {dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy")}
                   </p>
                 </div>
                 <div className="flex flex-col">
                   <p className={`text-3xl ${anton.className}`}>Location</p>
-                  <p>{dbevent.location}</p>
+                  <p className="flex">
+                    <div className="text-xl">
+                      <FontAwesomeIcon
+                        icon={faLocationDot}
+                        className="w-3 mx-1"
+                      />
+                    </div>
+                    {dbevent.location}
+                  </p>
                 </div>
                 <div className="flex flex-col">
                   <p className={`text-3xl ${anton.className}`}>
                     About This Event
                   </p>
-                  <p>{dbevent.location}</p>
+                  <p>{dbevent.description}</p>
                 </div>
                 <div className="flex flex-col">
                   <p className={`text-3xl ${anton.className}`}>Tags</p>

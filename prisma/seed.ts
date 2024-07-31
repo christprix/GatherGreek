@@ -48,7 +48,10 @@ async function main() {
         create: [
           {
             title: "Xi Chi Sigma Step Show",
-            description: "From $1.00",
+            description:
+              "Get ready for an unforgettable evening at the Xi Chi Sigma Step Show, where the fraternity's members will showcase their impressive stepping skills. This high-energy performance will feature synchronized routines, rhythmic beats, and an electrifying atmosphere. Come and cheer on the talented participants as they demonstrate unity, precision, and creativity on stage.",
+            short_description:
+              "Experience an electrifying performance as members of Xi Chi Sigma showcase their incredible stepping skills, featuring synchronized routines and rhythmic beats.",
             priceInCents: "0.00",
             imagePath: "greekstep",
             location: "1 Amb Dr NW, Atlanta, GA 30313",
@@ -74,7 +77,10 @@ async function main() {
           {
             title: "Feed the homeless Community Event",
             location: "1755 Sandy Ln, Douglasville, GA 30134",
-            description: "From $0.00",
+            description:
+              "Join us for a heartwarming initiative to support our community's less fortunate at the Feed the Homeless Community Event. Volunteers will come together to prepare and distribute meals, offering nourishment and kindness to those in need. It's a wonderful opportunity to make a difference and show compassion to our neighbors.",
+            short_description:
+              "Join us to prepare and distribute meals, offering nourishment and support to our homeless neighbors in a compassionate and caring environment.",
             priceInCents: "0.00",
             imagePath: "greekstep",
             eventDate: fakedate,
@@ -99,7 +105,10 @@ async function main() {
           {
             title: "Sgrho Community Service Event",
             location: "6700 Church St, Douglasville, GA 30134",
-            description: "blue",
+            description:
+              "The Sgrho Community Service Event is a day dedicated to giving back and making a positive impact. Join the Sigma Gamma Rho Sorority as they lead various service projects aimed at improving our community. Whether it's cleaning up local parks, organizing donation drives, or helping out at local shelters, your participation will contribute to a better and brighter community for all.",
+            short_description:
+              "Participate in various service projects led by Sigma Gamma Rho Sorority, aimed at improving our community and making a positive impact.",
             priceInCents: "$1.00",
             imagePath: "greekstep",
             eventDate: faker.date.future(),
@@ -124,7 +133,10 @@ async function main() {
           {
             title: "Omega Psi Phi BBQ and performance",
             location: "6700 Church St, Douglasville, GA 30134",
-            description: "Dogs",
+            description:
+              "Enjoy a day of delicious food and lively entertainment at the Omega Psi Phi BBQ and Performance. This event promises a feast of mouth-watering BBQ dishes, prepared with love and care. In addition to the great food, attendees will be treated to performances showcasing the fraternity's talents, making it a perfect blend of culinary delights and cultural expression.",
+            short_description:
+              "Enjoy delicious BBQ and live performances by Omega Psi Phi, blending great food with vibrant entertainment for a memorable day.",
             priceInCents: "$1.00",
             imagePath: "greekstep",
             eventDate: faker.date.future(),
@@ -149,9 +161,12 @@ async function main() {
           {
             title: "Sghro Financial Literacy Class",
             location: "6700 Church St, Douglasville, GA 30134",
-            description: "A bunch of Financial literacy stuff",
+            description:
+              "Empower yourself with essential financial knowledge at the Sgrho Financial Literacy Class. This informative session, hosted by Sigma Gamma Rho Sorority, will cover key topics such as budgeting, saving, investing, and managing debt. Whether you're just starting on your financial journey or looking to refine your skills, this class offers valuable insights to help you achieve financial stability and success.",
             priceInCents: "$0.00",
             imagePath: "greekstep",
+            short_description:
+              "Enhance your financial knowledge with practical advice on budgeting, saving, and investing, empowering you to achieve financial stability and success.",
             eventDate: faker.date.future(),
             totalSeats: 10,
             tag: "ECONOMICS",
