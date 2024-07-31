@@ -1,12 +1,23 @@
 import greekstep from "/public/greekstep-p01.jpg";
 import prisma from "@/lib/prisma";
 import Image from "next/image";
+import volunteer1 from "/public/volunteer1.jpg";
 import Avatar from "@/components/Avatar";
 import dateFormat from "dateformat";
 import Avatarlist from "@/components/Avatarlist";
 import JoinEventButton from "@/components/event/JoinEventButton";
 import { getServerSession } from "next-auth/next";
+import { Anton } from "next/font/google";
 import { options } from "@/app/api/auth/[...nextauth]/options";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
+import { findUserInfo } from "@/app/actions";
+
+const anton = Anton({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal"],
+});
 
 export default async function EventDetails({
   params,
@@ -21,26 +32,91 @@ export default async function EventDetails({
   // GET SESSION USERID
   const session = await getServerSession(options);
   const userId = session?.user?.id;
-
+  const EventCreatorInfo = await findUserInfo(dbevent?.authorId as string);
   return (
     <>
       {dbevent ? (
-        <div>
-          <div className="flex m-4">
-            <div id="left" className="grid flex-col flex-grow">
-              <div className="text-2xl">{dbevent.title}</div>
-              <div className="w-16">
-                <Avatar></Avatar>
-              </div>
-              <div>
+        <div className="flex flex-col items-center bg-base-200">
+          <div className="w-full flex justify-center">
+            <Image
+              src={volunteer1.src}
+              alt="event pic"
+              height={800}
+              width={800}
+              objectFit="true"
+              className="rounded-lg"
+            ></Image>
+          </div>
+          <div className="flex flex-col md:flex-row w-full justify-evenly p-4">
+            <div
+              id="left"
+              className="grid flex-col bg-base-100 md:w-1/2 w-full rounded my-3 p-4"
+            >
+              <div className="text-sm">
                 {dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy")}
               </div>
-              <div>{dbevent.description}</div>
-              <div>{dbevent.priceInCents}</div>
-              <div className="p-3">
-                <Avatarlist></Avatarlist>
+              <div className="md:text-6xl text-3xl">{dbevent.title}</div>
+              <div className="m-3">{dbevent.description}</div>
+              <div className="card m-1 w-full card-side bg-base-100 border">
+                <figure className="rounded-lg p-2 min-w-16">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="btn btn-ghost btn-circle"
+                  >
+                    <div className="w-10 rounded-full border contents">
+                      <FontAwesomeIcon icon={faUser} className="size-6" />
+                    </div>
+                  </div>
+                </figure>
+                <div className="card-body">
+                  <div className="text-xs flex flex-col">
+                    <h2 className="card-title">
+                      {EventCreatorInfo?.firstName} {EventCreatorInfo?.lastName}
+                    </h2>
+                    <p className="text-sm">Organizer info</p>
+                  </div>
+                </div>
               </div>
+              <div className="flex flex-col">
+                <div className={`flex flex-col`}>
+                  <p className={`text-3xl flex flex-col ${anton.className}`}>
+                    Date and Time
+                  </p>
+                  <p className="text-sm">
+                    {dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy")}
+                  </p>
+                </div>
+                <div className="flex flex-col">
+                  <p className={`text-3xl ${anton.className}`}>Location</p>
+                  <p>{dbevent.location}</p>
+                </div>
+                <div className="flex flex-col">
+                  <p className={`text-3xl ${anton.className}`}>
+                    About This Event
+                  </p>
+                  <p>{dbevent.location}</p>
+                </div>
+                <div className="flex flex-col">
+                  <p className={`text-3xl ${anton.className}`}>Tags</p>
+                  <button className="rounded-lg w-fit p-1 hover:bg-base-200 bg-base-300">
+                    {dbevent.tag}
+                  </button>
+                </div>
+                <div className="flex flex-col">
+                  <p className={`text-3xl ${anton.className}`}>Price</p>
+                  <p>{dbevent.priceInCents}</p>
+                </div>
+                <div>Other Events by {EventCreatorInfo?.firstName} </div>
+              </div>
+            </div>
+            <div
+              id="right"
+              className="flex flex-col h-fit md:w-1/3 w-full rounded items-center p-4 bg-base-100"
+            >
+              <p className="text-xl m-2">Sign Up Today!</p>
               <JoinEventButton
+                className="p-3"
                 eventId={params.eventid}
                 userId={userId}
               ></JoinEventButton>

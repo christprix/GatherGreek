@@ -13,6 +13,19 @@ export async function findEvents(query: string) {
   return dbevents;
 }
 
+export async function findUserInfo(id: string) {
+  const dbuser = await prisma.user.findUnique({
+    where: {
+      id: id,
+    },
+    select: {
+      firstName: true,
+      lastName: true,
+    },
+  });
+  return dbuser;
+}
+
 export async function findMyEvents(id: string) {
   const dbevents = await prisma.event.findMany({
     where: {

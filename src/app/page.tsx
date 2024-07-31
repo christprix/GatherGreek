@@ -21,17 +21,13 @@ export default async function Home() {
   return (
     <div>
       <Hero></Hero>
-      <div
-        className={`m-4 text-3xl md:text-6xl md:justify-start justify-start flex ${anton.className}`}
-      >
+      <div className="m-4 text-3xl md:text-4xl md:justify-start justify-start flex">
         Find Events By Category
       </div>
-      <div className="flex flex-wrap flex-row items-center py-4 justify-evenly ">
+      <div className="flex flex-wrap flex-row items-center text-bold py-4 justify-evenly ">
         <Taglist></Taglist>
       </div>
-      <div
-        className={`m-4 text-2xl md:text-4xl md:justify-start justify-start flex ${anton.className}`}
-      >
+      <div className="m-4 text-bold text-2xl md:text-3xl md:justify-start justify-start flex">
         Events Near Atlanta, Georgia
       </div>
       <div className="flex justify-center">

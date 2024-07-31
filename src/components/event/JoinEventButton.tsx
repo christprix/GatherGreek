@@ -1,5 +1,4 @@
 "use client";
-import prisma from "@/lib/prisma";
 import { addUserToEvent } from "@/app/actions";
 export default async function JoinEventButton({ userId, eventId }: any) {
   function handleClick() {
