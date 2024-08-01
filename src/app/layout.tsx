@@ -27,7 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`bg-base-100 min-h-screen ${varela_round.className}`}>
+      <body
+        className={`bg-base-100 min-h-screen text-base-content ${varela_round.className}`}
+      >
         <AuthProvider>
           <Nav logo={logo1}></Nav>
           {children}

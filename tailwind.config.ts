@@ -8,8 +8,8 @@ const config = {
       "light",
       {
         dark: {
-          ...require("daisyui/src/theming/themes")["dark"],
-          primary: "white",
+          ...require("daisyui/src/theming/themes")["forest"],
+          primary: "#f6d860",
           secondary: "teal",
         },
       },
