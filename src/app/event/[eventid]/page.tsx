@@ -45,7 +45,7 @@ export default async function EventDetails({
             <Image
               src={volunteer1.src}
               alt="event pic"
-              height={500}
+              height={200}
               width={500}
               objectFit="true"
               className="rounded-lg"
@@ -54,7 +54,7 @@ export default async function EventDetails({
           <div className="flex flex-col md:flex-row w-full justify-evenly p-4">
             <div
               id="left"
-              className="grid flex-col bg-base-100 md:w-1/2 w-full rounded  p-4"
+              className="grid flex-col bg-base-100 md:w-3/5 w-full rounded  p-4"
             >
               <div className="text-sm">
                 {dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy")}
@@ -131,7 +131,7 @@ export default async function EventDetails({
             </div>
             <div
               id="right"
-              className="flex flex-col h-fit md:w-1/3 w-full rounded items-center md:my-0 my-2 p-4 bg-base-100"
+              className="flex flex-col h-fit md:w-2/5 md:sticky md:top-0 w-full md:ml-2 rounded items-center md:my-0 my-2 p-4 bg-base-100"
             >
               <p className="text-xl m-2">Sign Up Today!</p>
               <JoinEventButton
