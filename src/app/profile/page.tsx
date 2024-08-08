@@ -11,7 +11,6 @@ import { options } from "@/app/api/auth/[...nextauth]/options";
 import sigmabrotherhood from "/public/sigmabrotherhood.jpg";
 import SideCardlist from "@/components/SideCardList";
 import { findMyEvents, findScheduledEvents } from "../actions";
-import ProfileCardList from "@/components/profile/ProfileCardList";
 import ProfileAvatar from "@/components/profile/ProfileAvatar";
 
 const anton = Anton({
@@ -21,6 +20,7 @@ const anton = Anton({
 });
 export default async function Page() {
   const session = await getServerSession(options);
+  console.log(session?.user);
   const myEvents = await findMyEvents(session?.user?.id as string);
   let dbmyScheduledEvents = await findScheduledEvents(
     session?.user?.id as string

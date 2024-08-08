@@ -7,7 +7,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 
 export default async function Nav({ logo }: any) {
+  // GET SESSION
   const session = await getServerSession(options);
+  // CHECK IF ADMIN
+  console.log(session?.user?.admincheck);
+  function admincheck() {
+    if (session?.user?.admincheck) {
+      return <Link href={"/admin"}>Admin</Link>;
+    }
+    return <></>;
+  }
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start ">
@@ -121,6 +130,7 @@ export default async function Nav({ logo }: any) {
               <li>
                 <Link href={"/profile"}>Profile</Link>
               </li>
+              <li>{admincheck()}</li>
               <li>
                 <Link href={"/create_event"}>Create Event</Link>
               </li>

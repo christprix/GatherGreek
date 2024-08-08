@@ -54,7 +54,7 @@ export default async function EventDetails({
           <div className="flex flex-col md:flex-row w-full justify-evenly p-4">
             <div
               id="left"
-              className="grid flex-col bg-base-100 md:w-3/5 w-full rounded  p-4"
+              className="grid flex-col h-5/6 bg-base-100 md:w-3/5 w-full rounded  p-4"
             >
               <div className="text-sm">
                 {dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy")}

@@ -43,6 +43,7 @@ async function main() {
       firstName: "Chris",
       lastName: "St. Prix",
       organization: "PhiBetaSigma",
+      isAdmin: true,
       password,
       events: {
         create: [

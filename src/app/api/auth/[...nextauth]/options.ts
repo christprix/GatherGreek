@@ -18,12 +18,12 @@ export const options: NextAuthOptions = {
         email: {
           label: "Email:",
           type: "text",
-          placeholder: "your-cool-email",
+          placeholder: "your email",
         },
         password: {
           label: "Password:",
           type: "password",
-          placeholder: "your-awesome-password",
+          placeholder: "your password",
         },
       },
       async authorize(credentials) {
@@ -57,7 +57,7 @@ export const options: NextAuthOptions = {
           id: user.id + "",
           email: user.email,
           name: user.firstName + " " + user.lastName,
-          randomKey: "4",
+          admincheck: user.isAdmin,
           organization: user.organization,
         };
       },
@@ -70,6 +70,7 @@ export const options: NextAuthOptions = {
         user: {
           ...session.user,
           id: token.id,
+          admincheck: token.admincheck,
           organization: token.organization,
         },
       };
@@ -80,6 +81,7 @@ export const options: NextAuthOptions = {
         return {
           ...token,
           id: u.id,
+          admincheck: u.admincheck,
           organization: u.organization,
         };
       }

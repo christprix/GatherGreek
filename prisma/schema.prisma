@@ -23,7 +23,7 @@ model Event {
   imagePath String
   eventDate DateTime
   totalSeats Int
-  location String
+  location String?
   tag Tag
   priceInCents String
   createdAt  DateTime   @default(now())
@@ -48,6 +48,8 @@ model User {
   password  String?
   email     String?  @unique
   organization Oranization
+  location String
+  isVerified Boolean @default(false)
   isAdmin   Boolean @default(false)
   events Event[]
   User_Scheduled_Events Event[] @relation("UserScheduledEvents")

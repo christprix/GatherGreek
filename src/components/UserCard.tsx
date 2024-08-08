@@ -18,7 +18,6 @@ export default function UserCard({ user }: any) {
           </h2>
           <p className="text-sm">{user?.organization}</p>
         </div>
-        <button className="btn btn-primary">View Events</button>
       </div>
     </div>
   );
