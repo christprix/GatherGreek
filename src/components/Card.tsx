@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarDays,
   faLocationDot,
+  faSquareCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import Avatarlist from "./Avatarlist";
 
@@ -20,6 +21,19 @@ export default function Card({ event }: any) {
           <h2 className="card-title">
             <Link href={`event/${event.id}`}>{event.title}</Link>
           </h2>
+          <div className="test-xs flex">
+            {/* CHECK FOR VERIFICATION */}
+            {event.author.isVerified ? (
+              <div className="flex flex-row text-center bg-base-200 rounded-xl p-1">
+                <div className="w-3 mx-1 text-center">
+                  <FontAwesomeIcon icon={faSquareCheck} />
+                </div>
+                <div>{event.author.organization} Verified</div>
+              </div>
+            ) : (
+              <div className="bg-base-200 rounded-xl p-1">Community Event</div>
+            )}
+          </div>
           <div className="text-xs flex flex-row">
             <FontAwesomeIcon icon={faCalendarDays} className="w-3 mx-1" />
             <p className="text-sm">
@@ -30,7 +44,10 @@ export default function Card({ event }: any) {
             <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
             <p>{event.location}</p>
           </div>
-          <p>{event.priceInCents}</p>
+          <p>From ${event.priceInCents}</p>
+          <div>
+            Organizer: {event.author.firstName} {event.author.lastName}
+          </div>
           <div>
             <div className="flex flex-row justify-between">
               <div className="w-32">
@@ -38,6 +55,7 @@ export default function Card({ event }: any) {
               </div>
             </div>
           </div>
+          <div></div>
           <div className="btn btn-primary">
             <Link href={`event/${event.id}`}>Get Tickets</Link>
           </div>

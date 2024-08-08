@@ -32,6 +32,14 @@ model Event {
   Users_going_to_event User[] @relation("UserScheduledEvents")
 }
 
+// model Verification_Application {
+//   id  String  @default(cuid())  @id
+//   authorId String
+//   author User @relation(fields: [authorId], references: [id])
+//   position String
+
+// }
+
 enum Tag {
   COMMUNITY_SERVICE
   SOCIAL
@@ -47,9 +55,11 @@ model User {
   lastName  String
   password  String?
   email     String?  @unique
+  bio String?
   organization Oranization
   location String
   isVerified Boolean @default(false)
+  // Verification_Applications Verification_Application[]
   isAdmin   Boolean @default(false)
   events Event[]
   User_Scheduled_Events Event[] @relation("UserScheduledEvents")

@@ -44,6 +44,8 @@ async function main() {
       lastName: "St. Prix",
       organization: "PhiBetaSigma",
       isAdmin: true,
+      isVerified: true,
+      bio: "Born in USA",
       location: "Douglasville",
       password,
       events: {

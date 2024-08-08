@@ -5,8 +5,34 @@ import { Tag } from "@prisma/client";
 export async function findEvents(query: string) {
   const dbevents = await prisma.event.findMany({
     where: {
-      title: {
+      description: {
         search: query.replace(/[\s\n\t]/g, "_"),
+      },
+    },
+    include: {
+      author: {
+        select: {
+          isVerified: true,
+          organization: true,
+          firstName: true,
+          lastName: true,
+        },
+      },
+    },
+  });
+  return dbevents;
+}
+
+export async function findAllEvents() {
+  const dbevents = await prisma.event.findMany({
+    include: {
+      author: {
+        select: {
+          isVerified: true,
+          organization: true,
+          firstName: true,
+          lastName: true,
+        },
       },
     },
   });
@@ -52,6 +78,10 @@ export async function findAllUsers() {
   return dbUsers;
 }
 
+export async function verifyUser() {
+  // VERIFY A USER
+}
+
 export async function addUserToEvent(userId: string, eventId: string) {
   const connectUserToEvent = await prisma.event.update({
     where: { id: eventId },
@@ -71,6 +101,16 @@ export async function findEventsService(tag: string) {
     where: {
       tag: Tag.COMMUNITY_SERVICE,
     },
+    include: {
+      author: {
+        select: {
+          isVerified: true,
+          organization: true,
+          firstName: true,
+          lastName: true,
+        },
+      },
+    },
   });
   return dbevents;
 }
@@ -79,6 +119,16 @@ export async function findEventsOther(tag: string) {
   const dbevents = await prisma.event.findMany({
     where: {
       tag: Tag.OTHER,
+    },
+    include: {
+      author: {
+        select: {
+          isVerified: true,
+          organization: true,
+          firstName: true,
+          lastName: true,
+        },
+      },
     },
   });
   return dbevents;
@@ -89,6 +139,16 @@ export async function findEventsSocial(tag: string) {
     where: {
       tag: Tag.SOCIAL,
     },
+    include: {
+      author: {
+        select: {
+          isVerified: true,
+          organization: true,
+          firstName: true,
+          lastName: true,
+        },
+      },
+    },
   });
   return dbevents;
 }
@@ -97,6 +157,16 @@ export async function findEventsGovernment(tag: string) {
   const dbevents = await prisma.event.findMany({
     where: {
       tag: Tag.GOVERNMENT,
+    },
+    include: {
+      author: {
+        select: {
+          isVerified: true,
+          organization: true,
+          firstName: true,
+          lastName: true,
+        },
+      },
     },
   });
   return dbevents;
@@ -107,6 +177,16 @@ export async function findEventsEducation(tag: string) {
     where: {
       tag: Tag.EDUCATION,
     },
+    include: {
+      author: {
+        select: {
+          isVerified: true,
+          organization: true,
+          firstName: true,
+          lastName: true,
+        },
+      },
+    },
   });
   return dbevents;
 }
@@ -115,6 +195,16 @@ export async function findEventsEconomics(tag: string) {
   const dbevents = await prisma.event.findMany({
     where: {
       tag: Tag.ECONOMICS,
+    },
+    include: {
+      author: {
+        select: {
+          isVerified: true,
+          organization: true,
+          firstName: true,
+          lastName: true,
+        },
+      },
     },
   });
   return dbevents;

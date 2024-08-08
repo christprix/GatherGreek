@@ -8,6 +8,7 @@ import sgrhoevent from "/public/sgrhoevent.jpg";
 import Taglist from "@/components/Taglist";
 import { Anton } from "next/font/google";
 import prisma from "@/lib/prisma";
+import { findAllEvents } from "./actions";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -16,7 +17,7 @@ const anton = Anton({
 });
 
 export default async function Home() {
-  const dbevents = await prisma.event.findMany();
+  const dbevents = await findAllEvents();
 
   return (
     <div>

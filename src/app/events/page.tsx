@@ -20,6 +20,7 @@ import {
   findEventsOther,
   findEventsSocial,
   findAllUsers,
+  findAllEvents,
 } from "../actions";
 import UserCardList from "@/components/UserCardList";
 
@@ -49,11 +50,10 @@ export default async function Page({
   } else if (searchParams.tag === "Other") {
     searchevents = await findEventsOther(searchParams.tag);
   } else if (!searchParams.q || searchParams.q === "") {
-    searchevents = await prisma.event.findMany();
+    searchevents = await findAllEvents();
   } else {
     searchevents = await findEvents(searchParams.q);
   }
-
   const dbusers = await findAllUsers();
   return (
     <>
