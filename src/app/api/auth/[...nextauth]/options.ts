@@ -59,6 +59,7 @@ export const options: NextAuthOptions = {
           name: user.firstName + " " + user.lastName,
           admincheck: user.isAdmin,
           organization: user.organization,
+          location: user.location,
         };
       },
     }),
@@ -72,6 +73,7 @@ export const options: NextAuthOptions = {
           id: token.id,
           admincheck: token.admincheck,
           organization: token.organization,
+          location: token.location,
         },
       };
     },
@@ -83,6 +85,7 @@ export const options: NextAuthOptions = {
           id: u.id,
           admincheck: u.admincheck,
           organization: u.organization,
+          location: u.location,
         };
       }
       return token;

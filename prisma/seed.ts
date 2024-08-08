@@ -44,6 +44,7 @@ async function main() {
       lastName: "St. Prix",
       organization: "PhiBetaSigma",
       isAdmin: true,
+      location: "Douglasville",
       password,
       events: {
         create: [
@@ -73,6 +74,7 @@ async function main() {
       lastName: "stprix",
       organization: "AlphaPhiAlpha",
       password,
+      location: "Atlanta",
       events: {
         create: [
           {
@@ -101,6 +103,7 @@ async function main() {
       lastName: "jackson",
       organization: "ZetaPhiBeta",
       password,
+      location: "Snellville",
       events: {
         create: [
           {
@@ -129,6 +132,7 @@ async function main() {
       lastName: "jackson",
       organization: "OmegaPsiPhi",
       password,
+      location: "Midtown Atlanta",
       events: {
         create: [
           {
@@ -157,6 +161,7 @@ async function main() {
       lastName: faker.person.lastName(),
       organization: "SigmaGammaRho",
       password,
+      location: "Buckhead",
       events: {
         create: [
           {

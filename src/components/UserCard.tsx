@@ -17,6 +17,7 @@ export default function UserCard({ user }: any) {
             {user?.firstName} {user?.lastName}
           </h2>
           <p className="text-sm">{user?.organization}</p>
+          <p className="text-sm">{user?.location}</p>
         </div>
       </div>
     </div>
