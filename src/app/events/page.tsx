@@ -23,6 +23,7 @@ import {
   findAllEvents,
 } from "../actions";
 import UserCardList from "@/components/UserCardList";
+import LocationFinder from "@/components/Locationfinder";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -124,6 +125,7 @@ export default async function Page({
       </div>
       <div className={`m-4 text-2xl md:text-4xl ${anton.className}`}>
         Top Events In Your Area
+        <LocationFinder></LocationFinder>
       </div>
       {/* turn below into component to have conditional rendering */}
       <div className="m-4 text-2xl md:text-4xl">

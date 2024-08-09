@@ -20,7 +20,6 @@ const anton = Anton({
 });
 export default async function Page() {
   const session = await getServerSession(options);
-  console.log(session?.user);
   const myEvents = await findMyEvents(session?.user?.id as string);
   let dbmyScheduledEvents = await findScheduledEvents(
     session?.user?.id as string
