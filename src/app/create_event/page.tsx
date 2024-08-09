@@ -1,5 +1,6 @@
 import blackparty from "/public/blackparty.jpg";
 import Link from "next/link";
+import sigmabrotherhood from "/public/sigmabrotherhood.jpg";
 export default async function Page() {
   return (
     <>
@@ -18,9 +19,39 @@ export default async function Page() {
               bonds, fostering community spirit, and making a positive impact
               together
             </p>
-            <Link href={"/create_event/form"} className="btn btn-primary">
-              Get Started
-            </Link>
+            <div className="flex flex-col md:flex-row justify-center items-center">
+              <Link href={"/create_event/community_form"} className="">
+                <div className="card bg-base-100 image-full w-96 shadow-xl">
+                  <figure>
+                    <img src={blackparty.src} alt="Shoes" />
+                  </figure>
+                  <div className="card-body">
+                    <h2 className="card-title">Community Events</h2>
+                    <p>
+                      Events for the whole community. Choose from Social events,
+                      classes, politics and more!
+                    </p>
+                    <div className="card-actions justify-end">
+                      <button className="btn btn-primary">Buy Now</button>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+              <Link href={"/create_event/verified_form"} className="m-3">
+                <div className="card bg-base-100 image-full w-96 shadow-md">
+                  <figure>
+                    <img src={sigmabrotherhood.src} alt="Shoes" />
+                  </figure>
+                  <div className="card-body">
+                    <h2 className="card-title">Divine 9 Events</h2>
+                    <p>If a dog chews shoes whose shoes does he choose?</p>
+                    <div className="card-actions justify-end">
+                      <button className="btn btn-primary">Buy Now</button>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
