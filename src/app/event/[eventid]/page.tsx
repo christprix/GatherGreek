@@ -83,7 +83,7 @@ export default async function EventDetails({
                 </div>
               </div>
               <div className="flex flex-col">
-                <div className={`flex flex-col`}>
+                <div className={`flex flex-col my-10`}>
                   <p className={`text-3xl flex flex-col ${anton.className}`}>
                     Date and Time
                   </p>
@@ -98,7 +98,7 @@ export default async function EventDetails({
                     4pm - 5pm EST
                   </p>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col my-10">
                   <p className={`text-3xl ${anton.className}`}>Location</p>
                   <p className="flex">
                     <div className="text-xl">
@@ -110,19 +110,19 @@ export default async function EventDetails({
                     {dbevent.location}
                   </p>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col my-10">
                   <p className={`text-3xl ${anton.className}`}>
                     About This Event
                   </p>
                   <p>{dbevent.description}</p>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col my-10">
                   <p className={`text-3xl ${anton.className}`}>Tags</p>
                   <button className="rounded-lg w-fit p-1 hover:bg-base-200 bg-base-300">
                     {dbevent.tag}
                   </button>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col my-10">
                   <p className={`text-3xl ${anton.className}`}>Price</p>
                   <p>{dbevent.priceInCents}</p>
                 </div>

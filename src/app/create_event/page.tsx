@@ -37,7 +37,10 @@ export default async function Page() {
                   </div>
                 </div>
               </Link>
-              <Link href={"/create_event/verified_form"} className="m-3">
+              <Link
+                href={"/create_event/verified_form"}
+                className="my-1 md:my-0"
+              >
                 <div className="card bg-base-100 image-full w-96 shadow-md">
                   <figure>
                     <img src={sigmabrotherhood.src} alt="Shoes" />
