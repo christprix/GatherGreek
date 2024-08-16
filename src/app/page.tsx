@@ -27,7 +27,7 @@ export default async function Home() {
   return (
     <div>
       <Hero image={greekimage}></Hero>
-      <div className="text-2xl md:text-5xl  font-bold flex justify-center md:justify-start m-4 text-center">
+      <div className="text-xl md:text-3xl  font-bold flex justify-center  m-4 text-center">
         Find An Event by Category
       </div>
       <div className="my-8">
@@ -40,8 +40,10 @@ export default async function Home() {
         <div className="flex justify-center flex-col lg:flex-row-reverse">
           {/* <img src={qstomp.src} className="max-w-sm rounded-lg shadow-2xl" /> */}
           <div>
-            <div className="text-5xl font-bold">How to Get Started?</div>
-            <div className="flex flex-col py-6">
+            <div className="flex justify-center text-center text-xl md:text-3xl font-bold">
+              How to Get Started?
+            </div>
+            <div className="flex justify-center items-center flex-col py-6">
               <div className="card bg-base-100 md:w-full w-96 shadow-xl">
                 <div className="card-body">
                   <h2 className="card-title">
@@ -63,7 +65,7 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col py-6">
+            <div className="flex flex-col items-center py-6">
               <div className="card bg-base-100 md:w-full w-96 shadow-xl">
                 <div className="card-body">
                   <h2 className="card-title">
@@ -79,7 +81,7 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col py-6">
+            <div className="flex flex-col items-center py-6">
               <div className="card bg-base-100 md:w-full w-96 shadow-xl">
                 <div className="card-body">
                   <h2 className="card-title">
