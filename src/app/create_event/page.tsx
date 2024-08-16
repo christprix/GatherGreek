@@ -6,10 +6,49 @@ export default async function Page() {
     <>
       <div className="hero bg-base-100 min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <img
+          {/* <img
             src={blackparty.src}
             className="max-w-sm rounded-lg shadow-2xl"
-          />
+          /> */}
+          <div className="flex flex-col">
+            <div className="card bg-base-100 image-full w-96 shadow-xl">
+              <figure>
+                <img src={blackparty.src} alt="Shoes" />
+              </figure>
+              <div className="card-body">
+                <h2 className="card-title">Community Events</h2>
+                <p>
+                  Events for the whole community. Choose from Social events,
+                  classes, politics and more!
+                </p>
+                <div className="card-actions justify-end">
+                  <Link
+                    href={"/create_event/community_form"}
+                    className="btn btn-primary"
+                  >
+                    Get Started
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="my-2 card bg-base-100 image-full w-96 shadow-md">
+              <figure>
+                <img src={sigmabrotherhood.src} alt="Shoes" />
+              </figure>
+              <div className="card-body">
+                <h2 className="card-title">Divine 9 Events</h2>
+                <p>If a dog chews shoes whose shoes does he choose?</p>
+                <div className="card-actions justify-end">
+                  <Link
+                    href={"/create_event/community_form"}
+                    className="btn btn-primary"
+                  >
+                    Get Started
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
           <div>
             <div className="text-5xl font-bold">Connect your Community</div>
             <p className="py-6">
@@ -19,42 +58,7 @@ export default async function Page() {
               bonds, fostering community spirit, and making a positive impact
               together
             </p>
-            <div className="flex flex-col md:flex-row justify-center items-center">
-              <Link href={"/create_event/community_form"} className="">
-                <div className="card bg-base-100 image-full w-96 shadow-xl">
-                  <figure>
-                    <img src={blackparty.src} alt="Shoes" />
-                  </figure>
-                  <div className="card-body">
-                    <h2 className="card-title">Community Events</h2>
-                    <p>
-                      Events for the whole community. Choose from Social events,
-                      classes, politics and more!
-                    </p>
-                    <div className="card-actions justify-end">
-                      <button className="btn btn-primary">Buy Now</button>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-              <Link
-                href={"/create_event/verified_form"}
-                className="my-1 md:my-0"
-              >
-                <div className="card bg-base-100 image-full w-96 shadow-md">
-                  <figure>
-                    <img src={sigmabrotherhood.src} alt="Shoes" />
-                  </figure>
-                  <div className="card-body">
-                    <h2 className="card-title">Divine 9 Events</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                    <div className="card-actions justify-end">
-                      <button className="btn btn-primary">Buy Now</button>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </div>
+            <div className="flex flex-col md:flex-row justify-center items-center"></div>
           </div>
         </div>
       </div>

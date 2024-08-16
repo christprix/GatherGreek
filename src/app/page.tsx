@@ -58,9 +58,7 @@ export default async function Home() {
                     </div>
                   </p>
                   <div className="card-actions justify-end">
-                    <button className="btn btn-secondary">
-                      Create an Event
-                    </button>
+                    <button className="btn btn-primary">Create an Event</button>
                   </div>
                 </div>
               </div>
@@ -76,7 +74,7 @@ export default async function Home() {
                     your tickets on your EventHub.
                   </p>
                   <div className="card-actions justify-end">
-                    <button className="btn btn-secondary">Find Events</button>
+                    <button className="btn btn-primary">Find Events</button>
                   </div>
                 </div>
               </div>
@@ -92,7 +90,7 @@ export default async function Home() {
                     stay on the lookout for future chances to attend.
                   </p>
                   <div className="card-actions justify-end">
-                    <button className="btn btn-secondary">
+                    <button className="btn btn-primary">
                       View your Events
                     </button>
                   </div>
