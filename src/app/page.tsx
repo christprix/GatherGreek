@@ -36,51 +36,72 @@ export default async function Home() {
         </div>
       </div>
       <Hero2 image={blackbasketball}></Hero2>
-      <div className="hero bg-base-100 min-h-[70vh]">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <img src={qstomp.src} className="max-w-sm rounded-lg shadow-2xl" />
+      <div className="bg-base-100 min-h-[70vh]">
+        <div className="flex justify-center flex-col lg:flex-row-reverse">
+          {/* <img src={qstomp.src} className="max-w-sm rounded-lg shadow-2xl" /> */}
           <div>
             <div className="text-5xl font-bold">How to Get Started?</div>
             <div className="flex flex-col py-6">
-              <div className="text-xl font-bold">
-                Create: Community or D9 Verified Events
-              </div>
-              <div className="my-2">
-                Community Events are for anyone in the community that wants to
-                showcase an event for people to go to.
-              </div>
-              <div>
-                D9 Verified Events Are events created by D9 fraternity or
-                sorority users who have been verified
+              <div className="card bg-base-100 md:w-full w-96 shadow-xl">
+                <div className="card-body">
+                  <h2 className="card-title">
+                    Create: Community or D9 Verified Events
+                  </h2>
+                  <p>
+                    <div className="my-2">
+                      Community Events are for anyone in the community that
+                      wants to showcase an event for people to go to.
+                    </div>
+                    <div>
+                      D9 Verified Events Are events created by D9 fraternity or
+                      sorority users who have been verified
+                    </div>
+                  </p>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-secondary">
+                      Create an Event
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="flex flex-col py-6">
-              <div className="text-xl font-bold">
-                Connect: Search for Events with ease
-              </div>
-              <div className="my-2">
-                Look for events by City, Organization, or Category! Organize
-                your tickets on your EventHub.
+              <div className="card bg-base-100 md:w-full w-96 shadow-xl">
+                <div className="card-body">
+                  <h2 className="card-title">
+                    Connect: Search for Events with ease
+                  </h2>
+                  <p>
+                    Look for events by City, Organization, or Category! Organize
+                    your tickets on your EventHub.
+                  </p>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-secondary">Find Events</button>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="flex flex-col py-6">
-              <div className="text-xl font-bold">
-                Community: Find and connect with Event organizers
-              </div>
-              <div className="my-2">
-                After attending an event, follow the event organizers and stay
-                on the lookout for future chances to attend.
+              <div className="card bg-base-100 md:w-full w-96 shadow-xl">
+                <div className="card-body">
+                  <h2 className="card-title">
+                    Community: Find and connect with Event organizers
+                  </h2>
+                  <p>
+                    After attending an event, follow the event organizers and
+                    stay on the lookout for future chances to attend.
+                  </p>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-secondary">
+                      View your Events
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-            {/* <div className="btn btn-primary">Get Started</div> */}
           </div>
         </div>
       </div>
-      {/* <div className="flex justify-center">
-        <div className="flex md:flex-row flex-col justify-around items-center m-1">
-          <Cardlist events={dbevents}></Cardlist>
-        </div>
-      </div> */}
     </div>
   );
 }
