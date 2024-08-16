@@ -5,12 +5,8 @@ export default async function Page() {
   return (
     <>
       <div className="hero bg-base-100 min-h-screen">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          {/* <img
-            src={blackparty.src}
-            className="max-w-sm rounded-lg shadow-2xl"
-          /> */}
-          <div className="flex flex-col">
+        <div className="hero-content flex-col-reverse">
+          <div className="flex flex-col md:flex-row md:w-full md:justify-around">
             <div className="card bg-base-100 image-full w-96 shadow-xl">
               <figure>
                 <img src={blackparty.src} alt="Shoes" />
@@ -37,7 +33,10 @@ export default async function Page() {
               </figure>
               <div className="card-body">
                 <h2 className="card-title">Divine 9 Events</h2>
-                <p>If a dog chews shoes whose shoes does he choose?</p>
+                <p>
+                  Events for Divine 9 members such as chapter meetings,
+                  conferences, and other members only events
+                </p>
                 <div className="card-actions justify-end">
                   <Link
                     href={"/create_event/community_form"}

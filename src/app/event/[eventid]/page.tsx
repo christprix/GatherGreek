@@ -62,7 +62,7 @@ export default async function EventDetails({
               <div className="md:text-4xl text-3xl">{dbevent.title}</div>
               <div className="m-3">{dbevent.short_description}</div>
               <div className="card m-1 w-full card-side bg-base-100 border">
-                <figure className="rounded-lg p-2 min-w-16">
+                <figure className="rounded-lg min-w-16">
                   <div
                     tabIndex={0}
                     role="button"

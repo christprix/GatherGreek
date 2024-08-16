@@ -49,7 +49,7 @@ export default async function Home() {
                   <h2 className="card-title">
                     Create: Community or D9 Verified Events
                   </h2>
-                  <p>
+                  <div>
                     <div className="my-2">
                       Community Events are for anyone in the community that
                       wants to showcase an event for people to go to.
@@ -58,7 +58,7 @@ export default async function Home() {
                       D9 Verified Events Are events created by D9 fraternity or
                       sorority users who have been verified
                     </div>
-                  </p>
+                  </div>
                   <div className="card-actions justify-end">
                     <button className="btn btn-primary">Create an Event</button>
                   </div>

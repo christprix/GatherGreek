@@ -25,9 +25,6 @@ export default function Card({ event }: any) {
             {/* CHECK FOR VERIFICATION */}
             {event.author.isVerified ? (
               <div className="flex flex-row text-center bg-base-200 rounded-xl p-1">
-                <div className="w-3 mx-1 text-center">
-                  <FontAwesomeIcon icon={faSquareCheck} />
-                </div>
                 <div>{event.author.organization} Verified</div>
               </div>
             ) : (

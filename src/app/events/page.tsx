@@ -11,6 +11,7 @@ import map from "/public/mapbox.png";
 import { Anton } from "next/font/google";
 import prisma from "@/lib/prisma";
 import SearchBar from "@/components/Search";
+import DateSearch from "@/components/DateSearch";
 import {
   findEvents,
   findEventsEconomics,
@@ -24,6 +25,7 @@ import {
 } from "../actions";
 import UserCardList from "@/components/UserCardList";
 import LocationFinder from "@/components/Locationfinder";
+import OrganizationSearch from "@/components/OrganizationSearch";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -34,7 +36,7 @@ const anton = Anton({
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { q?: string; tag?: string };
+  searchParams: { q?: string; tag?: string; date?: string };
 }) {
   let searchevents;
   // SEARCH DB BASED ON TAG INPUT
@@ -50,6 +52,8 @@ export default async function Page({
     searchevents = await findEventsEducation(searchParams.tag);
   } else if (searchParams.tag === "Other") {
     searchevents = await findEventsOther(searchParams.tag);
+  } else if (searchParams.date) {
+    searchevents = await findAllEvents();
   } else if (!searchParams.q || searchParams.q === "") {
     searchevents = await findAllEvents();
   } else {
@@ -67,51 +71,20 @@ export default async function Page({
           className="rounded md:hidden block"
         ></Image>
         <div className="rounded-md p-2 m-4 flex md:flex-row flex-col justify-between">
-          <div>
+          <div className="bg-base-200 rounded">
             <div className={`m-4 text-3xl md:text-6xl ${anton.className}`}>
               Find an Event Near You
             </div>
+
             <div className="mx-4 max-w-lg">
               <SearchBar></SearchBar>
             </div>
 
             <div className="flex-row flex m-4 items-center">
-              <label className="w-full max-w-lg">
-                <div className="label">
-                  <span className="label-text text-xl font-bold">
-                    Search by Event Date
-                  </span>
-                </div>
-                <input
-                  required
-                  type="date"
-                  name="event_date"
-                  className="input input-bordered w-full max-w-lg"
-                />
-              </label>
+              <DateSearch></DateSearch>
             </div>
             <div className="flex-row flex m-4 items-center">
-              <label className="w-full max-w-lg">
-                <div className="label">
-                  <span className="label-text text-xl font-bold">
-                    Search By Organization
-                  </span>
-                </div>
-                <select
-                  required
-                  name="event_type"
-                  className="input input-bordered w-full max-w-lg"
-                >
-                  <option value={"PhiBetaSigma"}>Phi Beta Sigma</option>
-                  <option value={"ZetaPhiBeta"}>Zeta Phi Beta</option>
-                  <option value={"Alpha Kappa Alpha"}>Alpha Kappa Alpha</option>
-                  <option value={"AlphaPhiAlpha"}>Alpha Phi Alpha</option>
-                  <option value={"Omega Psi Phi"}>Omega Psi Phi</option>
-                  <option value={"SigmaGammaRho"}>Sigma Gamma Rho</option>
-                  <option value={"DeltaSigmaTheta"}>Delta Sigma Theta</option>
-                  <option value={"KappaAlphaPsi"}>Kappa Alpha Psi</option>
-                </select>
-              </label>
+              <OrganizationSearch></OrganizationSearch>
             </div>
           </div>
           <Image
@@ -129,7 +102,11 @@ export default async function Page({
       </div>
       {/* turn below into component to have conditional rendering */}
       <div className="m-4 text-2xl md:text-4xl">
-        Search: "{searchParams.q || searchParams.tag}"
+        {!searchParams.q ? (
+          <></>
+        ) : (
+          <div>Search: "{searchParams.q || searchParams.tag}"</div>
+        )}
       </div>
       <div className="flex justify-center md:justify-start flex-wrap">
         <Cardlist events={searchevents}></Cardlist>

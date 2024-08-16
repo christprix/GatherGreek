@@ -133,6 +133,27 @@ export async function findEventsOther(tag: string) {
   });
   return dbevents;
 }
+// CREATE ORG SEARCH
+// export async function findEventsByOrg(org: string) {
+//   const dbevents = await prisma.event.findMany({
+//     where: {
+//       author: {
+//         organization: Oranization
+//       },
+//     },
+//     include: {
+//       author: {
+//         select: {
+//           isVerified: true,
+//           organization: true,
+//           firstName: true,
+//           lastName: true,
+//         },
+//       },
+//     },
+//   });
+//   return dbevents;
+// }
 
 export async function findEventsSocial(tag: string) {
   const dbevents = await prisma.event.findMany({

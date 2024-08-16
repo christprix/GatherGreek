@@ -41,7 +41,7 @@ export default async function Page() {
           </div>
           <div className="max-w-sm">
             <h2 className="card-title text-xs">
-              Welcome Back, {session?.user?.name}
+              Welcome, {session?.user?.name}
             </h2>
             <div className="text-sm flex flex-row">
               <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
