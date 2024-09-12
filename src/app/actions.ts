@@ -230,3 +230,13 @@ export async function findEventsEconomics(tag: string) {
   });
   return dbevents;
 }
+
+export async function addImageToEvent(eventId: string, imageId: string) {
+  const addImagetoEvent = await prisma.event.update({
+    where: { id: eventId },
+    data: {
+      imagePath: imageId,
+    },
+  });
+  return addImagetoEvent;
+}

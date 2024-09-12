@@ -9,6 +9,7 @@ import {
   faSquareCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import Avatarlist from "./Avatarlist";
+import { CldImage } from "next-cloudinary";
 
 export default function Card({ event }: any) {
   return (
