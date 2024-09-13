@@ -40,11 +40,11 @@ export default async function Home() {
         <div className="flex justify-center flex-col lg:flex-row-reverse">
           {/* <img src={qstomp.src} className="max-w-sm rounded-lg shadow-2xl" /> */}
           <div>
-            <div className="flex justify-center text-center text-xl md:text-3xl font-bold">
+            <div className="mt-8 flex justify-center text-center text-xl md:text-3xl font-bold">
               How to Get Started?
             </div>
             <div className="flex justify-center items-center flex-col py-6">
-              <div className="card bg-base-100 md:w-full w-96 shadow-xl">
+              <div className="card bg-base-200 md:w-full w-96 ">
                 <div className="card-body">
                   <h2 className="card-title">
                     Create: Community or D9 Verified Events
@@ -59,14 +59,14 @@ export default async function Home() {
                       sorority users who have been verified
                     </div>
                   </div>
-                  <div className="card-actions justify-end">
+                  <div className="card-actions justify-center">
                     <button className="btn btn-primary">Create an Event</button>
                   </div>
                 </div>
               </div>
             </div>
             <div className="flex flex-col items-center py-6">
-              <div className="card bg-base-100 md:w-full w-96 shadow-xl">
+              <div className="card bg-base-200 md:w-full w-96">
                 <div className="card-body">
                   <h2 className="card-title">
                     Connect: Search for Events with ease
@@ -75,14 +75,14 @@ export default async function Home() {
                     Look for events by City, Organization, or Category! Organize
                     your tickets on your EventHub.
                   </p>
-                  <div className="card-actions justify-end">
+                  <div className="card-actions justify-center">
                     <button className="btn btn-primary">Find Events</button>
                   </div>
                 </div>
               </div>
             </div>
             <div className="flex flex-col items-center py-6">
-              <div className="card bg-base-100 md:w-full w-96 shadow-xl">
+              <div className="card bg-base-200 md:w-full w-96 ">
                 <div className="card-body">
                   <h2 className="card-title">
                     Community: Find and connect with Event organizers
@@ -91,7 +91,7 @@ export default async function Home() {
                     After attending an event, follow the event organizers and
                     stay on the lookout for future chances to attend.
                   </p>
-                  <div className="card-actions justify-end">
+                  <div className="card-actions justify-center">
                     <button className="btn btn-primary">
                       View your Events
                     </button>

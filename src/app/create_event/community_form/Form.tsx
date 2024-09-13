@@ -1,6 +1,9 @@
 "use client";
 
+import clsx from "clsx";
 import { useState } from "react";
+import Link from "next/link";
+
 import z from "zod";
 import { FormDataSchema } from "@/app/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -54,9 +57,18 @@ export default function Form() {
     <section className="items-center flex flex-col">
       <ul className="steps">
         <li className="step step-primary">Event Description</li>
-        <li className="step step-primary">Address</li>
-        <li className="step step-primary">Cost and Seats</li>
-        <li className="step">Date and Time</li>
+        <li className={clsx("step", { "step-primary": currentStep >= 1 })}>
+          Address
+        </li>
+        <li className={clsx("step", { "step-primary": currentStep >= 2 })}>
+          Cost and Seats
+        </li>
+        <li className={clsx("step", { "step-primary": currentStep >= 3 })}>
+          Date and Time
+        </li>
+        <li className={clsx("step", { "step-primary": currentStep === 4 })}>
+          Final Check
+        </li>
       </ul>
       {/* FORM */}
       <form className="mt-2 py-12" onSubmit={handleSubmit(processForm)}>
@@ -198,17 +210,21 @@ export default function Form() {
         )}
         {currentStep === 4 && (
           <>
-            <div className="h-56">
+            <div className="h-56 flex flex-col items-center justify-around">
               <div>
                 Thanks for Creating this event! Would you like to upload a flyer
                 or pictures?
               </div>
+              <button className="btn btn-primary">
+                {/* TODO MAKE UPLOAD PIC ROUTE */}
+                <Link href={""}>Upload Pictures</Link>
+              </button>
             </div>
           </>
         )}
       </form>
       {/* NAVIGATION */}
-      <div className="mt-8 pt-5">
+      <div className="md:mt-8 mt-16 pt-5">
         <div className="flex justify-between">
           {/* previous */}
           <button

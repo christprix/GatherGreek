@@ -70,7 +70,7 @@ export default async function Page({
           alt="image"
           className="rounded md:hidden block"
         ></Image>
-        <div className="rounded-md p-2 m-4 flex md:flex-row flex-col justify-between">
+        <div className="rounded-md p-2 m-4 flex md:flex-row flex-col justify-around">
           <div className="bg-base-200 rounded">
             <div className={`m-4 text-3xl md:text-6xl ${anton.className}`}>
               Find an Event Near You
