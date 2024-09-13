@@ -42,8 +42,8 @@ export default function Card({ event }: any) {
             <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
             <p>{event.location}</p>
           </div>
-          <p>From ${event.priceInCents}</p>
-          <div>
+          <p className="text-sm">From ${event.priceInCents}</p>
+          <div className="text-sm">
             Organizer: {event.author.firstName} {event.author.lastName}
           </div>
           <div>

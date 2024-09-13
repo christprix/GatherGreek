@@ -96,7 +96,7 @@ export default async function Page({
           ></Image>
         </div>
       </div>
-      <div className={`m-4 text-2xl md:text-4xl ${anton.className}`}>
+      <div className={`m-4 ml-10 text-2xl md:text-4xl ${anton.className}`}>
         Top Events In Your Area
         <LocationFinder></LocationFinder>
       </div>
@@ -108,7 +108,7 @@ export default async function Page({
           <div>Search: "{searchParams.q || searchParams.tag}"</div>
         )}
       </div>
-      <div className="flex justify-center md:justify-start flex-wrap">
+      <div className="flex justify-center md:justify-start md:ml-10 flex-wrap">
         <Cardlist events={searchevents}></Cardlist>
       </div>
       <div className="m-4 text-3xl">Popular Groups in Your Area</div>
