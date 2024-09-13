@@ -2,16 +2,12 @@
 // to use useSession
 import Hero from "@/components/Hero";
 import Hero2 from "@/components/Hero2";
-import Cardlist from "@/components/Cardlist";
 import greekstep from "/public/greekstep-p01.jpg";
-import sigmavolunteer from "/public/sigmavolunteer.jpg";
-import sgrhoevent from "/public/sgrhoevent.jpg";
-import qstomp from "/public/qstomp.jpg";
 import blackbasketball from "/public/blackbasketball.jpg";
 import Taglist from "@/components/Taglist";
 import { Anton } from "next/font/google";
-import prisma from "@/lib/prisma";
 import { findAllEvents } from "./actions";
+import Link from "next/link";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -60,7 +56,9 @@ export default async function Home() {
                     </div>
                   </div>
                   <div className="card-actions justify-center">
-                    <button className="btn btn-primary">Create an Event</button>
+                    <button className="btn btn-primary">
+                      <Link href={"/create_event"}>Create Events</Link>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -76,7 +74,9 @@ export default async function Home() {
                     your tickets on your EventHub.
                   </p>
                   <div className="card-actions justify-center">
-                    <button className="btn btn-primary">Find Events</button>
+                    <button className="btn btn-primary">
+                      <Link href={"/events"}>Find Events</Link>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -93,7 +93,7 @@ export default async function Home() {
                   </p>
                   <div className="card-actions justify-center">
                     <button className="btn btn-primary">
-                      View your Events
+                      <Link href={"/profile"}>View your Events</Link>
                     </button>
                   </div>
                 </div>
