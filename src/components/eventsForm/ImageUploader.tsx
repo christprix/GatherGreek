@@ -3,9 +3,6 @@
 import { CldUploadWidget } from "next-cloudinary";
 import { addImageToEvent } from "@/app/actions";
 
-interface info {
-  public_id: any;
-}
 export default function ImageUploader({ eventId }: any) {
   return (
     <CldUploadWidget

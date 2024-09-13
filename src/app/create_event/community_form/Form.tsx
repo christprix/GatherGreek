@@ -1,15 +1,42 @@
 "use client";
 
 import { useState } from "react";
+import z from "zod";
+import { FormDataSchema } from "@/app/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+import ImageUploader from "@/components/eventsForm/ImageUploader";
+
+type Inputs = z.infer<typeof FormDataSchema>;
 
 const steps = [
   { id: "Step 1", name: "Step One Information" },
   { id: "Step 2", name: "Step Two Information" },
   { id: "Step 3", name: "Step Three Information" },
+  { id: "Step 4", name: "Step Four Information" },
+  { id: "Step 5", name: "Step Five Information" },
 ];
 
 export default function Form() {
   const [currentStep, setCurrentStep] = useState(0);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    trigger,
+    formState: { errors },
+  } = useForm<Inputs>({
+    resolver: zodResolver(FormDataSchema),
+  });
+
+  const processForm: SubmitHandler<Inputs> = (data) => {
+    console.log(data);
+    // TODO Server Action Call!
+    reset();
+  };
 
   const next = () => {
     if (currentStep < steps.length - 1) {
@@ -26,87 +53,157 @@ export default function Form() {
   return (
     <section className="items-center flex flex-col">
       <ul className="steps">
-        <li className="step step-primary">Register</li>
-        <li className="step step-primary">Choose plan</li>
-        <li className="step">Purchase</li>
-        <li className="step">Receive Product</li>
+        <li className="step step-primary">Event Description</li>
+        <li className="step step-primary">Address</li>
+        <li className="step step-primary">Cost and Seats</li>
+        <li className="step">Date and Time</li>
       </ul>
       {/* FORM */}
-      <form className="mt-12 py-12">
+      <form className="mt-2 py-12" onSubmit={handleSubmit(processForm)}>
         {currentStep === 0 && (
           <>
-            <label className="w-full">
-              <div className="label">
-                <span className="label-text text-xl font-bold">
-                  What would you like to name this event?
-                </span>
-              </div>
-              <input
-                required
-                type="text"
-                name="event_title"
-                placeholder="Type here"
-                className="input input-bordered w-full "
-              />
-            </label>
+            <div className="h-56">
+              <label className="w-full">
+                <div className="label">
+                  <span className="label-text text-xl font-bold">
+                    What would you like to name this event?
+                  </span>
+                </div>
+                <input
+                  required
+                  type="text"
+                  name="event_title"
+                  placeholder="Type here"
+                  className="input input-bordered w-full "
+                />
+              </label>
+              <label className="w-full max-w-xs">
+                <div className="label">
+                  <span className="label-text text-xl font-bold">
+                    Can you explain what this event is in a few sentences?
+                  </span>
+                </div>
+                <textarea
+                  required
+                  name="event_description"
+                  className="textarea textarea-bordered textarea-lg w-full max-w"
+                  placeholder="Tell us about the event"
+                ></textarea>
+              </label>
+              <label className="w-full max-w-xs">
+                <div className="label">
+                  <span className="label-text text-xl font-bold">
+                    Type of Event
+                  </span>
+                </div>
+                <select
+                  required
+                  name="event_type"
+                  className="input input-bordered w-full max-w"
+                >
+                  <option value={"OTHER"}>Other</option>
+                  <option value={"SOCIAL"}>Social</option>
+                  <option value={"GOVERNMENT"}>Government</option>
+                  <option value={"COMMUNITY_SERVICE"}>Service</option>
+                  <option value={"EDUCATION"}>Education</option>
+                  <option value={"ECONOMICS"}>Finance</option>
+                </select>
+              </label>
+            </div>
           </>
         )}
         {currentStep === 1 && (
           <>
-            <label className="w-full max-w-xs">
-              <div className="label">
-                <span className="label-text text-xl font-bold">
-                  Can you explain what this event is in a few sentences?
-                </span>
-              </div>
-              <textarea
-                required
-                name="event_description"
-                className="textarea textarea-bordered textarea-lg w-full max-w-xs"
-                placeholder="Tell us about the event"
-              ></textarea>
-            </label>
-            <label className="w-full max-w-xs">
-              <div className="label">
-                <span className="label-text text-xl font-bold">Event Date</span>
-              </div>
-              <input
-                required
-                type="date"
-                name="event_date"
-                className="input input-bordered w-full max-w-xs"
-              />
-            </label>
+            <div className="h-56">
+              <label className="w-full max-w-xs">
+                <div className="label">
+                  <span className="label-text text-xl font-bold">Address</span>
+                </div>
+                <input
+                  required
+                  type="text"
+                  name="event_address"
+                  placeholder="Type here"
+                  className="input input-bordered w-full max-w"
+                ></input>
+              </label>
+            </div>
           </>
         )}
         {currentStep === 2 && (
           <>
-            <label className="w-full max-w-xs">
-              <div className="label">
-                <span className="label-text text-xl font-bold">
-                  Maximum Participants
-                </span>
+            <div className="h-56">
+              <label className="w-full max-w-xs">
+                <div className="label">
+                  <span className="label-text text-xl font-bold">
+                    Maximum Participants
+                  </span>
+                </div>
+                <input
+                  required
+                  type="number"
+                  name="total_seats"
+                  placeholder="Type here"
+                  className="input input-bordered w-full max-w"
+                ></input>
+              </label>
+
+              <label className="w-full max-w-xs">
+                <div className="label">
+                  <span className="label-text text-xl font-bold">Cost</span>
+                </div>
+                <input
+                  required
+                  type="text"
+                  name="event_cost"
+                  placeholder="Type here"
+                  className="input input-bordered w-full max-w"
+                />
+              </label>
+            </div>
+          </>
+        )}
+        {currentStep === 3 && (
+          <>
+            <div className="h-56">
+              <label className="w-full max-w">
+                <div className="label">
+                  <span className="label-text text-xl font-bold">
+                    Event Date
+                  </span>
+                </div>
+                <input
+                  required
+                  type="date"
+                  name="event_date"
+                  className="input input-bordered w-full max-w"
+                />
+              </label>
+
+              <label className="w-full max-w">
+                <div className="label">
+                  <span className="label-text text-xl font-bold">
+                    Event Start Time
+                  </span>
+                </div>
+                <input
+                  required
+                  type="time"
+                  name="event_time"
+                  className="input input-bordered w-full max-w"
+                />
+              </label>
+            </div>
+          </>
+        )}
+        {currentStep === 4 && (
+          <>
+            <div className="h-56">
+              <div>
+                Thanks for Creating this event! Would you like to upload a flyer
+                or pictures?
               </div>
-              <input
-                required
-                type="number"
-                name="total_seats"
-                placeholder="Type here"
-                className="input input-bordered w-full max-w-xs"
-              ></input>
-            </label>
-            <label className="w-full max-w-xs">
-              <div className="label">
-                <span className="label-text text-xl font-bold">Address</span>
-              </div>
-              <input
-                required
-                type="text"
-                name="event_address"
-                placeholder="Type here"
-                className="input input-bordered w-full max-w-xs"
-              ></input>
-            </label>
+            </div>
           </>
         )}
       </form>
@@ -118,7 +215,7 @@ export default function Form() {
             type="button"
             onClick={prev}
             disabled={currentStep === 0}
-            className="rounded bg-100 px-2 py-1 text-sm font-semibold"
+            className="rounded bg-primary text-white px-2 py-1 mx-2 text-sm font-semibold"
           >
             Prev
           </button>
@@ -127,7 +224,7 @@ export default function Form() {
             type="button"
             onClick={next}
             disabled={currentStep === steps.length - 1}
-            className="rounded bg-100 px-2 py-1 text-sm font-semibold"
+            className="rounded bg-primary px-2 py-1 text-white text-sm font-semibold "
           >
             Next
           </button>

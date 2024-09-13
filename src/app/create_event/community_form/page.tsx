@@ -153,9 +153,7 @@ export default async function Page() {
   //         Create Event
   //       </button>
   //     </form>
-  //     <button className="btn btn-secondary">
-  //       <ImageUploader eventId={eventId}></ImageUploader>
-  //     </button>
+  //
   //   </div>
   // );
 }
