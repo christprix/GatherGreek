@@ -20,7 +20,6 @@ const steps = [
 
 export default function Form() {
   const Mapbox_key = process.env.NEXT_PUBLIC_MAPBOX_KEY as string;
-  console.log(Mapbox_key);
   const [currentStep, setCurrentStep] = useState(0);
 
   const {
