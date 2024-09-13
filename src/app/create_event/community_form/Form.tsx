@@ -3,14 +3,11 @@
 import clsx from "clsx";
 import { useState } from "react";
 import Link from "next/link";
-
+import { AddressAutofill } from "@mapbox/search-js-react";
 import z from "zod";
 import { FormDataSchema } from "@/app/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
-
-import ImageUploader from "@/components/eventsForm/ImageUploader";
-
 type Inputs = z.infer<typeof FormDataSchema>;
 
 const steps = [
@@ -22,6 +19,8 @@ const steps = [
 ];
 
 export default function Form() {
+  const Mapbox_key = process.env.NEXT_PUBLIC_MAPBOX_KEY as string;
+  console.log(Mapbox_key);
   const [currentStep, setCurrentStep] = useState(0);
 
   const {
@@ -127,18 +126,69 @@ export default function Form() {
         {currentStep === 1 && (
           <>
             <div className="h-56">
-              <label className="w-full max-w-xs">
-                <div className="label">
-                  <span className="label-text text-xl font-bold">Address</span>
-                </div>
-                <input
-                  required
-                  type="text"
-                  name="event_address"
-                  placeholder="Type here"
-                  className="input input-bordered w-full max-w"
-                ></input>
-              </label>
+              <div className="flex flex-col w-96">
+                <label className="w-full">
+                  <div className="label">
+                    <span className="label-text text-xl font-bold">
+                      Address 1
+                    </span>
+                  </div>
+                  <AddressAutofill accessToken={Mapbox_key}>
+                    <input
+                      className="input input-bordered w-full max-w"
+                      type="text"
+                      name="address-1"
+                      autoComplete="address-line1"
+                    />
+                  </AddressAutofill>
+                </label>
+                <label className="w-full">
+                  <div className="label">
+                    <span className="label-text text-xl font-bold">
+                      Address 2
+                    </span>
+                  </div>
+                  <input
+                    className="input input-bordered w-full"
+                    type="text"
+                    name="address-2"
+                    autoComplete="address-line2"
+                  />
+                </label>
+                <label className="w-full">
+                  <div className="label">
+                    <span className="label-text text-xl font-bold">City</span>
+                  </div>
+                  <input
+                    className="input input-bordered w-full"
+                    type="text"
+                    name="city"
+                    autoComplete="address-level2"
+                  />
+                </label>
+                <label className="w-full">
+                  <div className="label">
+                    <span className="label-text text-xl font-bold">State</span>
+                  </div>
+                  <input
+                    className="input input-bordered w-full"
+                    type="text"
+                    name="state"
+                    autoComplete="address-level1"
+                  />
+                </label>
+                <label className="w-full">
+                  <div className="label">
+                    <span className="label-text text-xl font-bold">Zip</span>
+                  </div>
+                  <input
+                    className="input input-bordered w-full"
+                    type="text"
+                    name="zip"
+                    autoComplete="postal-code"
+                  />
+                </label>
+              </div>
             </div>
           </>
         )}
@@ -177,7 +227,7 @@ export default function Form() {
         )}
         {currentStep === 3 && (
           <>
-            <div className="h-56">
+            <div className="h-56 w-96">
               <label className="w-full max-w">
                 <div className="label">
                   <span className="label-text text-xl font-bold">
@@ -188,11 +238,11 @@ export default function Form() {
                   required
                   type="date"
                   name="event_date"
-                  className="input input-bordered w-full max-w"
+                  className="input input-bordered w-full"
                 />
               </label>
 
-              <label className="w-full max-w">
+              <label className="w-full">
                 <div className="label">
                   <span className="label-text text-xl font-bold">
                     Event Start Time
@@ -202,6 +252,7 @@ export default function Form() {
                   required
                   type="time"
                   name="event_time"
+                  placeholder="12:45PM"
                   className="input input-bordered w-full max-w"
                 />
               </label>
@@ -224,7 +275,7 @@ export default function Form() {
         )}
       </form>
       {/* NAVIGATION */}
-      <div className="md:mt-8 mt-16 pt-5">
+      <div className="md:mt-40 mt-36 pt-5">
         <div className="flex justify-between">
           {/* previous */}
           <button
