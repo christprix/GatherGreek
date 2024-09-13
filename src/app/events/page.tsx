@@ -9,6 +9,7 @@ import Image from "next/image";
 import blackpeople from "/public/blackpeople.jpg";
 import map from "/public/mapbox.png";
 import { Anton } from "next/font/google";
+import Mapbox from "@/components/Mapbox";
 import prisma from "@/lib/prisma";
 import SearchBar from "@/components/Search";
 import DateSearch from "@/components/DateSearch";
@@ -62,14 +63,10 @@ export default async function Page({
   const dbusers = await findAllUsers();
   return (
     <>
-      <div className="border-t border-blue-100 flex flex-col">
-        <Image
-          src={blackpeople.src}
-          width={600}
-          height={500}
-          alt="image"
-          className="rounded md:hidden block"
-        ></Image>
+      <div className="border-t border-blue-100 flex flex-col md:flex-row justify-around">
+        <div className="md:mt-5">
+          <Mapbox></Mapbox>
+        </div>
         <div className="rounded-md p-2 m-4 flex md:flex-row flex-col justify-around">
           <div className="bg-base-200 rounded">
             <div className={`m-4 text-3xl md:text-6xl ${anton.className}`}>
@@ -87,13 +84,6 @@ export default async function Page({
               <OrganizationSearch></OrganizationSearch>
             </div>
           </div>
-          <Image
-            src={blackpeople.src}
-            width={600}
-            height={500}
-            alt="image"
-            className="rounded hidden md:block"
-          ></Image>
         </div>
       </div>
       <div className={`m-4 ml-10 text-2xl md:text-4xl ${anton.className}`}>
@@ -115,114 +105,6 @@ export default async function Page({
       <div className="m-5 flex overflow-x-auto justify-around">
         {/* turn into component */}
         <UserCardList users={dbusers}></UserCardList>
-        {/* <div className="card bg-base-100 min-w-48 shadow-xl m-2">
-          <figure className="px-10 pt-10">
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-              alt="Shoes"
-              className="rounded-xl"
-            />
-          </figure>
-          <div className="card-body items-center text-center">
-            <h2 className="card-title">Xi Chi Sigma</h2>
-            <p className="text-xs">
-              If a dog chews shoes whose shoes does he choose?
-            </p>
-            <div className="card-actions">
-              <button className="btn btn-primary">View Events</button>
-            </div>
-          </div>
-        </div>
-        <div className="card bg-base-100 min-w-48 shadow-xl m-2">
-          <figure className="px-10 pt-10">
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-              alt="Shoes"
-              className="rounded-xl"
-            />
-          </figure>
-          <div className="card-body items-center text-center">
-            <h2 className="card-title">Xi Chi Sigma</h2>
-            <p className="text-xs">
-              If a dog chews shoes whose shoes does he choose?
-            </p>
-            <div className="card-actions">
-              <button className="btn btn-primary">View Events</button>
-            </div>
-          </div>
-        </div>
-        <div className="card bg-base-100 min-w-48 shadow-xl m-2">
-          <figure className="px-10 pt-10">
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-              alt="Shoes"
-              className="rounded-xl"
-            />
-          </figure>
-          <div className="card-body items-center text-center">
-            <h2 className="card-title">Xi Chi Sigma</h2>
-            <p className="text-xs">
-              If a dog chews shoes whose shoes does he choose?
-            </p>
-            <div className="card-actions">
-              <button className="btn btn-primary">View Events</button>
-            </div>
-          </div>
-        </div>
-        <div className="card bg-base-100 min-w-48 shadow-xl m-2">
-          <figure className="px-10 pt-10">
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-              alt="Shoes"
-              className="rounded-xl"
-            />
-          </figure>
-          <div className="card-body items-center text-center">
-            <h2 className="card-title">Xi Chi Sigma</h2>
-            <p className="text-xs">
-              If a dog chews shoes whose shoes does he choose?
-            </p>
-            <div className="card-actions">
-              <button className="btn btn-primary">View Events</button>
-            </div>
-          </div>
-        </div>
-        <div className="card bg-base-100 min-w-48 shadow-xl m-2">
-          <figure className="px-10 pt-10">
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-              alt="Shoes"
-              className="rounded-xl"
-            />
-          </figure>
-          <div className="card-body items-center text-center">
-            <h2 className="card-title">Xi Chi Sigma</h2>
-            <p className="text-xs">
-              If a dog chews shoes whose shoes does he choose?
-            </p>
-            <div className="card-actions">
-              <button className="btn btn-primary">View Events</button>
-            </div>
-          </div>
-        </div>
-        <div className="card bg-base-100 min-w-48 shadow-xl m-2">
-          <figure className="px-10 pt-10">
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-              alt="Shoes"
-              className="rounded-xl"
-            />
-          </figure>
-          <div className="card-body items-center text-center">
-            <h2 className="card-title">Xi Chi Sigma</h2>
-            <p className="text-xs">
-              If a dog chews shoes whose shoes does he choose?
-            </p>
-            <div className="card-actions">
-              <button className="btn btn-primary">View Events</button>
-            </div>
-          </div>
-        </div> */}
       </div>
     </>
   );
