@@ -25,7 +25,7 @@ export default function Mapbox() {
         longitude: -84.3877,
         zoom: 9,
       }}
-      style={{ width: 600, height: 500 }}
+      style={{ width: 600, height: 400 }}
       mapStyle="mapbox://styles/mapbox/streets-v9"
     />
   );
