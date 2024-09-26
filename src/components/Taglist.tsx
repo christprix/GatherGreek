@@ -6,6 +6,9 @@ import {
   faUserGraduate,
   faMoneyBillTrendUp,
   faEarthAmericas,
+  faUsersBetweenLines,
+  faUserPlus,
+  faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
@@ -30,17 +33,23 @@ const element5 = {
   values: "Finance",
 };
 const element6 = {
-  icon: <FontAwesomeIcon className="text-3xl" icon={faEarthAmericas} />,
-  values: "Other",
+  icon: <FontAwesomeIcon className="text-3xl" icon={faUserGroup} />,
+  values: "Probate",
+};
+
+const element7 = {
+  icon: <FontAwesomeIcon className="text-3xl" icon={faUsersBetweenLines} />,
+  values: "Conference",
 };
 
 const importedtags = [
+  element7,
+  element6,
   element2,
   element3,
   element,
   element4,
   element5,
-  element6,
 ];
 
 export default function Taglist() {

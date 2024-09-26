@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Tag } from "@prisma/client";
 import { hash } from "bcrypt";
 import { faker } from "@faker-js/faker";
 
@@ -61,7 +61,7 @@ async function main() {
             location: "1 Amb Dr NW, Atlanta, GA 30313",
             eventDate: faker.date.future(),
             totalSeats: 2,
-            tag: "SOCIAL",
+            tag: [Tag.Phi_Beta_Sigma, Tag.SOCIAL, Tag.MEMBERS_ONLY],
           },
         ],
       },
@@ -90,7 +90,7 @@ async function main() {
             imagePath: "greekstep",
             eventDate: fakedate,
             totalSeats: 2,
-            tag: "COMMUNITY_SERVICE",
+            tag: [Tag.COMMUNITY_SERVICE, Tag.Alpha_Phi_Alpha],
           },
         ],
       },
@@ -119,7 +119,7 @@ async function main() {
             imagePath: "greekstep",
             eventDate: faker.date.future(),
             totalSeats: 3,
-            tag: "COMMUNITY_SERVICE",
+            tag: [Tag.MEMBERS_ONLY, Tag.Sigma_Gamma_Rho, Tag.COMMUNITY_SERVICE],
           },
         ],
       },
@@ -148,7 +148,7 @@ async function main() {
             imagePath: "greekstep",
             eventDate: faker.date.future(),
             totalSeats: 3,
-            tag: "SOCIAL",
+            tag: [Tag.SOCIAL, Tag.MEMBERS_ONLY, Tag.Omega_Psi_Phi],
           },
         ],
       },
@@ -177,7 +177,7 @@ async function main() {
               "Enhance your financial knowledge with practical advice on budgeting, saving, and investing, empowering you to achieve financial stability and success.",
             eventDate: faker.date.future(),
             totalSeats: 10,
-            tag: "ECONOMICS",
+            tag: [Tag.ECONOMICS, Tag.Sigma_Gamma_Rho],
           },
         ],
       },

@@ -24,7 +24,7 @@ model Event {
   eventDate DateTime
   totalSeats Int
   location String?
-  tag Tag
+  tag Tag[]
   priceInCents String
   createdAt  DateTime   @default(now())
   author User @relation(fields: [authorId], references: [id])
@@ -32,15 +32,16 @@ model Event {
   Users_going_to_event User[] @relation("UserScheduledEvents")
 }
 
-// model Verification_Application {
-//   id  String  @default(cuid())  @id
-//   authorId String
-//   author User @relation(fields: [authorId], references: [id])
-//   position String
-
-// }
-
 enum Tag {
+  Phi_Beta_Sigma
+  Zeta_Phi_Beta
+  Iota_Phi_Theta
+  Alpha_Phi_Alpha
+  Omega_Psi_Phi
+  Alpha_Kappa_Alpha
+  Kappa_Alpha_Psi
+  Sigma_Gamma_Rho
+  Delta_Sigma_Theta
   COMMUNITY_SERVICE
   SOCIAL
   GOVERNMENT
@@ -48,6 +49,7 @@ enum Tag {
   ECONOMICS
   CONFERENCES
   MEMBERS_ONLY
+  PROBATE
   OTHER
 }
 
