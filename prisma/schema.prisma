@@ -24,7 +24,7 @@ model Event {
   eventDate DateTime
   totalSeats Int
   location String?
-  tag Tag[]
+  tags Tag[]
   priceInCents String
   createdAt  DateTime   @default(now())
   author User @relation(fields: [authorId], references: [id])

@@ -12,8 +12,12 @@ import Avatarlist from "./Avatarlist";
 import { CldImage } from "next-cloudinary";
 
 export default function Card({ event }: any) {
-  const getTags = event.tag.map((e: any) => {
-    return <div className="bg-base-200 rounded-xl p-1">{e}</div>;
+  const getTags = event.tags.map((e: any) => {
+    return (
+      <div className="bg-base-200 rounded-xl p-1 m-1">
+        {e.replace(/_/g, " ").toLowerCase()}
+      </div>
+    );
   });
   return (
     <div className="p-3">
@@ -27,6 +31,7 @@ export default function Card({ event }: any) {
           </h2>
           <div className="test-xs flex">
             {/* CHECK FOR VERIFICATION */}
+            <div className="flex flex-wrap">{getTags}</div>
             {/* {event.author.isVerified ? (
               <div className="flex flex-row text-center bg-base-200 rounded-xl p-1">
                 <div>{event.author.organization}</div>
