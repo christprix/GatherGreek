@@ -99,7 +99,9 @@ export async function addUserToEvent(userId: string, eventId: string) {
 export async function findEventsService(tag: string) {
   const dbevents = await prisma.event.findMany({
     where: {
-      tag: Tag.COMMUNITY_SERVICE,
+      tags: {
+        has: Tag.COMMUNITY_SERVICE,
+      },
     },
     include: {
       author: {
@@ -118,7 +120,9 @@ export async function findEventsService(tag: string) {
 export async function findEventsOther(tag: string) {
   const dbevents = await prisma.event.findMany({
     where: {
-      tag: Tag.OTHER,
+      tags: {
+        has: Tag.OTHER,
+      },
     },
     include: {
       author: {
