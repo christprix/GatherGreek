@@ -14,9 +14,12 @@ import { CldImage } from "next-cloudinary";
 export default function Card({ event }: any) {
   const getTags = event.tags.map((e: any) => {
     return (
-      <div key={e} className="bg-base-200 rounded-xl p-1 m-1">
+      <button
+        key={e}
+        className="bg-base-300 hover:bg-base-200 rounded-xl p-1 m-1"
+      >
         {e.replace(/_/g, " ").toLowerCase()}
-      </div>
+      </button>
     );
   });
   return (
@@ -54,13 +57,13 @@ export default function Card({ event }: any) {
           <div className="text-sm">
             Organizer: {event.author.firstName} {event.author.lastName}
           </div>
-          <div>
+          {/* <div>
             <div className="flex flex-row justify-between">
               <div className="w-32">
                 <Avatarlist></Avatarlist>
               </div>
             </div>
-          </div>
+          </div> */}
           <div></div>
           <div className="btn btn-primary">
             <Link href={`event/${event.id}`}>Get Tickets</Link>
