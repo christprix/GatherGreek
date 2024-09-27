@@ -14,7 +14,7 @@ import { CldImage } from "next-cloudinary";
 export default function Card({ event }: any) {
   const getTags = event.tags.map((e: any) => {
     return (
-      <div className="bg-base-200 rounded-xl p-1 m-1">
+      <div key={e} className="bg-base-200 rounded-xl p-1 m-1">
         {e.replace(/_/g, " ").toLowerCase()}
       </div>
     );
