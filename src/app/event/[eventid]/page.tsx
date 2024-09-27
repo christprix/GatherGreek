@@ -37,6 +37,18 @@ export default async function EventDetails({
   const session = await getServerSession(options);
   const userId = session?.user?.id;
   const EventCreatorInfo = await findUserInfo(dbevent?.authorId as string);
+
+  // TAGS FUNCTION
+  const getTags = dbevent?.tags.map((e: any) => {
+    return (
+      <div
+        key={e}
+        className="rounded-lg w-fit p-1 m-1 hover:bg-base-200 bg-base-300"
+      >
+        {e.replace(/_/g, " ").toLowerCase()}
+      </div>
+    );
+  });
   return (
     <>
       {dbevent ? (
@@ -119,7 +131,7 @@ export default async function EventDetails({
                 <div className="flex flex-col my-10">
                   <p className={`text-3xl ${anton.className}`}>Tags</p>
                   <button className="rounded-lg w-fit p-1 hover:bg-base-200 bg-base-300">
-                    {dbevent.tag}
+                    {getTags}
                   </button>
                 </div>
                 <div className="flex flex-col my-10">

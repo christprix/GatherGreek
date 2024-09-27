@@ -41,6 +41,7 @@ export default async function Page({
 }) {
   let searchevents;
   // SEARCH DB BASED ON TAG INPUT
+  // TODO! CHANGE TAG SEARCH TO ONE ACTIONS FUNCTION
   if (searchParams.tag === "Finance") {
     searchevents = await findEventsEconomics(searchParams.tag);
   } else if (searchParams.tag === "Social") {
