@@ -13,7 +13,7 @@ export default function SideCard({ event }: any) {
       className="card m-1 hover:bg-base-300 h-fit card-side bg-base-100 border"
     >
       <figure className="rounded-lg p-2 min-w-24">
-        <img src={sgrhoevent.src} alt="Movie" className="rounded-lg h-32" />
+        <img src={event.imagePath} alt="Movie" className="rounded-lg h-32" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{event.title}</h2>

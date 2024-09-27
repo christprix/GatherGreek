@@ -60,7 +60,7 @@ export default async function EventDetails({
               height={200}
               width={500}
               // objectFit="true"
-              className="rounded-lg max-h-96 object-cover"
+              className="rounded-lg max-h-96 mt-1 object-cover"
             ></Image>
           </div>
           <div className="flex flex-col md:flex-row w-full justify-evenly p-4">
