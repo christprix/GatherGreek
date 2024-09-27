@@ -55,12 +55,12 @@ export default async function EventDetails({
         <div className="flex flex-col items-center bg-base-200">
           <div className="w-full flex justify-center">
             <Image
-              src={volunteer1.src}
+              src={dbevent.imagePath}
               alt="event pic"
               height={200}
               width={500}
-              objectFit="true"
-              className="rounded-lg"
+              // objectFit="true"
+              className="rounded-lg max-h-96 object-cover"
             ></Image>
           </div>
           <div className="flex flex-col md:flex-row w-full justify-evenly p-4">
