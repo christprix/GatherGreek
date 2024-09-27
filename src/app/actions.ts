@@ -158,7 +158,9 @@ export async function findEventsOther(tag: string) {
 export async function findEventsSocial(tag: string) {
   const dbevents = await prisma.event.findMany({
     where: {
-      tag: Tag.SOCIAL,
+      tags: {
+        has: Tag.SOCIAL,
+      },
     },
     include: {
       author: {
@@ -177,7 +179,9 @@ export async function findEventsSocial(tag: string) {
 export async function findEventsGovernment(tag: string) {
   const dbevents = await prisma.event.findMany({
     where: {
-      tag: Tag.GOVERNMENT,
+      tags: {
+        has: Tag.GOVERNMENT,
+      },
     },
     include: {
       author: {
@@ -196,7 +200,9 @@ export async function findEventsGovernment(tag: string) {
 export async function findEventsEducation(tag: string) {
   const dbevents = await prisma.event.findMany({
     where: {
-      tag: Tag.EDUCATION,
+      tags: {
+        has: Tag.EDUCATION,
+      },
     },
     include: {
       author: {
@@ -215,7 +221,9 @@ export async function findEventsEducation(tag: string) {
 export async function findEventsEconomics(tag: string) {
   const dbevents = await prisma.event.findMany({
     where: {
-      tag: Tag.ECONOMICS,
+      tags: {
+        has: Tag.ECONOMICS,
+      },
     },
     include: {
       author: {
