@@ -57,7 +57,8 @@ async function main() {
             short_description:
               "Experience an electrifying performance as members of Xi Chi Sigma showcase their incredible stepping skills, featuring synchronized routines and rhythmic beats.",
             priceInCents: "0.00",
-            imagePath: "greekstep",
+            imagePath:
+              "https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451096/StepshowHP800x600_recdet.webp",
             location: "1 Amb Dr NW, Atlanta, GA 30313",
             eventDate: faker.date.future(),
             totalSeats: 2,
@@ -87,7 +88,8 @@ async function main() {
             short_description:
               "Join us to prepare and distribute meals, offering nourishment and support to our homeless neighbors in a compassionate and caring environment.",
             priceInCents: "0.00",
-            imagePath: "greekstep",
+            imagePath:
+              "https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451196/Community-Service-Baskets-773x1030_eyitfb.jpg",
             eventDate: fakedate,
             totalSeats: 2,
             tags: [Tag.COMMUNITY_SERVICE, Tag.Alpha_Phi_Alpha],
@@ -116,7 +118,8 @@ async function main() {
             short_description:
               "Participate in various service projects led by Sigma Gamma Rho Sorority, aimed at improving our community and making a positive impact.",
             priceInCents: "$1.00",
-            imagePath: "greekstep",
+            imagePath:
+              "https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451287/66d385_e1ef661a1fcb45b08b9eff0ec715e248_mv2_ye9it0.jpg",
             eventDate: faker.date.future(),
             totalSeats: 3,
             tags: [
@@ -149,7 +152,8 @@ async function main() {
             short_description:
               "Enjoy delicious BBQ and live performances by Omega Psi Phi, blending great food with vibrant entertainment for a memorable day.",
             priceInCents: "$1.00",
-            imagePath: "greekstep",
+            imagePath:
+              "https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451342/a39368a7-4176-4a6a-901f-9acef9a09ca1-meals02_o0lfop.webp",
             eventDate: faker.date.future(),
             totalSeats: 3,
             tags: [Tag.SOCIAL, Tag.MEMBERS_ONLY, Tag.Omega_Psi_Phi],
@@ -171,17 +175,18 @@ async function main() {
       events: {
         create: [
           {
-            title: "Sghro Financial Literacy Class",
+            title: "Zeta Financial Literacy Class",
             location: "6700 Church St, Douglasville, GA 30134",
             description:
-              "Empower yourself with essential financial knowledge at the Sgrho Financial Literacy Class. This informative session, hosted by Sigma Gamma Rho Sorority, will cover key topics such as budgeting, saving, investing, and managing debt. Whether you're just starting on your financial journey or looking to refine your skills, this class offers valuable insights to help you achieve financial stability and success.",
+              "Empower yourself with essential financial knowledge at the Sgrho Financial Literacy Class. This informative session, hosted by Zeta phi beta Sorority, will cover key topics such as budgeting, saving, investing, and managing debt. Whether you're just starting on your financial journey or looking to refine your skills, this class offers valuable insights to help you achieve financial stability and success.",
             priceInCents: "$0.00",
-            imagePath: "greekstep",
+            imagePath:
+              "https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451504/Zeta-Phi-Beta-Sorority-Inc-and-US-Fish-and-Wildlife-Service_ud3f1p.webp",
             short_description:
               "Enhance your financial knowledge with practical advice on budgeting, saving, and investing, empowering you to achieve financial stability and success.",
             eventDate: faker.date.future(),
             totalSeats: 10,
-            tags: [Tag.ECONOMICS, Tag.Sigma_Gamma_Rho],
+            tags: [Tag.ECONOMICS, Tag.Zeta_Phi_Beta],
           },
         ],
       },

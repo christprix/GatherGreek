@@ -26,7 +26,10 @@ export default function Card({ event }: any) {
     <div className="p-3">
       <div className="card card-compact bg-base-100 h-[30rem] md:w-96 w-96 h-96 shadow-xl">
         <figure className="">
-          <img src={zetastep.src} alt="Shoes" />
+          <img
+            src="https://res.cloudinary.com/dm54zi0ff/image/upload/v1727450694/kappastep_wc01zd.jpg"
+            alt="Shoes"
+          />
         </figure>
         <div className="card-body">
           <h2 className="card-title">

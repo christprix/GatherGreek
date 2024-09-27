@@ -34,12 +34,12 @@ const element5 = {
 };
 const element6 = {
   icon: <FontAwesomeIcon className="text-3xl" icon={faUserGroup} />,
-  values: "Probate",
+  values: "Neophyte Events",
 };
 
 const element7 = {
   icon: <FontAwesomeIcon className="text-3xl" icon={faUsersBetweenLines} />,
-  values: "Conference",
+  values: "Conferences",
 };
 
 const importedtags = [

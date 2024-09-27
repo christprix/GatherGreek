@@ -12,30 +12,10 @@ export default async function Page() {
                 <img src={blackparty.src} alt="Shoes" />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">Community Events</h2>
+                <h2 className="card-title">Create an Event</h2>
                 <p>
                   Events for the whole community. Choose from Social events,
                   classes, politics and more!
-                </p>
-                <div className="card-actions justify-end">
-                  <Link
-                    href={"/create_event/community_form"}
-                    className="btn btn-primary"
-                  >
-                    Get Started
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="my-2 card bg-base-100 image-full w-96 shadow-md">
-              <figure>
-                <img src={sigmabrotherhood.src} alt="Shoes" />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">Divine 9 Events</h2>
-                <p>
-                  Events for Divine 9 members such as chapter meetings,
-                  conferences, and other members only events
                 </p>
                 <div className="card-actions justify-end">
                   <Link
