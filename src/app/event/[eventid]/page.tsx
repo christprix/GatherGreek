@@ -41,12 +41,12 @@ export default async function EventDetails({
   // TAGS FUNCTION
   const getTags = dbevent?.tags.map((e: any) => {
     return (
-      <div
+      <button
         key={e}
         className="rounded-lg w-fit p-1 m-1 hover:bg-base-200 bg-base-300"
       >
         {e.replace(/_/g, " ").toLowerCase()}
-      </div>
+      </button>
     );
   });
   return (
@@ -130,9 +130,7 @@ export default async function EventDetails({
                 </div>
                 <div className="flex flex-col my-10">
                   <p className={`text-3xl ${anton.className}`}>Tags</p>
-                  <button className="rounded-lg w-fit p-1 hover:bg-base-200 bg-base-300">
-                    {getTags}
-                  </button>
+                  <div className="flex flex-wrap">{getTags}</div>
                 </div>
                 <div className="flex flex-col my-10">
                   <p className={`text-3xl ${anton.className}`}>Price</p>
