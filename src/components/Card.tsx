@@ -35,13 +35,6 @@ export default function Card({ event }: any) {
           <div className="test-xs flex">
             {/* CHECK FOR VERIFICATION */}
             <div className="flex flex-wrap">{getTags}</div>
-            {/* {event.author.isVerified ? (
-              <div className="flex flex-row text-center bg-base-200 rounded-xl p-1">
-                <div>{event.author.organization}</div>
-              </div>
-            ) : (
-              <div className="bg-base-200 rounded-xl p-1">Community Event</div>
-            )} */}
           </div>
           <div className="text-xs flex flex-row">
             <FontAwesomeIcon icon={faCalendarDays} className="w-3 mx-1" />
@@ -54,17 +47,6 @@ export default function Card({ event }: any) {
             <p>{event.location}</p>
           </div>
           <p className="text-sm">From ${event.priceInCents}</p>
-          <div className="text-sm">
-            Organizer: {event.author.firstName} {event.author.lastName}
-          </div>
-          {/* <div>
-            <div className="flex flex-row justify-between">
-              <div className="w-32">
-                <Avatarlist></Avatarlist>
-              </div>
-            </div>
-          </div> */}
-          <div></div>
           <div className="btn btn-primary">
             <Link href={`event/${event.id}`}>Get Tickets</Link>
           </div>

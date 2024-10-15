@@ -64,8 +64,8 @@ export default async function Page({
   const dbusers = await findAllUsers();
   return (
     <>
-      <div className="border-t border-blue-100 flex flex-col md:flex-row justify-around">
-        <div className="md:mt-5">
+      <div className="border-t border-blue-100 justify-center flex flex-col md:flex-row justify-around">
+        <div className="md:mt-5 flex justify-center">
           <Mapbox></Mapbox>
         </div>
         <div className="rounded-md p-2 m-4 flex md:flex-row flex-col justify-around">
@@ -101,11 +101,6 @@ export default async function Page({
       </div>
       <div className="flex justify-center md:justify-start md:ml-10 flex-wrap">
         <Cardlist events={searchevents}></Cardlist>
-      </div>
-      <div className="m-4 text-3xl">Popular Groups in Your Area</div>
-      <div className="m-5 flex overflow-x-auto justify-around">
-        {/* turn into component */}
-        <UserCardList users={dbusers}></UserCardList>
       </div>
     </>
   );
