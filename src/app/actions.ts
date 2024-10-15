@@ -2,12 +2,21 @@
 import prisma from "@/lib/prisma";
 import { Tag } from "@prisma/client";
 
-export async function findEvents(query: string) {
+export async function findEventsbySearch(query: any) {
   const dbevents = await prisma.event.findMany({
     where: {
-      description: {
-        search: query.replace(/[\s\n\t]/g, "_"),
-      },
+      OR: [
+        {
+          description: {
+            search: query.replace(/[\s\n\t]/g, "_"),
+          },
+        },
+        {
+          title: {
+            search: query.replace(/[\s\n\t]/g, "_"),
+          },
+        },
+      ],
     },
     include: {
       author: {
@@ -159,24 +168,17 @@ export async function findEventsOther(tag: string) {
 //   return dbevents;
 // }
 
-export async function findEventsSocial(tag: string) {
-  const dbevents = await prisma.event.findMany({
-    where: {
-      tags: {
-        has: Tag.SOCIAL,
-      },
-    },
-    include: {
-      author: {
-        select: {
-          isVerified: true,
-          organization: true,
-          firstName: true,
-          lastName: true,
+export async function findEventsTagOnly(tag: any) {
+  const dbevents =
+    //   await prisma.$queryRaw`SELECT * FROM "Event" where ${tag} = ANY(tags) `;
+    await prisma.event.findMany({
+      where: {
+        tags: {
+          hasSome: [Tag.GOVERNMENT],
         },
       },
-    },
-  });
+    });
+
   return dbevents;
 }
 

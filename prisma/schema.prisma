@@ -63,7 +63,6 @@ model User {
   organization Oranization
   location String
   isVerified Boolean @default(false)
-  // Verification_Applications Verification_Application[]
   isAdmin   Boolean @default(false)
   events Event[]
   User_Scheduled_Events Event[] @relation("UserScheduledEvents")
