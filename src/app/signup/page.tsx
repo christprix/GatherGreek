@@ -68,8 +68,8 @@ export default function Signup() {
             </div>
             <div aria-live="polite" className="not-sr-only">
               <ul>
-                {state?.message.map((err) => (
-                  <li>{err}</li>
+                {state?.message.map((err, index) => (
+                  <li key={index}>{err}</li>
                 ))}
               </ul>
             </div>
