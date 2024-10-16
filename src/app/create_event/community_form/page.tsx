@@ -1,7 +1,6 @@
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
 import { options } from "@/app/api/auth/[...nextauth]/options";
-import { Tag } from "@prisma/client";
 import ImageUploader from "@/components/eventsForm/ImageUploader";
 import Form from "./Form";
 export default async function Page() {
