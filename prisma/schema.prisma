@@ -55,13 +55,18 @@ enum Tag {
 
 model User {
   id String @id  @default(cuid())
-  firstName String
-  lastName  String
-  password  String?
-  email     String?  @unique
+  firstName String?
+  lastName  String?
+  password  String
+  email     String  @unique
   bio String?
-  organization Oranization
-  location String
+  profilePicUrl String?
+  backroundPicUrl String?
+  chapter String?
+  university String?
+  organization String?
+  location String?
+  greekId String?
   isVerified Boolean @default(false)
   isAdmin   Boolean @default(false)
   events Event[]

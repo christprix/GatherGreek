@@ -42,7 +42,7 @@ async function main() {
       email: "test@test.com",
       firstName: "Chris",
       lastName: "St. Prix",
-      organization: "PhiBetaSigma",
+      organization: "Phi Beta Sigma",
       isAdmin: true,
       isVerified: true,
       bio: "Born in USA",
@@ -75,7 +75,7 @@ async function main() {
       email: "test2@test.com",
       firstName: "coolio",
       lastName: "stprix",
-      organization: "AlphaPhiAlpha",
+      organization: "Alpha Phi Alpha",
       password,
       location: "Atlanta",
       events: {
@@ -105,7 +105,7 @@ async function main() {
       email: "test3@test.com",
       firstName: "charlisa",
       lastName: "jackson",
-      organization: "ZetaPhiBeta",
+      organization: "Zeta Phi Beta",
       password,
       location: "Snellville",
       events: {
@@ -139,7 +139,7 @@ async function main() {
       email: "test4@test.com",
       firstName: "Eric",
       lastName: "jackson",
-      organization: "OmegaPsiPhi",
+      organization: "Omega Psi Phi",
       password,
       location: "Midtown Atlanta",
       events: {
@@ -169,7 +169,7 @@ async function main() {
       email: "test5@test.com",
       firstName: "Jessica",
       lastName: faker.person.lastName(),
-      organization: "SigmaGammaRho",
+      organization: "Sigma Gamma Rho",
       password,
       location: "Buckhead",
       events: {
