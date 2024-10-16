@@ -3,12 +3,7 @@ import { Anton } from "next/font/google";
 import Mapbox from "@/components/Mapbox";
 import SearchBar from "@/components/Search";
 import Taglist from "@/components/Taglist";
-import {
-  findAllUsers,
-  findAllEvents,
-  findEventsTagOnly,
-  findEventsbySearch,
-} from "../actions";
+import { findAllUsers, findAllEvents, findEventsbySearch } from "../actions";
 import LocationFinder from "@/components/Locationfinder";
 
 const anton = Anton({
