@@ -118,6 +118,14 @@ export async function addImageToEvent(eventId: string, imageId: string) {
 
 // CREATE USER SCHEMA AND FUNCTION
 const schema = z.object({
+  firstname: z
+    .string()
+    .min(2, { message: "Must be more than 2 characters" })
+    .max(15, { message: "Must be less than 15 characters" }),
+  lastname: z
+    .string()
+    .min(2, { message: "Must be more than 2 characters" })
+    .max(15, { message: "Must be less than 15 characters" }),
   email: z
     .string({
       invalid_type_error: "Invalid Email",
@@ -129,16 +137,25 @@ const schema = z.object({
     .max(20, { message: "Must be less than 20 characters" }),
 });
 
-export default async function createUser(formData: FormData) {
+export async function createUser(prevState: any, formData: FormData) {
   const validatedFields = schema.safeParse({
+    firstname: formData.get("firstname"),
+    lastname: formData.get("lastname"),
     email: formData.get("email"),
     password: formData.get("password"),
   });
 
   // Return early if the form data is invalid
   if (!validatedFields.success) {
+    const errors: string[] = [];
+    console.log(validatedFields.error.issues);
+    validatedFields.error.issues.map((error) => {
+      errors.push(error.path.toString().toUpperCase() + ": " + error.message);
+    });
+    console.log(errors);
+    // TODO SET UP ERROR MESSAGING SYSTEM
     return {
-      errors: validatedFields.error.flatten().fieldErrors,
+      message: errors,
     };
   }
 
@@ -149,9 +166,14 @@ export default async function createUser(formData: FormData) {
       data: {
         email: formData.get("email") as string,
         password: hashed,
+        firstName: formData.get("firstname") as string,
+        lastName: formData.get("lastname") as string,
       },
     });
   } catch (error) {
     console.log(error);
   }
+  return {
+    message: ["Thanks for signing up!"],
+  };
 }

@@ -20,9 +20,16 @@ export default async function Nav({ logo }: any) {
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start ">
-        <Link href={"/"} className="btn btn-ghost flex flex-col">
-          {logo}
-          <div className="hidden md:block">GreekGather</div>
+        <Link href={"/"} className="btn btn-ghost">
+          <div className="avatar">
+            <div className="w-12 rounded-full">
+              <img
+                src="https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113943/g-icon_tjgz9i.png"
+                alt=""
+                className="rounded"
+              />
+            </div>
+          </div>
         </Link>
       </div>
       <div className="navbar-center">
@@ -41,7 +48,9 @@ export default async function Nav({ logo }: any) {
           <Link href={"/api/auth/signin"} className="btn btn-outline mx-2">
             Login
           </Link>
-          <a className="btn btn-outline">Sign Up</a>
+          <Link href={"/signup"} className="btn btn-outline">
+            Sign Up
+          </Link>
         </div>
       ) : (
         <div className="navbar-end hidden md:flex">
@@ -108,7 +117,7 @@ export default async function Nav({ logo }: any) {
                 <Link href={"/api/auth/signin"}>Login</Link>
               </li>
               <li>
-                <a>Sign Up</a>
+                <Link href={"/signup"}>Sign Up</Link>
               </li>
             </ul>
           </div>
