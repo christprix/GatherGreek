@@ -1,4 +1,4 @@
-import { PrismaClient, Tag } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { hash } from "bcrypt";
 import { faker } from "@faker-js/faker";
 
@@ -62,7 +62,7 @@ async function main() {
             location: "1 Amb Dr NW, Atlanta, GA 30313",
             eventDate: faker.date.future(),
             totalSeats: 2,
-            tags: [Tag.Phi_Beta_Sigma, Tag.SOCIAL, Tag.MEMBERS_ONLY],
+            tags: ["Phi Beta Sigma", "social", "MEMBERS ONLY"],
           },
         ],
       },
@@ -92,7 +92,7 @@ async function main() {
               "https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451196/Community-Service-Baskets-773x1030_eyitfb.jpg",
             eventDate: fakedate,
             totalSeats: 2,
-            tags: [Tag.COMMUNITY_SERVICE, Tag.Alpha_Phi_Alpha],
+            tags: ["COMMUNITY SERVICE", "Alpha Phi Alpha"],
           },
         ],
       },
@@ -122,11 +122,7 @@ async function main() {
               "https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451287/66d385_e1ef661a1fcb45b08b9eff0ec715e248_mv2_ye9it0.jpg",
             eventDate: faker.date.future(),
             totalSeats: 3,
-            tags: [
-              Tag.MEMBERS_ONLY,
-              Tag.Sigma_Gamma_Rho,
-              Tag.COMMUNITY_SERVICE,
-            ],
+            tags: ["members only", "Sigma Gamma Rho", "community service"],
           },
         ],
       },
@@ -156,7 +152,7 @@ async function main() {
               "https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451342/a39368a7-4176-4a6a-901f-9acef9a09ca1-meals02_o0lfop.webp",
             eventDate: faker.date.future(),
             totalSeats: 3,
-            tags: [Tag.SOCIAL, Tag.MEMBERS_ONLY, Tag.Omega_Psi_Phi],
+            tags: ["social", "members only", "Omega Psi Phi"],
           },
         ],
       },
@@ -186,7 +182,7 @@ async function main() {
               "Enhance your financial knowledge with practical advice on budgeting, saving, and investing, empowering you to achieve financial stability and success.",
             eventDate: faker.date.future(),
             totalSeats: 10,
-            tags: [Tag.ECONOMICS, Tag.Zeta_Phi_Beta],
+            tags: ["economics", "Zeta Phi Beta"],
           },
         ],
       },

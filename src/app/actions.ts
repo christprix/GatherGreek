@@ -1,6 +1,7 @@
 "use server";
 import prisma from "@/lib/prisma";
-import { Tag } from "@prisma/client";
+import { z } from "zod";
+import { hash } from "bcrypt";
 
 export async function findEventsbySearch(query: any) {
   const dbevents = await prisma.event.findMany({
@@ -105,146 +106,6 @@ export async function addUserToEvent(userId: string, eventId: string) {
   return connectUserToEvent;
 }
 
-export async function findEventsService(tag: string) {
-  const dbevents = await prisma.event.findMany({
-    where: {
-      tags: {
-        has: Tag.COMMUNITY_SERVICE,
-      },
-    },
-    include: {
-      author: {
-        select: {
-          isVerified: true,
-          organization: true,
-          firstName: true,
-          lastName: true,
-        },
-      },
-    },
-  });
-  return dbevents;
-}
-
-export async function findEventsOther(tag: string) {
-  const dbevents = await prisma.event.findMany({
-    where: {
-      tags: {
-        has: Tag.OTHER,
-      },
-    },
-    include: {
-      author: {
-        select: {
-          isVerified: true,
-          organization: true,
-          firstName: true,
-          lastName: true,
-        },
-      },
-    },
-  });
-  return dbevents;
-}
-// CREATE ORG SEARCH
-// export async function findEventsByOrg(org: string) {
-//   const dbevents = await prisma.event.findMany({
-//     where: {
-//       author: {
-//         organization: Oranization
-//       },
-//     },
-//     include: {
-//       author: {
-//         select: {
-//           isVerified: true,
-//           organization: true,
-//           firstName: true,
-//           lastName: true,
-//         },
-//       },
-//     },
-//   });
-//   return dbevents;
-// }
-
-export async function findEventsTagOnly(tag: any) {
-  const dbevents =
-    //   await prisma.$queryRaw`SELECT * FROM "Event" where ${tag} = ANY(tags) `;
-    await prisma.event.findMany({
-      where: {
-        tags: {
-          hasSome: [Tag.GOVERNMENT],
-        },
-      },
-    });
-
-  return dbevents;
-}
-
-export async function findEventsGovernment(tag: string) {
-  const dbevents = await prisma.event.findMany({
-    where: {
-      tags: {
-        has: Tag.GOVERNMENT,
-      },
-    },
-    include: {
-      author: {
-        select: {
-          isVerified: true,
-          organization: true,
-          firstName: true,
-          lastName: true,
-        },
-      },
-    },
-  });
-  return dbevents;
-}
-
-export async function findEventsEducation(tag: string) {
-  const dbevents = await prisma.event.findMany({
-    where: {
-      tags: {
-        has: Tag.EDUCATION,
-      },
-    },
-    include: {
-      author: {
-        select: {
-          isVerified: true,
-          organization: true,
-          firstName: true,
-          lastName: true,
-        },
-      },
-    },
-  });
-  return dbevents;
-}
-
-export async function findEventsEconomics(tag: string) {
-  const dbevents = await prisma.event.findMany({
-    where: {
-      tags: {
-        has: Tag.ECONOMICS,
-      },
-    },
-    include: {
-      author: {
-        select: {
-          isVerified: true,
-          organization: true,
-          firstName: true,
-          lastName: true,
-        },
-      },
-    },
-  });
-  return dbevents;
-}
-
 export async function addImageToEvent(eventId: string, imageId: string) {
   const addImagetoEvent = await prisma.event.update({
     where: { id: eventId },
@@ -253,4 +114,44 @@ export async function addImageToEvent(eventId: string, imageId: string) {
     },
   });
   return addImagetoEvent;
+}
+
+// CREATE USER SCHEMA AND FUNCTION
+const schema = z.object({
+  email: z
+    .string({
+      invalid_type_error: "Invalid Email",
+    })
+    .email(),
+  password: z
+    .string()
+    .min(8, { message: "Must be more than 8 characters" })
+    .max(20, { message: "Must be less than 20 characters" }),
+});
+
+export default async function createUser(formData: FormData) {
+  const validatedFields = schema.safeParse({
+    email: formData.get("email"),
+    password: formData.get("password"),
+  });
+
+  // Return early if the form data is invalid
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
+  // Mutate data
+  const hashed = await hash(formData.get("password") as string, 10);
+  try {
+    const newUser = await prisma.user.create({
+      data: {
+        email: formData.get("email") as string,
+        password: hashed,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
