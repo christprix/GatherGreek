@@ -8,6 +8,7 @@ import Taglist from "@/components/Taglist";
 import { Anton } from "next/font/google";
 import { findAllEvents } from "./actions";
 import Link from "next/link";
+import FraternityTagList from "@/components/FraternitytagList";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -27,8 +28,10 @@ export default async function Home() {
         Find An Event by Category
       </div>
       <div className="my-8">
-        <div className="flex flex-wrap flex-row items-center text-bold py-2 justify-evenly ">
+        <div className="flex items-center md:flex-row flex-col text-bold py-2 justify-evenly ">
+          {/* <Taglist></Taglist> */}
           <Taglist></Taglist>
+          <FraternityTagList></FraternityTagList>
         </div>
       </div>
       <Hero2 image={blackbasketball}></Hero2>

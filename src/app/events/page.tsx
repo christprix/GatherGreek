@@ -5,6 +5,7 @@ import SearchBar from "@/components/Search";
 import Taglist from "@/components/Taglist";
 import { findAllUsers, findAllEvents, findEventsbySearch } from "../actions";
 import LocationFinder from "@/components/Locationfinder";
+import FraternityTagList from "@/components/FraternitytagList";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -30,7 +31,7 @@ export default async function Page({
     <>
       <div className="border-t border-blue-100 justify-center flex flex-col-reverse md:flex-row p-4 justify-around">
         <div className="md:mt-5 flex justify-center">
-          <Mapbox></Mapbox>
+          {/* <Mapbox></Mapbox> */}
         </div>
         <div className="rounded-md p-2 m-4 flex md:flex-row flex-col justify-around">
           <div className="bg-base-200 rounded">
@@ -43,12 +44,14 @@ export default async function Page({
             <div className="flex flex-col justify-center m-4 w-lg">
               <SearchBar></SearchBar>
               <div className=" flex-row flex-wrap hidden md:flex justify-center">
-                <Taglist></Taglist>
+                {/* <Taglist></Taglist> */}
+                <FraternityTagList></FraternityTagList>
               </div>
             </div>
           </div>
           <div className="flex flex-row flex-wrap md:hidden justify-center">
-            <Taglist></Taglist>
+            {/* <Taglist></Taglist> */}
+            <FraternityTagList></FraternityTagList>
           </div>
         </div>
       </div>
