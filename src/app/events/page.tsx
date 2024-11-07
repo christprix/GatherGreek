@@ -29,7 +29,7 @@ export default async function Page({
   const dbusers = await findAllUsers();
   return (
     <>
-      <div className="border-t border-blue-100 justify-center flex flex-col-reverse md:flex-row p-4 justify-around">
+      <div className="border-t border-blue-100 justify-center flex flex-col-reverse p-4 justify-around">
         <div className="md:mt-5 flex justify-center">
           {/* <Mapbox></Mapbox> */}
         </div>
@@ -43,16 +43,14 @@ export default async function Page({
 
             <div className="flex flex-col justify-center m-4 w-lg">
               <SearchBar></SearchBar>
-              <div className=" flex-row flex-wrap hidden md:flex justify-center">
-                {/* <Taglist></Taglist> */}
-                <FraternityTagList></FraternityTagList>
-              </div>
+              {/* <div className=" flex-row flex-wrap hidden md:flex justify-center">
+                <Taglist></Taglist>
+              </div> */}
             </div>
           </div>
-          <div className="flex flex-row flex-wrap md:hidden justify-center">
-            {/* <Taglist></Taglist> */}
-            <FraternityTagList></FraternityTagList>
-          </div>
+          {/* <div className="flex flex-row flex-wrap md:hidden justify-center">
+            <Taglist></Taglist>
+          </div> */}
         </div>
       </div>
       <div className={`m-4 ml-10 text-2xl md:text-4xl ${anton.className}`}>

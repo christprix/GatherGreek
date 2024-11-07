@@ -28,10 +28,9 @@ export default async function Home() {
         Find An Event by Category
       </div>
       <div className="my-8">
-        <div className="flex items-center md:flex-row flex-col text-bold py-2 justify-evenly ">
+        <div className="flex flex-wrap flex-row items-center text-bold py-2 justify-evenly">
           {/* <Taglist></Taglist> */}
           <Taglist></Taglist>
-          <FraternityTagList></FraternityTagList>
         </div>
       </div>
       <Hero2 image={blackbasketball}></Hero2>
