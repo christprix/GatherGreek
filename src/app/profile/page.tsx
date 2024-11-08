@@ -5,6 +5,7 @@ import {
   faLocationDot,
   faPeopleGroup,
   faUserGraduate,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { getServerSession } from "next-auth/next";
 import { options } from "@/app/api/auth/[...nextauth]/options";
