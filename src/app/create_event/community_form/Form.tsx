@@ -267,10 +267,10 @@ export default function Form() {
                 Thanks for Creating this event! Would you like to upload a flyer
                 or pictures?
               </div>
-              <button className="btn btn-primary">
+              <div className="btn btn-primary">
                 {/* TODO MAKE UPLOAD PIC ROUTE */}
                 <ImageUploader></ImageUploader>
-              </button>
+              </div>
             </div>
           </>
         )}

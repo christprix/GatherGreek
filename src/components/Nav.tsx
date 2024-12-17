@@ -10,7 +10,6 @@ export default async function Nav({ logo }: any) {
   // GET SESSION
   const session = await getServerSession(options);
   // CHECK IF ADMIN
-  console.log(session?.user?.admincheck);
   function admincheck() {
     if (session?.user?.admincheck) {
       return <Link href={"/admin"}>Admin</Link>;

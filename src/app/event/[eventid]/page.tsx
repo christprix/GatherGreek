@@ -21,11 +21,10 @@ const anton = Anton({
   style: ["normal"],
 });
 
-export default async function EventDetails({
-  params,
-}: {
-  params: { eventid: string };
+export default async function EventDetails(props: {
+  params: Promise<{ eventid: string }>;
 }) {
+  const params = await props.params;
   const dbevent = await prisma.event.findUnique({
     where: {
       id: params.eventid,
