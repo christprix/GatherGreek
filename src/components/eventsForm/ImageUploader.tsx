@@ -20,7 +20,7 @@ export default function ImageUploader() {
         // }}
       >
         {({ open }) => {
-          return <button onClick={() => open()}>Upload an Image</button>;
+          return <button>Upload an Image</button>;
         }}
       </CldUploadWidget>
     </>
