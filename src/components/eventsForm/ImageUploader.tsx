@@ -14,13 +14,13 @@ export default function ImageUploader() {
     <>
       <CldUploadWidget
         uploadPreset="dbmlvgit"
-        // onSuccess={(results: Uploadresults | any) => {
-        //   console.log("Public ID", results.info.public_id);
-        //   setResource(results.info.public_id);
-        // }}
+        onSuccess={(results: Uploadresults | any) => {
+          console.log("Public ID", results.info.public_id);
+          setResource(results.info.public_id);
+        }}
       >
         {({ open }) => {
-          return <button>Upload an Image</button>;
+          return <button onClick={() => open()}>Upload an Image</button>;
         }}
       </CldUploadWidget>
     </>
