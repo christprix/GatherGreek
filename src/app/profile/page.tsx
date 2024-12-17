@@ -26,7 +26,6 @@ export default async function Page() {
     session?.user?.id as string
   );
   let myScheduledEvents = dbmyScheduledEvents[0].User_Scheduled_Events;
-
   return (
     <div className="bg-base-200 p-4">
       <div
@@ -91,7 +90,7 @@ export default async function Page() {
           {/* scheduled events block */}
           <div className="rounded-lg md:w-full md:h-full  m-1 p-2 mt-3 bg-base-100">
             <div className={`mx-5 text-xl md:text-4xl ${anton.className}`}>
-              Scheduled Events
+              Tickets
             </div>
             <div className="md:grid grid-cols-2">
               {<SideCardlist events={myScheduledEvents}></SideCardlist>}

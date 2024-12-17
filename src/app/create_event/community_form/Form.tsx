@@ -8,6 +8,8 @@ import z from "zod";
 import { FormDataSchema } from "@/app/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
+import ImageUploader from "@/components/eventsForm/ImageUploader";
+
 type Inputs = z.infer<typeof FormDataSchema>;
 
 const steps = [
@@ -267,7 +269,7 @@ export default function Form() {
               </div>
               <button className="btn btn-primary">
                 {/* TODO MAKE UPLOAD PIC ROUTE */}
-                <Link href={""}>Upload Pictures</Link>
+                <ImageUploader></ImageUploader>
               </button>
             </div>
           </>

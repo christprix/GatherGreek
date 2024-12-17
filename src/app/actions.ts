@@ -2,6 +2,7 @@
 import prisma from "@/lib/prisma";
 import { z } from "zod";
 import { hash } from "bcrypt";
+import { log } from "console";
 
 export async function findEventsbySearch(query: any) {
   const dbevents = await prisma.event.findMany({
@@ -88,22 +89,26 @@ export async function findAllUsers() {
   return dbUsers;
 }
 
-export async function verifyUser() {
-  // VERIFY A USER
-}
-
-export async function addUserToEvent(userId: string, eventId: string) {
-  const connectUserToEvent = await prisma.event.update({
-    where: { id: eventId },
-    data: {
-      Users_going_to_event: {
-        connect: {
-          id: userId,
+export async function addUserToEvent(
+  userId: string,
+  eventId: string,
+  eventSeats: number
+) {
+  {
+    const newSeats = eventSeats - 1;
+    const connectUserToEvent = await prisma.event.update({
+      where: { id: eventId },
+      data: {
+        Users_going_to_event: {
+          connect: {
+            id: userId,
+          },
         },
+        totalSeats: newSeats,
       },
-    },
-  });
-  return connectUserToEvent;
+    });
+    return connectUserToEvent;
+  }
 }
 
 export async function addImageToEvent(eventId: string, imageId: string) {

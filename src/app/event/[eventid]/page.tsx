@@ -1,8 +1,6 @@
 import greekstep from "/public/greekstep-p01.jpg";
 import prisma from "@/lib/prisma";
 import Image from "next/image";
-import volunteer1 from "/public/volunteer1.jpg";
-import Avatar from "@/components/Avatar";
 import dateFormat from "dateformat";
 import Avatarlist from "@/components/Avatarlist";
 import JoinEventButton from "@/components/event/JoinEventButton";
@@ -49,6 +47,8 @@ export default async function EventDetails({
       </button>
     );
   });
+  // CHECK IF TICKETS AVAILABLE
+
   return (
     <>
       {dbevent ? (
@@ -143,11 +143,16 @@ export default async function EventDetails({
               id="right"
               className="flex flex-col h-fit md:w-2/5 md:sticky md:top-0 w-full md:ml-2 rounded items-center md:my-0 my-2 p-4 bg-base-100"
             >
-              <p className="text-xl m-2">Sign Up Today!</p>
+              <div className="text-xl m-2">Sign Up Today!</div>
+              <div className="text-xl m-2">
+                Remaining Tickets: {dbevent.totalSeats}
+              </div>
+
               <JoinEventButton
                 className="p-3"
                 eventId={params.eventid}
                 userId={userId}
+                eventSeats={dbevent.totalSeats}
               ></JoinEventButton>
             </div>
           </div>
