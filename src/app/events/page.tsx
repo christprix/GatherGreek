@@ -1,6 +1,5 @@
 import Cardlist from "@/components/Cardlist";
 import { Anton } from "next/font/google";
-import Mapbox from "@/components/Mapbox";
 import SearchBar from "@/components/Search";
 import Taglist from "@/components/Taglist";
 import { findAllUsers, findAllEvents, findEventsbySearch } from "../actions";
@@ -13,11 +12,9 @@ const anton = Anton({
   style: ["normal"],
 });
 
-export default async function Page(
-  props: {
-    searchParams: Promise<{ q?: string; tag?: string; date?: string }>;
-  }
-) {
+export default async function Page(props: {
+  searchParams: Promise<{ q?: string; tag?: string; date?: string }>;
+}) {
   const searchParams = await props.searchParams;
   let searchevents;
   // SEARCH DB BASED ON TAG INPUT
