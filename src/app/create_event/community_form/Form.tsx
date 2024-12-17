@@ -269,7 +269,7 @@ export default function Form() {
               </div>
               <div className="btn btn-primary">
                 {/* TODO MAKE UPLOAD PIC ROUTE */}
-                <ImageUploader></ImageUploader>
+                {/* <ImageUploader></ImageUploader> */}
               </div>
             </div>
           </>
