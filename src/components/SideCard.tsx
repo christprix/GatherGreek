@@ -19,13 +19,11 @@ export default function SideCard({ event }: any) {
         <h2 className="card-title">{event.title}</h2>
         <div className="text-xs flex flex-row">
           <FontAwesomeIcon icon={faCalendarDays} className="w-3 mx-1" />
-          <p className="text-sm">
+          <div className="text-sm">
             {dateFormat(`${event.eventDate}`, "dddd, mmmm dS, yyyy")}
-          </p>
+          </div>
         </div>
-        <div className="w-28">
-          <Avatarlist></Avatarlist>
-        </div>
+        <div className="test-xs text-wrap">{event.location}</div>
       </div>
     </Link>
   );
