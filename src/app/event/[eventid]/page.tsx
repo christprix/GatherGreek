@@ -51,7 +51,7 @@ export default async function EventDetails(props: {
   return (
     <>
       {dbevent ? (
-        <div className="flex flex-col items-center bg-base-200">
+        <div className="flex flex-col items-center bg-base-100">
           <div className="w-full flex justify-center">
             <Image
               src={dbevent.imagePath}
@@ -65,14 +65,14 @@ export default async function EventDetails(props: {
           <div className="flex flex-col md:flex-row w-full justify-evenly p-4">
             <div
               id="left"
-              className="grid flex-col h-5/6 bg-base-100 md:w-3/5 w-full rounded  p-4"
+              className="grid flex-col h-5/6 bg-base-200 md:w-3/5 w-full rounded  p-4"
             >
               <div className="text-sm">
                 {dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy")}
               </div>
               <div className="md:text-4xl text-3xl">{dbevent.title}</div>
               <div className="m-3">{dbevent.short_description}</div>
-              <div className="card m-1 w-full card-side bg-base-100 border">
+              <div className="card m-1 w-full card-side bg-base-200 border">
                 <figure className="rounded-lg min-w-16">
                   <div
                     tabIndex={0}
@@ -98,7 +98,7 @@ export default async function EventDetails(props: {
                   <p className={`text-3xl flex flex-col ${anton.className}`}>
                     Date and Time
                   </p>
-                  <p className="text-sm flex">
+                  <div className="text-sm flex">
                     <div className="text-xl">
                       <FontAwesomeIcon
                         icon={faCalendarDays}
@@ -107,11 +107,11 @@ export default async function EventDetails(props: {
                     </div>
                     {dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy")}{" "}
                     4pm - 5pm EST
-                  </p>
+                  </div>
                 </div>
                 <div className="flex flex-col my-10">
                   <p className={`text-3xl ${anton.className}`}>Location</p>
-                  <p className="flex">
+                  <div className="flex">
                     <div className="text-xl">
                       <FontAwesomeIcon
                         icon={faLocationDot}
@@ -119,7 +119,7 @@ export default async function EventDetails(props: {
                       />
                     </div>
                     {dbevent.location}
-                  </p>
+                  </div>
                 </div>
                 <div className="flex flex-col my-10">
                   <p className={`text-3xl ${anton.className}`}>
@@ -140,7 +140,7 @@ export default async function EventDetails(props: {
             </div>
             <div
               id="right"
-              className="flex flex-col h-fit md:w-2/5 md:sticky md:top-0 w-full md:ml-2 rounded items-center md:my-0 my-2 p-4 bg-base-100"
+              className="flex flex-col h-fit md:w-2/5 md:sticky md:top-0 w-full md:ml-2 rounded items-center md:my-0 my-2 p-4 bg-base-200"
             >
               <div className="text-xl m-2">Sign Up Today!</div>
               <div className="text-xl m-2">

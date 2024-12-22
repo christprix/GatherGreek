@@ -142,7 +142,8 @@ const schema = z.object({
     .max(20, { message: "Must be less than 20 characters" }),
 });
 
-export async function createUser(prevState: any, formData: FormData) {
+export async function createUser(formData: FormData) {
+  console.log(formData);
   const validatedFields = schema.safeParse({
     firstname: formData.get("firstname"),
     lastname: formData.get("lastname"),
@@ -159,9 +160,6 @@ export async function createUser(prevState: any, formData: FormData) {
     });
     console.log(errors);
     // TODO SET UP ERROR MESSAGING SYSTEM
-    return {
-      message: errors,
-    };
   }
 
   // Mutate data
@@ -175,10 +173,41 @@ export async function createUser(prevState: any, formData: FormData) {
         lastName: formData.get("lastname") as string,
       },
     });
+    console.log(newUser);
   } catch (error) {
-    console.log(error);
+    console.log("something went wrong");
   }
-  return {
-    message: ["Thanks for signing up!"],
-  };
+  return console.log("user creation attempted");
+}
+
+export async function createEvent(user: string, formData: FormData) {
+  const eventdate = formData.get("eventDate");
+  console.log(formData);
+  const formattedDate = new Date(eventdate as string);
+  // console.log(formattedDate);
+  const formattedSeats = Number(formData.get("total_seats"));
+  // console.log(formattedSeats);
+  // TODO USE FUNCTION BELOW TO CONVERT PRICE TO NUMBER
+  // const formattedPrice = Number(formData.get("eventCost"))
+  const newEvent = await prisma.event.create({
+    data: {
+      title: formData.get("event_title") as string,
+      description: formData.get("event_description") as string,
+      tags: [formData.get("event_type") as string],
+      location: "America",
+      imagePath:
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113943/g-icon_tjgz9i.png",
+      eventDate: formattedDate as Date,
+      totalSeats: formattedSeats as number,
+      // TODO CHANGE PRICE TO NUMBER
+      priceInCents: formData.get("event_cost") as string,
+      authorId: user as any,
+    },
+  });
+  console.log(newEvent);
+  try {
+    console.log("tried");
+  } catch (err) {
+    console.log("didn't work");
+  }
 }

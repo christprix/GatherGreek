@@ -1,14 +1,9 @@
 "use client";
 import { createUser } from "../actions";
-import { useFormStatus, useFormState } from "react-dom";
+import { useActionState } from "react";
 import { SubmitButton } from "./submit-button";
 
-const initialState = {
-  message: [],
-};
-
 export default function Signup() {
-  const [state, formAction] = useFormState(createUser, initialState);
   return (
     <section className="items-center flex flex-col bg-base-200">
       <div className="m-4 text-xl md:text-3xl  font-bold">
@@ -26,7 +21,7 @@ export default function Signup() {
             </div>
           </div>
         </div>
-        <form className="py-10 flex justify-center" action={formAction}>
+        <form className="py-10 flex justify-center" action={createUser}>
           <div className="bg-base-100 p-4 md:m-4 w-96  rounded shadow-md">
             <label>First Name</label>
             <input
@@ -65,13 +60,6 @@ export default function Signup() {
             />
             <div className="my-4 flex justify-center">
               <SubmitButton></SubmitButton>
-            </div>
-            <div aria-live="polite" className="not-sr-only">
-              <ul>
-                {state?.message.map((err, index) => (
-                  <li key={index}>{err}</li>
-                ))}
-              </ul>
             </div>
           </div>
         </form>
