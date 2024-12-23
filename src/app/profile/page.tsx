@@ -69,8 +69,6 @@ export default async function Page() {
         {/* desktop view */}
         <div className="hidden md:block card bg-base-100 w-96 h-fit m-3 ">
           <figure className="px-10 pt-10">
-            {/* <img src={saint2.src} alt="profilepic2" className="rounded-xl" />
-             */}
             <div className="text-center">
               <ProfileAvatar></ProfileAvatar>
             </div>

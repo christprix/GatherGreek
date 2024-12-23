@@ -68,9 +68,6 @@ export async function findMyEvents(id: string) {
     where: {
       authorId: id,
     },
-    select: {
-      id: true,
-    },
   });
   return dbevents;
 }
@@ -79,6 +76,9 @@ export async function findMyEventsbyId(id: string) {
   const dbevents = await prisma.event.findMany({
     where: {
       authorId: id,
+    },
+    select: {
+      id: true,
     },
   });
   return dbevents;

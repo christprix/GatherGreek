@@ -13,7 +13,7 @@ import {
   faLocationDot,
   faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
-import { findUserInfo, findMyEvents } from "@/app/actions";
+import { findUserInfo, findMyEvents, findMyEventsbyId } from "@/app/actions";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -34,7 +34,7 @@ export default async function EventDetails(props: {
   const session = await getServerSession(options);
   const userId = session?.user?.id;
   const EventCreatorInfo = await findUserInfo(dbevent?.authorId as string);
-  const dbmyevents = await findMyEvents(userId as string);
+  const dbmyevents = await findMyEventsbyId(userId as string);
 
   // TAGS FUNCTION
   const getTags = dbevent?.tags.map((e: any) => {

@@ -7,7 +7,6 @@ import sgrhoevent from "/public/sgrhoevent.jpg";
 import Link from "next/link";
 
 export default function SideCard({ event }: any) {
-  console.log(event.imagePath);
   return (
     <Link
       href={`event/${event.id}`}
