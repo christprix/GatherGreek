@@ -13,7 +13,7 @@ import {
   faLocationDot,
   faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
-import { findUserInfo } from "@/app/actions";
+import { findUserInfo, findMyEvents } from "@/app/actions";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -34,6 +34,7 @@ export default async function EventDetails(props: {
   const session = await getServerSession(options);
   const userId = session?.user?.id;
   const EventCreatorInfo = await findUserInfo(dbevent?.authorId as string);
+  const dbmyevents = await findMyEvents(userId as string);
 
   // TAGS FUNCTION
   const getTags = dbevent?.tags.map((e: any) => {
@@ -46,7 +47,18 @@ export default async function EventDetails(props: {
       </button>
     );
   });
+
   // CHECK IF TICKETS AVAILABLE
+  // CREATE AN ARRAY
+  let eventIds: string[] = [];
+  // PUSH EVENT TICKET IDS INTO ARRAY
+  function findEventIds(event: any) {
+    eventIds.push(event.id);
+  }
+  // LOOP THROUGH ARRAYS
+  dbmyevents.forEach(findEventIds);
+  // CHECK IF TICKET AND EVENT MATCH
+  const doIAlreadyHaveTickets = eventIds.includes(params.eventid);
 
   return (
     <>
@@ -146,13 +158,20 @@ export default async function EventDetails(props: {
               <div className="text-xl m-2">
                 Remaining Tickets: {dbevent.totalSeats}
               </div>
-
-              <JoinEventButton
-                className="p-3"
-                eventId={params.eventid}
-                userId={userId}
-                eventSeats={dbevent.totalSeats}
-              ></JoinEventButton>
+              {dbevent.totalSeats === 0 ||
+                (doIAlreadyHaveTickets && (
+                  <button className="btn btn-primary" disabled>
+                    Attend this Event
+                  </button>
+                ))}
+              {dbevent.totalSeats > 0 && !doIAlreadyHaveTickets && (
+                <JoinEventButton
+                  className="p-3"
+                  eventId={params.eventid}
+                  userId={userId}
+                  eventSeats={dbevent.totalSeats}
+                ></JoinEventButton>
+              )}
             </div>
           </div>
         </div>
