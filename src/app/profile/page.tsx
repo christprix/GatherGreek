@@ -26,7 +26,6 @@ export default async function Page() {
     session?.user?.id as string
   );
   let myScheduledEvents = dbmyScheduledEvents[0].User_Scheduled_Events;
-  console.log("myevents", myEvents);
   return (
     <div className="bg-base-200 p-4">
       <div

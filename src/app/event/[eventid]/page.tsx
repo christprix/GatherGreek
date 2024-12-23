@@ -14,6 +14,7 @@ import {
   faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
 import { findUserInfo, findMyEvents, findMyEventsbyId } from "@/app/actions";
+import Link from "next/link";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -36,6 +37,18 @@ export default async function EventDetails(props: {
   const EventCreatorInfo = await findUserInfo(dbevent?.authorId as string);
   const dbmyevents = await findMyEventsbyId(userId as string);
 
+  // CHECK IF TICKETS AVAILABLE
+  // CREATE AN ARRAY
+  let eventIds: string[] = [];
+  // PUSH EVENT TICKET IDS INTO ARRAY
+  function findEventIds(event: any) {
+    eventIds.push(event.id);
+  }
+  // LOOP THROUGH ARRAYS
+  dbmyevents?.User_Scheduled_Events.forEach(findEventIds);
+  // CHECK IF TICKET AND EVENT MATCH
+  const doIAlreadyHaveTickets = eventIds.includes(params.eventid);
+
   // TAGS FUNCTION
   const getTags = dbevent?.tags.map((e: any) => {
     return (
@@ -47,18 +60,6 @@ export default async function EventDetails(props: {
       </button>
     );
   });
-
-  // CHECK IF TICKETS AVAILABLE
-  // CREATE AN ARRAY
-  let eventIds: string[] = [];
-  // PUSH EVENT TICKET IDS INTO ARRAY
-  function findEventIds(event: any) {
-    eventIds.push(event.id);
-  }
-  // LOOP THROUGH ARRAYS
-  dbmyevents.forEach(findEventIds);
-  // CHECK IF TICKET AND EVENT MATCH
-  const doIAlreadyHaveTickets = eventIds.includes(params.eventid);
 
   return (
     <>
@@ -150,29 +151,40 @@ export default async function EventDetails(props: {
                 <div>Other Events by {EventCreatorInfo?.firstName} </div>
               </div>
             </div>
-            <div
-              id="right"
-              className="flex flex-col h-fit md:w-2/5 md:sticky md:top-0 w-full md:ml-2 rounded items-center md:my-0 my-2 p-4 bg-base-200"
-            >
-              <div className="text-xl m-2">Sign Up Today!</div>
-              <div className="text-xl m-2">
-                Remaining Tickets: {dbevent.totalSeats}
-              </div>
-              {dbevent.totalSeats === 0 ||
-                (doIAlreadyHaveTickets && (
-                  <button className="btn btn-primary" disabled>
-                    Attend this Event
-                  </button>
-                ))}
-              {dbevent.totalSeats > 0 && !doIAlreadyHaveTickets && (
+            {dbevent.totalSeats === 0 ||
+              (doIAlreadyHaveTickets && (
+                <div
+                  id="right"
+                  className="flex flex-col h-fit md:w-2/5 md:sticky md:top-0 w-full md:ml-2 rounded items-center md:my-0 my-2 p-4 bg-base-200"
+                >
+                  <div className="text-xl m-2">
+                    You already have tickets for this Event!
+                  </div>
+                  <div className="text-xl m-2">
+                    Remaining Tickets: {dbevent.totalSeats}
+                  </div>
+                  <Link className="btn btn-primary" href={"/profile"}>
+                    View Tickets
+                  </Link>
+                </div>
+              ))}
+            {dbevent.totalSeats > 0 && !doIAlreadyHaveTickets && (
+              <div
+                id="right"
+                className="flex flex-col h-fit md:w-2/5 md:sticky md:top-0 w-full md:ml-2 rounded items-center md:my-0 my-2 p-4 bg-base-200"
+              >
+                <div className="text-xl m-2">Sign Up Today!</div>
+                <div className="text-xl m-2">
+                  Remaining Tickets: {dbevent.totalSeats}
+                </div>
                 <JoinEventButton
                   className="p-3"
                   eventId={params.eventid}
                   userId={userId}
                   eventSeats={dbevent.totalSeats}
                 ></JoinEventButton>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       ) : (

@@ -73,12 +73,14 @@ export async function findMyEvents(id: string) {
 }
 
 export async function findMyEventsbyId(id: string) {
-  const dbevents = await prisma.event.findMany({
+  const dbevents = await prisma.user.findUnique({
     where: {
-      authorId: id,
+      id: id,
     },
     select: {
-      id: true,
+      User_Scheduled_Events: {
+        select: { id: true },
+      },
     },
   });
   return dbevents;
