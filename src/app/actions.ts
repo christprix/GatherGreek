@@ -194,9 +194,20 @@ export async function createUser(formData: FormData) {
   return console.log("user creation attempted");
 }
 
-export async function createEvent(user: string, formData: FormData) {
-  const eventdate = formData.get("eventDate");
+export async function createEvent(
+  user: string,
+  imagePath: string,
+  formData: FormData
+) {
+  let image = "";
+  if (imagePath === "") {
+    image =
+      "https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113943/g-icon_tjgz9i.png";
+  } else {
+    image = imagePath;
+  }
   console.log(formData);
+  const eventdate = formData.get("eventDate");
   const formattedDate = new Date(eventdate as string);
   // console.log(formattedDate);
   const formattedSeats = Number(formData.get("total_seats"));
@@ -209,8 +220,7 @@ export async function createEvent(user: string, formData: FormData) {
       description: formData.get("event_description") as string,
       tags: [formData.get("event_type") as string],
       location: "America",
-      imagePath:
-        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113943/g-icon_tjgz9i.png",
+      imagePath: image,
       eventDate: formattedDate as Date,
       totalSeats: formattedSeats as number,
       // TODO CHANGE PRICE TO NUMBER
