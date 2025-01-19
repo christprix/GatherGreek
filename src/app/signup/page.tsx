@@ -23,7 +23,7 @@ export default function Signup() {
         </div>
         <form className="py-10 flex justify-center" action={createUser}>
           <div className="bg-base-100 p-4 md:m-4 w-96  rounded shadow-md">
-            <label>First Name</label>
+            <label className="text-xl font-bold">First Name</label>
             <input
               className="input input-bordered w-full "
               type="text"
@@ -32,7 +32,7 @@ export default function Signup() {
               min={2}
               max={15}
             />
-            <label>Last Name</label>
+            <label className="text-xl font-bold">Last Name</label>
             <input
               className="input input-bordered w-full "
               type="text"
@@ -41,7 +41,30 @@ export default function Signup() {
               min={2}
               max={15}
             />
-            <label>Email</label>
+            <label className="w-full">
+              <div className="label">
+                <span className="label-text text-xl font-bold">
+                  Fraternity Affiliation
+                </span>
+              </div>
+              <select
+                required
+                name="greek affiliation"
+                className="input input-bordered w-full"
+              >
+                <option value={"None"}>None</option>
+                <option value={"Phi Beta Sigma"}>Phi Beta Sigma</option>
+                <option value={"Zeta Phi Beta"}>Zeta Phi Beta</option>
+                <option value={"Alpha Phi Alpha"}>Alpha Phi Alpha</option>
+                <option value={"Alpha Kappa Alpha"}>Alpha Kappa Alpha</option>
+                <option value={"Omega Psi Phi"}>Omega Psi Phi</option>
+                <option value={"Kappa Alpha Psi"}>Kappa Alpha Psi</option>
+                <option value={"Sigma Gamma Rho"}>Sigma Gamma Rho</option>
+                <option value={"Delta Sigma Theta"}>Delta Sigma Theta</option>
+                <option value={"Iota Phi Theta"}>Iota Phi Theta</option>
+              </select>
+            </label>
+            <label className="text-xl font-bold">Email</label>
             <input
               className="input input-bordered w-full "
               type="text"

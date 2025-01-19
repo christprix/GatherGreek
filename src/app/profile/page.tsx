@@ -13,6 +13,7 @@ import sigmabrotherhood from "/public/sigmabrotherhood.jpg";
 import SideCardlist from "@/components/SideCardList";
 import { findMyEvents, findScheduledEvents } from "../actions";
 import ProfileAvatar from "@/components/profile/ProfileAvatar";
+import Link from "next/link";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -147,15 +148,21 @@ export default async function Page() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           {/* scheduled events block */}
-          <div className="rounded-lg md:w-full md:h-full  m-1 p-2 mt-3 bg-base-100">
+          <div className="rounded-lg md:w-full md:h-full  m-1 p-2 mt-3 bg-base-100 flex-col">
             <div className={`mx-5 text-xl md:text-4xl ${anton.className}`}>
               Tickets
             </div>
-            <div className="md:grid grid-cols-2">
-              {<SideCardlist events={myScheduledEvents}></SideCardlist>}
-            </div>
+            {myScheduledEvents.length === 0 ? (
+              <div className="mx-5 text-m md:text-xl">
+                Looks like you aren't signed up for any events!
+              </div>
+            ) : (
+              <div className="md:grid grid-cols-2">
+                <SideCardlist events={myScheduledEvents}></SideCardlist>
+              </div>
+            )}
           </div>
           {/* user events block */}
           <div className="rounded-lg md:w-full md:h-full  m-1 p-2 mt-3 bg-base-100">

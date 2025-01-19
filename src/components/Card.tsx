@@ -47,9 +47,9 @@ export default function Card({ event }: any) {
             <p>{event.location}</p>
           </div>
           <p className="text-sm">From ${event.priceInCents}</p>
-          <div className="btn btn-primary">
-            <Link href={`event/${event.id}`}>Get Tickets</Link>
-          </div>
+          <Link className="btn btn-primary" href={`event/${event.id}`}>
+            Get Tickets
+          </Link>
         </div>
       </div>
     </div>

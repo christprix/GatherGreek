@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma";
 import { z } from "zod";
 import { hash } from "bcrypt";
 import { log } from "console";
+import { redirect } from "next/navigation";
 
 export async function findEventsbySearch(query: any) {
   const dbevents = await prisma.event.findMany({
@@ -175,6 +176,7 @@ const schema = z.object({
     .string()
     .min(8, { message: "Must be more than 8 characters" })
     .max(20, { message: "Must be less than 20 characters" }),
+  organization: z.string(),
 });
 
 export async function createUser(formData: FormData) {
@@ -182,6 +184,7 @@ export async function createUser(formData: FormData) {
   const validatedFields = schema.safeParse({
     firstname: formData.get("firstname"),
     lastname: formData.get("lastname"),
+    organization: formData.get("greek affiliation"),
     email: formData.get("email"),
     password: formData.get("password"),
   });
@@ -206,13 +209,15 @@ export async function createUser(formData: FormData) {
         password: hashed,
         firstName: formData.get("firstname") as string,
         lastName: formData.get("lastname") as string,
+        organization: formData.get("greek affiliation") as string,
       },
     });
     console.log(newUser);
   } catch (error) {
     console.log("something went wrong");
   }
-  return console.log("user creation attempted");
+  console.log("user creation attempted");
+  redirect("/profile");
 }
 
 export async function createEvent(
