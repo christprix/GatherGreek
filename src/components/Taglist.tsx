@@ -22,11 +22,11 @@ const element2 = {
 };
 const element3 = {
   icon: <FontAwesomeIcon className="text-3xl" icon={faLandmark} />,
-  values: "Government",
+  values: "government",
 };
 const element4 = {
   icon: <FontAwesomeIcon className="text-3xl" icon={faUserGraduate} />,
-  values: "Education",
+  values: "EDUCATION",
 };
 const element5 = {
   icon: <FontAwesomeIcon className="text-3xl" icon={faMoneyBillTrendUp} />,
@@ -64,7 +64,7 @@ export default function Taglist() {
             <div key={index}>{t.icon}</div>
           </Link>
           <div className=" text-center text-sm md:text-base font-semibold">
-            {t.values}
+            {t.values.toLowerCase()}
           </div>
         </div>
       </div>

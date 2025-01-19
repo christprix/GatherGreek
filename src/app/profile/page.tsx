@@ -19,19 +19,78 @@ const anton = Anton({
   weight: "400",
   style: ["normal"],
 });
+
+// CREATE USER TYPE
+type User = {
+  name: string;
+  email: string;
+  image: string;
+  id: string;
+  admincheck: boolean;
+  organization: string;
+  location: string;
+};
+
 export default async function Page() {
+  // GET SESSION USER
   const session = await getServerSession(options);
+  const user = session?.user as User;
+  // GET EVENTS
   const myEvents = await findMyEvents(session?.user?.id as string);
   let dbmyScheduledEvents = await findScheduledEvents(
     session?.user?.id as string
   );
   let myScheduledEvents = dbmyScheduledEvents[0].User_Scheduled_Events;
+  // DETERMINE ORGANIZATION PICTURE
+  let groupic =
+    "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737305761/demogathergreek/fraternityprofilepics/pexels-gatimu-m-1429881_lfjgsh.jpg";
+  switch (user.organization) {
+    case "Phi Beta Sigma":
+      groupic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304824/demogathergreek/fraternityprofilepics/sigmabrotherhood_cudwmi.jpg";
+      break;
+    case "Alpha Phi Alpha":
+      groupic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304672/demogathergreek/fraternityprofilepics/alphas_iuw0vx.jpg";
+      break;
+    case "Zeta Phi Beta":
+      groupic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304670/demogathergreek/fraternityprofilepics/zetas_eoathg.jpg";
+      break;
+    case "Alpha Kappa Alpha":
+      groupic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304780/demogathergreek/fraternityprofilepics/akas_koqf9z.avif";
+      break;
+    case "Omega Psi Phi":
+      groupic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304669/demogathergreek/fraternityprofilepics/omegas_goaesw.jpg";
+      break;
+    case "Kappa Alpha Psi":
+      groupic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304671/demogathergreek/fraternityprofilepics/kappas_fzdw0y.jpg";
+      break;
+    case "Delta Sigma Theta":
+      groupic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304669/demogathergreek/fraternityprofilepics/deltas_qbve32.jpg";
+      break;
+    case "Sigma Gamma Rho":
+      groupic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737306846/demogathergreek/fraternityprofilepics/sgrhos2_vljz82.jpg";
+      break;
+    case "Iota Phi Theta":
+      groupic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304670/demogathergreek/fraternityprofilepics/iotas_w5fozu.jpg";
+      break;
+    default:
+      break;
+  }
+
   return (
     <div className="bg-base-200 p-4">
       <div
         className="hero h-80 rounded-md md:h-40"
         style={{
-          backgroundImage: `url(${sigmabrotherhood.src})`,
+          backgroundImage: `url(${groupic})`,
         }}
       >
         <div className="hero-overlay bg-opacity-65"></div>
@@ -46,11 +105,11 @@ export default async function Page() {
             </h2>
             <div className="text-sm flex flex-row">
               <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
-              <div>Douglasville, GA</div>
+              <div>{user.location}</div>
             </div>
             <div className="text-sm flex flex-row">
               <FontAwesomeIcon icon={faPeopleGroup} className="w-3 mx-1" />
-              <div>Phi Beta Sigma, Mu Epsilon Chapter</div>
+              <div>{user.organization}</div>
             </div>
             <div className="text-sm flex flex-row">
               <FontAwesomeIcon icon={faUserGraduate} className="w-3 mx-1" />

@@ -9,6 +9,8 @@ import { Anton } from "next/font/google";
 import { findAllEvents } from "./actions";
 import Link from "next/link";
 import FraternityTagList from "@/components/FraternitytagList";
+import { getServerSession } from "next-auth/next";
+import { options } from "@/app/api/auth/[...nextauth]/options";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -16,11 +18,65 @@ const anton = Anton({
   style: ["normal"],
 });
 
-const greekimage = greekstep;
+type User = {
+  name: string;
+  email: string;
+  image: string;
+  id: string;
+  admincheck: boolean;
+  organization: string;
+  location: string;
+};
 
 export default async function Home() {
+  const session = await getServerSession(options);
   const dbevents = await findAllEvents();
-
+  let greekimage =
+    "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737305761/demogathergreek/fraternityprofilepics/pexels-gatimu-m-1429881_lfjgsh.jpg";
+  if (session?.user) {
+    const user = session.user as User;
+    console.log(user);
+    switch (user.organization) {
+      case "Phi Beta Sigma":
+        greekimage =
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737307174/demogathergreek/fraternityhomepagepics/greekstep-p01_vr4zmg.jpg";
+        break;
+      case "Alpha Phi Alpha":
+        greekimage =
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737307168/demogathergreek/fraternityhomepagepics/alphastep_xvlocc.jpg";
+        break;
+      case "Zeta Phi Beta":
+        greekimage =
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737307568/demogathergreek/fraternityhomepagepics/zetastep2_mvljrc.jpg";
+        break;
+      case "Alpha Kappa Alpha":
+        greekimage =
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737307785/demogathergreek/fraternityhomepagepics/akastep_i8zfeh.jpg";
+        break;
+      case "Omega Psi Phi":
+        greekimage =
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737307162/demogathergreek/fraternityhomepagepics/qstomp_jhbqzz.jpg";
+        break;
+      case "Kappa Alpha Psi":
+        greekimage =
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737307788/demogathergreek/fraternityhomepagepics/kappastep2_qbivs9.jpg";
+        break;
+      case "Delta Sigma Theta":
+        greekimage =
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737307572/demogathergreek/fraternityhomepagepics/deltastep2_qqcuqe.jpg";
+        break;
+      case "Sigma Gamma Rho":
+        greekimage =
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737309545/demogathergreek/fraternityhomepagepics/sgrhos3_qr72jg.webp";
+        break;
+      case "Iota Phi Theta":
+        greekimage =
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737308942/demogathergreek/fraternityhomepagepics/iotastep2_drlg0m.jpg";
+        break;
+      default:
+        break;
+    }
+  }
   return (
     <div>
       <Hero image={greekimage}></Hero>

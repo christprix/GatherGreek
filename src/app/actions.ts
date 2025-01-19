@@ -50,6 +50,27 @@ export async function findAllEvents() {
   return dbevents;
 }
 
+export async function findAllEventsByTag(tag: string) {
+  const dbevents = await prisma.event.findMany({
+    where: {
+      tags: {
+        hasEvery: [tag],
+      },
+    },
+    include: {
+      author: {
+        select: {
+          isVerified: true,
+          organization: true,
+          firstName: true,
+          lastName: true,
+        },
+      },
+    },
+  });
+  return dbevents;
+}
+
 export async function findUserInfo(id: string) {
   const dbuser = await prisma.user.findUnique({
     where: {

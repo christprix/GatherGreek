@@ -2,7 +2,12 @@ import Cardlist from "@/components/Cardlist";
 import { Anton } from "next/font/google";
 import SearchBar from "@/components/Search";
 import Taglist from "@/components/Taglist";
-import { findAllUsers, findAllEvents, findEventsbySearch } from "../actions";
+import {
+  findAllUsers,
+  findAllEvents,
+  findEventsbySearch,
+  findAllEventsByTag,
+} from "../actions";
 import LocationFinder from "@/components/Locationfinder";
 import FraternityTagList from "@/components/FraternitytagList";
 
@@ -19,12 +24,15 @@ export default async function Page(props: {
   let searchevents;
   // SEARCH DB BASED ON TAG INPUT
   // TODO! CHANGE TAG SEARCH TO ONE ACTIONS FUNCTION
-  if (!searchParams.q || searchParams.q === "") {
+  if (searchParams.tag) {
+    searchevents = await findAllEventsByTag(searchParams.tag);
+    console.log(searchParams.tag);
+    console.log(searchevents);
+  } else if (!searchParams.q || searchParams.q === "") {
     searchevents = await findAllEvents();
   } else {
     searchevents = await findEventsbySearch(searchParams.q);
   }
-  const dbusers = await findAllUsers();
   return (
     <>
       <div className="border-t border-blue-100 justify-center flex flex-col-reverse p-4 justify-around">
@@ -64,6 +72,12 @@ export default async function Page(props: {
         )}
       </div>
       <div className="flex justify-center md:justify-start md:ml-10 flex-wrap">
+        {searchevents.length === 0 && (
+          <div className="m-10">
+            Sorry looks like there are no events. Try searching for something
+            else.
+          </div>
+        )}
         <Cardlist events={searchevents}></Cardlist>
       </div>
     </>
