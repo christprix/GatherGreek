@@ -35,6 +35,7 @@ export default function Form({ user }: any) {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [imagepath, setImagepath] = useState("");
+  const [warningmessage, setWarningmessage] = useState("");
 
   const createEventWithId = createEvent.bind(null, user);
   const createEventwithImage = createEventWithId.bind(null, imagepath);
@@ -103,16 +104,67 @@ export default function Form({ user }: any) {
     { id: "Step 4", name: "Step Four Information" },
     { id: "Step 5", name: "Step Five Information" },
   ];
+  // NEXT BUTTON VALIDATOR
+  // CHECK IF CURRENT STEP IS PROPERLY FILLED OUT
+  const nextvalidator = () => {
+    console.log(currentStep);
+    switch (currentStep) {
+      case 0:
+        if (title.length < 5) {
+          setWarningmessage("Title must be at least 5 characters");
+        } else if (description.length < 10) {
+          setWarningmessage("Description must be at least 10 characters");
+        } else {
+          setCurrentStep((step) => step + 1);
+          setWarningmessage("");
+        }
+        break;
+      case 1:
+        console.log("Page 2");
+        if (address1.length < 1) {
+          setWarningmessage("Please enter an address");
+        } else if (city.length < 1) {
+          setWarningmessage("Please include a city");
+        } else if (state.length < 1) {
+          setWarningmessage("Please include a State");
+        } else if (zipcode.length < 1) {
+          setWarningmessage("Please include a Zip code");
+        } else {
+          setCurrentStep((step) => step + 1);
+          setWarningmessage("");
+        }
+        break;
+      case 2:
+        console.log("Page 3");
+        if (date.length < 1) {
+          setWarningmessage("Please enter a date");
+        } else if (time.length < 1) {
+          setWarningmessage("Please enter a time");
+        } else if (seats.length < 1) {
+          setWarningmessage("Please enter how many tickets you want available");
+        } else if (cost.length < 1) {
+          setWarningmessage("Please enter a ticket cost");
+        } else {
+          setCurrentStep((step) => step + 1);
+          setWarningmessage("");
+        }
+        break;
+      default:
+        setCurrentStep((step) => step + 1);
+        setWarningmessage("");
+    }
+  };
   // CREATE NEXT AND PREV BUTTON
   const next = () => {
     if (currentStep < steps.length - 1) {
-      setCurrentStep((step) => step + 1);
+      nextvalidator();
     }
   };
 
   const prev = () => {
     if (currentStep > 0) {
       setCurrentStep((step) => step - 1);
+      setWarningmessage("");
     }
   };
 
@@ -282,7 +334,7 @@ export default function Form({ user }: any) {
               </label>
               <label className="w-full">
                 <div className="label">
-                  <span className="label-text text-xl font-bold">Zip</span>
+                  <span className="label-text text-xl font-bold">Zipcode</span>
                 </div>
                 <input
                   className="input input-bordered w-full"
@@ -353,7 +405,7 @@ export default function Form({ user }: any) {
                 required
                 type="text"
                 name="event_cost"
-                placeholder="Type here"
+                placeholder="1.00"
                 className="input input-bordered w-full max-w"
                 value={cost}
                 onChange={(e) => handleCostChange(e.target.value)}
@@ -604,6 +656,9 @@ export default function Form({ user }: any) {
             </div>
           </form>
         </>
+      )}
+      {warningmessage.length > 0 && (
+        <div className="text-red-600">{warningmessage}</div>
       )}
       {/* NAVIGATION */}
       <div className="">
