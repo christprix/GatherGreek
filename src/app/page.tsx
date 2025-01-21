@@ -35,7 +35,6 @@ export default async function Home() {
     "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737305761/demogathergreek/fraternityprofilepics/pexels-gatimu-m-1429881_lfjgsh.jpg";
   if (session?.user) {
     const user = session.user as User;
-    console.log(user);
     switch (user.organization) {
       case "Phi Beta Sigma":
         greekimage =
@@ -91,68 +90,79 @@ export default async function Home() {
       </div>
       <Hero2 image={blackbasketball}></Hero2>
       <div className="bg-base-100 min-h-[70vh]">
-        <div className="flex justify-center flex-col lg:flex-row-reverse">
+        <div className="flex justify-center flex-row lg:flex-row-reverse">
           {/* <img src={qstomp.src} className="max-w-sm rounded-lg shadow-2xl" /> */}
           <div>
             <div className="mt-8 flex justify-center text-center text-xl md:text-3xl font-bold">
               How to Get Started?
             </div>
-            <div className="flex justify-center items-center flex-col py-6">
-              <div className="card bg-base-200 md:w-full w-96 ">
-                <div className="card-body">
-                  <h2 className="card-title">
-                    Create: Community or D9 Verified Events
-                  </h2>
-                  <div>
-                    <div className="my-2">
+            <div className="md:flex md:flex-row">
+              <div className="flex justify-center items-center flex-col py-6">
+                <div className="card bg-base-200 md:full w-96 ">
+                  <div className="card-body flex flex-col items-center">
+                    <h2 className="card-title">Create</h2>
+                    <figure className="px-10 pt-10 w-96">
+                      <img
+                        src="https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113760/sigmasignup_kh5zlh.jpg"
+                        alt="Shoes"
+                        className="rounded-xl"
+                      />
+                    </figure>
+                    <div>
                       Community Events are for anyone in the community that
                       wants to showcase an event for people to go to.
                     </div>
-                    <div>
-                      D9 Verified Events Are events created by D9 fraternity or
-                      sorority users who have been verified
+                    <div className="card-actions justify-center">
+                      <button className="btn btn-primary">
+                        <Link href={"/create_event"}>Create Events</Link>
+                      </button>
                     </div>
                   </div>
-                  <div className="card-actions justify-center">
-                    <button className="btn btn-primary">
-                      <Link href={"/create_event"}>Create Events</Link>
-                    </button>
+                </div>
+              </div>
+              <div className="flex flex-col items-center m-3 p-2">
+                <div className="card bg-base-200 md:w-full w-96">
+                  <div className="card-body flex flex-col items-center">
+                    <h2 className="card-title">Connect</h2>
+                    <figure className="px-10 pt-10 w-96">
+                      <img
+                        src="https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451342/a39368a7-4176-4a6a-901f-9acef9a09ca1-meals02_o0lfop.webp"
+                        alt="Shoes"
+                        className="rounded-xl"
+                      />
+                    </figure>
+                    <p>
+                      Look for events by City, Organization, or Category!
+                      Organize your tickets on your EventHub.
+                    </p>
+                    <div className="card-actions justify-center">
+                      <button className="btn btn-primary">
+                        <Link href={"/events"}>Find Events</Link>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="flex flex-col items-center py-6">
-              <div className="card bg-base-200 md:w-full w-96">
-                <div className="card-body">
-                  <h2 className="card-title">
-                    Connect: Search for Events with ease
-                  </h2>
-                  <p>
-                    Look for events by City, Organization, or Category! Organize
-                    your tickets on your EventHub.
-                  </p>
-                  <div className="card-actions justify-center">
-                    <button className="btn btn-primary">
-                      <Link href={"/events"}>Find Events</Link>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col items-center py-6">
-              <div className="card bg-base-200 md:w-full w-96 ">
-                <div className="card-body">
-                  <h2 className="card-title">
-                    Community: Find and connect with Event organizers
-                  </h2>
-                  <p>
-                    After attending an event, follow the event organizers and
-                    stay on the lookout for future chances to attend.
-                  </p>
-                  <div className="card-actions justify-center">
-                    <button className="btn btn-primary">
-                      <Link href={"/profile"}>View your Events</Link>
-                    </button>
+              <div className="flex flex-col items-center py-6">
+                <div className="card bg-base-200 md:w-full w-96 ">
+                  <div className="card-body flex flex-col items-center">
+                    <h2 className="card-title">Community</h2>
+                    <figure className="px-10 pt-10 w-96">
+                      <img
+                        src="https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451287/66d385_e1ef661a1fcb45b08b9eff0ec715e248_mv2_ye9it0.jpg"
+                        alt="Shoes"
+                        className="rounded-xl"
+                      />
+                    </figure>
+                    <p>
+                      After attending an event, follow the event organizers and
+                      stay on the lookout for future chances to attend.
+                    </p>
+                    <div className="card-actions justify-center">
+                      <button className="btn btn-primary">
+                        <Link href={"/profile"}>View your Events</Link>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
