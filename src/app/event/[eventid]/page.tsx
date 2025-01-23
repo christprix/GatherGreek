@@ -33,21 +33,28 @@ export default async function EventDetails(props: {
   });
   // GET SESSION USERID
   const session = await getServerSession(options);
-  const userId = session?.user?.id;
+  let userId;
   const EventCreatorInfo = await findUserInfo(dbevent?.authorId as string);
-  const dbmyevents = await findMyEventsbyId(userId as string);
+  let dbmyevents;
+  if (session?.user) {
+    userId = session?.user?.id;
+    dbmyevents = await findMyEventsbyId(userId as string);
+  }
 
   // CHECK IF TICKETS AVAILABLE
   // CREATE AN ARRAY
   let eventIds: string[] = [];
-  // PUSH EVENT TICKET IDS INTO ARRAY
-  function findEventIds(event: any) {
-    eventIds.push(event.id);
+  let doIAlreadyHaveTickets;
+  if (session?.user) {
+    // PUSH EVENT TICKET IDS INTO ARRAY
+    function findEventIds(event: any) {
+      eventIds.push(event.id);
+    }
+    // LOOP THROUGH ARRAYS
+    dbmyevents?.User_Scheduled_Events.forEach(findEventIds);
+    // CHECK IF TICKET AND EVENT MATCH
+    doIAlreadyHaveTickets = eventIds.includes(params.eventid);
   }
-  // LOOP THROUGH ARRAYS
-  dbmyevents?.User_Scheduled_Events.forEach(findEventIds);
-  // CHECK IF TICKET AND EVENT MATCH
-  const doIAlreadyHaveTickets = eventIds.includes(params.eventid);
 
   // TAGS FUNCTION
   const getTags = dbevent?.tags.map((e: any) => {
@@ -151,40 +158,54 @@ export default async function EventDetails(props: {
                 <div>Other Events by {EventCreatorInfo?.firstName} </div>
               </div>
             </div>
-            {dbevent.totalSeats === 0 ||
-              (doIAlreadyHaveTickets && (
-                <div
-                  id="right"
-                  className="flex flex-col h-fit md:w-2/5 md:sticky md:top-0 w-full md:ml-2 rounded items-center md:my-0 my-2 p-4 bg-base-200"
-                >
+            <div
+              id="right"
+              className="flex flex-col h-fit md:w-2/5 md:sticky md:top-0 w-full md:ml-2 rounded items-center md:my-0 my-2 p-4 bg-base-200"
+            >
+              {!session?.user && (
+                <>
                   <div className="text-xl m-2">
-                    You already have tickets for this Event!
+                    Sorry but you can't get tickets just yet!
                   </div>
                   <div className="text-xl m-2">
                     Remaining Tickets: {dbevent.totalSeats}
                   </div>
-                  <Link className="btn btn-primary" href={"/profile"}>
-                    View Tickets
+                  <Link className="disabled btn btn-primary" href={"/signup"}>
+                    Sign Up of Log in to View Tickets
                   </Link>
-                </div>
-              ))}
-            {dbevent.totalSeats > 0 && !doIAlreadyHaveTickets && (
-              <div
-                id="right"
-                className="flex flex-col h-fit md:w-2/5 md:sticky md:top-0 w-full md:ml-2 rounded items-center md:my-0 my-2 p-4 bg-base-200"
-              >
-                <div className="text-xl m-2">Sign Up Today!</div>
-                <div className="text-xl m-2">
-                  Remaining Tickets: {dbevent.totalSeats}
-                </div>
-                <JoinEventButton
-                  className="p-3"
-                  eventId={params.eventid}
-                  userId={userId}
-                  eventSeats={dbevent.totalSeats}
-                ></JoinEventButton>
-              </div>
-            )}
+                </>
+              )}
+              {(session?.user && dbevent.totalSeats === 0) ||
+                (doIAlreadyHaveTickets && (
+                  <>
+                    <div className="text-xl m-2">
+                      You already have tickets for this Event!
+                    </div>
+                    <div className="text-xl m-2">
+                      Remaining Tickets: {dbevent.totalSeats}
+                    </div>
+                    <Link className="btn btn-primary" href={"/profile"}>
+                      View Tickets
+                    </Link>
+                  </>
+                ))}
+              {session?.user &&
+                dbevent.totalSeats > 0 &&
+                !doIAlreadyHaveTickets && (
+                  <>
+                    <div className="text-xl m-2">Sign Up Today!</div>
+                    <div className="text-xl m-2">
+                      Remaining Tickets: {dbevent.totalSeats}
+                    </div>
+                    <JoinEventButton
+                      className="p-3"
+                      eventId={params.eventid}
+                      userId={userId}
+                      eventSeats={dbevent.totalSeats}
+                    ></JoinEventButton>
+                  </>
+                )}
+            </div>
           </div>
         </div>
       ) : (

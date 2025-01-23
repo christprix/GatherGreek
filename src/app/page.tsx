@@ -90,7 +90,7 @@ export default async function Home() {
       </div>
       <Hero2 image={blackbasketball}></Hero2>
       <div className="bg-base-100 min-h-[70vh]">
-        <div className="flex justify-center flex-row lg:flex-row-reverse">
+        <div className="flex justify-center flex-col lg:flex-row-reverse">
           {/* <img src={qstomp.src} className="max-w-sm rounded-lg shadow-2xl" /> */}
           <div>
             <div className="mt-8 flex justify-center text-center text-xl md:text-3xl font-bold">
