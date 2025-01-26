@@ -155,7 +155,6 @@ export default async function EventDetails(props: {
                   <p className={`text-3xl ${anton.className}`}>Price</p>
                   <p>{dbevent.priceInCents}</p>
                 </div>
-                <div>Other Events by {EventCreatorInfo?.firstName} </div>
               </div>
             </div>
             <div
@@ -171,7 +170,7 @@ export default async function EventDetails(props: {
                     Remaining Tickets: {dbevent.totalSeats}
                   </div>
                   <Link className="disabled btn btn-primary" href={"/signup"}>
-                    Sign Up of Log in to View Tickets
+                    Sign Up/Log in to View Tickets
                   </Link>
                 </>
               )}
