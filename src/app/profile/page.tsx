@@ -1,4 +1,3 @@
-import saint2 from "/public/saint2.jpg";
 import { Anton } from "next/font/google";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,7 +8,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { getServerSession } from "next-auth/next";
 import { options } from "@/app/api/auth/[...nextauth]/options";
-import sigmabrotherhood from "/public/sigmabrotherhood.jpg";
 import SideCardlist from "@/components/SideCardList";
 import { findMyEvents, findScheduledEvents } from "../actions";
 import ProfileAvatar from "@/components/profile/ProfileAvatar";

@@ -56,7 +56,7 @@ export default function Taglist() {
   const tags = importedtags.map((t: any, index: number) => {
     return (
       <div className="flex-col" key={index}>
-        <div className="avatar m-3 mx-5 flex-col">
+        <div className="avatar m-3 md:mx-5 mx-2  flex-col">
           <Link
             href={`/events?tag=${t.values}`}
             className="p-5 hover:bg-base-200 border-2 w-20 rounded-full ring-offset-2"

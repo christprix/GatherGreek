@@ -12,7 +12,11 @@ export default async function Nav({ logo }: any) {
   // CHECK IF ADMIN
   function admincheck() {
     if (session?.user?.admincheck) {
-      return <Link href={"/admin"}>Admin</Link>;
+      return (
+        <li>
+          <Link href={"/admin"}>Admin</Link>;
+        </li>
+      );
     }
     return <></>;
   }
@@ -39,6 +43,7 @@ export default async function Nav({ logo }: any) {
       <div className="navbar-center hidden md:flex mx-3 text-xl font-bold">
         GreekGather
       </div>
+      {/* IF LOGGED IN TERNARY */}
       {!session ? (
         <div className="navbar-end hidden md:flex">
           <Link href={"/events"} className="btn btn-outline">
@@ -77,6 +82,9 @@ export default async function Nav({ logo }: any) {
                 <Link href={"/profile"}>Profile</Link>
               </li>
               <li>
+                <Link href={"/myevents"}>My Events</Link>
+              </li>
+              <li>
                 <Link href={"/api/auth/signout"}>Sign Out</Link>
               </li>
             </ul>
@@ -84,6 +92,7 @@ export default async function Nav({ logo }: any) {
         </div>
       )}
       <div className="navbar-end md:hidden">
+        {/* IF LOGGED IN TERNARY 2 */}
         {!session ? (
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
@@ -138,7 +147,10 @@ export default async function Nav({ logo }: any) {
               <li>
                 <Link href={"/profile"}>Profile</Link>
               </li>
-              <li>{admincheck()}</li>
+              {/* TODO ADD ADMIN */}
+              <li>
+                <Link href={"/myevents"}>My Events</Link>
+              </li>
               <li>
                 <Link href={"/create_event"}>Create Event</Link>
               </li>

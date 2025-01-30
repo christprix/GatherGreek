@@ -11,6 +11,7 @@ import Link from "next/link";
 import FraternityTagList from "@/components/FraternitytagList";
 import { getServerSession } from "next-auth/next";
 import { options } from "@/app/api/auth/[...nextauth]/options";
+import Cardlist from "@/components/Cardlist";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -94,10 +95,11 @@ export default async function Home() {
           {/* <img src={qstomp.src} className="max-w-sm rounded-lg shadow-2xl" /> */}
           <div>
             <div className="mt-8 flex justify-center text-center text-xl md:text-3xl font-bold">
-              How to Get Started?
+              Popular Events Near You
             </div>
-            <div className="md:flex md:flex-row">
-              <div className="flex justify-center items-center flex-col py-6">
+            <div className="flex justify-center md:justify-start md:ml-10 flex-wrap">
+              <Cardlist events={dbevents}></Cardlist>
+              {/* <div className="flex justify-center items-center flex-col py-6">
                 <div className="card bg-base-200 md:full w-96 ">
                   <div className="card-body flex flex-col items-center">
                     <h2 className="card-title">Create</h2>
@@ -165,7 +167,7 @@ export default async function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -1,8 +1,6 @@
-import greekstep from "/public/greekstep-p01.jpg";
 import prisma from "@/lib/prisma";
 import Image from "next/image";
 import dateFormat from "dateformat";
-import Avatarlist from "@/components/Avatarlist";
 import JoinEventButton from "@/components/event/JoinEventButton";
 import { getServerSession } from "next-auth/next";
 import { Anton } from "next/font/google";
