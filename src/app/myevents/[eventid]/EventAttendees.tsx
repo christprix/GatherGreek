@@ -1,4 +1,4 @@
-export default function () {
+export default function EventAttendees() {
   return (
     <div>
       <div>Event Dashboard</div>

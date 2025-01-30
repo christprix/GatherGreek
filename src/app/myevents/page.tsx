@@ -15,7 +15,7 @@ type User = {
   location: string;
 };
 
-export default async function () {
+export default async function MyEvents() {
   // GET SESSION USER
   const session = await getServerSession(options);
   const user = session?.user as User;
