@@ -26,15 +26,15 @@ export default async function Nav({ logo }: any) {
   switch (user.organization) {
     case "Phi Beta Sigma":
       navpic =
-        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738204913/zeta-phi-beta-seal-label-text-sticker-logo-transparent-png-773298_k81anf.png";
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738204743/sigmalogo_bim0lk.png";
       break;
     case "Alpha Phi Alpha":
       navpic =
-        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304672/demogathergreek/fraternityprofilepics/alphas_iuw0vx.jpg";
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738207466/alphalogo_jymdup.pn";
       break;
     case "Zeta Phi Beta":
       navpic =
-        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304670/demogathergreek/fraternityprofilepics/zetas_eoathg.jpg";
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738204913/zeta-phi-beta-seal-label-text-sticker-logo-transparent-png-773298_k81anf.png";
       break;
     case "Alpha Kappa Alpha":
       navpic =
