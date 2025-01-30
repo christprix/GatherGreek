@@ -2,13 +2,10 @@
 // to use useSession
 import Hero from "@/components/Hero";
 import Hero2 from "@/components/Hero2";
-import greekstep from "/public/greekstep-p01.jpg";
 import blackbasketball from "/public/blackbasketball.jpg";
 import Taglist from "@/components/Taglist";
 import { Anton } from "next/font/google";
 import { findAllEvents } from "./actions";
-import Link from "next/link";
-import FraternityTagList from "@/components/FraternitytagList";
 import { getServerSession } from "next-auth/next";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import Cardlist from "@/components/Cardlist";

@@ -6,31 +6,71 @@ import profilepic from "/public/headshot.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 
+// CREATE USER TYPE
+type User = {
+  name: string;
+  email: string;
+  image: string;
+  id: string;
+  admincheck: boolean;
+  organization: string;
+  location: string;
+};
+
 export default async function Nav({ logo }: any) {
   // GET SESSION
   const session = await getServerSession(options);
-  // CHECK IF ADMIN
-  function admincheck() {
-    if (session?.user?.admincheck) {
-      return (
-        <li>
-          <Link href={"/admin"}>Admin</Link>;
-        </li>
-      );
-    }
-    return <></>;
+  const user = session?.user as User;
+  let navpic =
+    "https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113943/g-icon_tjgz9i.png";
+  switch (user.organization) {
+    case "Phi Beta Sigma":
+      navpic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738204913/zeta-phi-beta-seal-label-text-sticker-logo-transparent-png-773298_k81anf.png";
+      break;
+    case "Alpha Phi Alpha":
+      navpic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304672/demogathergreek/fraternityprofilepics/alphas_iuw0vx.jpg";
+      break;
+    case "Zeta Phi Beta":
+      navpic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304670/demogathergreek/fraternityprofilepics/zetas_eoathg.jpg";
+      break;
+    case "Alpha Kappa Alpha":
+      navpic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304780/demogathergreek/fraternityprofilepics/akas_koqf9z.avif";
+      break;
+    case "Omega Psi Phi":
+      navpic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304669/demogathergreek/fraternityprofilepics/omegas_goaesw.jpg";
+      break;
+    case "Kappa Alpha Psi":
+      navpic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304671/demogathergreek/fraternityprofilepics/kappas_fzdw0y.jpg";
+      break;
+    case "Delta Sigma Theta":
+      navpic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304669/demogathergreek/fraternityprofilepics/deltas_qbve32.jpg";
+      break;
+    case "Sigma Gamma Rho":
+      navpic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737306846/demogathergreek/fraternityprofilepics/sgrhos2_vljz82.jpg";
+      break;
+    case "Iota Phi Theta":
+      navpic =
+        "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304670/demogathergreek/fraternityprofilepics/iotas_w5fozu.jpg";
+      break;
+    default:
+      break;
   }
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start ">
         <Link href={"/"} className="btn btn-ghost">
           <div className="avatar">
             <div className="w-12 rounded-full">
-              <img
-                src="https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113943/g-icon_tjgz9i.png"
-                alt=""
-                className="rounded"
-              />
+              <img src={navpic} alt="" className="rounded" />
             </div>
           </div>
         </Link>
