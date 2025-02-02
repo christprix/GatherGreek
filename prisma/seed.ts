@@ -92,7 +92,7 @@ async function main() {
               "https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451196/Community-Service-Baskets-773x1030_eyitfb.jpg",
             eventDate: fakedate,
             totalSeats: 2,
-            tags: ["COMMUNITY SERVICE", "Alpha Phi Alpha"],
+            tags: ["community service", "Alpha Phi Alpha"],
           },
         ],
       },

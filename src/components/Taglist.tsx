@@ -26,11 +26,11 @@ const element3 = {
 };
 const element4 = {
   icon: <FontAwesomeIcon className="text-3xl" icon={faUserGraduate} />,
-  values: "EDUCATION",
+  values: "education",
 };
 const element5 = {
   icon: <FontAwesomeIcon className="text-3xl" icon={faMoneyBillTrendUp} />,
-  values: "Finance",
+  values: "economics",
 };
 const element6 = {
   icon: <FontAwesomeIcon className="text-3xl" icon={faUserGroup} />,
