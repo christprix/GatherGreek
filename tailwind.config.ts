@@ -13,10 +13,24 @@ const config = {
       "valentine",
       "luxury",
       {
-        dark: {
-          ...require("daisyui/src/theming/themes")["forest"],
-          primary: "#f6d860",
-          secondary: "teal",
+        kappa: {
+          primary: "#c2410c",
+
+          secondary: "#ffffff",
+
+          accent: "#00ffff",
+
+          neutral: "#b91c1c",
+
+          "base-100": "#70110C",
+
+          info: "#1c1917",
+
+          success: "#00ff00",
+
+          warning: "#00ff00",
+
+          error: "#ff0000",
         },
       },
     ],

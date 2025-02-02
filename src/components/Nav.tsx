@@ -54,6 +54,7 @@ export default async function Nav({ logo }: any) {
       case "Kappa Alpha Psi":
         navpic =
           "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738473278/a4aa36658ac47cbec405b3e76a8ba6cb_okfxeq.png";
+        navtheme = "kappa";
         break;
       case "Delta Sigma Theta":
         navpic =
