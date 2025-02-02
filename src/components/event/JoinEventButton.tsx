@@ -1,4 +1,6 @@
 "use client";
+import { redirect } from "next/navigation";
+
 import { addUserToEvent } from "@/app/actions";
 import { revalidatePath } from "next/cache";
 export default function JoinEventButton({ userId, eventId, eventSeats }: any) {
@@ -6,8 +8,9 @@ export default function JoinEventButton({ userId, eventId, eventSeats }: any) {
     try {
       addUserToEvent(userId, eventId, eventSeats);
       console.log("You connected", userId, "and", eventId);
-      alert("You have successfully registered for this event.");
+      // alert("You have successfully registered for this event.");
       revalidatePath(`/event/${eventId}`);
+      redirect("/");
     } catch (error) {
       console.log(error);
     }

@@ -1,9 +1,6 @@
 import dateFormat from "dateformat";
-import sigmavolunteer from "/public/sigmavolunteer.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-import Avatarlist from "./Avatarlist";
-import sgrhoevent from "/public/sgrhoevent.jpg";
 import Link from "next/link";
 
 export default function SideCard({ event }: any) {
@@ -24,7 +21,7 @@ export default function SideCard({ event }: any) {
         <div className="text-xs flex flex-row">
           <FontAwesomeIcon icon={faCalendarDays} className="w-3 mx-1" />
           <div className="text-sm">
-            {/* {dateFormat(`${event.eventDate}`, "dddd, mmmm dS, yyyy")} */}
+            {dateFormat(`${event.eventDate}`, "dddd, mmmm dS, yyyy")}
           </div>
         </div>
         <div className="test-xs text-wrap">{event.location}</div>

@@ -4,6 +4,7 @@ import { z } from "zod";
 import { hash } from "bcrypt";
 import { log } from "console";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 export async function findEventsbySearch(query: any) {
   const dbevents = await prisma.event.findMany({
@@ -255,9 +256,14 @@ export async function createEvent(
     },
   });
   console.log(newEvent);
-  try {
-    console.log("tried");
-  } catch (err) {
-    console.log("didn't work");
-  }
+  redirect(`/myevents/${newEvent.id}`);
+}
+
+export async function deleteEventPrisma(eventid: string) {
+  const deleteEvent = await prisma.event.delete({
+    where: { id: eventid },
+  });
+  console.log("Deleting Event!");
+  // return deleteEvent;
+  revalidatePath("/");
 }

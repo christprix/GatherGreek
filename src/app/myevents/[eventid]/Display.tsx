@@ -10,6 +10,7 @@ import {
 import { Anton } from "next/font/google";
 import { useState } from "react";
 import EventAttendeesList from "./EventAttendees";
+import DeleteEvent from "./DeleteEvent";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -17,7 +18,7 @@ const anton = Anton({
   style: ["normal"],
 });
 
-export default function Display({ dbevent }: any) {
+export default function Display({ dbevent, EventCreatorInfo }: any) {
   // TAGS FUNCTION
   const getTags = dbevent?.tags.map((e: any) => {
     return (
@@ -65,7 +66,10 @@ export default function Display({ dbevent }: any) {
                     </figure>
                     <div className="card-body">
                       <div className="text-xs flex flex-col">
-                        <h2 className="card-title"></h2>
+                        <h2 className="card-title">
+                          {EventCreatorInfo?.firstName}{" "}
+                          {EventCreatorInfo?.lastName}
+                        </h2>
                         <p className="text-sm">Organizer info</p>
                       </div>
                     </div>
@@ -128,6 +132,8 @@ export default function Display({ dbevent }: any) {
         return <EventAttendeesList dbevent={dbevent}></EventAttendeesList>;
       case "Edit":
         return <>Edit Page</>;
+      case "Delete Event":
+        return <DeleteEvent dbevent={dbevent}></DeleteEvent>;
       default:
         return <>TBA</>;
         break;
@@ -135,7 +141,7 @@ export default function Display({ dbevent }: any) {
   }
 
   return (
-    <div className="flex h-full flex-col md:flex-row overflow-hidden">
+    <div className="flex h-full flex-col md:flex-row overflow-hidden ">
       <div className="w-full flex-none md:w-64">
         <SideNav
           imagepath={dbevent?.imagePath}

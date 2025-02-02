@@ -23,6 +23,11 @@ export default function SideNav({ imagepath, changeDisplay }: any) {
     console.log("main");
   };
 
+  const handleDeleteChange = () => {
+    changeDisplay("Delete Event");
+    console.log("Delete");
+  };
+
   return (
     <div className="flex h-full flex-col px-3 py-4 md:px-2">
       <div className="flex items-center justify-center">
@@ -57,6 +62,12 @@ export default function SideNav({ imagepath, changeDisplay }: any) {
               className="btn flex-grow w-full items-center justify center"
             >
               Who is going
+            </button>
+            <button
+              onClick={handleDeleteChange}
+              className="btn flex-grow w-full items-center justify center"
+            >
+              Delete Event
             </button>
             <button
               onClick={handleScholarshipChange}
