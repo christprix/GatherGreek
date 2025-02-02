@@ -1,7 +1,5 @@
 import type { NextAuthOptions } from "next-auth";
-import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
 import { compare } from "bcrypt";
 
@@ -56,6 +54,8 @@ export const options: NextAuthOptions = {
           admincheck: user.isAdmin,
           organization: user.organization,
           location: user.location,
+          chapter: user.chapter,
+          university: user.university,
         };
       },
     }),
@@ -70,6 +70,8 @@ export const options: NextAuthOptions = {
           admincheck: token.admincheck,
           organization: token.organization,
           location: token.location,
+          chapter: token.chapter,
+          university: token.university,
         },
       };
     },
@@ -82,6 +84,8 @@ export const options: NextAuthOptions = {
           admincheck: u.admincheck,
           organization: u.organization,
           location: u.location,
+          university: u.university,
+          chapter: u.chapter,
         };
       }
       return token;

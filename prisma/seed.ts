@@ -117,7 +117,7 @@ async function main() {
               "The Sgrho Community Service Event is a day dedicated to giving back and making a positive impact. Join the Sigma Gamma Rho Sorority as they lead various service projects aimed at improving our community. Whether it's cleaning up local parks, organizing donation drives, or helping out at local shelters, your participation will contribute to a better and brighter community for all.",
             short_description:
               "Participate in various service projects led by Sigma Gamma Rho Sorority, aimed at improving our community and making a positive impact.",
-            priceInCents: "$1.00",
+            priceInCents: "1.00",
             imagePath:
               "https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451287/66d385_e1ef661a1fcb45b08b9eff0ec715e248_mv2_ye9it0.jpg",
             eventDate: faker.date.future(),
@@ -147,7 +147,7 @@ async function main() {
               "Enjoy a day of delicious food and lively entertainment at the Omega Psi Phi BBQ and Performance. This event promises a feast of mouth-watering BBQ dishes, prepared with love and care. In addition to the great food, attendees will be treated to performances showcasing the fraternity's talents, making it a perfect blend of culinary delights and cultural expression.",
             short_description:
               "Enjoy delicious BBQ and live performances by Omega Psi Phi, blending great food with vibrant entertainment for a memorable day.",
-            priceInCents: "$1.00",
+            priceInCents: "1.00",
             imagePath:
               "https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451342/a39368a7-4176-4a6a-901f-9acef9a09ca1-meals02_o0lfop.webp",
             eventDate: faker.date.future(),
@@ -175,7 +175,7 @@ async function main() {
             location: "6700 Church St, Douglasville, GA 30134",
             description:
               "Empower yourself with essential financial knowledge at the Sgrho Financial Literacy Class. This informative session, hosted by Zeta phi beta Sorority, will cover key topics such as budgeting, saving, investing, and managing debt. Whether you're just starting on your financial journey or looking to refine your skills, this class offers valuable insights to help you achieve financial stability and success.",
-            priceInCents: "$0.00",
+            priceInCents: "0.00",
             imagePath:
               "https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451504/Zeta-Phi-Beta-Sorority-Inc-and-US-Fish-and-Wildlife-Service_ud3f1p.webp",
             short_description:
@@ -205,7 +205,7 @@ async function main() {
             location: "6700 Church St, Douglasville, GA 30134",
             description:
               "Empower yourself with essential financial knowledge at the Kappa Tutoring event. This informative session, hosted by Kappa Alpha Psi, will cover key topics such as budgeting, saving, investing, and managing debt. Whether you're just starting on your financial journey or looking to refine your skills, this class offers valuable insights to help you achieve financial stability and success.",
-            priceInCents: "$0.00",
+            priceInCents: "0.00",
             imagePath:
               "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738474549/02.17-kappa-reads_rh3cqs.jpg",
             short_description:

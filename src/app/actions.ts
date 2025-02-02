@@ -188,6 +188,8 @@ export async function createUser(formData: FormData) {
     lastname: formData.get("lastname"),
     organization: formData.get("greek affiliation"),
     email: formData.get("email"),
+    chapter: formData.get("chapter"),
+    university: formData.get("university"),
     password: formData.get("password"),
   });
 
@@ -204,6 +206,7 @@ export async function createUser(formData: FormData) {
 
   // Mutate data
   const hashed = await hash(formData.get("password") as string, 10);
+
   try {
     const newUser = await prisma.user.create({
       data: {
@@ -212,14 +215,15 @@ export async function createUser(formData: FormData) {
         firstName: formData.get("firstname") as string,
         lastName: formData.get("lastname") as string,
         organization: formData.get("greek affiliation") as string,
+        chapter: formData.get("chapter") as any,
+        university: formData.get("university") as any,
       },
     });
     console.log(newUser);
   } catch (error) {
     console.log("something went wrong");
+    redirect("/profile?message=bad");
   }
-  console.log("user creation attempted");
-  redirect("/profile");
 }
 
 export async function createEvent(
@@ -234,7 +238,6 @@ export async function createEvent(
   } else {
     image = imagePath;
   }
-  console.log(formData);
   const eventdate = formData.get("eventDate");
   const formattedDate = new Date(eventdate as string);
   // console.log(formattedDate);
@@ -242,22 +245,27 @@ export async function createEvent(
   // console.log(formattedSeats);
   // TODO USE FUNCTION BELOW TO CONVERT PRICE TO NUMBER
   // const formattedPrice = Number(formData.get("eventCost"))
-  const newEvent = await prisma.event.create({
-    data: {
-      title: formData.get("event_title") as string,
-      description: formData.get("event_description") as string,
-      tags: [formData.get("event_type") as string],
-      location: "America",
-      imagePath: image,
-      eventDate: formattedDate as Date,
-      totalSeats: formattedSeats as number,
-      // TODO CHANGE PRICE TO NUMBER
-      priceInCents: formData.get("event_cost") as string,
-      authorId: user as any,
-    },
-  });
-  console.log(newEvent);
-  redirect(`/myevents/${newEvent.id}`);
+  try {
+    const newEvent = await prisma.event.create({
+      data: {
+        title: formData.get("event_title") as string,
+        description: formData.get("event_description") as string,
+        tags: [formData.get("event_type") as string],
+        location: "America",
+        imagePath: image,
+        eventDate: formattedDate as Date,
+        totalSeats: formattedSeats as number,
+        // TODO CHANGE PRICE TO NUMBER
+        priceInCents: formData.get("event_cost") as string,
+        authorId: user as any,
+      },
+    });
+    console.log(newEvent);
+    redirect(`/myevents/${newEvent.id}`);
+  } catch (error: any) {
+    console.error("Prisma create event failed. Error ;", error.message);
+    redirect("/?message=creation_failed");
+  }
 }
 
 export async function deleteEventPrisma(eventid: string) {

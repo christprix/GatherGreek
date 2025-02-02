@@ -9,7 +9,6 @@ export default function JoinEventButton({ userId, eventId, eventSeats }: any) {
       addUserToEvent(userId, eventId, eventSeats);
       console.log("You connected", userId, "and", eventId);
       // alert("You have successfully registered for this event.");
-      revalidatePath(`/`, "layout");
       redirect("/profile");
     } catch (error) {
       console.log(error);

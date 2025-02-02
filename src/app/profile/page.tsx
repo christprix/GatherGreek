@@ -28,6 +28,8 @@ type User = {
   admincheck: boolean;
   organization: string;
   location: string;
+  university: any;
+  chapter: any;
 };
 
 export default async function Page() {
@@ -102,17 +104,21 @@ export default async function Page() {
             <h2 className="card-title text-xs">
               Welcome, {session?.user?.name}
             </h2>
-            <div className="text-sm flex flex-row">
+            {/* ADD LATER IF YOU WANT LOCATION */}
+            {/* <div className="text-sm flex flex-row">
               <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
               <div>{user.location}</div>
-            </div>
+            </div> */}
             <div className="text-sm flex flex-row">
               <FontAwesomeIcon icon={faPeopleGroup} className="w-3 mx-1" />
-              <div>{user.organization}</div>
+              <div className="flex-col">
+                <div>{user.organization}</div>
+                <div>{user.chapter || "Chapter: Unknown"}</div>
+              </div>
             </div>
             <div className="text-sm flex flex-row">
               <FontAwesomeIcon icon={faUserGraduate} className="w-3 mx-1" />
-              <div>Florida State University</div>
+              <div>{user.university || "University: Unknown"}</div>
             </div>
           </div>
         </div>
@@ -132,17 +138,21 @@ export default async function Page() {
           </figure>
           <div className="card-body items-left text-left">
             <h2 className="card-title">Welcome Back, {session?.user?.name}</h2>
-            <div className="text-xs flex flex-row">
+            {/* ADD IF YOU WANT LOCATION */}
+            {/* <div className="text-xs flex flex-row">
               <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
-              <div>Douglasville, GA</div>
-            </div>
+              <div>{user.location}</div>
+            </div> */}
             <div className="text-xs flex flex-row">
               <FontAwesomeIcon icon={faPeopleGroup} className="w-3 mx-1" />
-              <div>Phi Beta Sigma, Mu Epsilon Chapter</div>
+              <div className="flex-col">
+                <div>{user.organization}</div>
+                <div>{user.chapter || "Chapter Unknown"}</div>
+              </div>
             </div>
             <div className="text-xs flex flex-row">
               <FontAwesomeIcon icon={faUserGraduate} className="w-3 mx-1" />
-              <div>Florida State University</div>
+              <div>{user.university || "University Unknown"}</div>
             </div>
           </div>
         </div>

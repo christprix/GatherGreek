@@ -23,7 +23,7 @@ export default function Signup() {
         </div>
         <form className="py-10 flex justify-center" action={createUser}>
           <div className="bg-base-100 p-4 md:m-4 w-96  rounded shadow-md">
-            <label className="text-xl font-bold">First Name</label>
+            <label className="text-xl font-bold">First Name *</label>
             <input
               className="input input-bordered w-full "
               type="text"
@@ -32,7 +32,7 @@ export default function Signup() {
               min={2}
               max={15}
             />
-            <label className="text-xl font-bold">Last Name</label>
+            <label className="text-xl font-bold">Last Name *</label>
             <input
               className="input input-bordered w-full "
               type="text"
@@ -64,14 +64,26 @@ export default function Signup() {
                 <option value={"Iota Phi Theta"}>Iota Phi Theta</option>
               </select>
             </label>
-            <label className="text-xl font-bold">Email</label>
+            <label className="text-xl font-bold">Email *</label>
             <input
               className="input input-bordered w-full "
               type="text"
               name="email"
               required
             />
-            <label>Password</label>
+            <label className="text-xl font-bold">Chapter</label>
+            <input
+              className="input input-bordered w-full "
+              type="text"
+              name="chapter"
+            />
+            <label className="text-xl font-bold">University</label>
+            <input
+              className="input input-bordered w-full "
+              type="text"
+              name="university"
+            />
+            <label className="text-xl font-bold">Password *</label>
             <input
               className="input input-bordered w-full "
               type="password"

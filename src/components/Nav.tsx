@@ -59,6 +59,7 @@ export default async function Nav({ logo }: any) {
       case "Delta Sigma Theta":
         navpic =
           "https://res.cloudinary.com/dm54zi0ff/image/upload/c_pad,w_350,h_350,ar_1:1/v1738473750/kisspng-howard-university-texas-woman-s-university-delta-s-sigma-nu-5b3dcfff4b9642.3805793015307775993096_vw7wcb.png";
+        navtheme = "kappa";
         break;
       case "Sigma Gamma Rho":
         navpic =
@@ -88,11 +89,11 @@ export default async function Nav({ logo }: any) {
       </div>
       <div className="navbar-center">
         <Link href={"/"} className="btn btn-ghost text-xl md:hidden">
-          GreekGather
+          GatherGreek
         </Link>
       </div>
       <div className="navbar-center hidden md:flex mx-3 text-xl font-bold">
-        GreekGather
+        GatherGreek
       </div>
       {/* IF LOGGED IN TERNARY */}
       {!session ? (

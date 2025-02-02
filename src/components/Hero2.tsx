@@ -13,7 +13,7 @@ export default function Hero2({ image }: any) {
         {/* <img src={sigmastep.src} className="max-w-sm rounded-lg shadow-2xl" /> */}
         <div className="max-w-md">
           <h2 className="mb-1 md:text-3xl text-2xl text-center font-bold">
-            What is Greek Gather?
+            What is Gather Greek?
           </h2>
           <div className="mb-1 text-sm text-center m-3 md:text-base flex flex-row justify-center">
             <div className="m-2">
@@ -35,7 +35,7 @@ export default function Hero2({ image }: any) {
           <p className="text-sm">
             Your destination for organizing and discovering a wide range of
             events, from political forums and educational workshops to financial
-            seminars and entertainment gatherings. Greek Gather simplifies event
+            seminars and entertainment gatherings. Gather Greek simplifies event
             creation and management, empowering you to connect with fellow
             members and other Greek organizations.
           </p>
