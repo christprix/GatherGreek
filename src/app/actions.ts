@@ -144,6 +144,7 @@ export async function addUserToEvent(
         totalSeats: newSeats,
       },
     });
+    revalidatePath(`/`, "layout");
     return connectUserToEvent;
   }
 }
@@ -265,5 +266,5 @@ export async function deleteEventPrisma(eventid: string) {
   });
   console.log("Deleting Event!");
   // return deleteEvent;
-  revalidatePath("/");
+  revalidatePath("/", "layout");
 }

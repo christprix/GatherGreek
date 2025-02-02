@@ -153,8 +153,14 @@ export default async function Page() {
               Tickets
             </div>
             {myScheduledEvents.length === 0 ? (
-              <div className="mx-5 text-m md:text-xl">
-                Looks like you aren't signed up for any events!
+              <div className="flex flex-col">
+                <div className="mx-5 text-m md:text-xl">
+                  Looks like you aren't signed up for any event! Check out the
+                  events going on near you!
+                </div>
+                <Link className="mx-5 btn btn-primary w-40" href={"/events"}>
+                  Browse Event
+                </Link>
               </div>
             ) : (
               <div className="md:grid grid-cols-2">
@@ -167,9 +173,23 @@ export default async function Page() {
             <div className={`mx-5 text-xl md:text-4xl ${anton.className}`}>
               My Events
             </div>
-            <div className="md:grid grid-cols-2">
-              <SideCardlist events={myEvents}></SideCardlist>
-            </div>
+            {myEvents.length === 0 ? (
+              <div className="flex flex-col">
+                <div className="mx-5 text-m md:text-xl">
+                  Looks like you Haven't made any events! Try creating one!
+                </div>
+                <Link
+                  className="mx-5 btn btn-primary w-40"
+                  href={"/create_event"}
+                >
+                  Create Event
+                </Link>
+              </div>
+            ) : (
+              <div className="md:grid grid-cols-2">
+                <SideCardlist events={myEvents}></SideCardlist>
+              </div>
+            )}
           </div>
         </div>
       </div>

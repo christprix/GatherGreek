@@ -3,6 +3,13 @@ import { options } from "@/app/api/auth/[...nextauth]/options";
 import { findMyEvents } from "../actions";
 import Link from "next/link";
 import MyEventsList from "./MyEventsList";
+import { Anton } from "next/font/google";
+
+const anton = Anton({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal"],
+});
 
 // CREATE USER TYPE
 type User = {
@@ -42,9 +49,13 @@ export default async function MyEvents() {
       </div>
       {myEvents.length === 0 ? (
         <div className="section">
-          <div className="flex flex-col">
-            <div>Sorry You have no events but you can make some here!</div>
-            <Link className="btn btn-primary" href={"/create_event"}>
+          <div className="flex flex-col h-80 justify-around items-center">
+            <div
+              className={`flex text-center text-md text-xl md:text-xl ${anton.className}`}
+            >
+              Sorry You have no events but you can make some here!
+            </div>
+            <Link className="btn btn-primary w-40" href={"/create_event"}>
               Create Event
             </Link>
           </div>

@@ -202,6 +202,17 @@ export default async function EventDetails(props: {
                     ></JoinEventButton>
                   </>
                 )}
+              {session?.user && dbevent.totalSeats <= 0 && (
+                <>
+                  <div className="text-xl m-2">
+                    Sorry there are no more tickets available
+                  </div>
+                  <div className="text-xl m-2">
+                    Remaining Tickets: {dbevent.totalSeats}
+                  </div>
+                  <div className="btn-disabled btn">Get Tickets</div>
+                </>
+              )}
             </div>
           </div>
         </div>
