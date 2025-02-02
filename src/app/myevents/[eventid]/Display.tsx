@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Anton } from "next/font/google";
 import { useState } from "react";
-import EventAttendees from "./EventAttendees";
+import EventAttendeesList from "./EventAttendees";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -125,11 +125,11 @@ export default function Display({ dbevent }: any) {
         );
         break;
       case "Attendees":
-        return <EventAttendees dbevent={dbevent}></EventAttendees>;
+        return <EventAttendeesList dbevent={dbevent}></EventAttendeesList>;
       case "Edit":
         return <>Edit Page</>;
       default:
-        return <>Nothing</>;
+        return <>TBA</>;
         break;
     }
   }

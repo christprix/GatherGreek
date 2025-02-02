@@ -69,10 +69,10 @@ async function main() {
     },
   });
   const coolio = await prisma.user.upsert({
-    where: { email: "test2@test.com" },
+    where: { email: "alpha@test.com" },
     update: {},
     create: {
-      email: "test2@test.com",
+      email: "alpha@test.com",
       firstName: "coolio",
       lastName: "stprix",
       organization: "Alpha Phi Alpha",
@@ -99,10 +99,10 @@ async function main() {
     },
   });
   const charlisa = await prisma.user.upsert({
-    where: { email: "test3@test.com" },
+    where: { email: "zeta@test.com" },
     update: {},
     create: {
-      email: "test3@test.com",
+      email: "zeta@test.com",
       firstName: "charlisa",
       lastName: "jackson",
       organization: "Zeta Phi Beta",
@@ -129,10 +129,10 @@ async function main() {
     },
   });
   const Eric = await prisma.user.upsert({
-    where: { email: "test4@test.com" },
+    where: { email: "omega@test.com" },
     update: {},
     create: {
-      email: "test4@test.com",
+      email: "omega@test.com",
       firstName: "Eric",
       lastName: "jackson",
       organization: "Omega Psi Phi",
@@ -159,10 +159,10 @@ async function main() {
     },
   });
   const Jessica = await prisma.user.upsert({
-    where: { email: "test5@test.com" },
+    where: { email: "sgrho@test.com" },
     update: {},
     create: {
-      email: "test5@test.com",
+      email: "sgrho@test.com",
       firstName: "Jessica",
       lastName: faker.person.lastName(),
       organization: "Sigma Gamma Rho",
@@ -171,7 +171,7 @@ async function main() {
       events: {
         create: [
           {
-            title: "Zeta Financial Literacy Class",
+            title: "Sgrho Financial Literacy Class",
             location: "6700 Church St, Douglasville, GA 30134",
             description:
               "Empower yourself with essential financial knowledge at the Sgrho Financial Literacy Class. This informative session, hosted by Zeta phi beta Sorority, will cover key topics such as budgeting, saving, investing, and managing debt. Whether you're just starting on your financial journey or looking to refine your skills, this class offers valuable insights to help you achieve financial stability and success.",
@@ -183,6 +183,36 @@ async function main() {
             eventDate: faker.date.future(),
             totalSeats: 10,
             tags: ["economics", "Zeta Phi Beta"],
+          },
+        ],
+      },
+    },
+  });
+  const John = await prisma.user.upsert({
+    where: { email: "kappa@test.com" },
+    update: {},
+    create: {
+      email: "kappa@test.com",
+      firstName: "John",
+      lastName: faker.person.lastName(),
+      organization: "Kappa Alpha Psi",
+      password,
+      location: "Buckhead",
+      events: {
+        create: [
+          {
+            title: "Kappa Tutoring Event",
+            location: "6700 Church St, Douglasville, GA 30134",
+            description:
+              "Empower yourself with essential financial knowledge at the Kappa Tutoring event. This informative session, hosted by Kappa Alpha Psi, will cover key topics such as budgeting, saving, investing, and managing debt. Whether you're just starting on your financial journey or looking to refine your skills, this class offers valuable insights to help you achieve financial stability and success.",
+            priceInCents: "$0.00",
+            imagePath:
+              "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738474549/02.17-kappa-reads_rh3cqs.jpg",
+            short_description:
+              "Enhance your financial knowledge with practical advice on budgeting, saving, and investing, empowering you to achieve financial stability and success.",
+            eventDate: faker.date.future(),
+            totalSeats: 10,
+            tags: ["economics", "Kappa Alpha Psi"],
           },
         ],
       },

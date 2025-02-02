@@ -23,6 +23,17 @@ export default async function EventDetails(props: {
     where: {
       id: params.eventid,
     },
+    include: {
+      Users_going_to_event: {
+        select: {
+          firstName: true,
+          lastName: true,
+          organization: true,
+          email: true,
+          university: true,
+        },
+      },
+    },
   });
 
   // GET SESSION USERID

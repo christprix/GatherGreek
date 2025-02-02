@@ -31,7 +31,7 @@ export default async function Nav({ logo }: any) {
         break;
       case "Alpha Phi Alpha":
         navpic =
-          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738207466/alphalogo_jymdup.pn";
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738207261/AlphaPhiAlphaCrest_wml2qn.png";
         break;
       case "Zeta Phi Beta":
         navpic =
@@ -39,27 +39,27 @@ export default async function Nav({ logo }: any) {
         break;
       case "Alpha Kappa Alpha":
         navpic =
-          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304780/demogathergreek/fraternityprofilepics/akas_koqf9z.avif";
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738473197/73916b6314713d1921811d1c0c7c9876_ozfttm.png";
         break;
       case "Omega Psi Phi":
         navpic =
-          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304669/demogathergreek/fraternityprofilepics/omegas_goaesw.jpg";
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738473443/kisspng-omega-psi-phi-fraternity-fraternities-and-sororiti-wreathed-5adfab78cd5b62.4111454215246078648412_h2xnut.png";
         break;
       case "Kappa Alpha Psi":
         navpic =
-          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304671/demogathergreek/fraternityprofilepics/kappas_fzdw0y.jpg";
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738473278/a4aa36658ac47cbec405b3e76a8ba6cb_okfxeq.png";
         break;
       case "Delta Sigma Theta":
         navpic =
-          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304669/demogathergreek/fraternityprofilepics/deltas_qbve32.jpg";
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/c_pad,w_350,h_350,ar_1:1/v1738473750/kisspng-howard-university-texas-woman-s-university-delta-s-sigma-nu-5b3dcfff4b9642.3805793015307775993096_vw7wcb.png";
         break;
       case "Sigma Gamma Rho":
         navpic =
-          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737306846/demogathergreek/fraternityprofilepics/sgrhos2_vljz82.jpg";
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738474062/kisspng-butler-university-university-of-north-florida-sigm-5af1019d28cfa9.9979507115257440291672_qilhnx.png";
         break;
       case "Iota Phi Theta":
         navpic =
-          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737304670/demogathergreek/fraternityprofilepics/iotas_w5fozu.jpg";
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738473623/Iota-Phi-Theta-Shield_ORIGINAL-SHIELD-WITH-BACKGROUND-TRIM_o9mbzt.png";
         break;
       default:
         break;
