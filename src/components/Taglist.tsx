@@ -14,11 +14,11 @@ import Link from "next/link";
 
 const element = {
   icon: <FontAwesomeIcon className="text-3xl" icon={faHandshakeAngle} />,
-  values: "Service",
+  values: "service",
 };
 const element2 = {
   icon: <FontAwesomeIcon className="text-3xl" icon={faChampagneGlasses} />,
-  values: "Social",
+  values: "social",
 };
 const element3 = {
   icon: <FontAwesomeIcon className="text-3xl" icon={faLandmark} />,
@@ -34,12 +34,12 @@ const element5 = {
 };
 const element6 = {
   icon: <FontAwesomeIcon className="text-3xl" icon={faUserGroup} />,
-  values: "Neophyte",
+  values: "neophyte",
 };
 
 const element7 = {
   icon: <FontAwesomeIcon className="text-3xl" icon={faUsersBetweenLines} />,
-  values: "Conferences",
+  values: "conferences",
 };
 
 const importedtags = [
