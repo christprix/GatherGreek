@@ -23,27 +23,33 @@ export default async function Nav({ logo }: any) {
   const user = session?.user as User;
   let navpic =
     "https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113943/g-icon_tjgz9i.png";
+  let navtheme = "light";
   if (session?.user) {
     switch (user.organization) {
       case "Phi Beta Sigma":
         navpic =
           "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738204743/sigmalogo_bim0lk.png";
+        navtheme = "aqua";
         break;
       case "Alpha Phi Alpha":
         navpic =
-          "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738207261/AlphaPhiAlphaCrest_wml2qn.png";
+          "https://res.cloudinary.com/dm54zi0ff/image/upload/c_pad,w_500,h_500/v1738207261/AlphaPhiAlphaCrest_wml2qn.png";
+        navtheme = "luxury";
         break;
       case "Zeta Phi Beta":
         navpic =
           "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738204913/zeta-phi-beta-seal-label-text-sticker-logo-transparent-png-773298_k81anf.png";
+        navtheme = "aqua";
         break;
       case "Alpha Kappa Alpha":
         navpic =
           "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738473197/73916b6314713d1921811d1c0c7c9876_ozfttm.png";
+        navtheme = "valentine";
         break;
       case "Omega Psi Phi":
         navpic =
           "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738473443/kisspng-omega-psi-phi-fraternity-fraternities-and-sororiti-wreathed-5adfab78cd5b62.4111454215246078648412_h2xnut.png";
+        navtheme = "synthwave";
         break;
       case "Kappa Alpha Psi":
         navpic =
@@ -56,10 +62,12 @@ export default async function Nav({ logo }: any) {
       case "Sigma Gamma Rho":
         navpic =
           "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738474062/kisspng-butler-university-university-of-north-florida-sigm-5af1019d28cfa9.9979507115257440291672_qilhnx.png";
+        navtheme = "cyberpunk";
         break;
       case "Iota Phi Theta":
         navpic =
           "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738473623/Iota-Phi-Theta-Shield_ORIGINAL-SHIELD-WITH-BACKGROUND-TRIM_o9mbzt.png";
+        navtheme = "lemonade";
         break;
       default:
         break;
@@ -67,7 +75,7 @@ export default async function Nav({ logo }: any) {
   }
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar " data-theme={`${navtheme}`}>
       <div className="navbar-start ">
         <Link href={"/"} className="btn btn-ghost">
           <div className="avatar">

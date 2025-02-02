@@ -92,7 +92,7 @@ async function main() {
               "https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451196/Community-Service-Baskets-773x1030_eyitfb.jpg",
             eventDate: fakedate,
             totalSeats: 2,
-            tags: ["community service", "Alpha Phi Alpha"],
+            tags: ["service", "Alpha Phi Alpha"],
           },
         ],
       },
@@ -122,7 +122,7 @@ async function main() {
               "https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451287/66d385_e1ef661a1fcb45b08b9eff0ec715e248_mv2_ye9it0.jpg",
             eventDate: faker.date.future(),
             totalSeats: 3,
-            tags: ["members only", "Sigma Gamma Rho", "community service"],
+            tags: ["members only", "Sigma Gamma Rho", "service"],
           },
         ],
       },
@@ -182,7 +182,7 @@ async function main() {
               "Enhance your financial knowledge with practical advice on budgeting, saving, and investing, empowering you to achieve financial stability and success.",
             eventDate: faker.date.future(),
             totalSeats: 10,
-            tags: ["economics", "Zeta Phi Beta"],
+            tags: ["finance", "Zeta Phi Beta"],
           },
         ],
       },
@@ -212,14 +212,14 @@ async function main() {
               "Enhance your financial knowledge with practical advice on budgeting, saving, and investing, empowering you to achieve financial stability and success.",
             eventDate: faker.date.future(),
             totalSeats: 10,
-            tags: ["economics", "Kappa Alpha Psi"],
+            tags: ["education", "Kappa Alpha Psi"],
           },
         ],
       },
     },
   });
 
-  console.log({ chris, coolio, Eric, Jessica });
+  console.log({ chris, coolio, Eric, Jessica, John });
 }
 main()
   .then(async () => {

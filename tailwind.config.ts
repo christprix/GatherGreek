@@ -6,6 +6,12 @@ const config = {
   daisyui: {
     themes: [
       "light",
+      "aqua",
+      "cyberpunk",
+      "lemonade",
+      "synthwave",
+      "valentine",
+      "luxury",
       {
         dark: {
           ...require("daisyui/src/theming/themes")["forest"],

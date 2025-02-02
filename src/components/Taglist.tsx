@@ -14,7 +14,7 @@ import Link from "next/link";
 
 const element = {
   icon: <FontAwesomeIcon className="text-3xl" icon={faHandshakeAngle} />,
-  values: "service",
+  values: "community service",
 };
 const element2 = {
   icon: <FontAwesomeIcon className="text-3xl" icon={faChampagneGlasses} />,
