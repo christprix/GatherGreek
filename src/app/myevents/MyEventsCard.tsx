@@ -20,18 +20,14 @@ export default function Card({ event }: any) {
   });
   return (
     <div className="p-3">
-      <div className="card card-compact bg-base-100 h-[30rem] md:w-96 w-96 h-96 shadow-xl">
+      <div className="card card-compact bg-base-100 h-[30rem] md:w-96 w-96 h-80 shadow-xl">
         <figure className="">
           <img src={event.imagePath} alt="Shoes" />
         </figure>
         <div className="card-body">
           <h2 className="card-title">
-            <Link href={`event/${event.id}`}>{event.title}</Link>
+            <div>{event.title}</div>
           </h2>
-          <div className="test-xs flex">
-            {/* CHECK FOR VERIFICATION */}
-            <div className="flex flex-wrap">{getTags}</div>
-          </div>
           <div className="text-xs flex flex-row">
             <FontAwesomeIcon icon={faCalendarDays} className="w-3 mx-1" />
             <p className="text-sm">
@@ -42,7 +38,6 @@ export default function Card({ event }: any) {
             <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
             <p>{event.location}</p>
           </div>
-          <p className="text-sm">From ${event.priceInCents}</p>
           <Link className="btn btn-primary" href={`myevents/${event.id}`}>
             View/Edit Event Details
           </Link>

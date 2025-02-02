@@ -1,13 +1,15 @@
-import prisma from "@/lib/prisma";
-import Image from "next/image";
-import dateFormat from "dateformat";
-import { getServerSession } from "next-auth/next";
-import { Anton } from "next/font/google";
-import { options } from "@/app/api/auth/[...nextauth]/options";
-import { findUserInfo, findMyEvents, findMyEventsbyId } from "@/app/actions";
-import Link from "next/link";
+"use client";
 import SideNav from "./sidenav";
-import Display from "./Display";
+import dateFormat from "dateformat";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
+import {
+  faLocationDot,
+  faCalendarDays,
+} from "@fortawesome/free-solid-svg-icons";
+import { Anton } from "next/font/google";
+import { useState } from "react";
+import EventAttendees from "./EventAttendees";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -15,35 +17,7 @@ const anton = Anton({
   style: ["normal"],
 });
 
-export default async function EventDetails(props: {
-  params: Promise<{ eventid: string }>;
-}) {
-  const params = await props.params;
-  const dbevent = await prisma.event.findUnique({
-    where: {
-      id: params.eventid,
-    },
-  });
-
-  // GET SESSION USERID
-  const session = await getServerSession(options);
-  let userId;
-  const EventCreatorInfo = await findUserInfo(dbevent?.authorId as string);
-  console.log(EventCreatorInfo);
-  let dbmyevents;
-  let dbmyeventstats = {};
-  async function getEventInfoifsession() {
-    if (session?.user) {
-      userId = session?.user?.id;
-      dbmyevents = await findMyEventsbyId(userId as string);
-      dbmyeventstats = {
-        seats: dbevent?.totalSeats,
-        info: dbevent?.short_description,
-      };
-    }
-  }
-  const eventinfo = await getEventInfoifsession();
-
+export default function Display({ dbevent }: any) {
   // TAGS FUNCTION
   const getTags = dbevent?.tags.map((e: any) => {
     return (
@@ -56,14 +30,16 @@ export default async function EventDetails(props: {
     );
   });
 
-  return (
-    <>
-      {/* <div className="flex h-full flex-col md:flex-row overflow-hidden">
-        <div className="w-full flex-none md:w-64">
-          <SideNav imagepath={dbevent?.imagePath}></SideNav>
-        </div>
-        <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
-          {dbevent ? (
+  const [display, setDisplay] = useState("main");
+  function changeDisplay(input: string) {
+    setDisplay(input);
+  }
+  function displayRightSide() {
+    switch (display) {
+      case "main":
+        return (
+          <>
+            {" "}
             <div className="flex flex-col items-center bg-base-100">
               <div className="flex flex-col md:flex-row w-full justify-evenly p-4">
                 <div
@@ -89,10 +65,7 @@ export default async function EventDetails(props: {
                     </figure>
                     <div className="card-body">
                       <div className="text-xs flex flex-col">
-                        <h2 className="card-title">
-                          {EventCreatorInfo?.firstName}{" "}
-                          {EventCreatorInfo?.lastName}
-                        </h2>
+                        <h2 className="card-title"></h2>
                         <p className="text-sm">Organizer info</p>
                       </div>
                     </div>
@@ -148,12 +121,34 @@ export default async function EventDetails(props: {
                 </div>
               </div>
             </div>
-          ) : (
-            <div>Sorry Can't Find Event!</div>
-          )}
-        </div>
-      </div> */}
-      <Display dbevent={dbevent} EventCreatorInfo={EventCreatorInfo}></Display>
-    </>
+          </>
+        );
+        break;
+      case "Attendees":
+        return <EventAttendees dbevent={dbevent}></EventAttendees>;
+      case "Edit":
+        return <>Edit Page</>;
+      default:
+        return <>Nothing</>;
+        break;
+    }
+  }
+
+  return (
+    <div className="flex h-full flex-col md:flex-row overflow-hidden">
+      <div className="w-full flex-none md:w-64">
+        <SideNav
+          imagepath={dbevent?.imagePath}
+          changeDisplay={changeDisplay}
+        ></SideNav>
+      </div>
+      <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
+        {dbevent ? (
+          <div>{displayRightSide()}</div>
+        ) : (
+          <div>Sorry Can't Find Event!</div>
+        )}
+      </div>
+    </div>
   );
 }

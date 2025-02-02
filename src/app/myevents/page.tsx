@@ -21,10 +21,25 @@ export default async function MyEvents() {
   const user = session?.user as User;
   // GET EVENTS
   const myEvents = await findMyEvents(session?.user?.id as string);
-  console.log(myEvents);
+  let groupic =
+    "https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113760/sigmasignup_kh5zlh.jpg";
   return (
     // IF NO EVENTS REDIRECT TO CREATE PAGE
     <>
+      <div
+        className="hero  rounded-md h-40 object-cover"
+        style={{
+          backgroundImage: `url(${groupic})`,
+        }}
+      >
+        <div className="hero-overlay bg-opacity-65"></div>
+        {/* mobile view overlay */}
+
+        {/* desktop overlay */}
+        <div className="mt-15 block text-white">
+          <span className="mb-1 text-3xl font-bold">My Event Hub</span>
+        </div>
+      </div>
       {myEvents.length === 0 ? (
         <div className="section">
           <div className="flex flex-col">

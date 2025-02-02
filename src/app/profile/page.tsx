@@ -118,7 +118,7 @@ export default async function Page() {
         </div>
         {/* desktop overlay */}
         <div className="mt-15 hidden md:block text-white">
-          <span className="mb-1 text-3xl font-bold">My Event Hub</span>
+          <span className="mb-1 text-3xl font-bold">My Profile</span>
         </div>
       </div>
 
