@@ -218,6 +218,40 @@ async function main() {
       },
     },
   });
+  const onsightdate = new Date("2025-02-28");
+  const KC = await prisma.user.upsert({
+    where: { email: "muepsilon@test.com" },
+    update: {},
+    create: {
+      email: "muepsilon@test.com",
+      firstName: "Kenneth",
+      lastName: "Colebrooke",
+      organization: "Phi Beta Sigma",
+      chapter: "Mu Epsilon",
+      university: "Florida State University",
+      password,
+      location: "Miami",
+      events: {
+        create: [
+          {
+            title: "Mu Epsilon REUNION: On Sight solo play",
+            location: "200 S Duval St.",
+            description:
+              "FSU Sigmas Celebrates its 45th Anniversary with an exclusive sneak peek at On Sight, a one-person show and TV Special. The show uses comedy, raw emotions, and street culture to provide a masterclass on violence and mental health. RSVP for FREE to attend this hilarious, gripping, and transformative show. Submit the form below to RSVP.",
+            priceInCents: "0.00",
+            imagePath:
+              "https://res.cloudinary.com/dm54zi0ff/image/upload/v1738667825/micahplay_cmc7vw.webp",
+            short_description:
+              "On Sight is a one-person show by Dr. Micah Johnson that explores violence, anger, and mental health through storytelling, comedy, and street culture. It’s designed to engage and empower youth, families, and community leaders.",
+
+            eventDate: onsightdate,
+            totalSeats: 200,
+            tags: ["education", "Phi Beta Sigma", "social"],
+          },
+        ],
+      },
+    },
+  });
 
   console.log({ chris, coolio, Eric, Jessica, John });
 }
