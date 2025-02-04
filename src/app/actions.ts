@@ -251,6 +251,7 @@ export async function createEvent(
         title: formData.get("event_title") as string,
         description: formData.get("event_description") as string,
         tags: [formData.get("event_type") as string],
+        // TODO CHANGE LOCATION TO ADDRESS 1
         location: "America",
         imagePath: image,
         eventDate: formattedDate as Date,

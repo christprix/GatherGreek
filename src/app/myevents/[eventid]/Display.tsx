@@ -11,7 +11,7 @@ import { Anton } from "next/font/google";
 import { useState } from "react";
 import EventAttendeesList from "./EventAttendees";
 import DeleteEvent from "./DeleteEvent";
-
+import EditEvent from "./EditEvent";
 const anton = Anton({
   subsets: ["latin"],
   weight: "400",
@@ -131,7 +131,7 @@ export default function Display({ dbevent, EventCreatorInfo }: any) {
       case "Attendees":
         return <EventAttendeesList dbevent={dbevent}></EventAttendeesList>;
       case "Edit":
-        return <>Edit Page</>;
+        return <EditEvent dbevent={dbevent}></EditEvent>;
       case "Delete Event":
         return <DeleteEvent dbevent={dbevent}></DeleteEvent>;
       default:
@@ -148,7 +148,7 @@ export default function Display({ dbevent, EventCreatorInfo }: any) {
           changeDisplay={changeDisplay}
         ></SideNav>
       </div>
-      <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
+      <div className="flex-grow p-2 md:overflow-y-auto md:px-6">
         {dbevent ? (
           <div>{displayRightSide()}</div>
         ) : (
