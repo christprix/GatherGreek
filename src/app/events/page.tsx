@@ -29,7 +29,7 @@ export default async function Page(props: {
     console.log(searchParams.tag);
     console.log(searchevents);
   } else if (!searchParams.q || searchParams.q === "") {
-    searchevents = await findAllEvents();
+    searchevents = (await findAllEvents()).reverse();
   } else {
     searchevents = await findEventsbySearch(searchParams.q);
   }
