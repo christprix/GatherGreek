@@ -20,7 +20,7 @@ export default function Card({ event }: any) {
   });
   return (
     <div className="p-3">
-      <div className="card card-compact bg-base-100 h-[30rem] md:w-96 w-96 h-96 shadow-xl">
+      <div className="card card-compact bg-base-100 h-[30rem] md:w-96 h-96 shadow-xl">
         <figure className="">
           <img src={event.imagePath} alt="Shoes" />
         </figure>

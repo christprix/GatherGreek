@@ -5,12 +5,11 @@ import ImageUploader from "@/components/eventsForm/ImageUploader";
 import Form from "./Form";
 export default async function Page() {
   const session = await getServerSession(options);
-  const userId = session?.user?.id;
-  let eventId;
+  const user = session?.user;
   return (
     <section className="py-20">
       <div className="container">
-        <Form user={userId}></Form>
+        <Form user={user}></Form>
       </div>
     </section>
   );

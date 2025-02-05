@@ -2,7 +2,6 @@
 
 import clsx from "clsx";
 import { useState } from "react";
-import Link from "next/link";
 import { AddressAutofill } from "@mapbox/search-js-react";
 import z from "zod";
 import { FormDataSchema } from "@/app/schemas";
@@ -13,6 +12,18 @@ import { CldImage } from "next-cloudinary";
 import { createEvent } from "@/app/actions";
 import { useActionState } from "react";
 import { SubmitButton } from "@/app/signup/submit-button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
+import {
+  faLocationDot,
+  faCalendarDays,
+} from "@fortawesome/free-solid-svg-icons";
+import { Anton } from "next/font/google";
+const anton = Anton({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal"],
+});
 
 const Mapbox_key = process.env.NEXT_PUBLIC_MAPBOX_KEY as string;
 
@@ -37,7 +48,7 @@ export default function Form({ user }: any) {
   const [imagepath, setImagepath] = useState("");
   const [warningmessage, setWarningmessage] = useState("");
 
-  const createEventWithId = createEvent.bind(null, user);
+  const createEventWithId = createEvent.bind(null, user.id);
   const createEventwithImage = createEventWithId.bind(null, imagepath);
   // CREATE HANDLER FOR EACH CHANGE
   const handleTitleChange = (newTitle: string) => {
@@ -260,12 +271,14 @@ export default function Form({ user }: any) {
                 value={type}
                 onChange={(e) => handleTypeChange(e.target.value)}
               >
-                <option value={"OTHER"}>Other</option>
-                <option value={"SOCIAL"}>Social</option>
-                <option value={"GOVERNMENT"}>Government</option>
-                <option value={"COMMUNITY_SERVICE"}>Service</option>
-                <option value={"EDUCATION"}>Education</option>
-                <option value={"ECONOMICS"}>Finance</option>
+                <option value={"other"}>Other</option>
+                <option value={"social"}>Social</option>
+                <option value={"government"}>Government</option>
+                <option value={"service"}>Service</option>
+                <option value={"education"}>Education</option>
+                <option value={"economics"}>Finance</option>
+                <option value={"neophyte"}>Neophyte</option>
+                <option value={"conference"}>conference</option>
               </select>
             </label>
           </div>
@@ -423,233 +436,288 @@ export default function Form({ user }: any) {
       {/* submit button */}
       {currentStep === 4 && (
         <>
+          <div className="flex flex-col w-96 md:w-3/5 bg-base-100">
+            <div className="flex flex-col md:flex-row w-full justify-evenly p-4 md:p-4">
+              <div
+                id="left"
+                className="grid flex-col h-5/6 bg-base-200 w-full rounded p-4 md:p-20"
+              >
+                <div className="md:text-4xl text-3xl">{title}</div>
+                <div className="flex justify-center">
+                  {imagepath === "" ? (
+                    <CldImage
+                      width="200"
+                      height="200"
+                      src="https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113943/g-icon_tjgz9i.png"
+                      sizes="100vw"
+                      className="rounded"
+                      alt="Description of my image"
+                    />
+                  ) : (
+                    <CldImage
+                      width="200"
+                      height="200"
+                      src={imagepath}
+                      sizes="100vw"
+                      className="rounded"
+                      alt="Description of my image"
+                    />
+                  )}
+                </div>
+                {/* TODO ADD SHORT DESCRIPTION */}
+                {/* <div className="m-3">{description}</div> */}
+                <div className="flex flex-col ">
+                  <div className={`flex flex-col my-1`}>
+                    <p className={`text-3xl flex flex-col ${anton.className}`}>
+                      Date and Time
+                    </p>
+                    <div className="text-sm flex">
+                      <div className="text-xl">
+                        <FontAwesomeIcon
+                          icon={faCalendarDays}
+                          className="w-3 mx-1"
+                        />
+                      </div>
+                      {date} 4pm - 5pm EST
+                    </div>
+                  </div>
+                  <div className="flex flex-col my-1">
+                    <p className={`text-3xl ${anton.className}`}>Location</p>
+                    <div className="flex">
+                      <div className="text-xl">
+                        <FontAwesomeIcon
+                          icon={faLocationDot}
+                          className="w-3 mx-1"
+                        />
+                      </div>
+                      {address1}
+                    </div>
+                  </div>
+                  <div className="flex flex-col my-1">
+                    <p className={`text-3xl ${anton.className}`}>
+                      About This Event
+                    </p>
+                    <p className="text-wrap md:w-96 break-all">{description}</p>
+                  </div>
+                  <div className="flex flex-col my-5">
+                    <p className={`text-3xl ${anton.className}`}>Tags</p>
+                    <div className="flex flex-wrap">{type}</div>
+                  </div>
+                  <div className="flex flex-col my-5">
+                    <p className={`text-3xl ${anton.className}`}>Price</p>
+                    <p>{cost}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <form
-            className="my-4 flex flex-col justify-center item-center w-96"
+            className="my-4 flex flex-col justify-center item-center w-xl"
             action={createEventwithImage}
           >
-            <label className="w-full">
-              <span className="label-text text-xl font-bold">Event Image</span>
-              <div className="flex justify-center">
-                {imagepath === "" ? (
-                  <CldImage
-                    width="300"
-                    height="300"
-                    src="https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113943/g-icon_tjgz9i.png"
-                    sizes="100vw"
-                    className="rounded"
-                    alt="Description of my image"
-                  />
-                ) : (
-                  <CldImage
-                    width="300"
-                    height="300"
-                    src={imagepath}
-                    sizes="100vw"
-                    className="rounded"
-                    alt="Description of my image"
-                  />
-                )}
-              </div>
-            </label>
-            <div className=" flex flex-col">
-              <label className="w-full">
-                <div className="label">
-                  <span className="label-text text-xl font-bold">
-                    Fraternity Affiliation
-                  </span>
-                </div>
-                <input
-                  required
-                  name="fraternity"
-                  className="input input-bordered w-full"
-                  defaultValue={fraternity}
-                  readOnly
-                ></input>
-              </label>
-              <label className="w-full">
-                <div className="label">
-                  <span className="label-text text-xl font-bold">
-                    What would you like to name this event?
-                  </span>
-                </div>
-                <input
-                  required
-                  type="text"
-                  name="event_title"
-                  placeholder="Type here"
-                  defaultValue={title}
-                  className="input input-bordered w-full "
-                  readOnly
-                />
-              </label>
-              <label className="w-full">
-                <div className="label">
-                  <span className="label-text text-xl font-bold">
-                    Can you explain what this event is in a few sentences?
-                  </span>
-                </div>
-                <textarea
-                  required
-                  name="event_description"
-                  className="textarea textarea-bordered textarea-lg w-full md:max-w"
-                  placeholder="Tell us about the event"
-                  defaultValue={description}
-                  readOnly
-                ></textarea>
-              </label>
-              <label className="w-full">
-                <div className="label">
-                  <span className="label-text text-xl font-bold">
-                    Type of Event
-                  </span>
-                </div>
-                <input
-                  required
-                  name="event_type"
-                  className="input input-bordered w-full"
-                  defaultValue={type}
-                  readOnly
-                ></input>
-              </label>
-            </div>
-            <div className="w-96 ">
-              <div className="flex flex-col">
+            <div className="hidden">
+              <div className=" flex flex-col">
                 <label className="w-full">
                   <div className="label">
                     <span className="label-text text-xl font-bold">
-                      Address 1
+                      Fraternity Affiliation
                     </span>
                   </div>
                   <input
+                    required
+                    name="fraternity"
+                    className="input input-bordered w-full"
+                    defaultValue={fraternity}
+                    readOnly
+                  ></input>
+                </label>
+                <label className="w-full">
+                  <div className="label">
+                    <span className="label-text text-xl font-bold">
+                      What would you like to name this event?
+                    </span>
+                  </div>
+                  <input
+                    required
+                    type="text"
+                    name="event_title"
+                    placeholder="Type here"
+                    defaultValue={title}
+                    className="input input-bordered w-full "
+                    readOnly
+                  />
+                </label>
+                <label className="w-full">
+                  <div className="label">
+                    <span className="label-text text-xl font-bold">
+                      Can you explain what this event is in a few sentences?
+                    </span>
+                  </div>
+                  <textarea
+                    required
+                    name="event_description"
+                    className="textarea textarea-bordered textarea-lg w-full md:max-w"
+                    placeholder="Tell us about the event"
+                    defaultValue={description}
+                    readOnly
+                  ></textarea>
+                </label>
+                <label className="w-full">
+                  <div className="label">
+                    <span className="label-text text-xl font-bold">
+                      Type of Event
+                    </span>
+                  </div>
+                  <input
+                    required
+                    name="event_type"
+                    className="input input-bordered w-full"
+                    defaultValue={type}
+                    readOnly
+                  ></input>
+                </label>
+              </div>
+              <div className="w-96 ">
+                <div className="flex flex-col">
+                  <label className="w-full">
+                    <div className="label">
+                      <span className="label-text text-xl font-bold">
+                        Address 1
+                      </span>
+                    </div>
+                    <input
+                      className="input input-bordered w-full max-w"
+                      type="text"
+                      name="address-1"
+                      defaultValue={address1}
+                      autoComplete="address-line1"
+                      readOnly
+                    />
+                  </label>
+                  <label className="w-full">
+                    <div className="label">
+                      <span className="label-text text-xl font-bold">
+                        Address 2
+                      </span>
+                    </div>
+                    <input
+                      className="input input-bordered w-full"
+                      type="text"
+                      name="address-2"
+                      defaultValue={address2}
+                      autoComplete="address-line2"
+                      readOnly
+                    />
+                  </label>
+                  <label className="w-full">
+                    <div className="label">
+                      <span className="label-text text-xl font-bold">City</span>
+                    </div>
+                    <input
+                      className="input input-bordered w-full"
+                      type="text"
+                      name="city"
+                      defaultValue={city}
+                      autoComplete="address-level2"
+                      readOnly
+                    />
+                  </label>
+                  <label className="w-full">
+                    <div className="label">
+                      <span className="label-text text-xl font-bold">
+                        State
+                      </span>
+                    </div>
+                    <input
+                      className="input input-bordered w-full"
+                      type="text"
+                      name="state"
+                      defaultValue={state}
+                      autoComplete="address-level1"
+                      readOnly
+                    />
+                  </label>
+                  <label className="w-full">
+                    <div className="label">
+                      <span className="label-text text-xl font-bold">Zip</span>
+                    </div>
+                    <input
+                      className="input input-bordered w-full"
+                      type="text"
+                      name="zip"
+                      defaultValue={zipcode}
+                      autoComplete="postal-code"
+                      readOnly
+                    />
+                  </label>
+                </div>
+              </div>
+              <div className="w-96 ">
+                <label className="w-full max-w-xs">
+                  <div className="label">
+                    <span className="label-text text-xl font-bold">
+                      Maximum Participants
+                    </span>
+                  </div>
+                  <input
+                    required
+                    type="number"
+                    name="total_seats"
+                    placeholder="Type here"
                     className="input input-bordered w-full max-w"
+                    defaultValue={seats}
+                    readOnly
+                  ></input>
+                </label>
+                <label className="w-full max-w-xs">
+                  <div className="label">
+                    <span className="label-text text-xl font-bold">Cost</span>
+                  </div>
+                  <input
+                    required
                     type="text"
-                    name="address-1"
-                    defaultValue={address1}
-                    autoComplete="address-line1"
+                    name="event_cost"
+                    placeholder="Type here"
+                    className="input input-bordered w-full max-w"
+                    defaultValue={cost}
+                    readOnly
+                  />
+                </label>
+              </div>
+              <div className="w-96 ">
+                <label className="w-full max-w">
+                  <div className="label">
+                    <span className="label-text text-xl font-bold">
+                      Event Date
+                    </span>
+                  </div>
+                  <input
+                    required
+                    type="date"
+                    name="eventDate"
+                    className="input input-bordered w-full"
+                    defaultValue={date}
                     readOnly
                   />
                 </label>
                 <label className="w-full">
                   <div className="label">
                     <span className="label-text text-xl font-bold">
-                      Address 2
+                      Event Start Time
                     </span>
                   </div>
                   <input
-                    className="input input-bordered w-full"
-                    type="text"
-                    name="address-2"
-                    defaultValue={address2}
-                    autoComplete="address-line2"
+                    required
+                    type="time"
+                    name="event_time"
+                    placeholder="12:45PM"
+                    className="input input-bordered w-full max-w"
+                    defaultValue={time}
                     readOnly
-                  />
-                </label>
-                <label className="w-full">
-                  <div className="label">
-                    <span className="label-text text-xl font-bold">City</span>
-                  </div>
-                  <input
-                    className="input input-bordered w-full"
-                    type="text"
-                    name="city"
-                    defaultValue={city}
-                    autoComplete="address-level2"
-                    readOnly
-                  />
-                </label>
-                <label className="w-full">
-                  <div className="label">
-                    <span className="label-text text-xl font-bold">State</span>
-                  </div>
-                  <input
-                    className="input input-bordered w-full"
-                    type="text"
-                    name="state"
-                    defaultValue={state}
-                    autoComplete="address-level1"
-                    readOnly
-                  />
-                </label>
-                <label className="w-full">
-                  <div className="label">
-                    <span className="label-text text-xl font-bold">Zip</span>
-                  </div>
-                  <input
-                    className="input input-bordered w-full"
-                    type="text"
-                    name="zip"
-                    defaultValue={zipcode}
-                    autoComplete="postal-code"
-                    readOnly
+                    // TODO: add event time to schema and register it in form
                   />
                 </label>
               </div>
-            </div>
-            <div className="w-96 ">
-              <label className="w-full max-w-xs">
-                <div className="label">
-                  <span className="label-text text-xl font-bold">
-                    Maximum Participants
-                  </span>
-                </div>
-                <input
-                  required
-                  type="number"
-                  name="total_seats"
-                  placeholder="Type here"
-                  className="input input-bordered w-full max-w"
-                  defaultValue={seats}
-                  readOnly
-                ></input>
-              </label>
-              <label className="w-full max-w-xs">
-                <div className="label">
-                  <span className="label-text text-xl font-bold">Cost</span>
-                </div>
-                <input
-                  required
-                  type="text"
-                  name="event_cost"
-                  placeholder="Type here"
-                  className="input input-bordered w-full max-w"
-                  defaultValue={cost}
-                  readOnly
-                />
-              </label>
-            </div>
-            <div className="w-96 ">
-              <label className="w-full max-w">
-                <div className="label">
-                  <span className="label-text text-xl font-bold">
-                    Event Date
-                  </span>
-                </div>
-                <input
-                  required
-                  type="date"
-                  name="eventDate"
-                  className="input input-bordered w-full"
-                  defaultValue={date}
-                  readOnly
-                />
-              </label>
-              <label className="w-full">
-                <div className="label">
-                  <span className="label-text text-xl font-bold">
-                    Event Start Time
-                  </span>
-                </div>
-                <input
-                  required
-                  type="time"
-                  name="event_time"
-                  placeholder="12:45PM"
-                  className="input input-bordered w-full max-w"
-                  defaultValue={time}
-                  readOnly
-                  // TODO: add event time to schema and register it in form
-                />
-              </label>
             </div>
             <div className="my-4 flex justify-center">
               <SubmitButton></SubmitButton>

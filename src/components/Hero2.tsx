@@ -15,7 +15,7 @@ export default function Hero2({ image }: any) {
           <h2 className="mb-1 md:text-3xl text-2xl text-center font-bold">
             What is Gather Greek?
           </h2>
-          <div className="mb-1 text-sm text-center m-3 md:text-base flex flex-row justify-center">
+          <div className="mb-1 text-sm text-center m-3 md:text-base flex md:flex-row flex-wrap justify-center">
             <div className="m-2">
               <div className="border-2 w-24 text-center rounded-full ring-offset-2">
                 <div>Create</div>

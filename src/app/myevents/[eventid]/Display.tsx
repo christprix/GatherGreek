@@ -7,11 +7,11 @@ import {
   faLocationDot,
   faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
-import { Anton } from "next/font/google";
 import { useState } from "react";
 import EventAttendeesList from "./EventAttendees";
 import DeleteEvent from "./DeleteEvent";
 import EditEvent from "./EditEvent";
+import { Anton } from "next/font/google";
 const anton = Anton({
   subsets: ["latin"],
   weight: "400",
