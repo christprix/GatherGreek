@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLandmark } from "@fortawesome/free-solid-svg-icons";
 import Nav from "@/components/Nav";
 import AuthProvider from "./context/AuthProvider";
+import { Analytics } from "@vercel/analytics/react";
+
 const logo1 = <FontAwesomeIcon icon={faLandmark} className="w-6" />;
 
 export const metadata: Metadata = {
@@ -33,6 +35,7 @@ export default function RootLayout({
         <AuthProvider>
           <Nav logo={logo1}></Nav>
           {children}
+          <Analytics></Analytics>
           <Footer></Footer>
         </AuthProvider>
       </body>
