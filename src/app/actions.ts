@@ -226,6 +226,35 @@ export async function createUser(formData: FormData) {
   }
 }
 
+export async function updateEvent(eventid: string, formData: FormData) {
+  const eventdate = formData.get("eventDate");
+  const formattedDate = new Date(eventdate as string);
+  try {
+    const newEvent = await prisma.event.update({
+      where: {
+        id: eventid,
+      },
+      data: {
+        title: formData.get("event_title") as string,
+        description: formData.get("event_description") as string,
+        // tags: [formData.get("event_type") as string],
+        location: "America",
+        address1: formData.get("address-1") as string,
+        address2: formData.get("address-2") as string,
+        city: formData.get("city") as string,
+        zipcode: formData.get("zipcode") as string,
+        // imagePath: image,
+        eventDate: formattedDate as Date,
+        // totalSeats: formattedSeats as number,
+      },
+    });
+    redirect(`/myevents/${newEvent.id}`);
+  } catch (error) {
+    console.error("Prisma create event failed. Error ;", error.message);
+    redirect("/?message=creation_failed");
+  }
+}
+
 export async function createEvent(
   user: string,
   imagePath: string,
@@ -238,7 +267,6 @@ export async function createEvent(
   } else {
     image = imagePath;
   }
-  console.log(formData.get("address-1"));
   const eventdate = formData.get("eventDate");
   const formattedDate = new Date(eventdate as string);
   // console.log(formattedDate);
@@ -265,7 +293,6 @@ export async function createEvent(
         authorId: user as any,
       },
     });
-    console.log(newEvent);
     redirect(`/myevents/${newEvent.id}`);
   } catch (error: any) {
     console.error("Prisma create event failed. Error ;", error.message);

@@ -4,16 +4,12 @@ import clsx from "clsx";
 import { useState } from "react";
 import { AddressAutofill } from "@mapbox/search-js-react";
 import z from "zod";
-import { FormDataSchema } from "@/app/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, SubmitHandler } from "react-hook-form";
+
 import ImageUploader from "@/components/eventsForm/ImageUploader";
 import { CldImage } from "next-cloudinary";
 import { createEvent } from "@/app/actions";
-import { useActionState } from "react";
 import { SubmitButton } from "@/app/signup/submit-button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
 import {
   faLocationDot,
   faCalendarDays,

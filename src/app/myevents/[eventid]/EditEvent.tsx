@@ -1,14 +1,19 @@
 import { SubmitButton2 } from "./submit-button2";
 import dateFormat from "dateformat";
+import { updateEvent } from "@/app/actions";
+import { AddressAutofill } from "@mapbox/search-js-react";
+
+const Mapbox_key = process.env.NEXT_PUBLIC_MAPBOX_KEY as string;
 
 export default function EditEvent({ dbevent }: any) {
+  const updateEventWithId = updateEvent.bind(null, dbevent.id);
   let date = dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy");
   return (
     <div className="flex align-start justify-start item center">
       <form
         className="my-4 flex flex-col justify-center item-center md:w-1/2 w-96 md:mr-20"
         // TODO CREATE FORMACTION FUNCTION TO EDIT
-        // action={createEventwithImage}
+        action={updateEventWithId}
       >
         <label className="w-full">
           {/* <span className="label-text text-xl font-bold">Event Image</span> */}
@@ -96,15 +101,17 @@ export default function EditEvent({ dbevent }: any) {
           <div className="flex flex-col">
             <label className="w-full">
               <div className="label">
-                <span className="label-text text-xl font-bold">Location</span>
+                <span className="label-text text-xl font-bold">Address 1</span>
               </div>
-              <input
-                className="input input-bordered w-full max-w"
-                type="text"
-                name="address-1"
-                defaultValue={dbevent.location}
-                autoComplete="address-line1"
-              />
+              <AddressAutofill accessToken={Mapbox_key}>
+                <input
+                  className="input input-bordered w-full max-w"
+                  type="text"
+                  name="address-1"
+                  defaultValue={dbevent.address1 || ""}
+                  autoComplete="address-line1"
+                />
+              </AddressAutofill>
             </label>
             <label className="w-full">
               <div className="label">
@@ -161,7 +168,7 @@ export default function EditEvent({ dbevent }: any) {
           </div>
         </div>
         <div className=" ">
-          <label className="w-full max-w-xs">
+          {/* <label className="w-full max-w-xs">
             <div className="label">
               <span className="label-text text-xl font-bold">
                 Maximum Participants
@@ -175,8 +182,8 @@ export default function EditEvent({ dbevent }: any) {
               className="input input-bordered w-full max-w"
               defaultValue={dbevent.total_seats}
             ></input>
-          </label>
-          <label className="w-full max-w-xs">
+          </label> */}
+          {/* <label className="w-full max-w-xs">
             <div className="label">
               <span className="label-text text-xl font-bold">Cost</span>
             </div>
@@ -188,7 +195,7 @@ export default function EditEvent({ dbevent }: any) {
               className="input input-bordered w-full max-w"
               defaultValue={dbevent.priceInCents}
             />
-          </label>
+          </label> */}
         </div>
         <div className="">
           <label className="w-full max-w">
@@ -216,7 +223,7 @@ export default function EditEvent({ dbevent }: any) {
               placeholder="12:45PM"
               className="input input-bordered w-full max-w"
               defaultValue={dbevent.time || "12:00PM"}
-              readOnly
+
               // TODO: add event time to schema and register it in form
             />
           </label>
