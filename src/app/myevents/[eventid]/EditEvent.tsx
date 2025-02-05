@@ -93,7 +93,7 @@ export default function EditEvent({ dbevent }: any) {
               name="event_type"
               className="input input-bordered w-full"
               defaultValue={type}
-              readOnly
+              
             ></input>
           </label> */}
         </div>
@@ -110,6 +110,7 @@ export default function EditEvent({ dbevent }: any) {
                   name="address-1"
                   defaultValue={dbevent.address1 || ""}
                   autoComplete="address-line1"
+                  required
                 />
               </AddressAutofill>
             </label>
@@ -123,7 +124,7 @@ export default function EditEvent({ dbevent }: any) {
                 name="address-2"
                 defaultValue={dbevent.address2 || ""}
                 autoComplete="address-line2"
-                readOnly
+                required
               />
             </label>
             <label className="w-full">
@@ -136,7 +137,7 @@ export default function EditEvent({ dbevent }: any) {
                 name="city"
                 defaultValue={dbevent.city || ""}
                 autoComplete="address-level2"
-                readOnly
+                required
               />
             </label>
             <label className="w-full">
@@ -149,7 +150,7 @@ export default function EditEvent({ dbevent }: any) {
                 name="state"
                 defaultValue={dbevent.state || ""}
                 autoComplete="address-level1"
-                readOnly
+                required
               />
             </label>
             <label className="w-full">
@@ -162,7 +163,6 @@ export default function EditEvent({ dbevent }: any) {
                 name="zip"
                 defaultValue={dbevent.zipcode || ""}
                 autoComplete="postal-code"
-                readOnly
               />
             </label>
           </div>
