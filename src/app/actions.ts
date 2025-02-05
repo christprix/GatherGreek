@@ -1,6 +1,6 @@
 "use server";
 import prisma from "@/lib/prisma";
-import { z } from "zod";
+import { any, z } from "zod";
 import { hash } from "bcrypt";
 import { log } from "console";
 import { redirect } from "next/navigation";
@@ -249,7 +249,7 @@ export async function updateEvent(eventid: string, formData: FormData) {
       },
     });
     redirect(`/myevents/${newEvent.id}`);
-  } catch (error) {
+  } catch (error: any) {
     console.error("Prisma create event failed. Error ;", error.message);
     redirect("/?message=creation_failed");
   }
