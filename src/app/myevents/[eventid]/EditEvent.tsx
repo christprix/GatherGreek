@@ -46,7 +46,6 @@ export default function EditEvent({ dbevent }: any) {
               name="fraternity"
               className="input input-bordered w-full"
               defaultValue="Phi Beta Sigma"
-              readOnly
             ></input>
           </label>
           <label className="w-full">
@@ -62,7 +61,6 @@ export default function EditEvent({ dbevent }: any) {
               placeholder="Type here"
               defaultValue={dbevent.title}
               className="input input-bordered w-full "
-              readOnly
             />
           </label>
           <label className="w-full">
@@ -77,7 +75,6 @@ export default function EditEvent({ dbevent }: any) {
               className="textarea textarea-bordered textarea-xl w-full md:max-w"
               placeholder="Tell us about the event"
               defaultValue={dbevent.description}
-              readOnly
             ></textarea>
           </label>
           {/* <label className="w-full">
@@ -107,10 +104,9 @@ export default function EditEvent({ dbevent }: any) {
                 name="address-1"
                 defaultValue={dbevent.location}
                 autoComplete="address-line1"
-                readOnly
               />
             </label>
-            {/* <label className="w-full">
+            <label className="w-full">
               <div className="label">
                 <span className="label-text text-xl font-bold">Address 2</span>
               </div>
@@ -118,7 +114,7 @@ export default function EditEvent({ dbevent }: any) {
                 className="input input-bordered w-full"
                 type="text"
                 name="address-2"
-                defaultValue={address2}
+                defaultValue={dbevent.address2 || ""}
                 autoComplete="address-line2"
                 readOnly
               />
@@ -131,7 +127,7 @@ export default function EditEvent({ dbevent }: any) {
                 className="input input-bordered w-full"
                 type="text"
                 name="city"
-                defaultValue={city}
+                defaultValue={dbevent.city || ""}
                 autoComplete="address-level2"
                 readOnly
               />
@@ -144,7 +140,7 @@ export default function EditEvent({ dbevent }: any) {
                 className="input input-bordered w-full"
                 type="text"
                 name="state"
-                defaultValue={state}
+                defaultValue={dbevent.state || ""}
                 autoComplete="address-level1"
                 readOnly
               />
@@ -157,11 +153,11 @@ export default function EditEvent({ dbevent }: any) {
                 className="input input-bordered w-full"
                 type="text"
                 name="zip"
-                defaultValue={zipcode}
+                defaultValue={dbevent.zipcode || ""}
                 autoComplete="postal-code"
                 readOnly
               />
-            </label> */}
+            </label>
           </div>
         </div>
         <div className=" ">
@@ -178,7 +174,6 @@ export default function EditEvent({ dbevent }: any) {
               placeholder="Type here"
               className="input input-bordered w-full max-w"
               defaultValue={dbevent.total_seats}
-              readOnly
             ></input>
           </label>
           <label className="w-full max-w-xs">
@@ -192,7 +187,6 @@ export default function EditEvent({ dbevent }: any) {
               placeholder="Type here"
               className="input input-bordered w-full max-w"
               defaultValue={dbevent.priceInCents}
-              readOnly
             />
           </label>
         </div>
@@ -207,10 +201,9 @@ export default function EditEvent({ dbevent }: any) {
               name="eventDate"
               className="input input-bordered w-full"
               defaultValue={date}
-              readOnly
             />
           </label>
-          {/* <label className="w-full">
+          <label className="w-full">
             <div className="label">
               <span className="label-text text-xl font-bold">
                 Event Start Time
@@ -222,11 +215,11 @@ export default function EditEvent({ dbevent }: any) {
               name="event_time"
               placeholder="12:45PM"
               className="input input-bordered w-full max-w"
-              defaultValue={time}
+              defaultValue={dbevent.time || "12:00PM"}
               readOnly
               // TODO: add event time to schema and register it in form
             />
-          </label> */}
+          </label>
         </div>
         <div className="my-4 flex justify-center">
           <SubmitButton2></SubmitButton2>
