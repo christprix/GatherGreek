@@ -53,59 +53,46 @@ export default function Form({ user }: any) {
   // CREATE HANDLER FOR EACH CHANGE
   const handleTitleChange = (newTitle: string) => {
     setTitle(newTitle);
-    console.log(newTitle);
   };
   const handleFraternityChange = (newfraternity: string) => {
     setFraternity(newfraternity);
-    console.log(newfraternity);
   };
   const handleDescriptionChange = (newdescription: string) => {
     setDescription(newdescription);
-    console.log(newdescription);
   };
   const handleTypeChange = (newType: string) => {
     setType(newType);
-    console.log(newType);
   };
   const handleAddress1Change = (newAddress1: string) => {
     setAddress1(newAddress1);
-    console.log(newAddress1);
   };
   const handleAddress2Change = (newAddress2: string) => {
     setAddress2(newAddress2);
-    console.log(newAddress2);
   };
   const handleCityChange = (newCity: string) => {
     setCity(newCity);
-    console.log(newCity);
   };
   const handleStateChange = (newState: string) => {
     setState(newState);
-    console.log(newState);
   };
   const handleZipcodeChange = (newType: string) => {
     setZipcode(newType);
-    console.log(newType);
   };
 
   const handleCostChange = (newType: string) => {
     setCost(newType);
-    console.log(newType);
   };
 
   const handleSeatsChange = (newType: string) => {
     setSeats(newType);
-    console.log(newType);
   };
 
   const handleDateChange = (newType: string) => {
     setDate(newType);
-    console.log(newType);
   };
 
   const handleTimeChange = (newType: string) => {
     setTime(newType);
-    console.log(newType);
   };
 
   const steps = [
@@ -118,7 +105,6 @@ export default function Form({ user }: any) {
   // NEXT BUTTON VALIDATOR
   // CHECK IF CURRENT STEP IS PROPERLY FILLED OUT
   const nextvalidator = () => {
-    console.log(currentStep);
     switch (currentStep) {
       case 0:
         if (title.length < 5) {
@@ -131,7 +117,6 @@ export default function Form({ user }: any) {
         }
         break;
       case 1:
-        console.log("Page 2");
         if (address1.length < 1) {
           setWarningmessage("Please enter an address");
         } else if (city.length < 1) {
@@ -146,7 +131,6 @@ export default function Form({ user }: any) {
         }
         break;
       case 2:
-        console.log("Page 3");
         if (date.length < 1) {
           setWarningmessage("Please enter a date");
         } else if (time.length < 1) {

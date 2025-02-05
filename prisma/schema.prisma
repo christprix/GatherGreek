@@ -25,7 +25,12 @@ model Event {
   totalSeats Int
   location String?
   tags String[] @default(["all"])
-  priceInCents String
+  time String?
+  address1 String?
+  address2 String?
+  city String?
+  zipcode String?
+  priceInCents String?
   createdAt  DateTime   @default(now())
   author User @relation(fields: [authorId], references: [id])
   authorId String
@@ -69,6 +74,7 @@ model User {
   greekId String?
   isVerified Boolean @default(false)
   isAdmin   Boolean @default(false)
+  chapterAccount Boolean @default(false)
   events Event[]
   User_Scheduled_Events Event[] @relation("UserScheduledEvents")
 }

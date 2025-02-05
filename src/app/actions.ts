@@ -238,6 +238,7 @@ export async function createEvent(
   } else {
     image = imagePath;
   }
+  console.log(formData.get("address-1"));
   const eventdate = formData.get("eventDate");
   const formattedDate = new Date(eventdate as string);
   // console.log(formattedDate);
@@ -245,28 +246,28 @@ export async function createEvent(
   // console.log(formattedSeats);
   // TODO USE FUNCTION BELOW TO CONVERT PRICE TO NUMBER
   // const formattedPrice = Number(formData.get("eventCost"))
-  try {
-    const newEvent = await prisma.event.create({
-      data: {
-        title: formData.get("event_title") as string,
-        description: formData.get("event_description") as string,
-        tags: [formData.get("event_type") as string],
-        // TODO CHANGE LOCATION TO ADDRESS 1
-        location: "America",
-        imagePath: image,
-        eventDate: formattedDate as Date,
-        totalSeats: formattedSeats as number,
-        // TODO CHANGE PRICE TO NUMBER
-        priceInCents: formData.get("event_cost") as string,
-        authorId: user as any,
-      },
-    });
-    console.log(newEvent);
-    redirect(`/myevents/${newEvent.id}`);
-  } catch (error: any) {
-    console.error("Prisma create event failed. Error ;", error.message);
-    redirect("/?message=creation_failed");
-  }
+  // try {
+  //   const newEvent = await prisma.event.create({
+  //     data: {
+  //       title: formData.get("event_title") as string,
+  //       description: formData.get("event_description") as string,
+  //       tags: [formData.get("event_type") as string],
+  //       // TODO CHANGE LOCATION TO ADDRESS 1
+  //       location: "America",
+  //       imagePath: image,
+  //       eventDate: formattedDate as Date,
+  //       totalSeats: formattedSeats as number,
+  //       // TODO CHANGE PRICE TO NUMBER
+  //       priceInCents: formData.get("event_cost") as string,
+  //       authorId: user as any,
+  //     },
+  //   });
+  //   console.log(newEvent);
+  //   redirect(`/myevents/${newEvent.id}`);
+  // } catch (error: any) {
+  //   console.error("Prisma create event failed. Error ;", error.message);
+  //   redirect("/?message=creation_failed");
+  // }
 }
 
 export async function deleteEventPrisma(eventid: string) {
