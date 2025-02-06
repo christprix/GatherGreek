@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export default function SignIn(props: any) {
@@ -33,12 +33,13 @@ export default function SignIn(props: any) {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center mb-4">Sign In</h2>
-
-        {error || errorParam ? (
-          <p className="text-red-500 text-sm text-center">
-            {error || "Invalid credentials. Please try again."}
-          </p>
-        ) : null}
+        <Suspense>
+          {error || errorParam ? (
+            <p className="text-red-500 text-sm text-center">
+              {error || "Invalid credentials. Please try again."}
+            </p>
+          ) : null}
+        </Suspense>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
