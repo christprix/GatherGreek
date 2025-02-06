@@ -59,11 +59,11 @@ export default function Taglist() {
         <div className="avatar m-3 md:mx-5 mx-2  flex-col">
           <Link
             href={`/events?tag=${t.values}`}
-            className="p-5 hover:bg-base-200 border-2 w-20 rounded-full ring-offset-2"
+            className="p-5 hover:bg-base-200 border w-20 rounded-full ring-offset-2"
           >
             <div key={index}>{t.icon}</div>
           </Link>
-          <div className=" text-center text-sm md:text-base font-semibold">
+          <div className=" text-center text-xsm md:text-base ">
             {t.values.toLowerCase()}
           </div>
         </div>
