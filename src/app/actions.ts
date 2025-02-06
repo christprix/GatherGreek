@@ -250,8 +250,8 @@ export async function updateEvent(eventid: string, formData: FormData) {
     });
     redirect(`/myevents/${newEvent.id}`);
   } catch (error: any) {
-    console.error("Prisma create event failed. Error ;", error.message);
-    redirect("/?message=creation_failed");
+    console.error("Prisma create event Error ;", error.message);
+    redirect("/myevents?message=error");
   }
 }
 

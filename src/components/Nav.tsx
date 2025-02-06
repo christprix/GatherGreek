@@ -5,7 +5,7 @@ import { options } from "@/app/api/auth/[...nextauth]/options";
 import profilepic from "/public/headshot.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
-
+import Signoutbutton from "./signoutbutton";
 // CREATE USER TYPE
 type User = {
   name: string;
@@ -210,7 +210,8 @@ export default async function Nav({ logo }: any) {
                 <Link href={"/events"}>Browse Events</Link>
               </li>
               <li>
-                <Link href={"/api/auth/signout"}>Sign Out</Link>
+                {/* <Link href={"/api/auth/signout"}>Sign Out</Link> */}
+                <Signoutbutton></Signoutbutton>
               </li>
             </ul>
           </div>
