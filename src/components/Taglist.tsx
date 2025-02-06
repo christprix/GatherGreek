@@ -63,7 +63,7 @@ export default function Taglist() {
           >
             <div key={index}>{t.icon}</div>
           </Link>
-          <div className=" text-center text-xsm md:text-base ">
+          <div className=" text-center text-sm md:text-base ">
             {t.values.toLowerCase()}
           </div>
         </div>

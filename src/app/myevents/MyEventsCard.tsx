@@ -36,7 +36,7 @@ export default function Card({ event }: any) {
           </div>
           <div className="text-sm flex flex-row">
             <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
-            <p>{event.location}</p>
+            <p>{event.address1 || "TBA"}</p>
           </div>
           <Link className="btn btn-primary" href={`myevents/${event.id}`}>
             View/Edit Event Details
