@@ -33,13 +33,13 @@ export default function SignIn(props: any) {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center mb-4">Sign In</h2>
-        {error || errorParam ? (
+        {/* {error || errorParam ? (
           <p className="text-red-500 text-sm text-center">
             <Suspense>
               {error || "Invalid credentials. Please try again."}
             </Suspense>
           </p>
-        ) : null}
+        ) : null} */}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
