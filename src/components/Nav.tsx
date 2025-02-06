@@ -5,6 +5,7 @@ import { options } from "@/app/api/auth/[...nextauth]/options";
 import profilepic from "/public/headshot.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
+import Signoutbutton from "./Signoutbutton";
 // CREATE USER TYPE
 type User = {
   name: string;
