@@ -25,7 +25,7 @@ export default function SignIn(props: any) {
     if (result?.error) {
       setError("Invalid email or password");
     } else {
-      router.push("/dashboard"); // Redirect on successful login
+      router.push("/"); // Redirect on successful login
     }
   };
 
