@@ -50,7 +50,7 @@ export default function Form({ user }: any) {
   const createEventWithId = createEvent.bind(null, user.id);
   const createEventwithImage = createEventWithId.bind(null, imagepath);
   // CREATE HANDLER FOR EACH CHANGE
-  const handleTagsChange = (newTags) => {
+  const handleTagsChange = (newTags: any) => {
     setTags(newTags);
   };
 
