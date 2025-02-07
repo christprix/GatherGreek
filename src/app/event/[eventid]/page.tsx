@@ -152,7 +152,7 @@ export default async function EventDetails(props: {
                     </div>
                     {dbevent.address1 ? (
                       <Link
-                        href={`https://www.google.com/maps/dir/?api=1&origin=${encodedAddress}`}
+                        href={`https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`}
                         rel="noopener noreferrer"
                         target="_blank"
                       >
