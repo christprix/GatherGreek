@@ -95,7 +95,7 @@ export default async function Home() {
               Popular Events Near You
             </div>
             <div className="flex justify-center md:justify-start md:ml-10 flex-wrap">
-              <Cardlist events={dbevents}></Cardlist>
+              <Cardlist events={dbevents.reverse()}></Cardlist>
               {/* <div className="flex justify-center items-center flex-col py-6">
                 <div className="card bg-base-200 md:full w-96 ">
                   <div className="card-body flex flex-col items-center">

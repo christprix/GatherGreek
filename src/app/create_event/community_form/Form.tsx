@@ -15,6 +15,8 @@ import {
   faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
 import { Anton } from "next/font/google";
+import TagsInput from "react-tagsinput";
+
 const anton = Anton({
   subsets: ["latin"],
   weight: "400",
@@ -43,10 +45,15 @@ export default function Form({ user }: any) {
   const [time, setTime] = useState("");
   const [imagepath, setImagepath] = useState("");
   const [warningmessage, setWarningmessage] = useState("");
+  const [tags, setTags] = useState([]);
 
   const createEventWithId = createEvent.bind(null, user.id);
   const createEventwithImage = createEventWithId.bind(null, imagepath);
   // CREATE HANDLER FOR EACH CHANGE
+  const handleTagsChange = (newTags) => {
+    setTags(newTags);
+  };
+
   const handleTitleChange = (newTitle: string) => {
     setTitle(newTitle);
   };
@@ -181,10 +188,11 @@ export default function Form({ user }: any) {
       <form className="my-4 flex flex-col justify-center">
         {/* PART 1 */}
         {currentStep === 0 && (
-          <div className=" flex flex-col w-96">
+          <div className="flex flex-col w-96 space-y-4 p-4 bg-white shadow-lg rounded-xl">
+            {/* Event Name */}
             <label className="w-full">
               <div className="label">
-                <span className="label-text text-xl font-bold">
+                <span className="label-text text-lg font-semibold text-gray-700">
                   What would you like to name this event?
                 </span>
               </div>
@@ -192,90 +200,114 @@ export default function Form({ user }: any) {
                 required
                 type="text"
                 name="event_title"
-                placeholder="Type here"
+                placeholder="Type here..."
                 value={title}
                 onChange={(e) => handleTitleChange(e.target.value)}
-                className="input input-bordered w-full "
+                className="input input-bordered w-full rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </label>
+
+            {/* Fraternity Affiliation */}
             <label className="w-full">
               <div className="label">
-                <span className="label-text text-xl font-bold">
+                <span className="label-text text-lg font-semibold text-gray-700">
                   Fraternity Affiliation
                 </span>
               </div>
               <select
                 required
                 name="fraternity"
-                className="input input-bordered w-full"
+                className="select select-bordered w-full rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 value={fraternity}
                 onChange={(e) => handleFraternityChange(e.target.value)}
               >
-                <option value={"None"}>None</option>
-                <option value={"Phi Beta Sigma"}>Phi Beta Sigma</option>
-                <option value={"Zeta Phi Beta"}>Zeta Phi Beta</option>
-                <option value={"Alpha Phi Alpha"}>Alpha Phi Alpha</option>
-                <option value={"Alpha Kappa Alpha"}>Alpha Kappa Alpha</option>
-                <option value={"Omega Psi Phi"}>Omega Psi Phi</option>
-                <option value={"Kappa Alpha Psi"}>Kappa Alpha Psi</option>
-                <option value={"Sigma Gamma Rho"}>Sigma Gamma Rho</option>
-                <option value={"Delta Sigma Theta"}>Delta Sigma Theta</option>
-                <option value={"Iota Phi Theta"}>Iota Phi Theta</option>
+                <option value="None">None</option>
+                <option value="Phi Beta Sigma">Phi Beta Sigma</option>
+                <option value="Zeta Phi Beta">Zeta Phi Beta</option>
+                <option value="Alpha Phi Alpha">Alpha Phi Alpha</option>
+                <option value="Alpha Kappa Alpha">Alpha Kappa Alpha</option>
+                <option value="Omega Psi Phi">Omega Psi Phi</option>
+                <option value="Kappa Alpha Psi">Kappa Alpha Psi</option>
+                <option value="Sigma Gamma Rho">Sigma Gamma Rho</option>
+                <option value="Delta Sigma Theta">Delta Sigma Theta</option>
+                <option value="Iota Phi Theta">Iota Phi Theta</option>
               </select>
             </label>
+
+            {/* Event Description */}
             <label className="w-full">
               <div className="label">
-                <span className="label-text text-xl font-bold">
+                <span className="label-text text-lg font-semibold text-gray-700">
                   Can you explain what this event is in a few sentences?
                 </span>
               </div>
               <textarea
                 required
                 name="event_description"
-                className="textarea textarea-bordered textarea-lg w-full md:max-w"
-                placeholder="Tell us about the event"
+                className="textarea textarea-bordered w-full h-28 rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Tell us about the event..."
                 value={description}
                 onChange={(e) => handleDescriptionChange(e.target.value)}
               ></textarea>
             </label>
+
+            {/* Event Type */}
             <label className="w-full">
               <div className="label">
-                <span className="label-text text-xl font-bold">
+                <span className="label-text text-lg font-semibold text-gray-700">
                   Type of Event
                 </span>
               </div>
               <select
                 required
                 name="event_type"
-                className="input input-bordered w-full"
+                className="select select-bordered w-full rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 value={type}
                 onChange={(e) => handleTypeChange(e.target.value)}
               >
-                <option value={"other"}>Other</option>
-                <option value={"social"}>Social</option>
-                <option value={"government"}>Government</option>
-                <option value={"service"}>Service</option>
-                <option value={"education"}>Education</option>
-                <option value={"economics"}>Finance</option>
-                <option value={"neophyte"}>Neophyte</option>
-                <option value={"conference"}>conference</option>
+                <option value="other">Other</option>
+                <option value="social">Social</option>
+                <option value="government">Government</option>
+                <option value="service">Service</option>
+                <option value="education">Education</option>
+                <option value="economics">Finance</option>
+                <option value="neophyte">Neophyte</option>
+                <option value="conference">Conference</option>
               </select>
             </label>
+
+            {/* Tags Input */}
+            <div>
+              <div className="label">
+                <span className="label-text text-lg font-semibold text-gray-700">
+                  Tags
+                </span>
+              </div>
+              <div className="border border-gray-300 rounded-lg px-4 py-2 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
+                <TagsInput
+                  className="w-auto max-w-full flex flex-wrap gap-2"
+                  value={tags}
+                  placeHolder="Add Tags to your event"
+                  onChange={handleTagsChange}
+                />
+              </div>
+            </div>
           </div>
         )}
         {/* PART 2 */}
         {currentStep === 1 && (
-          <div className="w-96 ">
-            <div className="flex flex-col">
+          <div className="w-96 p-4 bg-white shadow-lg rounded-xl space-y-4">
+            <div className="flex flex-col space-y-4">
+              {/* Address 1 */}
               <label className="w-full">
                 <div className="label">
-                  <span className="label-text text-xl font-bold">
+                  <span className="label-text text-lg font-semibold text-gray-700">
                     Address 1
                   </span>
                 </div>
                 <AddressAutofill accessToken={Mapbox_key}>
                   <input
-                    className="input input-bordered w-full max-w"
+                    className="input input-bordered w-full rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     type="text"
                     name="address-1"
                     value={address1}
@@ -284,14 +316,16 @@ export default function Form({ user }: any) {
                   />
                 </AddressAutofill>
               </label>
+
+              {/* Address 2 */}
               <label className="w-full">
                 <div className="label">
-                  <span className="label-text text-xl font-bold">
+                  <span className="label-text text-lg font-semibold text-gray-700">
                     Address 2
                   </span>
                 </div>
                 <input
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   type="text"
                   name="address-2"
                   value={address2}
@@ -299,12 +333,16 @@ export default function Form({ user }: any) {
                   autoComplete="address-line2"
                 />
               </label>
+
+              {/* City */}
               <label className="w-full">
                 <div className="label">
-                  <span className="label-text text-xl font-bold">City</span>
+                  <span className="label-text text-lg font-semibold text-gray-700">
+                    City
+                  </span>
                 </div>
                 <input
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   type="text"
                   name="city"
                   value={city}
@@ -312,12 +350,16 @@ export default function Form({ user }: any) {
                   autoComplete="address-level2"
                 />
               </label>
+
+              {/* State */}
               <label className="w-full">
                 <div className="label">
-                  <span className="label-text text-xl font-bold">State</span>
+                  <span className="label-text text-lg font-semibold text-gray-700">
+                    State
+                  </span>
                 </div>
                 <input
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   type="text"
                   name="state"
                   value={state}
@@ -325,12 +367,16 @@ export default function Form({ user }: any) {
                   autoComplete="address-level1"
                 />
               </label>
+
+              {/* Zipcode */}
               <label className="w-full">
                 <div className="label">
-                  <span className="label-text text-xl font-bold">Zipcode</span>
+                  <span className="label-text text-lg font-semibold text-gray-700">
+                    Zipcode
+                  </span>
                 </div>
                 <input
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   type="text"
                   name="zipcode"
                   value={zipcode}
@@ -343,23 +389,28 @@ export default function Form({ user }: any) {
         )}
         {/* part 3 */}
         {currentStep === 2 && (
-          <div className="w-96 ">
-            <label className="w-full max-w">
+          <div className="w-96 p-4 bg-white shadow-lg rounded-xl space-y-4">
+            {/* Event Date */}
+            <label className="w-full">
               <div className="label">
-                <span className="label-text text-xl font-bold">Event Date</span>
+                <span className="label-text text-lg font-semibold text-gray-700">
+                  Event Date
+                </span>
               </div>
               <input
                 required
                 type="date"
                 name="eventDate"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 value={date}
                 onChange={(e) => handleDateChange(e.target.value)}
               />
             </label>
+
+            {/* Event Start Time */}
             <label className="w-full">
               <div className="label">
-                <span className="label-text text-xl font-bold">
+                <span className="label-text text-lg font-semibold text-gray-700">
                   Event Start Time
                 </span>
               </div>
@@ -367,16 +418,17 @@ export default function Form({ user }: any) {
                 required
                 type="time"
                 name="event_time"
-                placeholder="12:45PM"
-                className="input input-bordered w-full max-w"
+                placeholder="12:45 PM"
+                className="input input-bordered w-full rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 value={time}
                 onChange={(e) => handleTimeChange(e.target.value)}
-                // TODO: add event time to schema and register it in form
               />
             </label>
-            <label className="w-full max-w-xs">
+
+            {/* Maximum Participants */}
+            <label className="w-full">
               <div className="label">
-                <span className="label-text text-xl font-bold">
+                <span className="label-text text-lg font-semibold text-gray-700">
                   Maximum Participants
                 </span>
               </div>
@@ -384,22 +436,26 @@ export default function Form({ user }: any) {
                 required
                 type="number"
                 name="total_seats"
-                placeholder="Type here"
-                className="input input-bordered w-full max-w"
+                placeholder="Enter max participants"
+                className="input input-bordered w-full rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 value={seats}
                 onChange={(e) => handleSeatsChange(e.target.value)}
-              ></input>
+              />
             </label>
-            <label className="w-full max-w-xs">
+
+            {/* Cost */}
+            <label className="w-full">
               <div className="label">
-                <span className="label-text text-xl font-bold">Cost</span>
+                <span className="label-text text-lg font-semibold text-gray-700">
+                  Cost
+                </span>
               </div>
               <input
                 required
                 type="text"
                 name="event_cost"
-                placeholder="1.00"
-                className="input input-bordered w-full max-w"
+                placeholder="0.00"
+                className="input input-bordered w-full rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 value={cost}
                 onChange={(e) => handleCostChange(e.target.value)}
               />
