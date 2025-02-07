@@ -284,12 +284,7 @@ export default function Form({ user }: any) {
                 </span>
               </div>
               <div className="border border-gray-300 rounded-lg px-4 py-2 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
-                <TagsInput
-                  className="w-auto max-w-full flex flex-wrap gap-2"
-                  value={tags}
-                  placeHolder="Add Tags to your event"
-                  onChange={handleTagsChange}
-                />
+                <TagsInput value={tags} onChange={handleTagsChange} />
               </div>
             </div>
           </div>
