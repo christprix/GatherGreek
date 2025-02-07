@@ -124,7 +124,6 @@ export default function EditEvent({ dbevent }: any) {
                 name="address-2"
                 defaultValue={dbevent.address2 || ""}
                 autoComplete="address-line2"
-                required
               />
             </label>
             <label className="w-full">
@@ -160,7 +159,7 @@ export default function EditEvent({ dbevent }: any) {
               <input
                 className="input input-bordered w-full"
                 type="text"
-                name="zip"
+                name="zipcode"
                 defaultValue={dbevent.zipcode || ""}
                 autoComplete="postal-code"
               />
@@ -207,7 +206,7 @@ export default function EditEvent({ dbevent }: any) {
               type="date"
               name="eventDate"
               className="input input-bordered w-full"
-              defaultValue={date}
+              defaultValue={dbevent.date}
             />
           </label>
           <label className="w-full">

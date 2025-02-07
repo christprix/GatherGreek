@@ -227,8 +227,12 @@ export async function createUser(formData: FormData) {
 }
 
 export async function updateEvent(eventid: string, formData: FormData) {
+  console.log(formData);
+  const eventtime = formData.get("event_time") as string;
   const eventdate = formData.get("eventDate");
-  const formattedDate = new Date(eventdate as string);
+  const datetime = eventdate + "T" + eventtime + "Z";
+  const formattedDate = new Date(datetime as string);
+  console.log(formattedDate);
   try {
     const newEvent = await prisma.event.update({
       where: {
@@ -243,11 +247,13 @@ export async function updateEvent(eventid: string, formData: FormData) {
         address2: formData.get("address-2") as string,
         city: formData.get("city") as string,
         zipcode: formData.get("zipcode") as string,
+        time: formData.get("event_time") as string,
         // imagePath: image,
         eventDate: formattedDate as Date,
         // totalSeats: formattedSeats as number,
       },
     });
+    console.log(newEvent);
     redirect(`/myevents/${newEvent.id}`);
   } catch (error: any) {
     console.error("Prisma create event Error ;", error.message);
@@ -288,6 +294,7 @@ export async function createEvent(
         imagePath: image,
         eventDate: formattedDate as Date,
         totalSeats: formattedSeats as number,
+        time: formData.get("event_time") as string,
         // TODO CHANGE PRICE TO NUMBER
         priceInCents: formData.get("event_cost") as string,
         authorId: user as any,

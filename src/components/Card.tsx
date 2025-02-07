@@ -35,14 +35,19 @@ export default function Card({ event }: any) {
           <div className="text-xs flex flex-row">
             <FontAwesomeIcon icon={faCalendarDays} className="w-3 mx-1" />
             <p className="text-sm">
-              {dateFormat(`${event.eventDate}`, "dddd, mmmm dS, yyyy")}
+              <div className="flex flex-col">
+                <div>
+                  {dateFormat(`${event.eventDate}`, "dddd, mmmm dS, yyyy")}{" "}
+                </div>
+                <div>{dateFormat(`${event.eventDate}`, "UTC:h:MM TT ")}</div>
+              </div>
             </p>
           </div>
           <div className="text-sm flex flex-row">
             <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
-            <p>{event.address1}</p>
+            <p>{event.address1 + "," + event.city || "TBA"}</p>
           </div>
-          <p className="text-sm">From ${event.priceInCents}</p>
+          {/* <p className="text-sm">From ${event.priceInCents}</p> */}
           <Link className="btn btn-primary" href={`event/${event.id}`}>
             Get Tickets
           </Link>

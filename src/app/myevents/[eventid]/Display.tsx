@@ -12,6 +12,7 @@ import EventAttendeesList from "./EventAttendees";
 import DeleteEvent from "./DeleteEvent";
 import EditEvent from "./EditEvent";
 import { Anton } from "next/font/google";
+
 const anton = Anton({
   subsets: ["latin"],
   weight: "400",
@@ -30,6 +31,13 @@ export default function Display({ dbevent, EventCreatorInfo }: any) {
       </button>
     );
   });
+
+  let time;
+  if (dbevent.time) {
+    const newtime = new Date(dbevent.time);
+    time = newtime.toLocaleDateString();
+    console.log(dbevent);
+  }
 
   const [display, setDisplay] = useState("main");
   function changeDisplay(input: string) {
@@ -92,7 +100,7 @@ export default function Display({ dbevent, EventCreatorInfo }: any) {
                           `${dbevent.eventDate}`,
                           "dddd, mmmm dS, yyyy"
                         )}{" "}
-                        4pm - 5pm EST
+                        {/* {dateFormat(dbevent.time) || "TBA"} */}
                       </div>
                     </div>
                     <div className="flex flex-col my-10">

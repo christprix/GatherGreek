@@ -54,6 +54,14 @@ export default async function EventDetails(props: {
     doIAlreadyHaveTickets = eventIds.includes(params.eventid);
   }
 
+  // Make address
+  let address;
+  let encodedAddress;
+  if (dbevent?.address1) {
+    address = dbevent.address1 + " " + dbevent.city + " " + dbevent.zipcode;
+    encodedAddress = encodeURI(address as string);
+  }
+  console.log(encodeURI(address as string));
   // TAGS FUNCTION
   const getTags = dbevent?.tags.map((e: any) => {
     return (
@@ -85,9 +93,6 @@ export default async function EventDetails(props: {
               id="left"
               className="grid flex-col h-5/6 bg-base-200 md:w-3/5 w-full rounded  p-4"
             >
-              <div className="text-sm">
-                {dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy")}
-              </div>
               <div className="md:text-4xl text-3xl">{dbevent.title}</div>
               <div className="m-3">{dbevent.short_description}</div>
               <div className="card m-1 w-full card-side bg-base-200 border">
@@ -116,15 +121,24 @@ export default async function EventDetails(props: {
                   <p className={`text-3xl flex flex-col ${anton.className}`}>
                     Date and Time
                   </p>
-                  <div className="text-sm flex">
+                  <div className="text-sm flex flex">
                     <div className="text-xl">
                       <FontAwesomeIcon
                         icon={faCalendarDays}
                         className="w-3 mx-1"
                       />
                     </div>
-                    {dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy")}{" "}
-                    4pm - 5pm EST
+                    <div className="flex flex-col">
+                      <div>
+                        {dateFormat(
+                          `${dbevent.eventDate}`,
+                          "dddd, mmmm dS, yyyy"
+                        )}{" "}
+                      </div>
+                      <div>
+                        {dateFormat(`${dbevent.eventDate}`, "UTC:h:MM TT ")}
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="flex flex-col my-10">
@@ -136,7 +150,17 @@ export default async function EventDetails(props: {
                         className="w-3 mx-1"
                       />
                     </div>
-                    {dbevent.location}
+                    {dbevent.address1 ? (
+                      <Link
+                        href={`https://www.google.com/maps/dir/?api=1&origin=${encodedAddress}`}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        {address}
+                      </Link>
+                    ) : (
+                      <div>TBA</div>
+                    )}
                   </div>
                 </div>
                 <div className="flex flex-col my-10">

@@ -332,7 +332,7 @@ export default function Form({ user }: any) {
                 <input
                   className="input input-bordered w-full"
                   type="text"
-                  name="zip"
+                  name="zipcode"
                   value={zipcode}
                   onChange={(e) => handleZipcodeChange(e.target.value)}
                   autoComplete="postal-code"
