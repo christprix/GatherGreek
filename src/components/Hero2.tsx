@@ -13,7 +13,7 @@ export default function Hero2({ image }: any) {
         {/* <img src={sigmastep.src} className="max-w-sm rounded-lg shadow-2xl" /> */}
         <div className="max-w-md">
           <h2 className="mb-1 md:text-3xl text-2xl text-center font-bold">
-            What is Gather Greek?
+            What is Greek Connect?
           </h2>
           <div className="mb-1 text-sm text-center m-3 md:text-base flex md:flex-row flex-wrap justify-center">
             <div className="m-2">
