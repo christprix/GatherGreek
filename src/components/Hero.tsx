@@ -13,7 +13,7 @@ export default function Hero({ image }: any) {
         {/* <img src={sigmastep.src} className="max-w-sm rounded-lg shadow-2xl" /> */}
         <div className="max-w-md">
           <h1 className="mb-1 md:text-3xl text-2xl text-center font-bold">
-            Welcome to Gather Greek
+            Welcome to Greek Connect
           </h1>
           <p className="mb-1 text-sm text-center m-3 md:text-base">
             Search for D9 Events by name or choose a category

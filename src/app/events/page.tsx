@@ -1,7 +1,6 @@
 import Cardlist from "@/components/Cardlist";
 import { Anton } from "next/font/google";
 import SearchBar from "@/components/Search";
-import Taglist from "@/components/Taglist";
 import {
   findAllUsers,
   findAllEvents,
@@ -9,7 +8,6 @@ import {
   findAllEventsByTag,
 } from "../actions";
 import LocationFinder from "@/components/Locationfinder";
-import FraternityTagList from "@/components/FraternitytagList";
 
 const anton = Anton({
   subsets: ["latin"],

@@ -89,11 +89,11 @@ export default async function Nav({ logo }: any) {
       </div>
       <div className="navbar-center">
         <Link href={"/"} className="btn btn-ghost text-xl md:hidden">
-          GatherGreek
+          GreekConnect
         </Link>
       </div>
       <div className="navbar-center hidden md:flex mx-3 text-xl font-bold">
-        GatherGreek
+        Greek Connect
       </div>
       {/* IF LOGGED IN TERNARY */}
       {!session ? (
