@@ -36,7 +36,6 @@ export default function Display({ dbevent, EventCreatorInfo }: any) {
   if (dbevent.time) {
     const newtime = new Date(dbevent.time);
     time = newtime.toLocaleDateString();
-    console.log(dbevent);
   }
 
   const [display, setDisplay] = useState("main");

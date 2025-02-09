@@ -29,6 +29,7 @@ model Event {
   address1 String?
   address2 String?
   city String?
+  state String?
   zipcode String?
   priceInCents String?
   createdAt  DateTime   @default(now())

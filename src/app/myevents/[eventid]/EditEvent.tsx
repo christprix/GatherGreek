@@ -7,144 +7,94 @@ const Mapbox_key = process.env.NEXT_PUBLIC_MAPBOX_KEY as string;
 
 export default function EditEvent({ dbevent }: any) {
   const updateEventWithId = updateEvent.bind(null, dbevent.id);
-  let date = dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy");
+  // console.log(dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy"));
   return (
-    <div className="flex align-start justify-start item center">
+    <div className="flex justify-center">
       <form
-        className="my-4 flex flex-col justify-center item-center md:w-1/2 w-96 md:mr-20"
-        // TODO CREATE FORMACTION FUNCTION TO EDIT
+        className="my-4 flex flex-col space-y-4 w-full max-w-lg bg-white p-6 rounded-lg shadow-lg"
         action={updateEventWithId}
       >
         <label className="w-full">
-          {/* <span className="label-text text-xl font-bold">Event Image</span> */}
-          <div className="flex justify-center">
-            {/* {imagepath === "" ? (
-                  <CldImage
-                    width="300"
-                    height="300"
-                    src="https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113943/g-icon_tjgz9i.png"
-                    sizes="100vw"
-                    className="rounded"
-                    alt="Description of my image"
-                  />
-                ) : (
-                  <CldImage
-                    width="300"
-                    height="300"
-                    src={imagepath}
-                    sizes="100vw"
-                    className="rounded"
-                    alt="Description of my image"
-                  />
-                )} */}
+          <div className="label">
+            <span className="label-text text-xl font-bold">
+              Fraternity Affiliation
+            </span>
           </div>
+          <input
+            required
+            name="fraternity"
+            className="input input-bordered w-full rounded-md p-2"
+            defaultValue="Phi Beta Sigma"
+          />
         </label>
-        <div className=" flex flex-col">
+
+        <label className="w-full">
+          <div className="label">
+            <span className="label-text text-xl font-bold">Event Name</span>
+          </div>
+          <input
+            required
+            type="text"
+            name="event_title"
+            placeholder="Type here"
+            defaultValue={dbevent.title}
+            className="input input-bordered w-full rounded-md p-2"
+          />
+        </label>
+
+        <label className="w-full">
+          <div className="label">
+            <span className="label-text text-xl font-bold">
+              Event Description
+            </span>
+          </div>
+          <textarea
+            required
+            name="event_description"
+            className="textarea textarea-bordered w-full rounded-md p-2 h-32"
+            placeholder="Tell us about the event"
+            defaultValue={dbevent.description}
+          ></textarea>
+        </label>
+
+        <div className="space-y-4">
           <label className="w-full">
             <div className="label">
-              <span className="label-text text-xl font-bold">
-                Fraternity Affiliation
-              </span>
+              <span className="label-text text-xl font-bold">Address 1</span>
             </div>
-            <input
-              required
-              name="fraternity"
-              className="input input-bordered w-full"
-              defaultValue="Phi Beta Sigma"
-            ></input>
-          </label>
-          <label className="w-full">
-            <div className="label">
-              <span className="label-text text-xl font-bold">
-                What would you like to name this event?
-              </span>
-            </div>
-            <input
-              required
-              type="text"
-              name="event_title"
-              placeholder="Type here"
-              defaultValue={dbevent.title}
-              className="input input-bordered w-full "
-            />
-          </label>
-          <label className="w-full">
-            <div className="label">
-              <span className="label-text text-xl font-bold">
-                Can you explain what this event is in a few sentences?
-              </span>
-            </div>
-            <textarea
-              required
-              name="event_description"
-              className="textarea textarea-bordered textarea-xl w-full md:max-w"
-              placeholder="Tell us about the event"
-              defaultValue={dbevent.description}
-            ></textarea>
-          </label>
-          {/* <label className="w-full">
-            <div className="label">
-              <span className="label-text text-xl font-bold">
-                Type of Event
-              </span>
-            </div>
-            <input
-              required
-              name="event_type"
-              className="input input-bordered w-full"
-              defaultValue={type}
-              
-            ></input>
-          </label> */}
-        </div>
-        <div className="">
-          <div className="flex flex-col">
-            <label className="w-full">
-              <div className="label">
-                <span className="label-text text-xl font-bold">Address 1</span>
-              </div>
-              <AddressAutofill accessToken={Mapbox_key}>
-                <input
-                  className="input input-bordered w-full max-w"
-                  type="text"
-                  name="address-1"
-                  defaultValue={dbevent.address1 || ""}
-                  autoComplete="address-line1"
-                  required
-                />
-              </AddressAutofill>
-            </label>
-            <label className="w-full">
-              <div className="label">
-                <span className="label-text text-xl font-bold">Address 2</span>
-              </div>
+            <AddressAutofill accessToken={Mapbox_key}>
               <input
-                className="input input-bordered w-full"
+                className="input input-bordered w-full rounded-md p-2"
                 type="text"
-                name="address-2"
-                defaultValue={dbevent.address2 || ""}
-                autoComplete="address-line2"
-              />
-            </label>
-            <label className="w-full">
-              <div className="label">
-                <span className="label-text text-xl font-bold">City</span>
-              </div>
-              <input
-                className="input input-bordered w-full"
-                type="text"
-                name="city"
-                defaultValue={dbevent.city || ""}
-                autoComplete="address-level2"
+                name="address-1"
+                defaultValue={dbevent.address1 || ""}
+                autoComplete="address-line1"
                 required
               />
-            </label>
-            <label className="w-full">
+            </AddressAutofill>
+          </label>
+
+          <label className="w-full">
+            <div className="label">
+              <span className="label-text text-xl font-bold">City</span>
+            </div>
+            <input
+              className="input input-bordered w-full rounded-md p-2"
+              type="text"
+              name="city"
+              defaultValue={dbevent.city || ""}
+              autoComplete="address-level2"
+              required
+            />
+          </label>
+
+          <div className="flex space-x-4">
+            <label className="w-1/2">
               <div className="label">
                 <span className="label-text text-xl font-bold">State</span>
               </div>
               <input
-                className="input input-bordered w-full"
+                className="input input-bordered w-full rounded-md p-2"
                 type="text"
                 name="state"
                 defaultValue={dbevent.state || ""}
@@ -152,12 +102,12 @@ export default function EditEvent({ dbevent }: any) {
                 required
               />
             </label>
-            <label className="w-full">
+            <label className="w-1/2">
               <div className="label">
-                <span className="label-text text-xl font-bold">Zip</span>
+                <span className="label-text text-xl font-bold">Zipcode</span>
               </div>
               <input
-                className="input input-bordered w-full"
+                className="input input-bordered w-full rounded-md p-2"
                 type="text"
                 name="zipcode"
                 defaultValue={dbevent.zipcode || ""}
@@ -166,38 +116,9 @@ export default function EditEvent({ dbevent }: any) {
             </label>
           </div>
         </div>
-        <div className=" ">
-          {/* <label className="w-full max-w-xs">
-            <div className="label">
-              <span className="label-text text-xl font-bold">
-                Maximum Participants
-              </span>
-            </div>
-            <input
-              required
-              type="number"
-              name="total_seats"
-              placeholder="Type here"
-              className="input input-bordered w-full max-w"
-              defaultValue={dbevent.total_seats}
-            ></input>
-          </label> */}
-          {/* <label className="w-full max-w-xs">
-            <div className="label">
-              <span className="label-text text-xl font-bold">Cost</span>
-            </div>
-            <input
-              required
-              type="text"
-              name="event_cost"
-              placeholder="Type here"
-              className="input input-bordered w-full max-w"
-              defaultValue={dbevent.priceInCents}
-            />
-          </label> */}
-        </div>
-        <div className="">
-          <label className="w-full max-w">
+
+        <div className="space-y-4">
+          <label className="w-full">
             <div className="label">
               <span className="label-text text-xl font-bold">Event Date</span>
             </div>
@@ -205,10 +126,11 @@ export default function EditEvent({ dbevent }: any) {
               required
               type="date"
               name="eventDate"
-              className="input input-bordered w-full"
-              defaultValue={dbevent.date}
+              className="input input-bordered w-full rounded-md p-2"
+              defaultValue={dateFormat(`${dbevent.eventDate}`, "yyyy-mm-dd")}
             />
           </label>
+
           <label className="w-full">
             <div className="label">
               <span className="label-text text-xl font-bold">
@@ -219,16 +141,16 @@ export default function EditEvent({ dbevent }: any) {
               required
               type="time"
               name="event_time"
-              placeholder="12:45PM"
-              className="input input-bordered w-full max-w"
+              className="input input-bordered w-full rounded-md p-2"
               defaultValue={dbevent.time || "12:00PM"}
-
-              // TODO: add event time to schema and register it in form
             />
           </label>
         </div>
+
         <div className="my-4 flex justify-center">
-          <SubmitButton2></SubmitButton2>
+          <button className="btn btn-primary w-full rounded-md p-2">
+            Update Event
+          </button>
         </div>
       </form>
     </div>
