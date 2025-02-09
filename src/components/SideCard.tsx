@@ -7,24 +7,26 @@ export default function SideCard({ event }: any) {
   return (
     <Link
       href={`event/${event.id}`}
-      className="card m-1 hover:bg-base-300 h-fit card-side bg-base-100 border"
+      className="card m-1 hover:bg-base-300 h-fit max-h-40 card-side bg-base-100 border"
     >
-      <figure className="rounded-lg p-2 min-w-24">
+      <figure className="">
         <img
           src={event.imagePath}
           alt="Event Image"
-          className="rounded-lg h-32"
+          className="w-32 h-full object-cover"
         />
       </figure>
-      <div className="card-body">
-        <h2 className="card-title">{event.title}</h2>
-        <div className="text-xs flex flex-row">
+      <div className="card-body w-40">
+        <h2 className="card-title text-sm">{event.title}</h2>
+        <div className="text-sm flex flex-wrap">
           <FontAwesomeIcon icon={faCalendarDays} className="w-3 mx-1" />
           <div className="text-sm">
             {dateFormat(`${event.eventDate}`, "dddd, mmmm dS, yyyy")}
           </div>
         </div>
-        <div className="test-xs text-wrap">{event.location}</div>
+        <div className="text-sm text-wrap">
+          {event.address1}, {event.city}
+        </div>
       </div>
     </Link>
   );
