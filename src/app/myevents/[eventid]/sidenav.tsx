@@ -65,7 +65,7 @@ export default function SideNav({ imagepath, changeDisplay }: any) {
             </button>
           </div>
 
-          <div className="drawer">
+          <div className="drawer md:hidden">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
               {/* Page content here */}
