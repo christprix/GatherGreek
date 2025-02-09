@@ -60,7 +60,7 @@ export default function Display({ dbevent, EventCreatorInfo }: any) {
                     {dateFormat(`${dbevent.eventDate}`, "dddd, mmmm dS, yyyy")}
                   </div>
                   <div className="m-3">{dbevent.short_description}</div>
-                  <div className="card m-1 w-full card-side bg-base-200 border">
+                  <div className="static card m-1 w-full card-side bg-base-200 border">
                     <figure className="rounded-lg min-w-16">
                       <div
                         tabIndex={0}

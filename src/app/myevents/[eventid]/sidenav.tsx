@@ -64,7 +64,7 @@ export default function SideNav({ imagepath, changeDisplay }: any) {
               Delete Event
             </button>
           </div>
-          <details className="dropdown md:hidden block flex">
+          {/* <details className="dropdown md:hidden block flex">
             <summary className="btn md:hidden block flex bg-base-100">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +119,78 @@ export default function SideNav({ imagepath, changeDisplay }: any) {
                 </button>
               </li>
             </ul>
-          </details>
+          </details> */}
+          <div className="drawer">
+            <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content">
+              {/* Page content here */}
+              <label
+                htmlFor="my-drawer"
+                className="btn flex bg-base-100 drawer-button"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="inline-block h-5 w-5 stroke-current"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  ></path>
+                </svg>
+              </label>
+            </div>
+            <div className="drawer-side">
+              <label
+                htmlFor="my-drawer"
+                aria-label="close sidebar"
+                className="drawer-overlay z-1000"
+              ></label>
+              <ul className="menu bg-base-200 z-1000 text-base-content min-h-full w-40 p-4">
+                {/* Sidebar content here */}
+                <li>
+                  <button
+                    onClick={handleMainChange}
+                    className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
+                  >
+                    Event Dashboard
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={handleEditChange}
+                    className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
+                  >
+                    Edit Event
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={handleAttendeesChange}
+                    className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
+                  >
+                    Who is going
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={handleDeleteChange}
+                    className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
+                  >
+                    Delete Event
+                  </button>
+                </li>
+                <li>
+                  <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
+                    <Link href={"/myevents"}>Back to My Events</Link>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <button className="md:block hidden flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
