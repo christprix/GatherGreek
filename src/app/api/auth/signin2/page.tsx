@@ -1,14 +1,13 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { Suspense, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Link from "next/link";
 
 export default function SignIn(props: any) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const router = useRouter();
   // const searchParams = useSearchParams();
   // const errorParam = searchParams.get("error");
 
@@ -21,12 +20,6 @@ export default function SignIn(props: any) {
       password,
       callbackUrl: "/",
     });
-
-    if (result?.error) {
-      setError("Invalid email or password");
-    } else {
-      router.push("/"); // Redirect on successful login
-    }
   };
 
   return (
@@ -64,10 +57,7 @@ export default function SignIn(props: any) {
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition"
-          >
+          <button className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition">
             Sign In
           </button>
         </form>

@@ -65,7 +65,7 @@ export default function SideNav({ imagepath, changeDisplay }: any) {
             </button>
           </div>
           <details className="dropdown md:hidden block flex">
-            <summary className="btn md:hidden block bg-base-100">
+            <summary className="btn md:hidden block flex bg-base-100">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
