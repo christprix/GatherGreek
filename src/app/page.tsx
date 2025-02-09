@@ -31,12 +31,15 @@ export default async function Home() {
   const dbevents = await findAllEvents();
   let greekimage =
     "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737305761/demogathergreek/fraternityprofilepics/pexels-gatimu-m-1429881_lfjgsh.jpg";
+  let navtheme;
   if (session?.user) {
     const user = session.user as User;
     switch (user.organization) {
       case "Phi Beta Sigma":
         greekimage =
           "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737307174/demogathergreek/fraternityhomepagepics/greekstep-p01_vr4zmg.jpg";
+        navtheme = "aqua";
+
         break;
       case "Alpha Phi Alpha":
         greekimage =
