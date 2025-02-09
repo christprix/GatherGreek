@@ -94,7 +94,7 @@ export default function SideNav({ imagepath, changeDisplay }: any) {
                 aria-label="close sidebar"
                 className="drawer-overlay z-1000"
               ></label>
-              <ul className="menu bg-base-200 z-1000 text-base-content min-h-full w-80 p-4">
+              <ul className="menu bg-base-200 z-1000 text-base-content min-h-full w-64 p-4">
                 {/* Sidebar content here */}
                 {/* <li>
                   <button

@@ -2,9 +2,9 @@ import { Mail, Building, GraduationCap } from "lucide-react";
 
 export default function UserCard({ user }: any) {
   return (
-    <div className="collapse border-2 border-gray-300 rounded-xl shadow-lg bg-white">
+    <div className="static collapse border-2 border-gray-300 rounded-xl shadow-lg bg-white">
       <input type="checkbox" />
-      <div className="collapse-title flex justify-between items-center p-4 cursor-pointer peer-checked:bg-gray-100 transition-all">
+      <div className="static collapse-title flex justify-between items-center p-4 cursor-pointer peer-checked:bg-gray-100 transition-all">
         <div className="flex items-center space-x-3">
           <div className="text-lg font-semibold">
             {user.firstName} {user.lastName}
