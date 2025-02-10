@@ -8,6 +8,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Card({ event }: any) {
+  let address;
+  let encodedAddress;
+  if (event?.address1) {
+    address = event.address1 + " " + event.city + " " + event.zipcode;
+    encodedAddress = encodeURI(address as string);
+  }
+
   const getTags = event.tags.map((e: any) => {
     return (
       <button
@@ -45,7 +52,20 @@ export default function Card({ event }: any) {
           </div>
           <div className="text-sm flex flex-row">
             <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
-            <p>{event.address1 + "," + event.city || "TBA"}</p>
+            <p>
+              {" "}
+              {event.address1 ? (
+                <Link
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {address}
+                </Link>
+              ) : (
+                <div>TBA</div>
+              )}
+            </p>
           </div>
           {/* <p className="text-sm">From ${event.priceInCents}</p> */}
           <Link className="btn btn-primary" href={`event/${event.id}`}>

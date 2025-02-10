@@ -61,7 +61,6 @@ export default async function EventDetails(props: {
     address = dbevent.address1 + " " + dbevent.city + " " + dbevent.zipcode;
     encodedAddress = encodeURI(address as string);
   }
-  console.log(encodeURI(address as string));
   // TAGS FUNCTION
   const getTags = dbevent?.tags.map((e: any) => {
     return (
