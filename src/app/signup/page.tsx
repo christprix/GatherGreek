@@ -1,9 +1,22 @@
-"use client";
-
 import { createUser } from "../actions";
 import { SubmitButton } from "./submit-button";
 
-export default function Signup() {
+export default async function Signup(props: {
+  searchParams: Promise<{ message?: string }>;
+}) {
+  const searchParams = await props.searchParams;
+  let message;
+  if (searchParams.message) {
+    switch (searchParams.message) {
+      case "emailnotunique":
+        message = "This Email is Already Taken";
+        break;
+
+      default:
+        break;
+    }
+  }
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-5">
       <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
@@ -69,7 +82,7 @@ export default function Signup() {
               <option value="Iota Phi Theta">Iota Phi Theta</option>
             </select>
           </div>
-
+          <div className="text-red-600 text-center">{message}</div>
           <div>
             <label className="block text-sm font-medium">Email *</label>
             <input

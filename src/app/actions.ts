@@ -182,7 +182,6 @@ const schema = z.object({
 });
 
 export async function createUser(formData: FormData) {
-  console.log(formData);
   const validatedFields = schema.safeParse({
     firstname: formData.get("firstname"),
     lastname: formData.get("lastname"),
@@ -206,7 +205,17 @@ export async function createUser(formData: FormData) {
 
   // Mutate data
   const hashed = await hash(formData.get("password") as string, 10);
+  let emailcheckerarray = [];
+  const emailchecker = await prisma.user.findUnique({
+    where: {
+      email: formData.get("email") as string,
+    },
+  });
 
+  if (emailchecker) {
+    console.log("no unique email");
+    redirect("/signup?message=emailnotunique");
+  }
   try {
     const newUser = await prisma.user.create({
       data: {
@@ -222,9 +231,9 @@ export async function createUser(formData: FormData) {
     console.log(newUser);
   } catch (error: any) {
     console.log("something went wrong");
-    console.error("error", error);
-    redirect("/profile?message=bad");
+    // redirect("/profile?message=bad");
   }
+  redirect("/profile?message=newuser");
 }
 
 export async function updateEvent(eventid: string, formData: FormData) {
@@ -233,7 +242,7 @@ export async function updateEvent(eventid: string, formData: FormData) {
   const eventdate = formData.get("eventDate");
   const datetime = eventdate + "T" + eventtime + "Z";
   const formattedDate = new Date(datetime as string);
-  console.log(formattedDate);
+  let urleventlink;
   try {
     const newEvent = await prisma.event.update({
       where: {
@@ -256,11 +265,12 @@ export async function updateEvent(eventid: string, formData: FormData) {
       },
     });
     console.log(newEvent);
-    redirect(`/myevents/${newEvent.id}`);
+    urleventlink = newEvent;
   } catch (error: any) {
     console.error("Prisma create event Error ;", error.message);
     redirect("/myevents?message=error");
   }
+  redirect(`/myevents/${urleventlink.id}`);
 }
 
 export async function createEvent(

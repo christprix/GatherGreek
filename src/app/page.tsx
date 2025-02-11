@@ -26,9 +26,41 @@ type User = {
   location: string;
 };
 
-export default async function Home() {
+export default async function Home(props: {
+  searchParams: Promise<{ message?: string }>;
+}) {
   const session = await getServerSession(options);
   const dbevents = await findAllEvents();
+  const searchParams = await props.searchParams;
+  let message;
+  if (searchParams.message) {
+    switch (searchParams.message) {
+      case "newuser":
+        message = (
+          <>
+            <button className="btn hidden">open modal</button>
+            <dialog id="my_modal_1 modal-open" className="modal">
+              <div className="modal-box">
+                <h3 className="font-bold text-lg">Hello!</h3>
+                <p className="py-4">
+                  Press ESC key or click the button below to close
+                </p>
+                <div className="modal-action">
+                  <form method="dialog">
+                    {/* if there is a button in form, it will close the modal */}
+                    <button className="btn">Close</button>
+                  </form>
+                </div>
+              </div>
+            </dialog>
+          </>
+        );
+        break;
+
+      default:
+        break;
+    }
+  }
   let greekimage =
     "https://res.cloudinary.com/dm54zi0ff/image/upload/v1737305761/demogathergreek/fraternityprofilepics/pexels-gatimu-m-1429881_lfjgsh.jpg";
   let navtheme;
@@ -79,6 +111,7 @@ export default async function Home() {
   }
   return (
     <div>
+      {message}
       <Hero image={greekimage}></Hero>
       <div className="text-xl md:text-3xl  font-bold flex justify-center  m-4 text-center">
         Find An Event by Category
