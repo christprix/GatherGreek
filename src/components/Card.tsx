@@ -53,7 +53,6 @@ export default function Card({ event }: any) {
           <div className="text-sm flex flex-row">
             <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
             <p>
-              {" "}
               {event.address1 ? (
                 <Link
                   href={`https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`}

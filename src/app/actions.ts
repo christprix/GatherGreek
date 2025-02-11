@@ -220,8 +220,9 @@ export async function createUser(formData: FormData) {
       },
     });
     console.log(newUser);
-  } catch (error) {
+  } catch (error: any) {
     console.log("something went wrong");
+    console.error("error", error);
     redirect("/profile?message=bad");
   }
 }
