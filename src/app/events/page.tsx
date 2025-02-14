@@ -24,8 +24,6 @@ export default async function Page(props: {
   // TODO! CHANGE TAG SEARCH TO ONE ACTIONS FUNCTION
   if (searchParams.tag) {
     searchevents = await findAllEventsByTag(searchParams.tag);
-    console.log(searchParams.tag);
-    console.log(searchevents);
   } else if (!searchParams.q || searchParams.q === "") {
     searchevents = (await findAllEvents()).reverse();
   } else {
@@ -57,8 +55,10 @@ export default async function Page(props: {
           </div> */}
         </div>
       </div>
-      <div className={`m-4 ml-10 text-2xl md:text-4xl ${anton.className}`}>
-        Top Events In Your Area
+      <div
+        className={`m-4 ml-10 md:ml-30 flex flex-col text-2xl md:text-4xl ${anton.className}`}
+      >
+        <div>Top Events In Your Area</div>
         <LocationFinder></LocationFinder>
       </div>
       {/* turn below into component to have conditional rendering */}

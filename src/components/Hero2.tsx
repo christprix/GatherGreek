@@ -1,5 +1,3 @@
-import blackbasketball from "/public/blackbasketball.jpg";
-
 export default function Hero2({ image }: any) {
   return (
     <div
