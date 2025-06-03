@@ -2,7 +2,6 @@
 import { redirect } from "next/navigation";
 
 import { addUserToEvent } from "@/app/actions";
-import { revalidatePath } from "next/cache";
 export default function JoinEventButton({ userId, eventId, eventSeats }: any) {
   function handleClick() {
     try {

@@ -1,8 +1,6 @@
-import SearchBar from "./Search";
 import Link from "next/link";
 import { getServerSession } from "next-auth/next";
 import { options } from "@/app/api/auth/[...nextauth]/options";
-import profilepic from "/public/headshot.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import Signoutbutton from "./Signoutbutton";
@@ -89,11 +87,11 @@ export default async function Nav({ logo }: any) {
       </div>
       <div className="navbar-center">
         <Link href={"/"} className="btn btn-ghost text-xl md:hidden">
-          GreekConnect
+          Meet and Greek
         </Link>
       </div>
       <div className="navbar-center hidden md:flex mx-3 text-xl font-bold">
-        Greek Connect
+        Meet and Greek
       </div>
       {/* IF LOGGED IN TERNARY */}
       {!session ? (

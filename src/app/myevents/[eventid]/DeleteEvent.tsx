@@ -1,7 +1,6 @@
 import { Anton } from "next/font/google";
 import { deleteEventPrisma } from "@/app/actions";
 import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
 const anton = Anton({
   subsets: ["latin"],
   weight: "400",

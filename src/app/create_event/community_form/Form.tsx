@@ -3,7 +3,6 @@
 import clsx from "clsx";
 import { useState } from "react";
 import { AddressAutofill } from "@mapbox/search-js-react";
-import z from "zod";
 
 import ImageUploader from "@/components/eventsForm/ImageUploader";
 import { CldImage } from "next-cloudinary";

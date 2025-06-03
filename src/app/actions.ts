@@ -2,7 +2,6 @@
 import prisma from "@/lib/prisma";
 import { any, z } from "zod";
 import { hash } from "bcrypt";
-import { log } from "console";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 

@@ -5,9 +5,7 @@ import {
   faLandmark,
   faUserGraduate,
   faMoneyBillTrendUp,
-  faEarthAmericas,
   faUsersBetweenLines,
-  faUserPlus,
   faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";

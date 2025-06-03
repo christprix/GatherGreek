@@ -2,7 +2,6 @@ import Cardlist from "@/components/Cardlist";
 import { Anton } from "next/font/google";
 import SearchBar from "@/components/Search";
 import {
-  findAllUsers,
   findAllEvents,
   findEventsbySearch,
   findAllEventsByTag,
@@ -32,9 +31,7 @@ export default async function Page(props: {
   return (
     <>
       <div className="border-t border-blue-100 justify-center flex flex-col-reverse p-4 justify-around">
-        <div className="md:mt-5 flex justify-center">
-          {/* <Mapbox></Mapbox> */}
-        </div>
+        <div className="md:mt-5 flex justify-center"></div>
         <div className="rounded-md p-2 m-4 flex md:flex-row flex-col justify-around">
           <div className="bg-base-200 rounded">
             <div
@@ -45,14 +42,8 @@ export default async function Page(props: {
 
             <div className="flex flex-col justify-center m-4 w-lg">
               <SearchBar></SearchBar>
-              {/* <div className=" flex-row flex-wrap hidden md:flex justify-center">
-                <Taglist></Taglist>
-              </div> */}
             </div>
           </div>
-          {/* <div className="flex flex-row flex-wrap md:hidden justify-center">
-            <Taglist></Taglist>
-          </div> */}
         </div>
       </div>
       <div
