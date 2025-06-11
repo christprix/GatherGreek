@@ -50,6 +50,7 @@ export default function Form({ user }: any) {
   const createEventwithImage = createEventWithId.bind(null, imagepath);
   // CREATE HANDLER FOR EACH CHANGE
   const handleTagsChange = (newTags: any) => {
+    console.log(newTags);
     setTags(newTags);
   };
 
@@ -95,6 +96,22 @@ export default function Form({ user }: any) {
 
   const handleTimeChange = (newType: string) => {
     setTime(newType);
+  };
+
+  const displayTags = (tags: any) => {
+    if (tags.length > 0) {
+      return (
+        <ul>
+          {tags.map((item: any, index: any) => (
+            <span className="bg-blue-500 px-3 py-1 rounded-full" key={index}>
+              {item}
+            </span>
+          ))}
+        </ul>
+      );
+    } else {
+      return <div>No Tags</div>;
+    }
   };
 
   const steps = [
@@ -466,13 +483,16 @@ export default function Form({ user }: any) {
       {/* submit button */}
       {currentStep === 4 && (
         <>
-          <div className="flex flex-col w-96 md:w-3/5 bg-base-100">
-            <div className="flex flex-col md:flex-row w-full justify-evenly p-4 md:p-4">
-              <div
-                id="left"
-                className="grid flex-col h-5/6 bg-base-200 w-full rounded p-4 md:p-20"
-              >
-                <div className="md:text-4xl text-3xl">{title}</div>
+          <div className="flex flex-col w-96 md:w-3/5 mx-auto bg-white shadow-lg rounded-xl overflow-hidden">
+            <div className="flex flex-col md:flex-row w-full justify-evenly p-6 md:p-8 space-y-6 md:space-y-0">
+              {/* Left Side Card */}
+              <div className="flex flex-col w-full rounded-lg p-6 md:p-12 space-y-6">
+                {/* Title */}
+                <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
+                  {title}
+                </h1>
+
+                {/* Event Image */}
                 <div className="flex justify-center">
                   {imagepath === "" ? (
                     <CldImage
@@ -480,8 +500,8 @@ export default function Form({ user }: any) {
                       height="200"
                       src="https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113943/g-icon_tjgz9i.png"
                       sizes="100vw"
-                      className="rounded"
-                      alt="Description of my image"
+                      className="rounded-lg"
+                      alt="Default event graphic"
                     />
                   ) : (
                     <CldImage
@@ -489,60 +509,76 @@ export default function Form({ user }: any) {
                       height="200"
                       src={imagepath}
                       sizes="100vw"
-                      className="rounded"
-                      alt="Description of my image"
+                      className="rounded-lg"
+                      alt="Event image"
                     />
                   )}
                 </div>
-                {/* TODO ADD SHORT DESCRIPTION */}
-                {/* <div className="m-3">{description}</div> */}
-                <div className="flex flex-col ">
-                  <div className={`flex flex-col my-1`}>
-                    <p className={`text-3xl flex flex-col ${anton.className}`}>
+
+                {/* Event Details */}
+                <div className="flex flex-col space-y-4 text-gray-700">
+                  {/* Date and Time */}
+                  <div className="space-y-1">
+                    <p className={`text-2xl font-semibold ${anton.className}`}>
                       Date and Time
                     </p>
-                    <div className="text-sm flex">
-                      <div className="text-xl">
-                        <FontAwesomeIcon
-                          icon={faCalendarDays}
-                          className="w-3 mx-1"
-                        />
-                      </div>
+                    <div className="flex items-center text-base">
+                      <FontAwesomeIcon
+                        icon={faCalendarDays}
+                        className="w-4 h-4 mr-2 text-blue-500"
+                      />
                       {date} 4pm - 5pm EST
                     </div>
                   </div>
-                  <div className="flex flex-col my-1">
-                    <p className={`text-3xl ${anton.className}`}>Location</p>
-                    <div className="flex">
-                      <div className="text-xl">
-                        <FontAwesomeIcon
-                          icon={faLocationDot}
-                          className="w-3 mx-1"
-                        />
-                      </div>
+
+                  {/* Location */}
+                  <div className="space-y-1">
+                    <p className={`text-2xl font-semibold ${anton.className}`}>
+                      Location
+                    </p>
+                    <div className="flex items-center text-base">
+                      <FontAwesomeIcon
+                        icon={faLocationDot}
+                        className="w-4 h-4 mr-2 text-red-500"
+                      />
                       {address1}
                     </div>
                   </div>
-                  <div className="flex flex-col my-1">
-                    <p className={`text-3xl ${anton.className}`}>
+
+                  {/* Description */}
+                  <div className="space-y-1">
+                    <p className={`text-2xl font-semibold ${anton.className}`}>
                       About This Event
                     </p>
-                    <p className="text-wrap md:w-96 break-all">{description}</p>
+                    <p className="text-base leading-relaxed md:max-w-xl break-words">
+                      {description}
+                    </p>
                   </div>
-                  <div className="flex flex-col my-5">
-                    <p className={`text-3xl ${anton.className}`}>Tags</p>
-                    <div className="flex flex-wrap">{type}</div>
+
+                  {/* Tags */}
+                  <div className="space-y-1">
+                    <p className={`text-2xl font-semibold ${anton.className}`}>
+                      Tags
+                    </p>
+                    <div className="flex flex-wrap gap-2 text-sm text-white">
+                      {displayTags(tags)}
+                    </div>
                   </div>
-                  <div className="flex flex-col my-5">
-                    <p className={`text-3xl ${anton.className}`}>Price</p>
-                    <p>{cost}</p>
+
+                  {/* Price */}
+                  <div className="space-y-1">
+                    <p className={`text-2xl font-semibold ${anton.className}`}>
+                      Price
+                    </p>
+                    <p className="text-base">{cost}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
           <form
-            className="my-4 flex flex-col justify-center item-center w-xl"
+            className="my-4 flex flex-col justify-center item-center w-xl "
             action={createEventwithImage}
           >
             <div className="hidden">

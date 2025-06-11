@@ -1,12 +1,8 @@
 import prisma from "@/lib/prisma";
-import Image from "next/image";
-import dateFormat from "dateformat";
 import { getServerSession } from "next-auth/next";
 import { Anton } from "next/font/google";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import { findUserInfo, findMyEvents, findMyEventsbyId } from "@/app/actions";
-import Link from "next/link";
-import SideNav from "./sidenav";
 import Display from "./Display";
 
 const anton = Anton({

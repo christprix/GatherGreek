@@ -25,6 +25,7 @@ model Event {
   totalSeats Int
   location String?
   tags String[] @default(["all"])
+  private Boolean @default(false)
   time String?
   address1 String?
   address2 String?

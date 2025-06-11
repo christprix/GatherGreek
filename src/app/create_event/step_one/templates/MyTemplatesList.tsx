@@ -1,4 +1,4 @@
-import MyEventsCard from "./MyEventsCard";
+import MyEventsCard from "./MyTemplatesCard";
 
 export default async function Cardlist({ events }: any) {
   const eventsList = events.map((e: any) => {
