@@ -1,7 +1,6 @@
 import Link from "next/link";
 
-export default function StepOne({ user }: any) {
-  const userid = user.id;
+export default function StepOne() {
   return (
     <div className="flex md:flex-row flex-col md:justify-center  items-center space-y-4 p-4 md:space-y-0 md:space-x-4">
       <div className="card bg-base-100 image-full w-96 shadow-xl">

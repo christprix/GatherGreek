@@ -6,7 +6,7 @@ import { AddressAutofill } from "@mapbox/search-js-react";
 
 import ImageUploader from "@/components/eventsForm/ImageUploader";
 import { CldImage } from "next-cloudinary";
-import { createEvent } from "@/app/actions";
+import { createEvent, findEvent } from "@/app/actions";
 import { SubmitButton } from "@/app/signup/submit-button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,6 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Anton } from "next/font/google";
 import TagsInput from "react-tagsinput";
+import { useSearchParams } from "next/navigation";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -24,33 +25,47 @@ const anton = Anton({
 
 const Mapbox_key = process.env.NEXT_PUBLIC_MAPBOX_KEY as string;
 
-export default function Form({ user }: any) {
-  // ADD USERID TO CREATEEVENT FUNCTION
-  // CREATE  STEPS
+export default function Form({ user, templateEvent }: any) {
+  console.log(templateEvent);
   const [currentStep, setCurrentStep] = useState(0);
   // CREATE STORE FOR ITEM
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(templateEvent ? templateEvent.title : "");
   const [fraternity, setFraternity] = useState("");
-  const [description, setDescription] = useState("");
-  const [type, setType] = useState("");
-  const [address1, setAddress1] = useState("");
-  const [address2, setAddress2] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zipcode, setZipcode] = useState("");
-  const [cost, setCost] = useState("");
-  const [seats, setSeats] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [imagepath, setImagepath] = useState("");
+  const [description, setDescription] = useState(
+    templateEvent ? templateEvent.description : ""
+  );
+  const [type, setType] = useState(templateEvent ? templateEvent.title : "");
+  const [address1, setAddress1] = useState(
+    templateEvent ? templateEvent.address1 : ""
+  );
+  const [address2, setAddress2] = useState(
+    templateEvent ? templateEvent.address2 : ""
+  );
+  const [city, setCity] = useState(templateEvent ? templateEvent.city : "");
+  const [state, setState] = useState(templateEvent ? templateEvent.state : "");
+  const [zipcode, setZipcode] = useState(
+    templateEvent ? templateEvent.zipcode : ""
+  );
+  const [cost, setCost] = useState(
+    templateEvent ? templateEvent.priceInCents : ""
+  );
+  const [seats, setSeats] = useState(
+    templateEvent ? templateEvent.totalSeats : ""
+  );
+  const [date, setDate] = useState(
+    templateEvent ? templateEvent.eventDate : ""
+  );
+  const [time, setTime] = useState(templateEvent ? templateEvent.time : "");
+  const [imagepath, setImagepath] = useState(
+    templateEvent ? templateEvent.imagePath : ""
+  );
   const [warningmessage, setWarningmessage] = useState("");
-  const [tags, setTags] = useState([]);
-
+  const [tags, setTags] = useState(templateEvent ? templateEvent.tags : []);
+  // ADD USERID TO CREATEEVENT FUNCTION
   const createEventWithId = createEvent.bind(null, user.id);
   const createEventwithImage = createEventWithId.bind(null, imagepath);
   // CREATE HANDLER FOR EACH CHANGE
   const handleTagsChange = (newTags: any) => {
-    console.log(newTags);
     setTags(newTags);
   };
 

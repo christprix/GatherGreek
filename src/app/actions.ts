@@ -5,6 +5,15 @@ import { hash } from "bcrypt";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
+export async function findEvent(id: string) {
+  const dbevent = await prisma.event.findUnique({
+    where: {
+      id: id,
+    },
+  });
+  return dbevent;
+}
+
 export async function findEventsbySearch(query: any) {
   const dbevents = await prisma.event.findMany({
     where: {

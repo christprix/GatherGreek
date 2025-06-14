@@ -7,7 +7,7 @@ export default async function Page() {
   return (
     <section className="py-20">
       <div className="container">
-        <StepOne user={user}></StepOne>
+        <StepOne></StepOne>
       </div>
     </section>
   );
