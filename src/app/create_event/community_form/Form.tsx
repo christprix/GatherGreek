@@ -15,7 +15,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Anton } from "next/font/google";
 import TagsInput from "react-tagsinput";
-import { useSearchParams } from "next/navigation";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -801,7 +800,12 @@ export default function Form({ user, templateEvent }: any) {
               </div>
             </div>
             <div className="my-4 flex justify-center">
-              <SubmitButton></SubmitButton>
+              <button
+                className="rounded bg-primary px-2 py-1 text-white text-sm font-semibold "
+                type="submit"
+              >
+                Sign Up
+              </button>
             </div>
           </form>
         </>
@@ -810,23 +814,38 @@ export default function Form({ user, templateEvent }: any) {
         <div className="text-red-600">{warningmessage}</div>
       )}
       {/* NAVIGATION */}
-      <div className="">
-        <div className="flex justify-between">
-          {/* previous */}
+      <div className="w-96 mt-4">
+        <div className="flex justify-around">
+          {/* Previous Button */}
           <button
             type="button"
             onClick={prev}
             disabled={currentStep === 0}
-            className="rounded bg-primary text-white px-2 py-1 mx-2 text-sm font-semibold"
+            className={`px-2 py-2 text-m font-semibold rounded ${
+              currentStep === 0
+                ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                : "bg-primary text-white hover:bg-primary/90"
+            }`}
           >
             Prev
           </button>
-          {/* next */}
+
+          <button
+            className={`bg-primary text-white hover:bg-primary/90 px-2 py-2 text-m font-semibold rounded`}
+          >
+            Save Draft
+          </button>
+
+          {/* Next Button */}
           <button
             type="button"
             onClick={next}
             disabled={currentStep === steps.length - 1}
-            className="rounded bg-primary px-2 py-1 text-white text-sm font-semibold "
+            className={`px-2 py-2 text-m font-semibold rounded ${
+              currentStep === steps.length - 1
+                ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                : "bg-primary text-white hover:bg-primary/90"
+            }`}
           >
             Next
           </button>
