@@ -20,9 +20,7 @@ export default function Card({ event }: any) {
   });
   return (
     <div className="p-3">
-      <Link
-        href={`/create_event/community_form?template=${event.id}?draft=yes`}
-      >
+      <Link href={`/create_event/community_form?template=${event.id}`}>
         <div className="card card-compact bg-base-100 h-[25rem] md:w-96 w-96 shadow-xl">
           <figure className="">
             <img src={event.imagePath} alt="Shoes" />
