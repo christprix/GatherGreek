@@ -103,6 +103,15 @@ export async function findMyEvents(id: string) {
   return dbevents;
 }
 
+export async function findMyDraftEvents(id: string) {
+  const dbevents = await prisma.draftEvent.findMany({
+    where: {
+      authorId: id,
+    },
+  });
+  return dbevents;
+}
+
 export async function findMyEventsbyId(id: string) {
   const dbevents = await prisma.user.findUnique({
     where: {
@@ -322,6 +331,56 @@ export async function createEvent(
       },
     });
     redirect(`/myevents/${newEvent.id}`);
+  } catch (error: any) {
+    console.error("Prisma create event failed. Error ;", error.message);
+    redirect("/?message=creation_failed");
+  }
+}
+
+export async function createDraftEvent(
+  user: string,
+  imagePath: string,
+  formData: FormData
+) {
+  let image = "";
+  if (imagePath === "") {
+    image =
+      "https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113943/g-icon_tjgz9i.png";
+  } else {
+    image = imagePath;
+  }
+  const eventdate = formData.get("eventDate");
+  let formattedDate;
+  if (eventdate) {
+    formattedDate = new Date(eventdate as string);
+  }
+  // console.log(formattedDate);
+  const formattedSeats = Number(formData.get("total_seats"));
+  // console.log(formattedSeats);
+  // TODO USE FUNCTION BELOW TO CONVERT PRICE TO NUMBER
+  // const formattedPrice = Number(formData.get("eventCost"))
+  try {
+    const newDraftEvent = await prisma.draftEvent.create({
+      data: {
+        title: formData.get("event_title") as string,
+        description: formData.get("event_description") as string,
+        tags: [formData.get("event_type") as string],
+        location: "America",
+        address1: formData.get("address-1") as string,
+        address2: formData.get("address-2") as string,
+        city: formData.get("city") as string,
+        state: formData.get("state") as string,
+        zipcode: formData.get("zipcode") as string,
+        imagePath: image,
+        eventDate: formattedDate as Date,
+        totalSeats: formattedSeats as number,
+        time: formData.get("event_time") as string,
+        // TODO CHANGE PRICE TO NUMBER
+        priceInCents: formData.get("event_cost") as string,
+        authorId: user as any,
+      },
+    });
+    redirect(`/myevents/`);
   } catch (error: any) {
     console.error("Prisma create event failed. Error ;", error.message);
     redirect("/?message=creation_failed");

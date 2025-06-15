@@ -6,7 +6,7 @@ import { AddressAutofill } from "@mapbox/search-js-react";
 
 import ImageUploader from "@/components/eventsForm/ImageUploader";
 import { CldImage } from "next-cloudinary";
-import { createEvent, findEvent } from "@/app/actions";
+import { createEvent, createDraftEvent } from "@/app/actions";
 import { SubmitButton } from "@/app/signup/submit-button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -60,9 +60,16 @@ export default function Form({ user, templateEvent }: any) {
   );
   const [warningmessage, setWarningmessage] = useState("");
   const [tags, setTags] = useState(templateEvent ? templateEvent.tags : []);
-  // ADD USERID TO CREATEEVENT FUNCTION
+  // ADD USERID TO CREATEEVENT AND CREATEDRAFTEVENT FUNCTION
   const createEventWithId = createEvent.bind(null, user.id);
   const createEventwithImage = createEventWithId.bind(null, imagepath);
+
+  const createDraftEventWithId = createDraftEvent.bind(null, user.id);
+  const createDraftEventwithImage = createDraftEventWithId.bind(
+    null,
+    imagepath
+  );
+
   // CREATE HANDLER FOR EACH CHANGE
   const handleTagsChange = (newTags: any) => {
     setTags(newTags);
@@ -829,12 +836,100 @@ export default function Form({ user, templateEvent }: any) {
           >
             Prev
           </button>
-
-          <button
-            className={`bg-primary text-white hover:bg-primary/90 px-2 py-2 text-m font-semibold rounded`}
-          >
-            Save Draft
-          </button>
+          {/* DRAFT FORM */}
+          <form action={createDraftEventwithImage}>
+            <div className="hidden">
+              <input
+                required
+                name="fraternity"
+                defaultValue={fraternity}
+                readOnly
+              />
+              <input
+                required
+                type="text"
+                name="event_title"
+                defaultValue={title}
+                readOnly
+              />
+              <textarea
+                required
+                name="event_description"
+                defaultValue={description}
+                readOnly
+              ></textarea>
+              <input required name="event_type" defaultValue={type} readOnly />
+              <input
+                type="text"
+                name="address-1"
+                defaultValue={address1}
+                autoComplete="address-line1"
+                readOnly
+              />
+              <input
+                type="text"
+                name="address-2"
+                defaultValue={address2}
+                autoComplete="address-line2"
+                readOnly
+              />
+              <input
+                type="text"
+                name="city"
+                defaultValue={city}
+                autoComplete="address-level2"
+                readOnly
+              />
+              <input
+                type="text"
+                name="state"
+                defaultValue={state}
+                autoComplete="address-level1"
+                readOnly
+              />
+              <input
+                type="text"
+                name="zip"
+                defaultValue={zipcode}
+                autoComplete="postal-code"
+                readOnly
+              />
+              <input
+                required
+                type="number"
+                name="total_seats"
+                defaultValue={seats}
+                readOnly
+              />
+              <input
+                required
+                type="text"
+                name="event_cost"
+                defaultValue={cost}
+                readOnly
+              />
+              <input
+                required
+                type="date"
+                name="eventDate"
+                defaultValue={date}
+                readOnly
+              />
+              <input
+                required
+                type="time"
+                name="event_time"
+                defaultValue={time}
+                readOnly
+              />
+            </div>
+            <button
+              className={`bg-primary text-white hover:bg-primary/90 px-2 py-2 text-m font-semibold rounded`}
+              type="submit"
+            >
+              Save Draft
+            </button>
+          </form>
 
           {/* Next Button */}
           <button

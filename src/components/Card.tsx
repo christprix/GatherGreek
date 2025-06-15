@@ -52,7 +52,7 @@ export default function Card({ event }: any) {
           </div>
           <div className="text-sm flex flex-row">
             <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
-            <p>
+            <div>
               {event.address1 ? (
                 <Link
                   href={`https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`}
@@ -64,7 +64,7 @@ export default function Card({ event }: any) {
               ) : (
                 <div>TBA</div>
               )}
-            </p>
+            </div>
           </div>
           {/* <p className="text-sm">From ${event.priceInCents}</p> */}
           <Link className="btn btn-primary" href={`event/${event.id}`}>
