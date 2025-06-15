@@ -128,7 +128,7 @@ export default async function Page(props: {
           backgroundImage: `url(${groupic})`,
         }}
       >
-        {message}
+        {/* {message} */}
         <div className="hero-overlay bg-opacity-65"></div>
         {/* mobile view overlay */}
         <div className="mt-40 md:hidden text-white">
