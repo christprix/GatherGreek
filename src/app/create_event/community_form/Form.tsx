@@ -6,7 +6,7 @@ import { AddressAutofill } from "@mapbox/search-js-react";
 
 import ImageUploader from "@/components/eventsForm/ImageUploader";
 import { CldImage } from "next-cloudinary";
-import { createEvent, createDraftEvent } from "@/app/actions";
+import { createEvent, createDraftEvent, updateDraftEvent } from "@/app/actions";
 import { SubmitButton } from "@/app/signup/submit-button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -24,7 +24,7 @@ const anton = Anton({
 
 const Mapbox_key = process.env.NEXT_PUBLIC_MAPBOX_KEY as string;
 
-export default function Form({ user, templateEvent }: any) {
+export default function Form({ user, templateEvent, draftconfirmation }: any) {
   console.log(templateEvent);
   const [currentStep, setCurrentStep] = useState(0);
   // CREATE STORE FOR ITEM
@@ -42,9 +42,7 @@ export default function Form({ user, templateEvent }: any) {
   );
   const [city, setCity] = useState(templateEvent ? templateEvent.city : "");
   const [state, setState] = useState(templateEvent ? templateEvent.state : "");
-  const [zipcode, setZipcode] = useState(
-    templateEvent ? templateEvent.zipcode : ""
-  );
+  const [zipcode, setZipcode] = useState(templateEvent ? "30134" : "");
   const [cost, setCost] = useState(
     templateEvent ? templateEvent.priceInCents : ""
   );
@@ -69,6 +67,26 @@ export default function Form({ user, templateEvent }: any) {
     null,
     imagepath
   );
+
+  const updateDraftEventWithEventId = updateDraftEvent.bind(
+    null,
+    templateEvent
+  );
+  const updateDraftEventWithImage = updateDraftEventWithEventId.bind(
+    null,
+    imagepath
+  );
+
+  // DYNAMICALLY SAVE OR CREATE DRAFT
+  let saveDraft = createDraftEventwithImage;
+
+  if (draftconfirmation) {
+    console.log("saving draft");
+    saveDraft = updateDraftEventWithImage;
+  } else {
+    console.log("making draft");
+    saveDraft = createDraftEventwithImage;
+  }
 
   // CREATE HANDLER FOR EACH CHANGE
   const handleTagsChange = (newTags: any) => {
