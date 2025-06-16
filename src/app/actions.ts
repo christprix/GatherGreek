@@ -384,7 +384,7 @@ export async function createEvent(
     redirect(`/myevents/${newEvent.id}`);
   } catch (error: any) {
     console.error("Prisma create event failed. Error ;", error.message);
-    redirect("/?message=creation_failed");
+    redirect(`/myevents`);
   }
 }
 

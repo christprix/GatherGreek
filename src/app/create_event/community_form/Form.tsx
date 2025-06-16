@@ -7,7 +7,7 @@ import { AddressAutofill } from "@mapbox/search-js-react";
 import ImageUploader from "@/components/eventsForm/ImageUploader";
 import { CldImage } from "next-cloudinary";
 import { createEvent, createDraftEvent, updateDraftEvent } from "@/app/actions";
-import { SubmitButton } from "@/app/signup/submit-button";
+import { CreateButton } from "./create-button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationDot,
@@ -826,10 +826,10 @@ export default function Form({ user, templateEvent, draftconfirmation }: any) {
             </div>
             <div className="my-4 flex justify-center">
               <button
-                className="rounded bg-primary px-2 py-1 text-white text-sm font-semibold "
+                className="rounded-lg bg-success px-2 py-1 text-white text-m font-semibold "
                 type="submit"
               >
-                Sign Up
+                Create Event
               </button>
             </div>
           </form>
