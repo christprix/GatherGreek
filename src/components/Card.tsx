@@ -28,11 +28,11 @@ export default function Card({ event }: any) {
   return (
     <div className="p-3">
       <div className="card card-compact bg-base-100 h-[30rem] md:w-96 h-96 shadow-xl">
-        <figure className="">
+        <figure className="h-[25rem]">
           <img src={event.imagePath} alt="Shoes" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">
+          <h2 className="card-title md:text-base">
             <Link href={`event/${event.id}`}>{event.title}</Link>
           </h2>
           <div className="test-xs flex">
@@ -42,11 +42,13 @@ export default function Card({ event }: any) {
           <div className="text-xs flex flex-row">
             <FontAwesomeIcon icon={faCalendarDays} className="w-3 mx-1" />
             <div className="text-sm">
-              <div className="flex flex-col">
+              <div className="flex flex-row">
                 <div>
                   {dateFormat(`${event.eventDate}`, "dddd, mmmm dS, yyyy")}{" "}
                 </div>
-                <div>{dateFormat(`${event.eventDate}`, "UTC:h:MM TT ")}</div>
+                <div className="px-2">
+                  {dateFormat(`${event.eventDate}`, "UTC:h:MM TT ")}
+                </div>
               </div>
             </div>
           </div>
