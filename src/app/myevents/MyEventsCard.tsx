@@ -30,14 +30,14 @@ export default function Card({ event }: any) {
           </h2>
           <div className="text-xs flex flex-row">
             <FontAwesomeIcon icon={faCalendarDays} className="w-3 mx-1" />
-            <p className="text-sm">
+            <div className="text-sm">
               <div className="flex flex-col">
                 <div>
                   {dateFormat(`${event.eventDate}`, "dddd, mmmm dS, yyyy")}{" "}
                 </div>
                 <div>{dateFormat(`${event.eventDate}`, "UTC:h:MM TT ")}</div>
               </div>
-            </p>
+            </div>
           </div>
           <div className="text-sm flex flex-row">
             <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />

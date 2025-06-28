@@ -1,6 +1,5 @@
 import blackparty from "/public/blackparty.jpg";
 import Link from "next/link";
-import sigmabrotherhood from "/public/sigmabrotherhood.jpg";
 export default async function Page() {
   return (
     <>
@@ -19,7 +18,7 @@ export default async function Page() {
                 </p>
                 <div className="card-actions justify-end">
                   <Link
-                    href={"/create_event/community_form"}
+                    href={"/create_event/step_one"}
                     className="btn btn-primary"
                   >
                     Get Started

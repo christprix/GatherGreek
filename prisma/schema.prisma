@@ -25,6 +25,7 @@ model Event {
   totalSeats Int
   location String?
   tags String[] @default(["all"])
+  private Boolean @default(false)
   time String?
   address1 String?
   address2 String?
@@ -36,6 +37,30 @@ model Event {
   author User @relation(fields: [authorId], references: [id])
   authorId String
   Users_going_to_event User[] @relation("UserScheduledEvents")
+}
+
+model DraftEvent {
+  id                String    @id @default(cuid())
+  title             String?
+  description       String?
+  short_description String?
+  imagePath         String?
+  eventDate         DateTime?
+  totalSeats        Int?
+  location          String?
+  tags              String[] @default(["all"])
+  private           Boolean  @default(false)
+  time              String?
+  address1          String?
+  address2          String?
+  city              String?
+  state             String?
+  zipcode           String?
+  priceInCents      String?
+  createdAt         DateTime @default(now())
+
+  author            User @relation(fields: [authorId], references: [id])
+  authorId          String
 }
 
 enum Tag {
@@ -76,6 +101,7 @@ model User {
   isVerified Boolean @default(false)
   isAdmin   Boolean @default(false)
   chapterAccount Boolean @default(false)
+  draftEvents DraftEvent[]
   events Event[]
   User_Scheduled_Events Event[] @relation("UserScheduledEvents")
 }

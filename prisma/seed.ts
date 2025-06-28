@@ -59,7 +59,11 @@ async function main() {
             priceInCents: "0.00",
             imagePath:
               "https://res.cloudinary.com/dm54zi0ff/image/upload/v1727451096/StepshowHP800x600_recdet.webp",
-            location: "1 Amb Dr NW, Atlanta, GA 30313",
+            address1: "6700 Church St",
+            address2: "",
+            city: "Douglasville",
+            state: "GA",
+            zipcode: "30134",
             eventDate: faker.date.future(),
             totalSeats: 2,
             tags: ["Phi Beta Sigma", "social", "MEMBERS ONLY"],
@@ -82,7 +86,11 @@ async function main() {
         create: [
           {
             title: "Feed the homeless Community Event",
-            location: "1755 Sandy Ln, Douglasville, GA 30134",
+            address1: "6700 Church St",
+            address2: "",
+            city: "Douglasville",
+            state: "GA",
+            zipcode: "30134",
             description:
               "Join us for a heartwarming initiative to support our community's less fortunate at the Feed the Homeless Community Event. Volunteers will come together to prepare and distribute meals, offering nourishment and kindness to those in need. It's a wonderful opportunity to make a difference and show compassion to our neighbors.",
             short_description:
@@ -112,7 +120,11 @@ async function main() {
         create: [
           {
             title: "Sgrho Community Service Event",
-            location: "6700 Church St, Douglasville, GA 30134",
+            address1: "6700 Church St",
+            address2: "",
+            city: "Douglasville",
+            state: "GA",
+            zipcode: "30134",
             description:
               "The Sgrho Community Service Event is a day dedicated to giving back and making a positive impact. Join the Sigma Gamma Rho Sorority as they lead various service projects aimed at improving our community. Whether it's cleaning up local parks, organizing donation drives, or helping out at local shelters, your participation will contribute to a better and brighter community for all.",
             short_description:
@@ -142,7 +154,11 @@ async function main() {
         create: [
           {
             title: "Omega Psi Phi BBQ and performance",
-            location: "6700 Church St, Douglasville, GA 30134",
+            address1: "6700 Church St",
+            address2: "",
+            city: "Douglasville",
+            state: "GA",
+            zipcode: "30134",
             description:
               "Enjoy a day of delicious food and lively entertainment at the Omega Psi Phi BBQ and Performance. This event promises a feast of mouth-watering BBQ dishes, prepared with love and care. In addition to the great food, attendees will be treated to performances showcasing the fraternity's talents, making it a perfect blend of culinary delights and cultural expression.",
             short_description:
@@ -172,7 +188,11 @@ async function main() {
         create: [
           {
             title: "Sgrho Financial Literacy Class",
-            location: "6700 Church St, Douglasville, GA 30134",
+            address1: "6700 Church St",
+            address2: "",
+            city: "Douglasville",
+            state: "GA",
+            zipcode: "30134",
             description:
               "Empower yourself with essential financial knowledge at the Sgrho Financial Literacy Class. This informative session, hosted by Zeta phi beta Sorority, will cover key topics such as budgeting, saving, investing, and managing debt. Whether you're just starting on your financial journey or looking to refine your skills, this class offers valuable insights to help you achieve financial stability and success.",
             priceInCents: "0.00",
@@ -202,7 +222,11 @@ async function main() {
         create: [
           {
             title: "Kappa Tutoring Event",
-            location: "6700 Church St, Douglasville, GA 30134",
+            address1: "6700 Church St",
+            address2: "",
+            city: "Douglasville",
+            state: "GA",
+            zipcode: "30134",
             description:
               "Empower yourself with essential financial knowledge at the Kappa Tutoring event. This informative session, hosted by Kappa Alpha Psi, will cover key topics such as budgeting, saving, investing, and managing debt. Whether you're just starting on your financial journey or looking to refine your skills, this class offers valuable insights to help you achieve financial stability and success.",
             priceInCents: "0.00",
@@ -235,7 +259,11 @@ async function main() {
         create: [
           {
             title: "Mu Epsilon REUNION: On Sight solo play",
-            location: "200 S Duval St.",
+            address1: "6700 Church St",
+            address2: "",
+            city: "Douglasville",
+            state: "GA",
+            zipcode: "30134",
             description:
               "FSU Sigmas Celebrates its 45th Anniversary with an exclusive sneak peek at On Sight, a one-person show and TV Special. The show uses comedy, raw emotions, and street culture to provide a masterclass on violence and mental health. RSVP for FREE to attend this hilarious, gripping, and transformative show. Submit the form below to RSVP.",
             priceInCents: "0.00",

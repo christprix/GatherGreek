@@ -35,36 +35,38 @@ type User = {
 export default async function Page(props: {
   searchParams: Promise<{ message?: string }>;
 }) {
-  const searchParams = await props.searchParams;
-  let message;
-  if (searchParams.message) {
-    switch (searchParams.message) {
-      case "newuser":
-        message = (
-          <>
-            <button className="btn hidden">open modal</button>
-            <dialog id="my_modal_1 modal-open" className="modal">
-              <div className="modal-box">
-                <h3 className="font-bold text-lg">Hello!</h3>
-                <p className="py-4">
-                  Press ESC key or click the button below to close
-                </p>
-                <div className="modal-action">
-                  <form method="dialog">
-                    {/* if there is a button in form, it will close the modal */}
-                    <button className="btn">Close</button>
-                  </form>
-                </div>
-              </div>
-            </dialog>
-          </>
-        );
-        break;
+  // NEW USER TOUR ATTEMPT
+  // TODO: Make user view message on first log in
+  // const searchParams = await props.searchParams;
+  // let message;
+  // if (searchParams.message) {
+  //   switch (searchParams.message) {
+  //     case "newuser":
+  //       message = (
+  //         <>
+  //           <button className="btn hidden">open modal</button>
+  //           <dialog id="my_modal_1 modal-open" className="modal">
+  //             <div className="modal-box">
+  //               <h3 className="font-bold text-lg">Hello!</h3>
+  //               <p className="py-4">
+  //                 Press ESC key or click the button below to close
+  //               </p>
+  //               <div className="modal-action">
+  //                 <form method="dialog">
+  //                   {/* if there is a button in form, it will close the modal */}
+  //                   <button className="btn">Close</button>
+  //                 </form>
+  //               </div>
+  //             </div>
+  //           </dialog>
+  //         </>
+  //       );
+  //       break;
 
-      default:
-        break;
-    }
-  }
+  //     default:
+  //       break;
+  //   }
+  // }
   // GET SESSION USER
   const session = await getServerSession(options);
   const user = session?.user as User;
@@ -126,7 +128,7 @@ export default async function Page(props: {
           backgroundImage: `url(${groupic})`,
         }}
       >
-        {message}
+        {/* {message} */}
         <div className="hero-overlay bg-opacity-65"></div>
         {/* mobile view overlay */}
         <div className="mt-40 md:hidden text-white">

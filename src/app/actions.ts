@@ -5,6 +5,24 @@ import { hash } from "bcrypt";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
+export async function findEvent(id: string) {
+  const dbevent = await prisma.event.findUnique({
+    where: {
+      id: id,
+    },
+  });
+  return dbevent;
+}
+
+export async function findDraftEvent(id: string) {
+  const dbevent = await prisma.draftEvent.findUnique({
+    where: {
+      id: id,
+    },
+  });
+  return dbevent;
+}
+
 export async function findEventsbySearch(query: any) {
   const dbevents = await prisma.event.findMany({
     where: {
@@ -87,6 +105,15 @@ export async function findUserInfo(id: string) {
 
 export async function findMyEvents(id: string) {
   const dbevents = await prisma.event.findMany({
+    where: {
+      authorId: id,
+    },
+  });
+  return dbevents;
+}
+
+export async function findMyDraftEvents(id: string) {
+  const dbevents = await prisma.draftEvent.findMany({
     where: {
       authorId: id,
     },
@@ -272,6 +299,48 @@ export async function updateEvent(eventid: string, formData: FormData) {
   redirect(`/myevents/${urleventlink.id}`);
 }
 
+export async function updateDraftEvent(
+  eventid: string,
+  imagePath: string,
+  formData: FormData
+) {
+  console.log(formData);
+  const eventtime = formData.get("event_time") as string;
+  const eventdate = formData.get("eventDate");
+  let datetime = "";
+  let formattedDate;
+  const formattedSeats = Number(formData.get("total_seats"));
+  if (eventdate && eventtime) {
+    formattedDate = new Date(datetime as string);
+    datetime = eventdate + "T" + eventtime + "Z";
+  }
+  let urleventlink;
+  try {
+    const newEvent = await prisma.draftEvent.update({
+      where: {
+        id: eventid,
+      },
+      data: {
+        title: formData.get("event_title") as string,
+        description: formData.get("event_description") as string,
+        // tags: [formData.get("event_type") as string],
+        location: "America",
+        address1: formData.get("address-1") as string,
+        address2: formData.get("address-2") as string,
+        city: formData.get("city") as string,
+        state: formData.get("state") as string,
+        zipcode: formData.get("zipcode") as string,
+        time: formData.get("event_time") as string,
+        imagePath: imagePath,
+        eventDate: formattedDate as Date,
+        totalSeats: formattedSeats as number,
+      },
+    });
+    console.log(newEvent);
+  } catch (error: any) {}
+  redirect(`/myevents/`);
+}
+
 export async function createEvent(
   user: string,
   imagePath: string,
@@ -315,7 +384,64 @@ export async function createEvent(
     redirect(`/myevents/${newEvent.id}`);
   } catch (error: any) {
     console.error("Prisma create event failed. Error ;", error.message);
-    redirect("/?message=creation_failed");
+    redirect(`/myevents`);
+  }
+}
+
+export async function createDraftEvent(
+  user: string,
+  imagePath: string,
+  formData: FormData
+) {
+  let image = "";
+  if (imagePath === "") {
+    image =
+      "https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113943/g-icon_tjgz9i.png";
+  } else {
+    image = imagePath;
+  }
+  const eventdate = formData.get("eventDate");
+  let formattedDate;
+  if (eventdate === "") {
+    formattedDate = new Date();
+  } else {
+    formattedDate = new Date(eventdate as string);
+  }
+  // console.log(formattedDate);
+  const seats = formData.get("total_seats");
+  let formattedSeats;
+  if (seats === "") {
+    formattedSeats = 0;
+  } else {
+    formattedSeats = Number(formData.get("total_seats"));
+  }
+  // console.log(formattedSeats);
+  // TODO USE FUNCTION BELOW TO CONVERT PRICE TO NUMBER
+  // const formattedPrice = Number(formData.get("eventCost"))
+  try {
+    const newDraftEvent = await prisma.draftEvent.create({
+      data: {
+        title: formData.get("event_title") as string,
+        description: formData.get("event_description") as string,
+        tags: [formData.get("event_type") as string],
+        location: "America",
+        address1: formData.get("address-1") as string,
+        address2: formData.get("address-2") as string,
+        city: formData.get("city") as string,
+        state: formData.get("state") as string,
+        zipcode: formData.get("zipcode") as string,
+        imagePath: image,
+        eventDate: formattedDate as Date,
+        totalSeats: formattedSeats as number,
+        time: formData.get("event_time") as string,
+        // TODO CHANGE PRICE TO NUMBER
+        priceInCents: formData.get("event_cost") as string,
+        authorId: user as any,
+      },
+    });
+    redirect("/myevents");
+  } catch (error: any) {
+    redirect("/myevents");
   }
 }
 
@@ -326,4 +452,13 @@ export async function deleteEventPrisma(eventid: string) {
   console.log("Deleting Event!");
   // return deleteEvent;
   revalidatePath("/", "layout");
+}
+
+export async function deleteDraftEventPrisma(eventid: string) {
+  const deleteEvent = await prisma.draftEvent.delete({
+    where: { id: eventid },
+  });
+  console.log("Deleting Event!");
+  // return deleteEvent;
+  revalidatePath("/myevents");
 }

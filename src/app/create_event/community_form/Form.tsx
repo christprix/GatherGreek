@@ -6,8 +6,8 @@ import { AddressAutofill } from "@mapbox/search-js-react";
 
 import ImageUploader from "@/components/eventsForm/ImageUploader";
 import { CldImage } from "next-cloudinary";
-import { createEvent } from "@/app/actions";
-import { SubmitButton } from "@/app/signup/submit-button";
+import { createEvent, createDraftEvent, updateDraftEvent } from "@/app/actions";
+import { CreateButton } from "./create-button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationDot,
@@ -24,30 +24,70 @@ const anton = Anton({
 
 const Mapbox_key = process.env.NEXT_PUBLIC_MAPBOX_KEY as string;
 
-export default function Form({ user }: any) {
-  // ADD USERID TO CREATEEVENT FUNCTION
-  // CREATE  STEPS
+export default function Form({ user, templateEvent, draftconfirmation }: any) {
+  console.log(templateEvent);
   const [currentStep, setCurrentStep] = useState(0);
   // CREATE STORE FOR ITEM
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(templateEvent ? templateEvent.title : "");
   const [fraternity, setFraternity] = useState("");
-  const [description, setDescription] = useState("");
-  const [type, setType] = useState("");
-  const [address1, setAddress1] = useState("");
-  const [address2, setAddress2] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zipcode, setZipcode] = useState("");
-  const [cost, setCost] = useState("");
-  const [seats, setSeats] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [imagepath, setImagepath] = useState("");
+  const [description, setDescription] = useState(
+    templateEvent ? templateEvent.description : ""
+  );
+  const [type, setType] = useState(templateEvent ? templateEvent.title : "");
+  const [address1, setAddress1] = useState(
+    templateEvent ? templateEvent.address1 : ""
+  );
+  const [address2, setAddress2] = useState(
+    templateEvent ? templateEvent.address2 : ""
+  );
+  const [city, setCity] = useState(templateEvent ? templateEvent.city : "");
+  const [state, setState] = useState(templateEvent ? templateEvent.state : "");
+  const [zipcode, setZipcode] = useState(templateEvent ? "30134" : "");
+  const [cost, setCost] = useState(
+    templateEvent ? templateEvent.priceInCents : ""
+  );
+  const [seats, setSeats] = useState(
+    templateEvent ? templateEvent.totalSeats : ""
+  );
+  const [date, setDate] = useState(
+    templateEvent ? templateEvent.eventDate : ""
+  );
+  const [time, setTime] = useState(templateEvent ? templateEvent.time : "");
+  const [imagepath, setImagepath] = useState(
+    templateEvent ? templateEvent.imagePath : ""
+  );
   const [warningmessage, setWarningmessage] = useState("");
-  const [tags, setTags] = useState([]);
-
+  const [tags, setTags] = useState(templateEvent ? templateEvent.tags : []);
+  // ADD USERID TO CREATEEVENT AND CREATEDRAFTEVENT FUNCTION
   const createEventWithId = createEvent.bind(null, user.id);
   const createEventwithImage = createEventWithId.bind(null, imagepath);
+
+  const createDraftEventWithId = createDraftEvent.bind(null, user.id);
+  const createDraftEventwithImage = createDraftEventWithId.bind(
+    null,
+    imagepath
+  );
+
+  const updateDraftEventWithEventId = updateDraftEvent.bind(
+    null,
+    templateEvent
+  );
+  const updateDraftEventWithImage = updateDraftEventWithEventId.bind(
+    null,
+    imagepath
+  );
+
+  // DYNAMICALLY SAVE OR CREATE DRAFT
+  let saveDraft = createDraftEventwithImage;
+
+  if (draftconfirmation) {
+    console.log("saving draft");
+    saveDraft = updateDraftEventWithImage;
+  } else {
+    console.log("making draft");
+    saveDraft = createDraftEventwithImage;
+  }
+
   // CREATE HANDLER FOR EACH CHANGE
   const handleTagsChange = (newTags: any) => {
     setTags(newTags);
@@ -95,6 +135,22 @@ export default function Form({ user }: any) {
 
   const handleTimeChange = (newType: string) => {
     setTime(newType);
+  };
+
+  const displayTags = (tags: any) => {
+    if (tags.length > 0) {
+      return (
+        <ul>
+          {tags.map((item: any, index: any) => (
+            <span className="bg-blue-500 px-3 py-1 rounded-full" key={index}>
+              {item}
+            </span>
+          ))}
+        </ul>
+      );
+    } else {
+      return <div>No Tags</div>;
+    }
   };
 
   const steps = [
@@ -466,13 +522,16 @@ export default function Form({ user }: any) {
       {/* submit button */}
       {currentStep === 4 && (
         <>
-          <div className="flex flex-col w-96 md:w-3/5 bg-base-100">
-            <div className="flex flex-col md:flex-row w-full justify-evenly p-4 md:p-4">
-              <div
-                id="left"
-                className="grid flex-col h-5/6 bg-base-200 w-full rounded p-4 md:p-20"
-              >
-                <div className="md:text-4xl text-3xl">{title}</div>
+          <div className="flex flex-col w-96 md:w-3/5 mx-auto bg-white shadow-lg rounded-xl overflow-hidden">
+            <div className="flex flex-col md:flex-row w-full justify-evenly p-6 md:p-8 space-y-6 md:space-y-0">
+              {/* Left Side Card */}
+              <div className="flex flex-col w-full rounded-lg p-6 md:p-12 space-y-6">
+                {/* Title */}
+                <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
+                  {title}
+                </h1>
+
+                {/* Event Image */}
                 <div className="flex justify-center">
                   {imagepath === "" ? (
                     <CldImage
@@ -480,8 +539,8 @@ export default function Form({ user }: any) {
                       height="200"
                       src="https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113943/g-icon_tjgz9i.png"
                       sizes="100vw"
-                      className="rounded"
-                      alt="Description of my image"
+                      className="rounded-lg"
+                      alt="Default event graphic"
                     />
                   ) : (
                     <CldImage
@@ -489,60 +548,76 @@ export default function Form({ user }: any) {
                       height="200"
                       src={imagepath}
                       sizes="100vw"
-                      className="rounded"
-                      alt="Description of my image"
+                      className="rounded-lg"
+                      alt="Event image"
                     />
                   )}
                 </div>
-                {/* TODO ADD SHORT DESCRIPTION */}
-                {/* <div className="m-3">{description}</div> */}
-                <div className="flex flex-col ">
-                  <div className={`flex flex-col my-1`}>
-                    <p className={`text-3xl flex flex-col ${anton.className}`}>
+
+                {/* Event Details */}
+                <div className="flex flex-col space-y-4 text-gray-700">
+                  {/* Date and Time */}
+                  <div className="space-y-1">
+                    <p className={`text-2xl font-semibold ${anton.className}`}>
                       Date and Time
                     </p>
-                    <div className="text-sm flex">
-                      <div className="text-xl">
-                        <FontAwesomeIcon
-                          icon={faCalendarDays}
-                          className="w-3 mx-1"
-                        />
-                      </div>
+                    <div className="flex items-center text-base">
+                      <FontAwesomeIcon
+                        icon={faCalendarDays}
+                        className="w-4 h-4 mr-2 text-blue-500"
+                      />
                       {date} 4pm - 5pm EST
                     </div>
                   </div>
-                  <div className="flex flex-col my-1">
-                    <p className={`text-3xl ${anton.className}`}>Location</p>
-                    <div className="flex">
-                      <div className="text-xl">
-                        <FontAwesomeIcon
-                          icon={faLocationDot}
-                          className="w-3 mx-1"
-                        />
-                      </div>
+
+                  {/* Location */}
+                  <div className="space-y-1">
+                    <p className={`text-2xl font-semibold ${anton.className}`}>
+                      Location
+                    </p>
+                    <div className="flex items-center text-base">
+                      <FontAwesomeIcon
+                        icon={faLocationDot}
+                        className="w-4 h-4 mr-2 text-red-500"
+                      />
                       {address1}
                     </div>
                   </div>
-                  <div className="flex flex-col my-1">
-                    <p className={`text-3xl ${anton.className}`}>
+
+                  {/* Description */}
+                  <div className="space-y-1">
+                    <p className={`text-2xl font-semibold ${anton.className}`}>
                       About This Event
                     </p>
-                    <p className="text-wrap md:w-96 break-all">{description}</p>
+                    <p className="text-base leading-relaxed md:max-w-xl break-words">
+                      {description}
+                    </p>
                   </div>
-                  <div className="flex flex-col my-5">
-                    <p className={`text-3xl ${anton.className}`}>Tags</p>
-                    <div className="flex flex-wrap">{type}</div>
+
+                  {/* Tags */}
+                  <div className="space-y-1">
+                    <p className={`text-2xl font-semibold ${anton.className}`}>
+                      Tags
+                    </p>
+                    <div className="flex flex-wrap gap-2 text-sm text-white">
+                      {displayTags(tags)}
+                    </div>
                   </div>
-                  <div className="flex flex-col my-5">
-                    <p className={`text-3xl ${anton.className}`}>Price</p>
-                    <p>{cost}</p>
+
+                  {/* Price */}
+                  <div className="space-y-1">
+                    <p className={`text-2xl font-semibold ${anton.className}`}>
+                      Price
+                    </p>
+                    <p className="text-base">{cost}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
           <form
-            className="my-4 flex flex-col justify-center item-center w-xl"
+            className="my-4 flex flex-col justify-center item-center w-xl "
             action={createEventwithImage}
           >
             <div className="hidden">
@@ -750,7 +825,12 @@ export default function Form({ user }: any) {
               </div>
             </div>
             <div className="my-4 flex justify-center">
-              <SubmitButton></SubmitButton>
+              <button
+                className="rounded-lg bg-success px-2 py-1 text-white text-m font-semibold "
+                type="submit"
+              >
+                Create Event
+              </button>
             </div>
           </form>
         </>
@@ -759,23 +839,126 @@ export default function Form({ user }: any) {
         <div className="text-red-600">{warningmessage}</div>
       )}
       {/* NAVIGATION */}
-      <div className="">
-        <div className="flex justify-between">
-          {/* previous */}
+      <div className="w-96 mt-4">
+        <div className="flex justify-around">
+          {/* Previous Button */}
           <button
             type="button"
             onClick={prev}
             disabled={currentStep === 0}
-            className="rounded bg-primary text-white px-2 py-1 mx-2 text-sm font-semibold"
+            className={`px-2 py-2 text-m font-semibold rounded ${
+              currentStep === 0
+                ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                : "bg-primary text-white hover:bg-primary/90"
+            }`}
           >
             Prev
           </button>
-          {/* next */}
+          {/* DRAFT FORM */}
+          <form action={createDraftEventwithImage}>
+            <div className="hidden">
+              <input
+                required
+                name="fraternity"
+                defaultValue={fraternity}
+                readOnly
+              />
+              <input
+                required
+                type="text"
+                name="event_title"
+                defaultValue={title}
+                readOnly
+              />
+              <textarea
+                required
+                name="event_description"
+                defaultValue={description}
+                readOnly
+              ></textarea>
+              <input required name="event_type" defaultValue={type} readOnly />
+              <input
+                type="text"
+                name="address-1"
+                defaultValue={address1}
+                autoComplete="address-line1"
+                readOnly
+              />
+              <input
+                type="text"
+                name="address-2"
+                defaultValue={address2}
+                autoComplete="address-line2"
+                readOnly
+              />
+              <input
+                type="text"
+                name="city"
+                defaultValue={city}
+                autoComplete="address-level2"
+                readOnly
+              />
+              <input
+                type="text"
+                name="state"
+                defaultValue={state}
+                autoComplete="address-level1"
+                readOnly
+              />
+              <input
+                type="text"
+                name="zip"
+                defaultValue={zipcode}
+                autoComplete="postal-code"
+                readOnly
+              />
+              <input
+                required
+                type="number"
+                name="total_seats"
+                defaultValue={seats}
+                readOnly
+              />
+              <input
+                required
+                type="text"
+                name="event_cost"
+                defaultValue={cost}
+                readOnly
+              />
+              <input
+                required
+                type="date"
+                name="eventDate"
+                defaultValue={date}
+                readOnly
+              />
+              <input
+                required
+                type="time"
+                name="event_time"
+                defaultValue={time}
+                readOnly
+              />
+            </div>
+            <button
+              className={`bg-primary text-white hover:bg-primary/90 px-2 py-2 text-m font-semibold rounded`}
+              type="submit"
+            >
+              Save Draft
+            </button>
+          </form>
+
+          {/* Next Button */}
           <button
             type="button"
             onClick={next}
             disabled={currentStep === steps.length - 1}
-            className="rounded bg-primary px-2 py-1 text-white text-sm font-semibold "
+            className={`px-2 py-2 text-m font-semibold rounded ${
+              currentStep === steps.length - 1
+                ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                : "bg-primary text-white hover:bg-primary/90"
+            }`}
           >
             Next
           </button>
