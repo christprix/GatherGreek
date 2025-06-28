@@ -7,21 +7,19 @@ export default async function Page({
 }: {
   searchParams: Promise<{
     template: string | undefined;
-    draftid: string | undefined;
+    draft: string | undefined;
   }>;
 }) {
   const session = await getServerSession(options);
   const user = session?.user;
   // Check if it is a template or a draft
   const templateid = (await searchParams).template;
-  const draftid = (await searchParams).draftid;
+  const draft = (await searchParams).draft;
   let templateEvent;
   let draftconfirmation;
-  console.log(draftid);
-  if (draftid) {
-    templateEvent = await findDraftEvent(draftid as string);
+  if (draft) {
+    templateEvent = await findDraftEvent(draft as string);
     draftconfirmation = true;
-    console.log(templateEvent);
   } else if (templateid) {
     templateEvent = await findEvent(templateid as string);
     draftconfirmation = false;
