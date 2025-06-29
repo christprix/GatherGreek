@@ -6,6 +6,7 @@ const config = {
   daisyui: {
     themes: [
       "light",
+      "dark",
       "aqua",
       "cyberpunk",
       "lemonade",

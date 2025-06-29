@@ -117,7 +117,7 @@ export default async function Home(props: {
         Find An Event by Category
       </div>
       <div className="my-8">
-        <div className="flex flex-wrap flex-row items-center text-bold py-2 justify-evenly">
+        <div className="flex flex-wrap flex-row items-center text-bold py-2 mx-8 justify-evenly">
           {/* <Taglist></Taglist> */}
           <Taglist></Taglist>
         </div>
