@@ -37,7 +37,7 @@ export default function DraftCard({ event }: any) {
           <div className="flex gap-2 ">
             <Link
               className="btn btn-primary w-40"
-              href={`/create_event/community_form?draftid=${event.id}`}
+              href={`/create_event/community_form?draft=${event.id}`}
             >
               Continue Creating Event
             </Link>

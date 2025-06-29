@@ -6,7 +6,7 @@ import { AddressAutofill } from "@mapbox/search-js-react";
 
 import ImageUploader from "@/components/eventsForm/ImageUploader";
 import { CldImage } from "next-cloudinary";
-import { createEvent, createDraftEvent, updateDraftEvent } from "@/app/actions";
+import { createEvent, createDraftEvent } from "@/app/actions";
 import { CreateButton } from "./create-button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -33,7 +33,7 @@ export default function Form({ user, templateEvent, draftconfirmation }: any) {
   const [description, setDescription] = useState(
     templateEvent ? templateEvent.description : ""
   );
-  const [type, setType] = useState(templateEvent ? templateEvent.title : "");
+  const [type, setType] = useState("");
   const [address1, setAddress1] = useState(
     templateEvent ? templateEvent.address1 : ""
   );
@@ -49,44 +49,33 @@ export default function Form({ user, templateEvent, draftconfirmation }: any) {
   const [seats, setSeats] = useState(
     templateEvent ? templateEvent.totalSeats : ""
   );
-  const [date, setDate] = useState(
-    templateEvent ? templateEvent.eventDate : ""
-  );
+  const [date, setDate] = useState("");
   const [time, setTime] = useState(templateEvent ? templateEvent.time : "");
   const [imagepath, setImagepath] = useState(
     templateEvent ? templateEvent.imagePath : ""
   );
   const [warningmessage, setWarningmessage] = useState("");
   const [tags, setTags] = useState(templateEvent ? templateEvent.tags : []);
-  // ADD USERID TO CREATEEVENT AND CREATEDRAFTEVENT FUNCTION
+  // CREATE EVENT SERVER FUNCTION
   const createEventWithId = createEvent.bind(null, user.id);
-  const createEventwithImage = createEventWithId.bind(null, imagepath);
+  const createEventWithDraftId = createEventWithId.bind(
+    null,
+    templateEvent?.id
+  );
+  const createEventwithImage = createEventWithDraftId.bind(null, imagepath);
 
+  // DRAFT EVENT SERVER FUNCTION
   const createDraftEventWithId = createDraftEvent.bind(null, user.id);
-  const createDraftEventwithImage = createDraftEventWithId.bind(
+  const createDraftEventWithEventId = createDraftEventWithId.bind(
     null,
-    imagepath
+    templateEvent?.id
   );
-
-  const updateDraftEventWithEventId = updateDraftEvent.bind(
-    null,
-    templateEvent
-  );
-  const updateDraftEventWithImage = updateDraftEventWithEventId.bind(
+  const createDraftEventwithImage = createDraftEventWithEventId.bind(
     null,
     imagepath
   );
 
   // DYNAMICALLY SAVE OR CREATE DRAFT
-  let saveDraft = createDraftEventwithImage;
-
-  if (draftconfirmation) {
-    console.log("saving draft");
-    saveDraft = updateDraftEventWithImage;
-  } else {
-    console.log("making draft");
-    saveDraft = createDraftEventwithImage;
-  }
 
   // CREATE HANDLER FOR EACH CHANGE
   const handleTagsChange = (newTags: any) => {
@@ -101,6 +90,7 @@ export default function Form({ user, templateEvent, draftconfirmation }: any) {
   };
   const handleDescriptionChange = (newdescription: string) => {
     setDescription(newdescription);
+    console.log(newdescription);
   };
   const handleTypeChange = (newType: string) => {
     setType(newType);
@@ -117,24 +107,24 @@ export default function Form({ user, templateEvent, draftconfirmation }: any) {
   const handleStateChange = (newState: string) => {
     setState(newState);
   };
-  const handleZipcodeChange = (newType: string) => {
-    setZipcode(newType);
+  const handleZipcodeChange = (newZipcode: string) => {
+    setZipcode(newZipcode);
   };
 
-  const handleCostChange = (newType: string) => {
-    setCost(newType);
+  const handleCostChange = (newCost: string) => {
+    setCost(newCost);
   };
 
-  const handleSeatsChange = (newType: string) => {
-    setSeats(newType);
+  const handleSeatsChange = (newSeats: string) => {
+    setSeats(newSeats);
   };
 
-  const handleDateChange = (newType: string) => {
-    setDate(newType);
+  const handleDateChange = (newDate: string) => {
+    setDate(newDate);
   };
 
-  const handleTimeChange = (newType: string) => {
-    setTime(newType);
+  const handleTimeChange = (newTime: string) => {
+    setTime(newTime);
   };
 
   const displayTags = (tags: any) => {
@@ -332,15 +322,14 @@ export default function Form({ user, templateEvent, draftconfirmation }: any) {
             </label>
 
             {/* Tags Input */}
-            <div>
-              <div className="label">
-                <span className="label-text text-lg font-semibold text-gray-700">
-                  Tags
-                </span>
-              </div>
-              <div className="border border-gray-300 rounded-lg px-4 py-2 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
-                <TagsInput value={tags} onChange={handleTagsChange} />
-              </div>
+
+            <div className="label">
+              <span className="label-text text-lg font-semibold text-gray-700">
+                Tags
+              </span>
+            </div>
+            <div className="border border-gray-300 rounded-lg px-4 py-2 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
+              <TagsInput value={tags} onChange={handleTagsChange} />
             </div>
           </div>
         )}
@@ -867,48 +856,48 @@ export default function Form({ user, templateEvent, draftconfirmation }: any) {
                 required
                 type="text"
                 name="event_title"
-                defaultValue={title}
+                value={title}
                 readOnly
               />
-              <textarea
+              <input
                 required
                 name="event_description"
-                defaultValue={description}
+                value={description}
                 readOnly
-              ></textarea>
-              <input required name="event_type" defaultValue={type} readOnly />
+              ></input>
+              <input required name="event_type" value={type} readOnly></input>
               <input
                 type="text"
                 name="address-1"
-                defaultValue={address1}
+                value={address1}
                 autoComplete="address-line1"
                 readOnly
               />
               <input
                 type="text"
                 name="address-2"
-                defaultValue={address2}
+                value={address2}
                 autoComplete="address-line2"
                 readOnly
               />
               <input
                 type="text"
                 name="city"
-                defaultValue={city}
+                value={city}
                 autoComplete="address-level2"
                 readOnly
               />
               <input
                 type="text"
                 name="state"
-                defaultValue={state}
+                value={state}
                 autoComplete="address-level1"
                 readOnly
               />
               <input
                 type="text"
                 name="zip"
-                defaultValue={zipcode}
+                value={zipcode}
                 autoComplete="postal-code"
                 readOnly
               />
@@ -916,28 +905,28 @@ export default function Form({ user, templateEvent, draftconfirmation }: any) {
                 required
                 type="number"
                 name="total_seats"
-                defaultValue={seats}
+                value={seats}
                 readOnly
               />
               <input
                 required
                 type="text"
                 name="event_cost"
-                defaultValue={cost}
+                value={cost}
                 readOnly
               />
               <input
                 required
                 type="date"
                 name="eventDate"
-                defaultValue={date}
+                value={date}
                 readOnly
               />
               <input
                 required
                 type="time"
                 name="event_time"
-                defaultValue={time}
+                value={time}
                 readOnly
               />
             </div>
