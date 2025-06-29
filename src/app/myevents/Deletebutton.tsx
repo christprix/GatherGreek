@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 export default function DeleteButton({ eventid }: any) {
   const handleclick = () => {
     deleteDraftEventPrisma(eventid);
-    // alert("You have successfully deleted this event.");
     redirect("/myevents");
   };
   return (

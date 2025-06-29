@@ -496,9 +496,8 @@ export async function deleteEventPrisma(eventid: string) {
   const deleteEvent = await prisma.event.delete({
     where: { id: eventid },
   });
-  console.log("Deleting Event!");
-  return deleteEvent;
-  revalidatePath("/myevents");
+  // return deleteEvent;
+  revalidatePath("/", "layout");
 }
 
 export async function deleteDraftEventPrisma(eventid: string) {
