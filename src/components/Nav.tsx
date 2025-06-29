@@ -21,7 +21,7 @@ export default async function Nav({ logo }: any) {
   const user = session?.user as User;
   let navpic =
     "https://res.cloudinary.com/dm54zi0ff/image/upload/v1729113943/g-icon_tjgz9i.png";
-  let navtheme = "light";
+  let navtheme = "dark";
   if (session?.user) {
     switch (user.organization) {
       case "Phi Beta Sigma":
