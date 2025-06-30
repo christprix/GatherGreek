@@ -25,11 +25,11 @@ const anton = Anton({
 const Mapbox_key = process.env.NEXT_PUBLIC_MAPBOX_KEY as string;
 
 export default function Form({ user, templateEvent, draftconfirmation }: any) {
-  console.log(templateEvent);
+  console.log(user.id);
   const [currentStep, setCurrentStep] = useState(0);
   // CREATE STORE FOR ITEM
   const [title, setTitle] = useState(templateEvent ? templateEvent.title : "");
-  const [fraternity, setFraternity] = useState("");
+  const [fraternity, setFraternity] = useState(user?.fraternity);
   const [description, setDescription] = useState(
     templateEvent ? templateEvent.description : ""
   );
@@ -250,33 +250,6 @@ export default function Form({ user, templateEvent, draftconfirmation }: any) {
                 onChange={(e) => handleTitleChange(e.target.value)}
                 className="input input-bordered w-full rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
-            </label>
-
-            {/* Fraternity Affiliation */}
-            <label className="w-full">
-              <div className="label">
-                <span className="label-text text-lg font-semibold text-gray-700">
-                  Fraternity Affiliation
-                </span>
-              </div>
-              <select
-                required
-                name="fraternity"
-                className="select select-bordered w-full rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                value={fraternity}
-                onChange={(e) => handleFraternityChange(e.target.value)}
-              >
-                <option value="None">None</option>
-                <option value="Phi Beta Sigma">Phi Beta Sigma</option>
-                <option value="Zeta Phi Beta">Zeta Phi Beta</option>
-                <option value="Alpha Phi Alpha">Alpha Phi Alpha</option>
-                <option value="Alpha Kappa Alpha">Alpha Kappa Alpha</option>
-                <option value="Omega Psi Phi">Omega Psi Phi</option>
-                <option value="Kappa Alpha Psi">Kappa Alpha Psi</option>
-                <option value="Sigma Gamma Rho">Sigma Gamma Rho</option>
-                <option value="Delta Sigma Theta">Delta Sigma Theta</option>
-                <option value="Iota Phi Theta">Iota Phi Theta</option>
-              </select>
             </label>
 
             {/* Event Description */}

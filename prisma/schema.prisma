@@ -22,6 +22,7 @@ model Event {
   short_description String?
   imagePath String
   eventDate DateTime
+  eventEndDate DateTime?
   totalSeats Int
   location String?
   tags String[] @default(["all"])
@@ -46,6 +47,7 @@ model DraftEvent {
   short_description String?
   imagePath         String?
   eventDate         DateTime?
+  eventEndDate DateTime?
   totalSeats        Int?
   location          String?
   tags              String[] @default(["all"])
