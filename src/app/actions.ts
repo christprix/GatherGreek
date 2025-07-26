@@ -348,9 +348,6 @@ export async function createEvent(
   imagePath: string,
   formData: FormData
 ) {
-  console.log(imagePath, "image path");
-  console.log(eventId, "eventid");
-  console.log(formData);
   let image = "";
   if (imagePath === "") {
     image =
@@ -370,7 +367,10 @@ export async function createEvent(
       data: {
         title: formData.get("event_title") as string,
         description: formData.get("event_description") as string,
-        tags: [formData.get("event_type") as string],
+        tags: [
+          formData.get("event_type") as string,
+          formData.get("fraternity") as string,
+        ],
         location: "America",
         address1: formData.get("address-1") as string,
         address2: formData.get("address-2") as string,
@@ -486,7 +486,7 @@ export async function createDraftEvent(
     console.log(saveDraftEvent);
     redirect("/myevents");
   } catch (error: any) {
-    revalidatePath("/myevents");
+    revalidatePath("/", "layout");
     redirect("/myevents");
   }
 }
@@ -504,7 +504,6 @@ export async function deleteDraftEventPrisma(eventid: string) {
   const deleteEvent = await prisma.draftEvent.delete({
     where: { id: eventid },
   });
-  console.log("Deleting Event!");
   // return deleteEvent;
   revalidatePath("/myevents");
 }

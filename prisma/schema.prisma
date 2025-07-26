@@ -22,6 +22,7 @@ model Event {
   short_description String?
   imagePath String
   eventDate DateTime
+  eventEndDate DateTime?
   totalSeats Int
   location String?
   tags String[] @default(["all"])
@@ -37,6 +38,8 @@ model Event {
   author User @relation(fields: [authorId], references: [id])
   authorId String
   Users_going_to_event User[] @relation("UserScheduledEvents")
+    tickets           Ticket[]
+  payments          Payment[]
 }
 
 model DraftEvent {
@@ -46,6 +49,7 @@ model DraftEvent {
   short_description String?
   imagePath         String?
   eventDate         DateTime?
+  eventEndDate DateTime?
   totalSeats        Int?
   location          String?
   tags              String[] @default(["all"])
@@ -63,26 +67,6 @@ model DraftEvent {
   authorId          String
 }
 
-enum Tag {
-  Phi_Beta_Sigma
-  Zeta_Phi_Beta
-  Iota_Phi_Theta
-  Alpha_Phi_Alpha
-  Omega_Psi_Phi
-  Alpha_Kappa_Alpha
-  Kappa_Alpha_Psi
-  Sigma_Gamma_Rho
-  Delta_Sigma_Theta
-  COMMUNITY_SERVICE
-  SOCIAL
-  GOVERNMENT
-  EDUCATION
-  ECONOMICS
-  CONFERENCES
-  MEMBERS_ONLY
-  PROBATE
-  OTHER
-}
 
 model User {
   id String @id  @default(cuid())
@@ -101,19 +85,34 @@ model User {
   isVerified Boolean @default(false)
   isAdmin   Boolean @default(false)
   chapterAccount Boolean @default(false)
+  stripeAccountId    String? 
   draftEvents DraftEvent[]
   events Event[]
+  tickets            Ticket[]        @relation("UserTickets")
+  payments           Payment[]
   User_Scheduled_Events Event[] @relation("UserScheduledEvents")
 }
 
-enum Oranization {
-  PhiBetaSigma
-  ZetaPhiBeta
-  IotaPhiTheta
-  AlphaPhiAlpha
-  OmegaPsiPhi
-  AlphaKappaAlpha
-  KappaAlphaPsi
-  SigmaGammaRho
-  DeltaSigmaTheta
+model Ticket {
+  id               String   @id @default(cuid())
+  user             User     @relation("UserTickets", fields: [userId], references: [id])
+  userId           String
+  event            Event    @relation(fields: [eventId], references: [id])
+  eventId          String
+  paymentIntentId  String?  // Stripe ID
+  status           String   // "paid", "refunded", "failed"
+  createdAt        DateTime @default(now())
+}
+
+model Payment {
+  id               String   @id @default(cuid())
+  user             User     @relation(fields: [userId], references: [id])
+  userId           String
+  event            Event    @relation(fields: [eventId], references: [id])
+  eventId          String
+  amount           Int      // in cents
+  applicationFee   Int?     // your platform fee
+  paymentIntentId  String
+  status           String   // "succeeded", "refunded", "disputed"
+  createdAt        DateTime @default(now())
 }

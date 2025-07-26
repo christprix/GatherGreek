@@ -1,6 +1,14 @@
 import blackparty from "/public/blackparty.jpg";
 import Link from "next/link";
+import { StripeOnboardForm } from "@/components/stripe/StripeOnboardForm";
+import { getServerSession } from "next-auth/next";
+import { options } from "@/app/api/auth/[...nextauth]/options";
+
 export default async function Page() {
+  const session = await getServerSession(options);
+  const user = session?.user;
+  const userid = user?.id;
+
   return (
     <>
       <div className="hero bg-base-100 min-h-screen">
@@ -37,6 +45,9 @@ export default async function Page() {
               together
             </p>
             <div className="flex flex-col md:flex-row justify-center items-center"></div>
+          </div>
+          <div>
+            <StripeOnboardForm userId={userid as any}></StripeOnboardForm>
           </div>
         </div>
       </div>

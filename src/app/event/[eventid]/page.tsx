@@ -11,7 +11,7 @@ import {
   faLocationDot,
   faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
-import { findUserInfo, findMyEvents, findMyEventsbyId } from "@/app/actions";
+import { findUserInfo, findMyEventsbyId } from "@/app/actions";
 import Link from "next/link";
 
 const anton = Anton({
@@ -77,7 +77,7 @@ export default async function EventDetails(props: {
     <>
       {dbevent ? (
         <div className="flex flex-col items-center bg-base-100">
-          <div className="w-full flex justify-center">
+          <div className="w-full flex justify-center md:hidden">
             <Image
               src={dbevent.imagePath}
               alt="event pic"
@@ -182,6 +182,16 @@ export default async function EventDetails(props: {
               id="right"
               className="flex flex-col h-fit md:w-2/5 md:sticky md:top-0 w-full md:ml-2 rounded items-center md:my-0 my-2 p-4 bg-base-200"
             >
+              <div className="w-full flex justify-center hidden md:block">
+                <Image
+                  src={dbevent.imagePath}
+                  alt="event pic"
+                  height={200}
+                  width={500}
+                  // objectFit="true"
+                  className="rounded-lg max-h-96 mt-1 object-cover"
+                ></Image>
+              </div>
               {!session?.user && (
                 <>
                   <div className="text-xl m-2">
