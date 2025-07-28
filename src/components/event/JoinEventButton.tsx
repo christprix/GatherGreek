@@ -1,24 +1,15 @@
 "use client";
-import { redirect } from "next/navigation";
+import { createStripeCheckoutSession } from "@/app/actions/createStripeCheckoutSession";
+// import { useTransition } from "react";
+export function JoinEventButton({ event, userId, sellerstripeId }: any) {
+  const handleClick = async () => {
+    console.log(event, userId);
+    createStripeCheckoutSession({ event, userId, sellerstripeId });
+  };
 
-import { addUserToEvent } from "@/app/actions";
-export default function JoinEventButton({ userId, eventId, eventSeats }: any) {
-  function handleClick() {
-    try {
-      addUserToEvent(userId, eventId, eventSeats);
-      console.log("You connected", userId, "and", eventId);
-      // alert("You have successfully registered for this event.");
-      redirect("/profile");
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  // CHECK IS SEATS AVAILABLE
   return (
-    <>
-      <button className="btn btn-primary" onClick={handleClick}>
-        Attend this Event
-      </button>
-    </>
+    <button className="btn btn-primary" onClick={handleClick}>
+      Buy Ticket
+    </button>
   );
 }

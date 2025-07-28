@@ -3,7 +3,6 @@
 import prisma from "@/lib/prisma";
 import { stripe } from "@/lib/stripe";
 import { headers } from "next/headers";
-import { NextResponse } from "next/server";
 import { redirect } from "next/navigation";
 
 export async function createStripeConnectCustomer(userId: string) {
@@ -12,7 +11,7 @@ export async function createStripeConnectCustomer(userId: string) {
   if (!user) throw new Error("User not found");
 
   let stripeAccountId = user.stripeAccountId;
-
+  // CHECK IF USER ALREADY HAS ACCOUNT
   if (!stripeAccountId) {
     const account = await stripe.accounts.create({
       type: "express",
@@ -28,11 +27,12 @@ export async function createStripeConnectCustomer(userId: string) {
       where: { id: userId },
       data: { stripeAccountId },
     });
-    console.log(stripeaddedUser);
   }
+  // GET HOMEPAGE URL
   const headersList = await headers();
   const origin = headersList.get("origin") || "";
-  console.log(origin);
+
+  // make account link
   const accountLink = await stripe.accountLinks.create({
     account: stripeAccountId,
     refresh_url: `${origin}/onboarding/refresh/${userId}`,

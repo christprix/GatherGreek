@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import Image from "next/image";
 import dateFormat from "dateformat";
-import JoinEventButton from "@/components/event/JoinEventButton";
+import { JoinEventButton } from "@/components/event/JoinEventButton";
 import { getServerSession } from "next-auth/next";
 import { Anton } from "next/font/google";
 import { options } from "@/app/api/auth/[...nextauth]/options";
@@ -37,6 +37,16 @@ export default async function EventDetails(props: {
   if (session?.user) {
     userId = session?.user?.id;
     dbmyevents = await findMyEventsbyId(userId as string);
+  }
+
+  // GET SELLER stripe ID
+  let seller;
+  let sellerstripeId;
+  if (dbevent) {
+    seller = await prisma.user.findUnique({
+      where: { id: dbevent.authorId },
+    });
+    sellerstripeId = seller?.stripeAccountId;
   }
 
   // CHECK IF TICKETS AVAILABLE
@@ -229,9 +239,9 @@ export default async function EventDetails(props: {
                     </div>
                     <JoinEventButton
                       className="p-3"
-                      eventId={params.eventid}
-                      userId={userId}
-                      eventSeats={dbevent.totalSeats}
+                      event={dbevent}
+                      userId={userId as String}
+                      sellerstripeId={sellerstripeId as String}
                     ></JoinEventButton>
                   </>
                 )}

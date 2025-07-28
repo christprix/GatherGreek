@@ -1,4 +1,3 @@
-// app/dashboard/components/StripeOnboardForm.tsx
 "use client";
 
 import { useTransition } from "react";
