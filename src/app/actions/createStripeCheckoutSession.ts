@@ -15,7 +15,8 @@ export async function createStripeCheckoutSession({
   if (!event || !event.priceInCents) {
     throw new Error("Event not found");
   }
-
+  console.log(Math.round(parseFloat(event.priceInCents) * 100));
+  const amount = Math.round(parseFloat(event.priceInCents) * 100);
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: [
@@ -26,16 +27,17 @@ export async function createStripeCheckoutSession({
             name: event.title,
             description: event.short_description ?? event.description,
           },
-          unit_amount: parseInt(event.priceInCents),
+          unit_amount: amount,
         },
         quantity: 1,
       },
     ],
     mode: "payment",
-    success_url: `${baseUrl}/checkout/success`,
-    cancel_url: `${baseUrl}/event/${event.id}`,
+    success_url: `${baseUrl}/profile`,
+    cancel_url: `${baseUrl}/event/${event.id}?paymentstatus=canceled`,
 
     payment_intent_data: {
+      application_fee_amount: Math.floor(Number(event.priceInCents) * 0.02),
       transfer_data: {
         destination: sellerstripeId,
       },

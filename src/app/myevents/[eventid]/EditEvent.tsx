@@ -57,6 +57,25 @@ export default function EditEvent({ dbevent }: any) {
           ></textarea>
         </label>
 
+        <label className="w-full">
+          <div className="label">
+            <span className="label-text text-lg font-semibold text-gray-700">
+              Cost
+            </span>
+          </div>
+          <input
+            required
+            type="number"
+            name="event_cost"
+            min="0.00"
+            max="10000.00"
+            step="0.01"
+            placeholder="0.00"
+            className="input input-bordered w-full rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            defaultValue={dbevent.priceInCents || "0.00"}
+          />
+        </label>
+
         <div className="space-y-4">
           <label className="w-full">
             <div className="label">

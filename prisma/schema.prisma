@@ -99,6 +99,7 @@ model Ticket {
   userId           String
   event            Event    @relation(fields: [eventId], references: [id])
   eventId          String
+  checkoutSessionId String? @unique//Stripe ID to check duplicates
   paymentIntentId  String?  // Stripe ID
   status           String   // "paid", "refunded", "failed"
   createdAt        DateTime @default(now())
