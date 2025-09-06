@@ -378,7 +378,7 @@ export async function createEvent(
         title: formData.get("event_title") as string,
         description: formData.get("event_description") as string,
         tags: [
-          formData.get("event_type") as string,
+          // formData.get("event_type") as string,
           user_organization?.organization as string,
         ],
         location: "America",

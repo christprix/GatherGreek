@@ -14,7 +14,7 @@ export function StripeOnboardForm({ userId }: any) {
       }}
     >
       <button type="submit" className="btn btn-primary" disabled={isPending}>
-        {isPending ? "Redirecting…" : "Set Up Stripe Payouts"}
+        {isPending ? "Redirecting…" : "Create Stripe Account"}
       </button>
     </form>
   );

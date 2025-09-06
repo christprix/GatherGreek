@@ -62,9 +62,7 @@ export default async function Signup(props: {
           </div>
 
           <div>
-            <label className="block text-sm font-medium">
-              Fraternity Affiliation
-            </label>
+            <label className="block text-sm font-medium">Organization</label>
             <select
               name="greek affiliation"
               required

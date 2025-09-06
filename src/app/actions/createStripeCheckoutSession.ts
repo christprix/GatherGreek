@@ -37,7 +37,7 @@ export async function createStripeCheckoutSession({
     cancel_url: `${baseUrl}/event/${event.id}?paymentstatus=canceled`,
 
     payment_intent_data: {
-      application_fee_amount: Math.floor(Number(event.priceInCents) * 0.02),
+      application_fee_amount: Math.floor(amount * 0.02),
       transfer_data: {
         destination: sellerstripeId,
       },

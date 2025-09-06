@@ -34,6 +34,8 @@ model Event {
   state String?
   zipcode String?
   priceInCents String?
+  cancelled Boolean @default(false)
+  active Boolean @default(true)
   createdAt  DateTime   @default(now())
   author User @relation(fields: [authorId], references: [id])
   authorId String
@@ -103,6 +105,7 @@ model Ticket {
   paymentIntentId  String?  // Stripe ID
   status           String   // "paid", "refunded", "failed"
   createdAt        DateTime @default(now())
+  refundId        String?  // Stripe Refund ID
 }
 
 model Payment {

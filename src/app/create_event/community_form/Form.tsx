@@ -492,6 +492,25 @@ export default function Form({ user, templateEvent, draftconfirmation }: any) {
                 onChange={(e) => handleCostChange(e.target.value)}
               />
             </label>
+
+            <label className="w-full">
+              <div className="label">
+                <span className="label-text text-lg font-semibold text-gray-700">
+                  Is this event recurring?
+                </span>
+              </div>
+              <select
+                required
+                name="recurring"
+                className="select select-bordered w-full rounded-lg px-4 py-2 text-gray-800 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                defaultValue={"Public"}
+              >
+                <option value="No">No</option>
+                <option value="Daily">Daily</option>
+                <option value="Monthly">Monthly</option>
+                <option value="Yearly">Yearly</option>
+              </select>
+            </label>
           </div>
         )}
       </form>
