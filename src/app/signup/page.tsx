@@ -36,7 +36,8 @@ export default async function Signup(props: {
         </div> */}
 
         {/* Signup Form */}
-        <form className="space-y-4" action={createUser}>
+        {/* TODO ADD FORMACTION */}
+        <form className="space-y-4">
           <div>
             <label className="block text-sm font-medium">First Name *</label>
             <input

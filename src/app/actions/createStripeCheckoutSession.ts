@@ -6,8 +6,9 @@ import { stripe } from "@/lib/stripe";
 
 export async function createStripeCheckoutSession({
   event,
-  userId,
   sellerstripeId,
+  name,
+  email,
 }: any) {
   if (!sellerstripeId) {
     throw new Error("Seller not found");
@@ -18,6 +19,7 @@ export async function createStripeCheckoutSession({
   console.log(Math.round(parseFloat(event.priceInCents) * 100));
   const amount = Math.round(parseFloat(event.priceInCents) * 100);
   const session = await stripe.checkout.sessions.create({
+    customer_email: email,
     payment_method_types: ["card"],
     line_items: [
       {
@@ -47,7 +49,8 @@ export async function createStripeCheckoutSession({
 
     metadata: {
       eventId: event.id,
-      buyerId: userId,
+      buyerEmail: email,
+      name,
     },
   });
   redirect(session.url as any);

@@ -1,10 +1,16 @@
 "use client";
 import { createStripeCheckoutSession } from "@/app/actions/createStripeCheckoutSession";
 // import { useTransition } from "react";
-export function JoinEventButton({ event, userId, sellerstripeId }: any) {
+export function JoinEventButton({
+  event,
+  userId,
+  sellerstripeId,
+  name,
+  email,
+}: any) {
   const handleClick = async () => {
     console.log(event, userId);
-    createStripeCheckoutSession({ event, userId, sellerstripeId });
+    createStripeCheckoutSession({ event, sellerstripeId, name, email });
   };
 
   return (
