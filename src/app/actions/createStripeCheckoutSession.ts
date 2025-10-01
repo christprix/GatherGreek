@@ -35,7 +35,7 @@ export async function createStripeCheckoutSession({
       },
     ],
     mode: "payment",
-    success_url: `${baseUrl}/profile`,
+    success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${baseUrl}/event/${event.id}?paymentstatus=canceled`,
 
     payment_intent_data: {

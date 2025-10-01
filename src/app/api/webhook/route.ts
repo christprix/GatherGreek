@@ -34,7 +34,8 @@ export async function POST(req: Request) {
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
     const eventId = session.metadata?.eventId as string;
-    const userId = session.metadata?.buyerId as string;
+    const buyerEmail = session.metadata?.buyerId as string;
+    const name = session.metadata?.name as string;
     const sessionId = session.id;
     const paymentIntentId = session.payment_intent as string;
 
@@ -56,29 +57,36 @@ export async function POST(req: Request) {
         if (!eventRecord || eventRecord.totalSeats <= 0) {
           throw new Error("Event does not exist or is sold out");
         }
+        const userExists = await tx.user.findFirst({
+          where: { email: buyerEmail },
+        });
         // CREATE TICKET
         await tx.ticket.create({
           data: {
             eventId,
-            userId,
+            email: buyerEmail,
+            name: name,
             checkoutSessionId: sessionId,
             paymentIntentId: paymentIntentId,
             status: "paid",
+            userId: userExists ? userExists.id : null,
           },
         });
         console.log("Ticket created");
         // UPDATE EVENT BY ADDING USERS AND DECREASING THE SEATS AVAILABLE
-        await tx.event.update({
-          where: { id: eventId },
-          data: {
-            Users_going_to_event: {
-              connect: {
-                id: userId,
+        if (userExists) {
+          await tx.event.update({
+            where: { id: eventId },
+            data: {
+              Users_going_to_event: {
+                connect: {
+                  id: userExists.id,
+                },
               },
+              totalSeats: { decrement: 1 },
             },
-            totalSeats: { decrement: 1 },
-          },
-        });
+          });
+        }
         console.log("user updated");
       });
     } catch (err) {
