@@ -203,19 +203,20 @@ export default async function EventDetails(props: {
                   className="rounded-lg max-h-96 mt-1 object-cover"
                 ></Image>
               </div>
-
+              {/* check if i have tickets if so link to profile */}
+              {/* {doIAlreadyHaveTickets && (
+                <div className="w-full flex justify-center hidden md:block">
+                  <Image
+                    src={dbevent.imagePath}
+                    alt="event pic"
+                    height={200}
+                    width={500}
+                    // objectFit="true"
+                    className="rounded-lg max-h-96 mt-1 object-cover"
+                  ></Image>
+                </div>
+              )} */}
               {doIAlreadyHaveTickets && (
-              <div className="w-full flex justify-center hidden md:block">
-                <Image
-                  src={dbevent.imagePath}
-                  alt="event pic"
-                  height={200}
-                  width={500}
-                  // objectFit="true"
-                  className="rounded-lg max-h-96 mt-1 object-cover"
-                ></Image>
-              </div>
-              {!session?.user && (
                 <>
                   <div className="text-xl m-2">
                     You already have tickets for this Event!
