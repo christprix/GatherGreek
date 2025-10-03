@@ -6,8 +6,16 @@ import { getServerSession } from "next-auth/next";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 
 export default async function Page() {
+  type User = {
+    id: string;
+    name: string;
+    email: string;
+    isAdmin?: boolean;
+    stripeid?: string; // optional property
+  };
+
   const session = await getServerSession(options);
-  const user = session?.user;
+  const user = session?.user as User;
   const userid = user?.id;
   const stripeid = user?.stripeid;
 
