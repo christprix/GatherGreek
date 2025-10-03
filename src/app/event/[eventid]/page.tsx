@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import Image from "next/image";
 import dateFormat from "dateformat";
-import JoinEventButton from "@/components/event/JoinEventButton";
+import { JoinEventButton } from "@/components/event/JoinEventButton";
 import { getServerSession } from "next-auth/next";
 import { Anton } from "next/font/google";
 import { options } from "@/app/api/auth/[...nextauth]/options";
@@ -13,6 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { findUserInfo, findMyEventsbyId } from "@/app/actions";
 import Link from "next/link";
+import JoinEventModal from "@/components/event/JoinEventModal";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -39,10 +40,20 @@ export default async function EventDetails(props: {
     dbmyevents = await findMyEventsbyId(userId as string);
   }
 
+  // GET SELLER stripe ID
+  let seller;
+  let sellerstripeId;
+  if (dbevent) {
+    seller = await prisma.user.findUnique({
+      where: { id: dbevent.authorId },
+    });
+    sellerstripeId = seller?.stripeAccountId;
+  }
+
   // CHECK IF TICKETS AVAILABLE
   // CREATE AN ARRAY
   let eventIds: string[] = [];
-  let doIAlreadyHaveTickets;
+  let doIAlreadyHaveTickets = false;
   if (session?.user) {
     // PUSH EVENT TICKET IDS INTO ARRAY
     function findEventIds(event: any) {
@@ -192,33 +203,32 @@ export default async function EventDetails(props: {
                   className="rounded-lg max-h-96 mt-1 object-cover"
                 ></Image>
               </div>
-              {!session?.user && (
+              {/* check if i have tickets if so link to profile */}
+              {/* {doIAlreadyHaveTickets && (
+                <div className="w-full flex justify-center hidden md:block">
+                  <Image
+                    src={dbevent.imagePath}
+                    alt="event pic"
+                    height={200}
+                    width={500}
+                    // objectFit="true"
+                    className="rounded-lg max-h-96 mt-1 object-cover"
+                  ></Image>
+                </div>
+              )} */}
+              {doIAlreadyHaveTickets && (
                 <>
                   <div className="text-xl m-2">
-                    Sorry but you can't get tickets just yet!
+                    You already have tickets for this Event!
                   </div>
                   <div className="text-xl m-2">
                     Remaining Tickets: {dbevent.totalSeats}
                   </div>
-                  <Link className="disabled btn btn-primary" href={"/signup"}>
-                    Sign Up/Log in to View Tickets
+                  <Link className="btn btn-primary" href={"/profile"}>
+                    View Tickets
                   </Link>
                 </>
               )}
-              {(session?.user && dbevent.totalSeats === 0) ||
-                (doIAlreadyHaveTickets && (
-                  <>
-                    <div className="text-xl m-2">
-                      You already have tickets for this Event!
-                    </div>
-                    <div className="text-xl m-2">
-                      Remaining Tickets: {dbevent.totalSeats}
-                    </div>
-                    <Link className="btn btn-primary" href={"/profile"}>
-                      View Tickets
-                    </Link>
-                  </>
-                ))}
               {session?.user &&
                 dbevent.totalSeats > 0 &&
                 !doIAlreadyHaveTickets && (
@@ -229,13 +239,30 @@ export default async function EventDetails(props: {
                     </div>
                     <JoinEventButton
                       className="p-3"
-                      eventId={params.eventid}
-                      userId={userId}
-                      eventSeats={dbevent.totalSeats}
+                      name={session.user.name}
+                      email={session.user.email}
+                      event={dbevent}
+                      userId={userId as String}
+                      sellerstripeId={sellerstripeId as String}
                     ></JoinEventButton>
                   </>
                 )}
-              {session?.user && dbevent.totalSeats <= 0 && (
+              {!session?.user &&
+                dbevent.totalSeats > 0 &&
+                !doIAlreadyHaveTickets && (
+                  <>
+                    <div className="text-xl m-2">Sign Up Today!</div>
+                    <div className="text-xl m-2">
+                      Remaining Tickets: {dbevent.totalSeats}
+                    </div>
+                    <JoinEventModal
+                      event={dbevent}
+                      userId={userId as String}
+                      sellerstripeId={sellerstripeId as String}
+                    ></JoinEventModal>
+                  </>
+                )}
+              {!session?.user && dbevent.totalSeats <= 0 && (
                 <>
                   <div className="text-xl m-2">
                     Sorry there are no more tickets available

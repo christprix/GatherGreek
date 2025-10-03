@@ -285,6 +285,7 @@ export async function updateEvent(eventid: string, formData: FormData) {
         state: formData.get("state") as string,
         zipcode: formData.get("zipcode") as string,
         time: formData.get("event_time") as string,
+        priceInCents: formData.get("event_cost") as string,
         // imagePath: image,
         eventDate: formattedDate as Date,
         // totalSeats: formattedSeats as number,
@@ -348,6 +349,7 @@ export async function createEvent(
   imagePath: string,
   formData: FormData
 ) {
+  console.log(formData);
   let image = "";
   if (imagePath === "") {
     image =
@@ -357,19 +359,27 @@ export async function createEvent(
   }
   const eventdate = formData.get("eventDate");
   const formattedDate = new Date(eventdate as string);
-  // console.log(formattedDate);
   const formattedSeats = Number(formData.get("total_seats"));
-  // console.log(formattedSeats);
-  // TODO USE FUNCTION BELOW TO CONVERT PRICE TO NUMBER
-  // const formattedPrice = Number(formData.get("eventCost"))
+  // const isthisaDraft = await prisma.draftEvent.findUnique({
+  //   where: {
+  //     id: eventId,
+  //   },
+  // });
+  const user_organization = await prisma.user.findUnique({
+    where: { id: user },
+    select: {
+      organization: true,
+    },
+  });
+  console.log(user_organization);
   try {
     const newEvent = await prisma.event.create({
       data: {
         title: formData.get("event_title") as string,
         description: formData.get("event_description") as string,
         tags: [
-          formData.get("event_type") as string,
-          formData.get("fraternity") as string,
+          // formData.get("event_type") as string,
+          user_organization?.organization as string,
         ],
         location: "America",
         address1: formData.get("address-1") as string,
@@ -386,9 +396,11 @@ export async function createEvent(
         authorId: user as any,
       },
     });
-    const deleteEvent = await prisma.draftEvent.delete({
-      where: { id: eventId },
-    });
+    if (eventId) {
+      await prisma.draftEvent.delete({
+        where: { id: eventId },
+      });
+    }
   } catch (error: any) {
     console.error("An error occurred:", error);
   }

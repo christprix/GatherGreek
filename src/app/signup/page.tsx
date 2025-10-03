@@ -36,7 +36,8 @@ export default async function Signup(props: {
         </div> */}
 
         {/* Signup Form */}
-        <form className="space-y-4" action={createUser}>
+        {/* TODO ADD FORMACTION */}
+        <form className="space-y-4">
           <div>
             <label className="block text-sm font-medium">First Name *</label>
             <input
@@ -62,9 +63,7 @@ export default async function Signup(props: {
           </div>
 
           <div>
-            <label className="block text-sm font-medium">
-              Fraternity Affiliation
-            </label>
+            <label className="block text-sm font-medium">Organization</label>
             <select
               name="greek affiliation"
               required

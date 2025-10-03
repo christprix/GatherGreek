@@ -1,6 +1,14 @@
 import blackparty from "/public/blackparty.jpg";
 import Link from "next/link";
+import { StripeOnboardForm } from "@/components/stripe/StripeOnboardForm";
+import { getServerSession } from "next-auth/next";
+import { options } from "@/app/api/auth/[...nextauth]/options";
+
 export default async function Page() {
+  const session = await getServerSession(options);
+  const user = session?.user;
+  const userid = user?.id;
+
   return (
     <>
       <div className="hero bg-base-100 min-h-screen">
@@ -21,7 +29,7 @@ export default async function Page() {
                     href={"/create_event/step_one"}
                     className="btn btn-primary"
                   >
-                    Get Started
+                    Create Event
                   </Link>
                 </div>
               </div>
@@ -36,7 +44,11 @@ export default async function Page() {
               bonds, fostering community spirit, and making a positive impact
               together
             </p>
-            <div className="flex flex-col md:flex-row justify-center items-center"></div>
+            <div className="flex flex-col md:flex-row justify-center items-center">
+              <div>
+                <StripeOnboardForm userId={userid as any}></StripeOnboardForm>
+              </div>
+            </div>
           </div>
         </div>
       </div>

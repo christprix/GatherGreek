@@ -2,7 +2,9 @@ import Card from "./Card";
 
 export default async function Cardlist({ events }: any) {
   const eventsList = events.map((e: any) => {
-    return <Card event={e} key={e.id}></Card>;
+    if (e.active) {
+      return <Card event={e} key={e.id}></Card>;
+    }
   });
   return (
     <>
