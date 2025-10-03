@@ -63,6 +63,7 @@ export const options: NextAuthOptions = {
           location: user.location,
           chapter: user.chapter,
           university: user.university,
+          stripeid: user.stripeAccountId,
         };
       },
     }),
@@ -79,6 +80,7 @@ export const options: NextAuthOptions = {
           location: token.location,
           chapter: token.chapter,
           university: token.university,
+          stripeid: token.stripeid,
         },
       };
     },
@@ -93,6 +95,7 @@ export const options: NextAuthOptions = {
           location: u.location,
           university: u.university,
           chapter: u.chapter,
+          stripeid: u.stripeid,
         };
       }
       return token;
