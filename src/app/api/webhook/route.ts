@@ -86,8 +86,16 @@ export async function POST(req: Request) {
               totalSeats: { decrement: 1 },
             },
           });
+          console.log("user updated");
+        } else {
+          await tx.event.update({
+            where: { id: eventId },
+            data: {
+              totalSeats: { decrement: 1 },
+            },
+          });
+          console.log("user not in system but ticket purchased");
         }
-        console.log("user updated");
       });
     } catch (err) {
       console.error("❌ Error during ticket creation in webhook:", err as any);
