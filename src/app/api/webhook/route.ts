@@ -41,7 +41,8 @@ export async function POST(req: Request) {
 
     console.log("🔁 Session metadata:", session.metadata);
     if (!eventId || !buyerEmail) {
-      throw new Error("Missing eventId or buyerEmail in metadata");
+      console.error("Missing eventId or buyerEmail in metadata");
+      return new NextResponse("Invalid metadata", { status: 400 });
     }
     // CREATE TICKET AND SAVE EVERYTHING TO DB
     try {
