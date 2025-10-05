@@ -57,7 +57,7 @@ export async function POST(req: Request) {
         if (!eventRecord || eventRecord.totalSeats <= 0) {
           throw new Error("Event does not exist or is sold out");
         }
-        const userExists = await tx.user.findFirst({
+        const userExists = await tx.user.findUnique({
           where: { email: buyerEmail },
         });
         console.log(userExists);
