@@ -60,6 +60,7 @@ export async function POST(req: Request) {
         const userExists = await tx.user.findFirst({
           where: { email: buyerEmail },
         });
+        console.log(userExists);
         // CREATE TICKET
         await tx.ticket.create({
           data: {
