@@ -39,6 +39,10 @@ export async function POST(req: Request) {
     const sessionId = session.id;
     const paymentIntentId = session.payment_intent as string;
 
+    console.log("🔁 Session metadata:", session.metadata);
+    if (!eventId || !buyerEmail) {
+      throw new Error("Missing eventId or buyerEmail in metadata");
+    }
     // CREATE TICKET AND SAVE EVERYTHING TO DB
     try {
       await prisma.$transaction(async (tx) => {
