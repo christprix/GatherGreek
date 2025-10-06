@@ -40,10 +40,10 @@ export default function OnboardingSuccess() {
         </p>
 
         <a
-          href="/dashboard"
+          href="/profile"
           className="inline-block px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow hover:bg-green-700 transition-colors"
         >
-          Go to Dashboard
+          Go to Your Profile
         </a>
 
         <div className="mt-6 text-sm text-gray-500">
