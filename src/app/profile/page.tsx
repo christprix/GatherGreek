@@ -13,7 +13,8 @@ import { findMyEvents, findScheduledEvents } from "../actions";
 import ProfileAvatar from "@/components/profile/ProfileAvatar";
 import Link from "next/link";
 import { stripe } from "@/lib/stripe";
-import StripeDashboardLink from "@/components/profile/stripeDashboardLink";
+import { StripeOnboardForm } from "@/components/stripe/StripeOnboardForm";
+import CreateEventModal from "@/components/eventsForm/CreateEventModal";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -166,14 +167,23 @@ export default async function Page(props: {
             </div>
             <>
               {loginLink ? (
-                <Link href={loginLink?.url} className="btn btn-primary mx-5">
+                <Link
+                  href={loginLink?.url}
+                  target="_blank"
+                  className="btn btn-primary mx-5"
+                >
                   Check Stripe Account
                 </Link>
               ) : (
-                <div className="mx-5 text-m md:text-xl">
-                  Looks like you haven't set up your Stripe account. Click below
-                  to create your account!
-                </div>
+                <>
+                  <div className="mx-5 text-m md:text-xl">
+                    Looks like you haven't set up your Stripe account. Click
+                    below to create your account!
+                  </div>
+                  <StripeOnboardForm
+                    userId={user.id as string}
+                  ></StripeOnboardForm>
+                </>
               )}
             </>
           </div>
@@ -207,12 +217,7 @@ export default async function Page(props: {
                 <div className="mx-5 text-m md:text-xl">
                   Looks like you Haven't made any events! Try creating one!
                 </div>
-                <Link
-                  className="mx-5 btn btn-primary w-40"
-                  href={"/create_event"}
-                >
-                  Create Event
-                </Link>
+                <CreateEventModal userId={user.id}></CreateEventModal>
               </div>
             ) : (
               <div className="md:grid grid-cols-2">
