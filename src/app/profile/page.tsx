@@ -12,6 +12,8 @@ import SideCardlist from "@/components/SideCardList";
 import { findMyEvents, findScheduledEvents } from "../actions";
 import ProfileAvatar from "@/components/profile/ProfileAvatar";
 import Link from "next/link";
+import { stripe } from "@/lib/stripe";
+import StripeDashboardLink from "@/components/profile/stripeDashboardLink";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -30,46 +32,21 @@ type User = {
   location: string;
   university: any;
   chapter: any;
+  stripeid: String;
 };
 
 export default async function Page(props: {
   searchParams: Promise<{ message?: string }>;
 }) {
-  // NEW USER TOUR ATTEMPT
-  // TODO: Make user view message on first log in
-  // const searchParams = await props.searchParams;
-  // let message;
-  // if (searchParams.message) {
-  //   switch (searchParams.message) {
-  //     case "newuser":
-  //       message = (
-  //         <>
-  //           <button className="btn hidden">open modal</button>
-  //           <dialog id="my_modal_1 modal-open" className="modal">
-  //             <div className="modal-box">
-  //               <h3 className="font-bold text-lg">Hello!</h3>
-  //               <p className="py-4">
-  //                 Press ESC key or click the button below to close
-  //               </p>
-  //               <div className="modal-action">
-  //                 <form method="dialog">
-  //                   {/* if there is a button in form, it will close the modal */}
-  //                   <button className="btn">Close</button>
-  //                 </form>
-  //               </div>
-  //             </div>
-  //           </dialog>
-  //         </>
-  //       );
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
-  // }
   // GET SESSION USER
   const session = await getServerSession(options);
   const user = session?.user as User;
+  const stripeid = user.stripeid as string;
+  let loginLink;
+  // CREATE STRIPE LOGINLINK
+  if (stripeid) {
+    loginLink = await stripe.accounts.createLoginLink(stripeid);
+  }
   // GET EVENTS
   const myEvents = await findMyEvents(session?.user?.id as string);
   let dbmyScheduledEvents = await findScheduledEvents(
@@ -139,11 +116,6 @@ export default async function Page(props: {
             <h2 className="card-title text-xs">
               Welcome, {session?.user?.name}
             </h2>
-            {/* ADD LATER IF YOU WANT LOCATION */}
-            {/* <div className="text-sm flex flex-row">
-              <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
-              <div>{user.location}</div>
-            </div> */}
             <div className="text-sm flex flex-row">
               <FontAwesomeIcon icon={faPeopleGroup} className="w-3 mx-1" />
               <div className="flex-col">
@@ -173,11 +145,6 @@ export default async function Page(props: {
           </figure>
           <div className="card-body items-left text-left">
             <h2 className="card-title">Welcome Back, {session?.user?.name}</h2>
-            {/* ADD IF YOU WANT LOCATION */}
-            {/* <div className="text-xs flex flex-row">
-              <FontAwesomeIcon icon={faLocationDot} className="w-3 mx-1" />
-              <div>{user.location}</div>
-            </div> */}
             <div className="text-xs flex flex-row">
               <FontAwesomeIcon icon={faPeopleGroup} className="w-3 mx-1" />
               <div className="flex-col">
@@ -193,6 +160,23 @@ export default async function Page(props: {
         </div>
         <div className="flex flex-col w-full">
           {/* scheduled events block */}
+          <div className="rounded-lg md:w-full md:h-full  m-1 p-2 mt-3 bg-base-100 flex-col">
+            <div className={`mx-5 text-xl md:text-4xl ${anton.className}`}>
+              Stripe Account
+            </div>
+            <>
+              {loginLink ? (
+                <Link href={loginLink?.url} className="btn btn-primary mx-5">
+                  Check Stripe Account
+                </Link>
+              ) : (
+                <div className="mx-5 text-m md:text-xl">
+                  Looks like you haven't set up your Stripe account. Click below
+                  to create your account!
+                </div>
+              )}
+            </>
+          </div>
           <div className="rounded-lg md:w-full md:h-full  m-1 p-2 mt-3 bg-base-100 flex-col">
             <div className={`mx-5 text-xl md:text-4xl ${anton.className}`}>
               Tickets
