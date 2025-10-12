@@ -47,6 +47,7 @@ async function main() {
       isVerified: true,
       bio: "Born in USA",
       location: "Douglasville",
+      stripeAccountId: "acct_1RpWHuJdhtPa0Ryt",
       password,
       events: {
         create: [
@@ -81,6 +82,8 @@ async function main() {
       lastName: "stprix",
       organization: "Alpha Phi Alpha",
       password,
+      stripeAccountId: "acct_1RpZ2HQwY87HHitX",
+
       location: "Atlanta",
       events: {
         create: [
@@ -111,10 +114,12 @@ async function main() {
     update: {},
     create: {
       email: "zeta@test.com",
-      firstName: "charlisa",
+      firstName: "cherlisa",
       lastName: "jackson",
       organization: "Zeta Phi Beta",
+      stripeAccountId: "acct_1RrnFbQzl63Fwsod",
       password,
+
       location: "Snellville",
       events: {
         create: [
@@ -183,6 +188,7 @@ async function main() {
       lastName: faker.person.lastName(),
       organization: "Sigma Gamma Rho",
       password,
+      stripeAccountId: "acct_1SDzJmJ3Z2VUmyJO",
       location: "Buckhead",
       events: {
         create: [
@@ -217,6 +223,7 @@ async function main() {
       lastName: faker.person.lastName(),
       organization: "Kappa Alpha Psi",
       password,
+      stripeAccountId: "acct_1RpX2YJMtDtXBCsX",
       location: "Buckhead",
       events: {
         create: [

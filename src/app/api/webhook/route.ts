@@ -4,6 +4,7 @@ import prisma from "@/lib/prisma";
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
+import { randomUUID } from "crypto";
 
 export async function POST(req: Request) {
   // STEP ONE: GET RAW-BODY AND SIGNATURE WITH HEADERS
@@ -77,6 +78,7 @@ export async function POST(req: Request) {
             paymentIntentId: paymentIntentId,
             status: "paid",
             userId: userExists ? userExists.id : null,
+            qrCodeData: randomUUID(),
           },
         });
         console.log("Ticket created");
