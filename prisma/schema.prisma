@@ -107,6 +107,7 @@ model Ticket {
   paymentIntentId  String?  // Stripe ID
   status           String   // "paid", "refunded", "failed"
   createdAt        DateTime @default(now())
+  qrCodeData  String? @unique
   refundId        String?  // Stripe Refund ID
 }
 

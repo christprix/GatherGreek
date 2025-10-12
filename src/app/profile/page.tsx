@@ -9,7 +9,8 @@ import {
 import { getServerSession } from "next-auth/next";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import SideCardlist from "@/components/SideCardList";
-import { findMyEvents, findScheduledEvents } from "../actions";
+import TicketSideCardList from "@/components/profile/TicketSideCardList";
+import { findMyEvents, findScheduledEvents, findMyTickets } from "../actions";
 import ProfileAvatar from "@/components/profile/ProfileAvatar";
 import Link from "next/link";
 import { stripe } from "@/lib/stripe";
@@ -48,6 +49,8 @@ export default async function Page(props: {
   if (stripeid) {
     loginLink = await stripe.accounts.createLoginLink(stripeid);
   }
+  // GET TICKETS
+  const myTickets = await findMyTickets(session?.user?.id as string);
   // GET EVENTS
   const myEvents = await findMyEvents(session?.user?.id as string);
   let dbmyScheduledEvents = await findScheduledEvents(
@@ -191,7 +194,7 @@ export default async function Page(props: {
             <div className={`mx-5 text-xl md:text-4xl ${anton.className}`}>
               Tickets
             </div>
-            {myScheduledEvents.length === 0 ? (
+            {myTickets.length === 0 ? (
               <div className="flex flex-col">
                 <div className="mx-5 text-m md:text-xl">
                   Looks like you aren't signed up for any event! Check out the
@@ -203,7 +206,7 @@ export default async function Page(props: {
               </div>
             ) : (
               <div className="md:grid grid-cols-2">
-                <SideCardlist events={myScheduledEvents}></SideCardlist>
+                <TicketSideCardList tickets={myTickets}></TicketSideCardList>
               </div>
             )}
           </div>

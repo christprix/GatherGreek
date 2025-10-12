@@ -112,6 +112,26 @@ export async function findMyEvents(id: string) {
   return dbevents;
 }
 
+export async function findMyTickets(id: string) {
+  const dbTickets = await prisma.ticket.findMany({
+    where: {
+      userId: id,
+    },
+    select: {
+      event: {
+        select: {
+          title: true,
+          eventDate: true,
+          address1: true,
+          city: true,
+          imagePath: true,
+        },
+      },
+    },
+  });
+  return dbTickets;
+}
+
 export async function findMyDraftEvents(id: string) {
   const dbevents = await prisma.draftEvent.findMany({
     where: {
