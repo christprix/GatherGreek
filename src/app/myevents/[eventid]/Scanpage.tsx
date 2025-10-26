@@ -2,7 +2,7 @@ import QrScannerComponent from "@/components/QrScanner";
 
 export default function ScanPage() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
+    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-50 z-0">
       <QrScannerComponent />
     </main>
   );
