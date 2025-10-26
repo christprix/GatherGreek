@@ -7,7 +7,6 @@ const anton = Anton({
   style: ["normal"],
 });
 export default function EventAttendeesList({ dbevent }: any) {
-  console.log(dbevent.Users_going_to_event.length);
   const showAttendees = dbevent.Users_going_to_event.map((e: any) => {
     console.log(e);
     return <EventAttendeesCard key={e.lastName} user={e}></EventAttendeesCard>;

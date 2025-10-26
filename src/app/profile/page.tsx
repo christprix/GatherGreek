@@ -42,6 +42,7 @@ export default async function Page(props: {
 }) {
   // GET SESSION USER
   const session = await getServerSession(options);
+
   const user = session?.user as User;
   const stripeid = user.stripeid as string;
   let loginLink;

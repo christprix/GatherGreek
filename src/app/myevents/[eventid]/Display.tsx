@@ -11,6 +11,7 @@ import { useState } from "react";
 import EventAttendeesList from "./EventAttendees";
 import DeleteEvent from "./DeleteEvent";
 import EditEvent from "./EditEvent";
+import ScanPage from "./Scanpage";
 import { Anton } from "next/font/google";
 
 const anton = Anton({
@@ -141,6 +142,8 @@ export default function Display({ dbevent, EventCreatorInfo }: any) {
         return <EditEvent dbevent={dbevent}></EditEvent>;
       case "Delete Event":
         return <DeleteEvent dbevent={dbevent}></DeleteEvent>;
+      case "Scan Tickets":
+        return <ScanPage></ScanPage>;
       default:
         return <>TBA</>;
         break;

@@ -5,22 +5,22 @@ import Image from "next/image";
 export default function SideNav({ imagepath, changeDisplay }: any) {
   const handleEditChange = () => {
     changeDisplay("Edit");
-    console.log("Edit");
   };
 
   const handleAttendeesChange = () => {
     changeDisplay("Attendees");
-    console.log("Attendees");
   };
 
   const handleMainChange = () => {
     changeDisplay("main");
-    console.log("main");
   };
 
   const handleDeleteChange = () => {
     changeDisplay("Delete Event");
-    console.log("Delete");
+  };
+
+  const handleScanChange = () => {
+    changeDisplay("Scan Tickets");
   };
 
   return (
@@ -62,6 +62,12 @@ export default function SideNav({ imagepath, changeDisplay }: any) {
               className="btn flex-grow w-full items-center justify center"
             >
               Delete Event
+            </button>
+            <button
+              onClick={handleScanChange}
+              className="btn flex-grow w-full items-center justify center"
+            >
+              Scan Tickets
             </button>
           </div>
 
@@ -168,6 +174,12 @@ export default function SideNav({ imagepath, changeDisplay }: any) {
                       className="btn flex-grow w-full items-center justify center"
                     >
                       Delete Event
+                    </button>
+                    <button
+                      onClick={handleScanChange}
+                      className="btn flex-grow w-full items-center justify center"
+                    >
+                      Scan Tickets
                     </button>
                   </div>
                 </div>

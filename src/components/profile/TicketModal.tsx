@@ -8,7 +8,6 @@ export default function TicketModal({ ticket }: { ticket: any }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { Image } = useQRCode();
-
   const openModal = () => {
     setIsOpen(true);
     modalRef.current?.showModal();

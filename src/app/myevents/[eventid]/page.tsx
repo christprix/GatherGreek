@@ -36,7 +36,6 @@ export default async function EventDetails(props: {
   const session = await getServerSession(options);
   let userId;
   const EventCreatorInfo = await findUserInfo(dbevent?.authorId as string);
-  console.log(EventCreatorInfo);
   let dbmyevents;
   let dbmyeventstats = {};
   async function getEventInfoifsession() {
