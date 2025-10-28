@@ -7,47 +7,55 @@ import { revalidatePath } from "next/cache";
 import { console } from "inspector";
 
 export async function verifyTicket(qrCodeData: string) {
-  // CHECK IF THERE IS A TICKETS
-  if (!qrCodeData) {
-    return { success: false, message: "Ticket does not show any data" };
-  }
-  // CHECK IF THE TICKET EXISTS IN DATABASE
+  try {
+    // CHECK IF THERE IS A TICKETS
+    if (!qrCodeData) {
+      return { success: false, message: "Ticket does not show any data" };
+    }
+    // CHECK IF THE TICKET EXISTS IN DATABASE
 
-  const ticket = await prisma.ticket.findUnique({
-    where: {
-      qrCodeData: qrCodeData,
-    },
-    include: {
-      event: {
-        select: {
-          title: true,
+    const ticket = await prisma.ticket.findUnique({
+      where: {
+        qrCodeData: qrCodeData,
+      },
+      include: {
+        event: {
+          select: {
+            title: true,
+          },
         },
       },
-    },
-  });
-  // RETURN IF IT DOES NOT EXIST
-  if (!ticket) {
-    return { success: false, message: "Invalid ticket" };
-  }
-  // RETURN IF TICKET IS ALREADY USED
-  if (ticket.status === "used") {
-    return { success: false, message: "Ticket already used" };
-  }
-  // IF IT EXISTS UPDATE TO USED
-  await prisma.ticket.update({
-    where: {
-      id: ticket.id,
-    },
-    data: {
-      status: "used",
-    },
-  });
+    });
+    // RETURN IF IT DOES NOT EXIST
+    if (!ticket) {
+      return { success: false, message: "Invalid ticket" };
+    }
+    // RETURN IF TICKET IS ALREADY USED
+    if (ticket.status === "used") {
+      return { success: false, message: "Ticket already used" };
+    }
+    // IF IT EXISTS UPDATE TO USED
+    await prisma.ticket.update({
+      where: {
+        id: ticket.id,
+      },
+      data: {
+        status: "used",
+      },
+    });
 
-  return {
-    success: true,
-    name: ticket.name ?? "Unknown User",
-    event: ticket.event?.title ?? "Unknown Event",
-  };
+    return {
+      success: true,
+      name: ticket.name ?? "Unknown User",
+      event: ticket.event?.title ?? "Unknown Event",
+    };
+  } catch (error) {
+    console.error("❌ Error verifying ticket:", error);
+    return {
+      success: false,
+      message: "An unexpected error occurred while verifying the ticket",
+    };
+  }
 }
 
 export async function findEvent(id: string) {
