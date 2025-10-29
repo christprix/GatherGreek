@@ -8,6 +8,7 @@ import { console } from "inspector";
 
 export async function verifyTicket(qrCodeData: string) {
   try {
+    console.log("This is the QR code", qrCodeData);
     // CHECK IF THERE IS A TICKETS
     if (!qrCodeData) {
       return { success: false, message: "Ticket does not show any data" };
@@ -27,6 +28,7 @@ export async function verifyTicket(qrCodeData: string) {
       },
     });
     // RETURN IF IT DOES NOT EXIST
+    console.log("this is the ticket", ticket);
     if (!ticket) {
       return { success: false, message: "Invalid ticket" };
     }
