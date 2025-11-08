@@ -64,13 +64,13 @@ export async function POST(req: Request) {
         if (!eventRecord || eventRecord.totalSeats <= 0) {
           throw new Error("Event does not exist or is sold out");
         }
-        console.log(buyerEmail);
+
         const userExists = await tx.user.findUnique({
           where: { email: buyerEmail },
         });
-        console.log(userExists);
+
         // CREATE TICKET
-        await tx.ticket.create({
+        const ticket = await tx.ticket.create({
           data: {
             eventId,
             email: buyerEmail,
@@ -85,6 +85,8 @@ export async function POST(req: Request) {
         console.log("Ticket created");
         await sendMail({
           email: buyerEmail,
+          ticketqrcode: ticket.qrCodeData as string,
+          name: ticket.name as string,
         });
         // UPDATE EVENT BY ADDING USERS AND DECREASING THE SEATS AVAILABLE
         if (userExists) {
