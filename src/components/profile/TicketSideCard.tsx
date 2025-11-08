@@ -7,11 +7,11 @@ export default function TicketSideCard({ ticket }: any) {
   return (
     <div className="card card-side bg-base-100 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 m-2 rounded-xl overflow-hidden max-h-44">
       {/* Event Image */}
-      <figure className="w-32 h-full">
+      <figure className="">
         <img
           src={ticket.event.imagePath}
           alt={ticket.event.title || "Event Image"}
-          className="w-full h-full object-cover"
+          className="w-32 h-full object-cover"
         />
       </figure>
 

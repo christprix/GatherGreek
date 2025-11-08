@@ -5,6 +5,7 @@ import Stripe from "stripe";
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { randomUUID } from "crypto";
+import { sendMail } from "@/lib/send-mail";
 
 export async function POST(req: Request) {
   // STEP ONE: GET RAW-BODY AND SIGNATURE WITH HEADERS
@@ -82,6 +83,9 @@ export async function POST(req: Request) {
           },
         });
         console.log("Ticket created");
+        await sendMail({
+          email: buyerEmail,
+        });
         // UPDATE EVENT BY ADDING USERS AND DECREASING THE SEATS AVAILABLE
         if (userExists) {
           await tx.event.update({
