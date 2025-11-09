@@ -14,19 +14,20 @@ export default function QrScannerComponent() {
 
   const handleScan = (detectedCodes: any) => {
     console.log(typeof detectedCodes);
-    console.log("Detected codes:", detectedCodes);
-    setQrCode(detectedCodes);
-    setScannedData(detectedCodes);
-    setMessage("Verifying ticket...");
+    detectedCodes.forEach((code: string) => {
+      setQrCode(code);
+      setScannedData(code);
+      setMessage("Verifying ticket...");
 
-    startTransition(async () => {
-      const result = await verifyTicket(scannedData as string);
+      startTransition(async () => {
+        const result = await verifyTicket(scannedData as string);
 
-      if (result.success) {
-        setMessage(`✅ Verified! ${result.name} - ${result.event}`);
-      } else {
-        setMessage(`❌ ${result.message}`);
-      }
+        if (result.success) {
+          setMessage(`✅ Verified! ${result.name} - ${result.event}`);
+        } else {
+          setMessage(`❌ ${result.message}`);
+        }
+      });
     });
   };
 
@@ -62,7 +63,6 @@ export default function QrScannerComponent() {
         message && (
           <div>
             <p className="text-center text-sm">{message}</p>
-            <p className="text-center text-sm">{qrCode}</p>
           </div>
         )
       )}
