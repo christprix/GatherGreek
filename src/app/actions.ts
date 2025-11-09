@@ -22,6 +22,7 @@ export async function verifyTicket(qrCodeData: string, eventId: string) {
         event: {
           select: {
             title: true,
+            id: true,
           },
         },
       },
