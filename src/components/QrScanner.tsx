@@ -13,6 +13,7 @@ export default function QrScannerComponent() {
 
   const handleScan = (detectedCodes: any) => {
     console.log(typeof detectedCodes);
+    console.log("Detected codes:", detectedCodes);
     setScannedData(detectedCodes);
     setMessage("Verifying ticket...");
 
