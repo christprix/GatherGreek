@@ -12,7 +12,7 @@ export default function TicketModal({ ticket }: { ticket: any }) {
     setIsOpen(true);
     modalRef.current?.showModal();
   };
-
+  console.log(ticket);
   const closeModal = () => {
     setIsOpen(false);
     modalRef.current?.close();
@@ -24,7 +24,6 @@ export default function TicketModal({ ticket }: { ticket: any }) {
       <button className="btn btn-primary" onClick={openModal}>
         View Ticket
       </button>
-
       {/* Modal */}
       <dialog ref={modalRef} id="join_event_modal" className="modal">
         <div className="modal-box space-y-4">
@@ -32,7 +31,7 @@ export default function TicketModal({ ticket }: { ticket: any }) {
 
           <div className="flex flex-col items-center">
             <h2 className="text-2xl font-semibold mb-3">
-              {ticket?.name || "Event Ticket"}
+              {ticket?.event.title || "Event Ticket"}
             </h2>
 
             {/* ✅ Only render QR when modal is open */}
@@ -52,6 +51,9 @@ export default function TicketModal({ ticket }: { ticket: any }) {
                   },
                 }}
               />
+            )}
+            {ticket.status === "used" && (
+              <div>Looks like this ticket has already been scanned</div>
             )}
           </div>
 

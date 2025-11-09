@@ -143,7 +143,7 @@ export default function Display({ dbevent, EventCreatorInfo }: any) {
       case "Delete Event":
         return <DeleteEvent dbevent={dbevent}></DeleteEvent>;
       case "Scan Tickets":
-        return <ScanPage></ScanPage>;
+        return <ScanPage eventid={dbevent.id as any}></ScanPage>;
       default:
         return <>TBA</>;
         break;

@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { console } from "inspector";
 
-export async function verifyTicket(qrCodeData: string) {
+export async function verifyTicket(qrCodeData: string, eventId: string) {
   try {
     // CHECK IF THERE IS A TICKETS
     if (!qrCodeData) {
@@ -29,6 +29,10 @@ export async function verifyTicket(qrCodeData: string) {
     // RETURN IF IT DOES NOT EXIST
     if (!ticket) {
       return { success: false, message: "Invalid ticket" };
+    }
+    // RETURN IF TICKET IS NOT FOR THIS EVENT
+    if (ticket.eventId != eventId) {
+      return { success: false, message: "This ticket is not for this event" };
     }
     // RETURN IF TICKET IS ALREADY USED
     if (ticket.status === "used") {
@@ -172,6 +176,7 @@ export async function findMyTickets(id: string) {
     },
     select: {
       qrCodeData: true,
+      status: true,
       event: {
         select: {
           title: true,

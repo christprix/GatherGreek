@@ -21,7 +21,6 @@ export default function TicketSideCard({ ticket }: any) {
         <h2 className="card-title text-base font-semibold text-gray-800 leading-tight line-clamp-2">
           {ticket.event.title}
         </h2>
-
         {/* Date */}
         <div className="flex items-center text-sm text-gray-600 mt-1">
           <FontAwesomeIcon

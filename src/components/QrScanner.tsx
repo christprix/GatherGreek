@@ -4,7 +4,7 @@ import { verifyTicket } from "@/app/actions";
 import { useState, useTransition } from "react";
 import { Scanner, useDevices } from "@yudiel/react-qr-scanner";
 
-export default function QrScannerComponent() {
+export default function QrScannerComponent(eventid: any) {
   const [scannedData, setScannedData] = useState<string | null>(null);
   const [qrCode, setQrCode] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -20,7 +20,10 @@ export default function QrScannerComponent() {
       setMessage("Verifying ticket...");
 
       startTransition(async () => {
-        const result = await verifyTicket(scannedData as string);
+        const result = await verifyTicket(
+          scannedData as string,
+          eventid as string
+        );
 
         if (result.success) {
           setMessage(`✅ Verified! ${result.name} - ${result.event}`);
@@ -63,6 +66,7 @@ export default function QrScannerComponent() {
         message && (
           <div>
             <p className="text-center text-sm">{message}</p>
+            <p className="text-center text-sm">{qrCode}</p>
           </div>
         )
       )}
