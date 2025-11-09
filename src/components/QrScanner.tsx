@@ -6,6 +6,7 @@ import { Scanner, useDevices } from "@yudiel/react-qr-scanner";
 
 export default function QrScannerComponent() {
   const [scannedData, setScannedData] = useState<string | null>(null);
+  const [qrCode, setQrCode] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const devices = useDevices();
@@ -14,6 +15,7 @@ export default function QrScannerComponent() {
   const handleScan = (detectedCodes: any) => {
     console.log(typeof detectedCodes);
     console.log("Detected codes:", detectedCodes);
+    setQrCode(detectedCodes);
     setScannedData(detectedCodes);
     setMessage("Verifying ticket...");
 
@@ -57,7 +59,12 @@ export default function QrScannerComponent() {
       {isPending ? (
         <p className="text-gray-600 font-medium animate-pulse">Checking...</p>
       ) : (
-        message && <p className="text-center text-sm">{message}</p>
+        message && (
+          <div>
+            <p className="text-center text-sm">{message}</p>
+            <p className="text-center text-sm">{qrCode}</p>
+          </div>
+        )
       )}
     </div>
   );
