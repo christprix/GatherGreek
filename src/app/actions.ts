@@ -7,6 +7,7 @@ import { revalidatePath } from "next/cache";
 import { console } from "inspector";
 
 export async function verifyTicket(qrCodeData: string) {
+  console.log(qrCodeData);
   try {
     // CHECK IF THERE IS A TICKETS
     if (!qrCodeData) {
