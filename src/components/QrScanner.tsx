@@ -14,9 +14,9 @@ export default function QrScannerComponent() {
 
   const handleScan = (detectedCodes: any) => {
     console.log(typeof detectedCodes);
-    detectedCodes.forEach((code: string) => {
-      setQrCode(code);
-      setScannedData(code);
+    detectedCodes.forEach((code: any) => {
+      setQrCode(code.rawValue);
+      setScannedData(code.rawValue);
       setMessage("Verifying ticket...");
 
       startTransition(async () => {
