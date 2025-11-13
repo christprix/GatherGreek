@@ -4,21 +4,27 @@ import { verifyTicket } from "@/app/actions";
 import { useState, useTransition } from "react";
 import { Scanner, useDevices } from "@yudiel/react-qr-scanner";
 
-export default function QrScannerComponent() {
+export default function QrScannerComponent({ eventid }: any) {
   const [scannedData, setScannedData] = useState<string | null>(null);
+  const [qrCode, setQrCode] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const devices = useDevices();
   const [selectedDevice, setSelectedDevice] = useState(null);
 
   const handleScan = (detectedCodes: any) => {
-    console.log(typeof detectedCodes);
-    console.log("Detected codes:", detectedCodes);
-    setScannedData(detectedCodes);
-    setMessage("Verifying ticket...");
-
+    console.log("detected codes", detectedCodes);
+    detectedCodes.forEach((code: any) => {
+      setQrCode(code.rawValue);
+      setScannedData(code.rawValue);
+      setMessage("Verifying ticket...");
+    });
+    console.log("QRCODE:", qrCode);
     startTransition(async () => {
-      const result = await verifyTicket(scannedData as string);
+      const result = await verifyTicket(
+        scannedData as string,
+        eventid as string
+      );
 
       if (result.success) {
         setMessage(`✅ Verified! ${result.name} - ${result.event}`);
@@ -47,6 +53,8 @@ export default function QrScannerComponent() {
       <div className=" z-0 w-80 h-80 rounded-xl overflow-hidden border-4 border-blue-500">
         <Scanner
           onScan={handleScan}
+          scanDelay={500}
+          sound={true}
           onError={(error: any) => console.error(error?.message || error)}
           constraints={{
             facingMode: "environment",
@@ -57,7 +65,12 @@ export default function QrScannerComponent() {
       {isPending ? (
         <p className="text-gray-600 font-medium animate-pulse">Checking...</p>
       ) : (
-        message && <p className="text-center text-sm">{message}</p>
+        message && (
+          <div>
+            <p className="text-center text-sm">{message}</p>
+            <p className="text-center text-sm">{qrCode}</p>
+          </div>
+        )
       )}
     </div>
   );

@@ -18,10 +18,9 @@ export async function createStripeCheckoutSession({
   }
   const amount = Math.round(parseFloat(event.priceInCents) * 100);
   const ourCharge = Math.floor(amount * 0.02);
-  console.log("This is the amount we charge", ourCharge);
+
   const stripefee = Math.floor(amount * 0.029 + 34);
-  console.log("This is the ticket amount", amount);
-  console.log("This is the stripe fee", stripefee);
+
   const session = await stripe.checkout.sessions.create({
     customer_email: email,
     payment_method_types: ["card"],

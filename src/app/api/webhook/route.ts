@@ -82,11 +82,24 @@ export async function POST(req: Request) {
             qrCodeData: randomUUID(),
           },
         });
-        console.log("Ticket created");
+
+        const eventinfo = await prisma.event.findUnique({
+          where: { id: eventId },
+          select: {
+            title: true,
+            address1: true,
+            eventDate: true,
+            description: true,
+          },
+        });
+
         await sendMail({
           email: buyerEmail,
           ticketqrcode: ticket.qrCodeData as string,
           name: ticket.name as string,
+          title: eventinfo?.title as string,
+          address1: eventinfo?.address1 as string,
+          description: eventinfo?.description as string,
         });
         // UPDATE EVENT BY ADDING USERS AND DECREASING THE SEATS AVAILABLE
         if (userExists) {
@@ -101,7 +114,6 @@ export async function POST(req: Request) {
               totalSeats: { decrement: 1 },
             },
           });
-          console.log("user updated");
         } else {
           await tx.event.update({
             where: { id: eventId },

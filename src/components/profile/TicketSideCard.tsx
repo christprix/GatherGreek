@@ -4,8 +4,21 @@ import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import TicketModal from "./TicketModal";
 
 export default function TicketSideCard({ ticket }: any) {
+  const isUsed = ticket.status === "used";
+
   return (
-    <div className="card card-side bg-base-100 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 m-2 rounded-xl overflow-hidden max-h-44">
+    // <div className="card card-side bg-base-100 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 m-2 rounded-xl overflow-hidden max-h-44">
+    <div
+      className={`relative card card-side bg-base-100 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 m-2 rounded-xl overflow-hidden max-h-44 ${
+        isUsed ? "opacity-80 grayscale" : ""
+      }`}
+    >
+      {/* ✅ Used Ticket Banner */}
+      {isUsed && (
+        <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-md shadow-sm">
+          USED
+        </div>
+      )}
       {/* Event Image */}
       <figure className="">
         <img
@@ -21,7 +34,6 @@ export default function TicketSideCard({ ticket }: any) {
         <h2 className="card-title text-base font-semibold text-gray-800 leading-tight line-clamp-2">
           {ticket.event.title}
         </h2>
-
         {/* Date */}
         <div className="flex items-center text-sm text-gray-600 mt-1">
           <FontAwesomeIcon
@@ -40,7 +52,16 @@ export default function TicketSideCard({ ticket }: any) {
 
         {/* View Ticket Button */}
         <div className="mt-3">
-          <TicketModal ticket={ticket} />
+          {isUsed ? (
+            <button
+              disabled
+              className="btn btn-sm bg-gray-300 text-gray-600 cursor-not-allowed w-full"
+            >
+              Ticket Already Used
+            </button>
+          ) : (
+            <TicketModal ticket={ticket} />
+          )}
         </div>
       </div>
     </div>
