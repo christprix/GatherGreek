@@ -21,6 +21,8 @@ const anton = Anton({
 });
 
 export default function Display({ dbevent, EventCreatorInfo }: any) {
+  // GET EVENT ID
+  const eventid = dbevent.id as string;
   // TAGS FUNCTION
   const getTags = dbevent?.tags.map((e: any) => {
     return (
@@ -143,7 +145,7 @@ export default function Display({ dbevent, EventCreatorInfo }: any) {
       case "Delete Event":
         return <DeleteEvent dbevent={dbevent}></DeleteEvent>;
       case "Scan Tickets":
-        return <ScanPage eventid={dbevent.id as any}></ScanPage>;
+        return <ScanPage eventid={eventid as string}></ScanPage>;
       default:
         return <>TBA</>;
         break;

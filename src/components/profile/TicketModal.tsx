@@ -12,7 +12,6 @@ export default function TicketModal({ ticket }: { ticket: any }) {
     setIsOpen(true);
     modalRef.current?.showModal();
   };
-  console.log(ticket);
   const closeModal = () => {
     setIsOpen(false);
     modalRef.current?.close();

@@ -32,8 +32,11 @@ export async function verifyTicket(qrCodeData: string, eventId: string) {
       return { success: false, message: "Invalid ticket" };
     }
     // RETURN IF TICKET IS NOT FOR THIS EVENT
-    if (ticket.eventId != eventId) {
-      return { success: false, message: "This ticket is not for this event" };
+    if (ticket.event.id != eventId) {
+      return {
+        success: false,
+        message: "This ticket is not for this event" + eventId,
+      };
     }
     // RETURN IF TICKET IS ALREADY USED
     if (ticket.status === "used") {

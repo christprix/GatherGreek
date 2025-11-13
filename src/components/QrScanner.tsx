@@ -4,7 +4,7 @@ import { verifyTicket } from "@/app/actions";
 import { useState, useTransition } from "react";
 import { Scanner, useDevices } from "@yudiel/react-qr-scanner";
 
-export default function QrScannerComponent(eventid: any) {
+export default function QrScannerComponent({ eventid }: any) {
   const [scannedData, setScannedData] = useState<string | null>(null);
   const [qrCode, setQrCode] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -13,24 +13,24 @@ export default function QrScannerComponent(eventid: any) {
   const [selectedDevice, setSelectedDevice] = useState(null);
 
   const handleScan = (detectedCodes: any) => {
-    console.log(typeof detectedCodes);
+    console.log("detected codes", detectedCodes);
     detectedCodes.forEach((code: any) => {
       setQrCode(code.rawValue);
       setScannedData(code.rawValue);
       setMessage("Verifying ticket...");
+    });
+    console.log("QRCODE:", qrCode);
+    startTransition(async () => {
+      const result = await verifyTicket(
+        scannedData as string,
+        eventid as string
+      );
 
-      startTransition(async () => {
-        const result = await verifyTicket(
-          scannedData as string,
-          eventid as string
-        );
-
-        if (result.success) {
-          setMessage(`✅ Verified! ${result.name} - ${result.event}`);
-        } else {
-          setMessage(`❌ ${result.message}`);
-        }
-      });
+      if (result.success) {
+        setMessage(`✅ Verified! ${result.name} - ${result.event}`);
+      } else {
+        setMessage(`❌ ${result.message}`);
+      }
     });
   };
 
@@ -53,6 +53,8 @@ export default function QrScannerComponent(eventid: any) {
       <div className=" z-0 w-80 h-80 rounded-xl overflow-hidden border-4 border-blue-500">
         <Scanner
           onScan={handleScan}
+          scanDelay={500}
+          sound={true}
           onError={(error: any) => console.error(error?.message || error)}
           constraints={{
             facingMode: "environment",
