@@ -27,7 +27,7 @@ export default function QrScannerComponent({ eventid }: any) {
         if (result.success) {
           setMessage(`✅ Verified! ${result.name} - ${result.event}`);
         } else {
-          setMessage(`❌ ${result.message}`);
+          setMessage(`✅ ${result.message}`);
         }
       });
     });
