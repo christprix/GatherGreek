@@ -39,19 +39,22 @@ export async function verifyTicket(qrCodeData: string, eventId: string) {
       };
     }
     // RETURN IF TICKET IS ALREADY USED
+    // IF IT EXISTS UPDATE TO USED
+    if (ticket.status === "paid") {
+      await prisma.ticket.update({
+        where: {
+          id: ticket.id,
+        },
+        data: {
+          status: "used",
+        },
+      });
+      return { success: true, message: "Ticket has been verified" };
+    }
+
     if (ticket.status === "used") {
       return { success: false, message: "Ticket already used" };
     }
-    // IF IT EXISTS UPDATE TO USED
-    await prisma.ticket.update({
-      where: {
-        id: ticket.id,
-      },
-      data: {
-        status: "used",
-      },
-    });
-
     return {
       success: true,
       name: ticket.name ?? "Unknown User",
