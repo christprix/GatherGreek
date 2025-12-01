@@ -49,7 +49,11 @@ export async function verifyTicket(qrCodeData: string, eventId: string) {
           status: "used",
         },
       });
-      return { success: true, message: "Ticket has been verified" };
+      return {
+        success: true,
+        name: ticket.name ?? "Unknown User",
+        event: ticket.event?.title ?? "Unknown Event",
+      };
     }
 
     if (ticket.status === "used") {
