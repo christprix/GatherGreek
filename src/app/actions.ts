@@ -57,7 +57,7 @@ export async function verifyTicket(qrCodeData: string, eventId: string) {
     }
 
     if (ticket.status === "used") {
-      return { success: false, message: "Ticket already used" };
+      return { success: false, message: "Ticket has been verified!" };
     }
     return {
       success: true,
