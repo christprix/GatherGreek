@@ -18,20 +18,20 @@ export default function QrScannerComponent({ eventid }: any) {
       setQrCode(code.rawValue);
       setScannedData(code.rawValue);
       setMessage("Verifying ticket...");
+      startTransition(async () => {
+        const result = await verifyTicket(
+          scannedData as string,
+          eventid as string
+        );
+
+        if (result.success) {
+          setMessage(`✅ Verified! ${result.name} - ${result.event}`);
+        } else {
+          setMessage(`❌ ${result.message}`);
+        }
+      });
     });
     console.log("QRCODE:", qrCode);
-    startTransition(async () => {
-      const result = await verifyTicket(
-        scannedData as string,
-        eventid as string
-      );
-
-      if (result.success) {
-        setMessage(`✅ Verified! ${result.name} - ${result.event}`);
-      } else {
-        setMessage(`❌ ${result.message}`);
-      }
-    });
   };
 
   return (
